@@ -1,0 +1,63 @@
+/* requirements: bootstrap 5.2.3, jquery 3.5.1, font-awesome 4.7.0 */
+.multiselect {
+    --background-color: #e9ecef;
+    --border-color: #dee2e6;
+
+    position: relative;
+    cursor: pointer;
+}
+
+.multiselect .label {
+    height: 38px;
+    padding: .375rem .75rem .375rem .75rem;
+    background-color: var(--background-color);
+    border: 1px var(--border-color) solid;
+    border-radius: .375rem;
+}
+
+.multiselect .label::after {
+    float: left;
+    content: "\f107";
+    font-family: "FontAwesome";
+}
+
+.multiselect .label.active {
+    box-shadow: 0px 0px 0px 4px rgba(0, 119, 255, 0.3);
+}
+
+.multiselect .smfp-label {
+    color: #555;
+}
+
+.multiselect .items {
+    width: 100%;
+    position: absolute;
+    z-index: 999999999;
+    margin: 2px 0px;
+    border: 1px var(--border-color) solid;
+    border-radius: .375rem .375rem 0 0;
+    background-color: #fff;
+    box-shadow: 0px 0px 10px #aaa;
+}
+
+.multiselect ul {
+    width: 100%;
+    position: absolute;
+    overflow-y: scroll;
+    max-height: 200px;
+    border: 1px var(--border-color) solid;
+    padding: 0px;
+    background-color: #fff;
+    border-radius: 0 0 .375rem .375rem;
+    box-shadow: 0px 0px 10px #aaa;
+}
+
+.multiselect ul li {
+    padding: .375rem .75rem .375rem .75rem;
+    list-style: none;
+}
+
+.multiselect ul li:hover {
+    background-color: var(--bs-primary);
+    color: #fff;
+}

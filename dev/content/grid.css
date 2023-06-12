@@ -1,0 +1,38 @@
+/* requirements: bootstrap 5.2.3, jquery 3.5.1, font-awesome 4.7.0 */
+.grid {
+    --border-color: #dee2e6;
+    --header-footer-color: rgba(0,0,0,0.03);
+    --footer-text-color: #a6a6a6;
+
+    border: 1px var(--border-color) solid;
+    border-radius: 2px;
+}
+.grid table {
+    margin: 0px !important;
+}
+
+.grid .pagination {
+    --bs-pagination-color: #2e2e2e;
+    --bs-pagination-color-active: #fff;
+
+    margin: 0px !important;
+}
+
+.grid .pagination a {
+    color: var(--bs-pagination-color) !important;
+}
+
+.grid .pagination a.active {
+    color: var(--bs-pagination-color-active) !important;
+}
+
+.grid-header {
+    padding: 10px;
+    background-color: var(--header-footer-color);
+}
+
+.grid-footer {
+    padding:  10px;
+    background-color: var(--header-footer-color);
+    color: var(--footer-text-color);
+}
