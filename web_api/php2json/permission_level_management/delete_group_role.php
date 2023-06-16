@@ -2,6 +2,7 @@
 <?php
 include_once("../../interface/class_group_role.php");
 include_once("../../class_authorization.php");
+include_once("../../class_roles_title.php");
 
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
