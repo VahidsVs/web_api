@@ -11,7 +11,7 @@ session_start();
 $accessAuthorization=new Authorization();
 $isAuthorized=$accessAuthorization->isAuthorized($headers["Authorization"],$_SESSION["token"],$_SESSION["key"],RolesTitle::role_permissionLevelManagement);
 
-if($isAuthorized)
+if($isAuthorized["auth"]&&$isAuthorized["aa"])
 {
     
 $accessClass = new UserInGroup("Delete", $_GET);

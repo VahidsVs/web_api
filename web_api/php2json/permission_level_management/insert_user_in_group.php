@@ -11,7 +11,7 @@ session_start();
 $accessAuthorization=new Authorization();
 $isAuthorized=$accessAuthorization->isAuthorized($headers["Authorization"],$_SESSION["token"],$_SESSION["key"],RolesTitle::role_permissionLevelManagement);
 
-if($isAuthorized)
+if($isAuthorized["auth"]&&$isAuthorized["aa"])
 {
 $jsonPost = json_decode(file_get_contents('php://input'), true);
 $accessClass = new UserInGroup("Insert", $jsonPost);   
