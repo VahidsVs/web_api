@@ -58,7 +58,7 @@ class CmsController extends LitElement {
         <cms-header></cms-header>
 
     </header>
-    <div class="p-2" style="min-height: calc(100vh - 150px);">
+    <div class="" style="min-height: calc(100vh - 150px);">
 
         ${this.ModuleRender}
 

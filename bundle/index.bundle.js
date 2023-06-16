@@ -3896,7 +3896,32 @@ let CmsIndex = class CmsIndex extends lit__WEBPACK_IMPORTED_MODULE_0__.LitElemen
     }
     render() {
         return lit__WEBPACK_IMPORTED_MODULE_0__.html `
-<span name="translate" caption="hello_world"></span>
+<div class="container-fluid section1">
+    <div class="sheet1 text-light">
+        <img class="circle1" src="/images/circle.png">
+        <div class="group1 d-flex">
+            <div class="d-flex" style="flex-direction: column;justify-content: center;">
+                <h1 class="text-center" style="font-weight: 400; font-size: 4rem;">Web Development Studio</h1>
+                <p class="text-center" style="font-size: 1.25rem;">
+                    IT-Outsourcing, Strong Design, Network & Webstie Security, Advantages, Low Price, High Speed, Support 24/7
+                </p>
+                <div class="border1"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid section2" style="background-color: #000000;">
+    <div class="sheet2 text-light">
+        <div class="group2 d-flex">
+            <div class="d-flex" style="flex-direction: column;justify-content: center;">
+                <h1 class="text-center" style="font-weight: 400; font-size: 4rem;">Internet Marketing</h1>
+                <p class="text-center" style="font-size: 1.25rem;">
+                    Get a winning strategy for promoting your business online, including SEO, advertising and branding
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
         `;
     }
 };

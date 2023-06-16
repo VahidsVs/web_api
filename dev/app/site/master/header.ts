@@ -97,7 +97,7 @@ class CmsHeader extends LitElement {
     updated(changedProperties: any) {
         super.updated(changedProperties);
 
-        let lcid = getCookie("lcid");
+        let lcid = 'en';//getCookie("lcid");
 
         $(() => {
             this.ChangeLanguage(lcid);
@@ -119,12 +119,12 @@ class CmsHeader extends LitElement {
         });
     }
 
-    ChangeLanguage_Click(e: any) {
-        let lcid = e.target.textContent;
-        document.cookie = "lcid=" + lcid + "; path=/;SameSite=None;Secure";
+    // ChangeLanguage_Click(e: any) {
+    //     let lcid = e.target.textContent;
+    //     document.cookie = "lcid=" + lcid + "; path=/;SameSite=None;Secure";
 
-        location.reload();
-    }
+    //     location.reload();
+    // }
 
     logout(e: any) {
         e.preventDefault();
@@ -149,39 +149,41 @@ class CmsHeader extends LitElement {
 
     render() {
         return html`
-<div style="text-align: center;">
-    <a class="navbar-brand" href="/">
-        <img src="/images/Logo.png" alt="" width="80" class="d-inline-block align-text-top">
-    </a>
-</div>
-<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #0d6efd">
-    <div class="container-fluid">
-       
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 my-lg-0">
-                <li class="nav-item">
-                    <a name="translate" caption="nav_link_home" class="nav-link" aria-current="page" href="/"></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="/admin/index.html">مدیریت</a>
-                </li>
-            </ul>
+<div class="container">
+    <div class="row" style="padding-top: 20px;">
+        <div class="col-sm-3">
+            <a class="navbar-brand" href="/">
+                <img src="/images/Logo.png" alt="" width="120" class="d-inline-block align-text-top">
+            </a>
+        </div>
+        <div class="col-sm-9">
+            <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #282634">
+                <div class="container-fluid">
+                
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 my-lg-0">
+                            
+                        </ul>
+                
+                        <ul class="navbar-nav d-flex" style="font-weight: bold !important; margin-top: 50px; margin-bottom: 10px;">
+                            <li class="nav-item">
+                                <a name="translate" caption="nav_link_home" class="nav-link" aria-current="page" href="/"></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" aria-current="page" href="/admin/index.html">مدیریت</a>
+                            </li>
+                            ${this.PnlLogin}
+                        </ul>
 
-            <div class="btn-group btn-group-sm">
-                <button class="btn btn-dark" id="faLang" @click="${this.ChangeLanguage_Click}">fa</button>
-                <button class="btn btn-dark" id="enLang" @click="${this.ChangeLanguage_Click}">en</button>
-            </div>
-    
-            <ul class="navbar-nav d-flex">
-                ${this.PnlLogin}
-            </ul>
-
+                    </div>
+                </div>
+            </nav>
         </div>
     </div>
-</nav>
+</div>
         `;
     }
 }

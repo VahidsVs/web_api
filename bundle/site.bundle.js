@@ -18230,22 +18230,22 @@ function getCookie(cname) {
 }
 
 //ست کردن کد زبان 
-let lcid = getCookie("lcid");
-if (!lcid) {
-    lcid = "fa";
-    document.cookie = "lcid=" + lcid + "; path=/;SameSite=None;Secure";
-}
+let lcid = 'en'; // getCookie("lcid");
+// if (!lcid) {
+//     lcid = "fa";
+//     document.cookie = "lcid=" + lcid + "; path=/;SameSite=None;Secure";
+// }
 
 
 if(lcid == "fa") {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()("html").attr("lang", "fa").attr("dir", "rtl");
     jquery__WEBPACK_IMPORTED_MODULE_0___default()("#mainCss").remove();
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("head").append(`<link id="mainCss" href="/bundle/admin_rtl.css" type="text/css" rel="stylesheet" />`);
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("head").append(`<link id="mainCss" href="/bundle/site_rtl.css" type="text/css" rel="stylesheet" />`);
 }
 else {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()("html").attr("lang", "en").attr("dir", "ltr");
     jquery__WEBPACK_IMPORTED_MODULE_0___default()("#mainCss").remove();
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("head").append(`<link id="mainCss" href="/bundle/admin_ltr.css" type="text/css" rel="stylesheet" />`);
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("head").append(`<link id="mainCss" href="/bundle/site_ltr.css" type="text/css" rel="stylesheet" />`);
 }
 
 __webpack_require__(/*! ../content/confirm.js */ "../content/confirm.js");

@@ -22,22 +22,22 @@ function getCookie(cname) {
 }
 
 //ست کردن کد زبان 
-let lcid = getCookie("lcid");
-if (!lcid) {
-    lcid = "fa";
-    document.cookie = "lcid=" + lcid + "; path=/;SameSite=None;Secure";
-}
+let lcid = 'en'; // getCookie("lcid");
+// if (!lcid) {
+//     lcid = "fa";
+//     document.cookie = "lcid=" + lcid + "; path=/;SameSite=None;Secure";
+// }
 
 
 if(lcid == "fa") {
     $("html").attr("lang", "fa").attr("dir", "rtl");
     $("#mainCss").remove();
-    $("head").append(`<link id="mainCss" href="/bundle/admin_rtl.css" type="text/css" rel="stylesheet" />`);
+    $("head").append(`<link id="mainCss" href="/bundle/site_rtl.css" type="text/css" rel="stylesheet" />`);
 }
 else {
     $("html").attr("lang", "en").attr("dir", "ltr");
     $("#mainCss").remove();
-    $("head").append(`<link id="mainCss" href="/bundle/admin_ltr.css" type="text/css" rel="stylesheet" />`);
+    $("head").append(`<link id="mainCss" href="/bundle/site_ltr.css" type="text/css" rel="stylesheet" />`);
 }
 
 require('../content/confirm.js');

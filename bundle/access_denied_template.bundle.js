@@ -27445,7 +27445,7 @@ let CmsController = class CmsController extends lit__WEBPACK_IMPORTED_MODULE_0__
         <cms-header></cms-header>
 
     </header>
-    <div class="p-2" style="min-height: calc(100vh - 150px);">
+    <div class="" style="min-height: calc(100vh - 150px);">
 
         ${this.ModuleRender}
 

@@ -24,7 +24,7 @@ function getCookie(cname) {
 //ست کردن کد زبان 
 let lcid = getCookie("lcid");
 if (!lcid) {
-    lcid = "fa";
+    lcid = "en";
     document.cookie = "lcid=" + lcid + "; path=/;SameSite=None;Secure";
 }
 

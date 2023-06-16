@@ -13234,13 +13234,13 @@ body {
     font-family: numbers, iransans, Tahoma;
     margin: 0 auto;
     line-height: 24pt;
-    background: #fff url(635aa7d1758a747d52cf.jpg) no-repeat top center;
+    background: #fff;
     background-size: cover;
 }
 
 .myHeader {
     background-size: cover;
-    padding-top: 20px;
+    background-color: #282634;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -13278,6 +13278,57 @@ jdp-container {
     margin: 10px auto;
 }
 
+
+
+
+
+.sheet1 {
+    min-height: 705px;
+    margin: 0 auto;
+    position: relative;
+}
+.sheet1::before{
+    content: '';
+    display: table;
+}
+.section1 {
+    background-image: url(673a473ef9d218016bef.png);
+    background-position: 50% 50%;
+    display: block;
+    background-repeat: no-repeat;
+    object-fit: cover;
+    background-size: cover;
+}
+.section1::before{
+    content: '';
+    display: table;
+}
+.circle1 {
+    width: 529px;
+    height: 457px;
+    margin: 124px auto 0;
+    display: block;
+    position: relative;
+    object-fit: contain;
+    background-size: contain;
+    overflow: hidden;
+}
+.group1 {
+    width: 739px;
+    min-height: 456px;
+    position: relative;
+    margin: -455px auto 70px;
+}
+.border1 {
+    width: 102px;
+    height: 10px;
+    transform-origin: left center;
+    margin: 34px auto 45px;
+    border-color: #f15048;
+    border-width: 10px;
+    border-style: solid;
+    border-bottom-width: 0;
+}
 /*!**************************************************************************************************************************!*\
   !*** css ../node_modules/css-loader/dist/cjs.js!../node_modules/@majidh1/jalalidatepicker/dist/jalaliDatepicker.min.css ***!
   \**************************************************************************************************************************/
