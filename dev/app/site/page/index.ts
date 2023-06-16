@@ -29,6 +29,7 @@ class CmsIndex extends LitElement {
 
     firstUpdated(changedProperties: any) {
     }
+    //سلام بر تو
 
     render() {
         return html`
