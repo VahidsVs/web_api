@@ -5,13 +5,17 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 
 $iniConfig = parse_ini_file("../../config.ini");
 
-		session_start();
-//		if (isset($_SESSION['loginTime']) && (time() - $_SESSION['loginTime'] > $iniConfig["session-timeout"])) 
-		{
-			// last request was more than 1440 seconds ago
-			//session_unset();     // unset $_SESSION variable for this page
-		//	session_destroy();   // destroy session data
-		}
-echo json_encode($_SESSION);
+session_start();
+if (isset($_SESSION['loginTime']) && (time() - $_SESSION['loginTime'] > $iniConfig["session-timeout"])) {
+	// last request was more than 1440 seconds ago
+	session_unset(); // unset $_SESSION variable for this page
+	session_destroy(); // destroy session data
+	$isAnonymous["isAnonymous"] = true;
+	echo json_encode($isAnonymous);
+
+} else {
+	session_start();
+	echo json_encode($_SESSION);
+}
 
 ?>

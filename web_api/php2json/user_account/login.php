@@ -13,6 +13,7 @@ if ($accessClass->getHttpResponseCode()==200) {
 	$_SESSION["token"] = $accessClass->getJsonData()["token"];
 	$_SESSION["key"] = $accessClass->getKey();
 	$_SESSION["username"] = $accessClass->getUsername();
+	$_SESSION["loginTime"] = time();
 	http_response_code($accessClass->getHttpResponseCode());
 } else {
 	session_start();
