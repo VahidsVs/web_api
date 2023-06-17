@@ -10,7 +10,6 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 $headers=getallheaders();
 session_start();
 $accessAuthorization=new Authorization();
-echo "123";
 $isAuthorized=$accessAuthorization->isAuthorized($headers["Authorization"],$_SESSION["token"],$_SESSION["key"],RolesTitle::role_permissionLevelManagement);
 if($isAuthorized["auth"]&&$isAuthorized["aa"])
 {
