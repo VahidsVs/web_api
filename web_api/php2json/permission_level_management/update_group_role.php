@@ -12,7 +12,6 @@ $headers=getallheaders();
 session_start();
 $accessAuthorization=new Authorization();
 $isAuthorized=$accessAuthorization->isAuthorized($headers["Authorization"],$_SESSION["token"],$_SESSION["key"],RolesTitle::role_permissionLevelManagement);
-
 if($isAuthorized["auth"]&&$isAuthorized["aa"])
 {
 $jsonPost = json_decode(file_get_contents('php://input'), true);

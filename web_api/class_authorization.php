@@ -42,7 +42,10 @@ class Authorization
             $isActionAuthorized=true;
            
            }
+           if((time()-$userLoginTime)>$GLOBALS["iniConfig"]["session-timeout"])
+           $isAuthorized=false;
         }
+        
 
         return ["auth"=>$isAuthorized,"aa"=>$isActionAuthorized];
 

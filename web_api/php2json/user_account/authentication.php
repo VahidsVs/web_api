@@ -7,7 +7,7 @@ $iniConfig = parse_ini_file("../../config.ini");
 
 		session_start();
 		if (isset($_SESSION['loginTime']) && (time() - $_SESSION['loginTime'] > $iniConfig["session-timeout"])) {
-			// last request was more than 1440 hours ago
+			// last request was more than 1440 seconds ago
 			session_unset();     // unset $_SESSION variable for this page
 			session_destroy();   // destroy session data
 		}
