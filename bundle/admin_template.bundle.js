@@ -27504,8 +27504,8 @@ let CmsHeader = class CmsHeader extends lit__WEBPACK_IMPORTED_MODULE_0__.LitElem
             }
             else if (data.isAnonymous === false) {
                 var UserName = data.username;
-                var isInRole = data.isInRole;
-                if (isInRole === true) {
+                var isInGroup = data.isInGroup;
+                if (isInGroup === true) {
                     this.PnlLoginItems.push(lit__WEBPACK_IMPORTED_MODULE_0__.html `
 <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">

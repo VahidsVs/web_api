@@ -41,8 +41,8 @@ class CmsHeader extends LitElement {
                 else if (data.isAnonymous === false) {
                     var UserName = data.username;
 
-                    var isInRole = data.isInRole;
-                            if (isInRole === true) {
+                    var isInGroup = data.isInGroup;
+                            if (isInGroup === true) {
                                 this.PnlLoginItems.push(html`
 <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
