@@ -10,11 +10,14 @@ if (isset($_SESSION['loginTime']) && (time() - $_SESSION['loginTime'] > $iniConf
 	// last request was more than 1440 seconds ago
 	session_unset(); // unset $_SESSION variable for this page
 	session_destroy(); // destroy session data
-	$isAnonymous["isAnonymous"] = true;
-	echo json_encode($isAnonymous);
+	$jsonSession["isAnonymous"] = true;
+	echo json_encode($jsonSession);
 
 } else {
-	echo json_encode($_SESSION);
+	$jsonSession["isAnonymous"] = $_SESSION["isAnonymous"];
+	$jsonSession["username"] = $_SESSION["username"];
+	$jsonSession["isInGroup"] = false;
+	echo json_encode($jsonSession);
 }
 
 ?>
