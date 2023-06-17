@@ -27,8 +27,7 @@ class CmsHeader extends LitElement {
             .then(data => {
                 if (data.isAnonymous === true) {
                     window.localStorage.removeItem("CMSToken");
-                    document.cookie = "token= ; path=/";
-                    document.cookie = "expires= Thu, 01 Jan 1970 00: 00: 00 UTC; path = /";
+                    document.cookie = "token= ; path=/;expires= Thu, 01 Jan 1970 00: 00: 00 UTC";
 
                     this.PnlLoginItems.push(html`
 <li class="nav-item">
@@ -74,10 +73,9 @@ class CmsHeader extends LitElement {
                     this.requestUpdate();
                 }
                 else {
-                    
+
                     window.localStorage.removeItem("CMSToken");
-                    document.cookie = "token= ; path=/";
-                    document.cookie = "expires= Thu, 01 Jan 1970 00: 00: 00 UTC; path = /";
+                    document.cookie = "token= ; path=/;expires= Thu, 01 Jan 1970 00: 00: 00 UTC";
 
                     this.PnlLoginItems.push(html`
     <li class="nav-item">

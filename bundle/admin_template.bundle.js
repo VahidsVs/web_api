@@ -27495,8 +27495,7 @@ let CmsHeader = class CmsHeader extends lit__WEBPACK_IMPORTED_MODULE_0__.LitElem
             .then(data => {
             if (data.isAnonymous === true) {
                 window.localStorage.removeItem("CMSToken");
-                document.cookie = "token= ; path=/";
-                document.cookie = "expires= Thu, 01 Jan 1970 00: 00: 00 UTC; path = /";
+                document.cookie = "token= ; path=/;expires= Thu, 01 Jan 1970 00: 00: 00 UTC";
                 this.PnlLoginItems.push(lit__WEBPACK_IMPORTED_MODULE_0__.html `
 <li class="nav-item">
     <a name="translate" caption="nav_link_login" href="/login.html" class="nav-link"></a>
@@ -27539,8 +27538,7 @@ let CmsHeader = class CmsHeader extends lit__WEBPACK_IMPORTED_MODULE_0__.LitElem
             }
             else {
                 window.localStorage.removeItem("CMSToken");
-                document.cookie = "token= ; path=/";
-                document.cookie = "expires= Thu, 01 Jan 1970 00: 00: 00 UTC; path = /";
+                document.cookie = "token= ; path=/;expires= Thu, 01 Jan 1970 00: 00: 00 UTC";
                 this.PnlLoginItems.push(lit__WEBPACK_IMPORTED_MODULE_0__.html `
     <li class="nav-item">
         <a name="translate" caption="nav_link_login" href="/login.html" class="nav-link"></a>
