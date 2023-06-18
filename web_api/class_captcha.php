@@ -1,4 +1,4 @@
-<?
+<?php
 class Captcha
 {
     function __construct()
