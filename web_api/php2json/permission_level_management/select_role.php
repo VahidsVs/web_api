@@ -2,6 +2,7 @@
 include_once("../../interface/class_role.php");
 include_once("../../class_authorization.php");
 include_once("../../class_roles_title.php");
+include_once("../../class_captcha.php");
 
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
@@ -10,6 +11,9 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 $headers=getallheaders();
 session_start();
 $accessAuthorization=new Authorization();
+$accessCaptcha=new Captcha();
+echo $accessCaptcha->createCaptcha();
+
 if($headers["Authorization"]&&$_SESSION["token"]&&$_SESSION["key"])
 $isAuthorized=$accessAuthorization->isAuthorized($headers["Authorization"],$_SESSION["token"],$_SESSION["key"],RolesTitle::role_permissionLevelManagement);
 
