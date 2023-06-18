@@ -10,8 +10,9 @@ header("Access-Control-Allow-Headers: *");
 $headers=getallheaders();
 session_start();
 $accessAuthorization=new Authorization();
-if($headers["Authorization"]&&$_SESSION["token"]&&$_SESSION["key"])
-$isAuthorized=$accessAuthorization->isAuthorized($headers["Authorization"],$_SESSION["token"],$_SESSION["key"],RolesTitle::role_permissionLevelManagement);
+$isAuthorized["auth"]=$isAuthorized["aa"]=false;
+if (array_key_exists("Authorization", $headers) && array_key_exists("token", $_SESSION) && array_key_exists("key", $_SESSION))
+    $isAuthorized = $accessAuthorization->isAuthorized($headers["Authorization"], $_SESSION["token"], $_SESSION["key"], RolesTitle::role_permissionLevelManagement);
 
 if($isAuthorized["auth"]&&$isAuthorized["aa"])
 {
