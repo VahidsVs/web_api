@@ -64,17 +64,17 @@ module.exports = {
         site: [
             "./site_mainjs.js",
         ],
-        site_rtl: [
-            "../node_modules/bootstrap/dist/css/bootstrap.rtl.css",
-            "../content/font-awesome.css",
-            "../content/site_rtl.css",
-            "../node_modules/@majidh1/jalalidatepicker/dist/jalaliDatepicker.min.css",
-        ],
+        // site_rtl: [
+        //     "../node_modules/bootstrap/dist/css/bootstrap.rtl.css",
+        //     "../content/font-awesome.css",
+        //     "../content/site_rtl.css",
+        //     "../node_modules/@majidh1/jalalidatepicker/dist/jalaliDatepicker.min.css",
+        // ],
         site_ltr: [
-            "../node_modules/bootstrap/dist/css/bootstrap.css",
-            "../content/font-awesome.css",
-            "../content/site_ltr.css",
-            "../node_modules/@majidh1/jalalidatepicker/dist/jalaliDatepicker.min.css",
+            "../content/bootstrap.min.css",
+            "../content/lib/animate/animate.min.css",
+            "../content/lib/owlcarousel/assets/owl.carousel.min.css",
+            "../content/site.css",
         ],
         //</site>
     },

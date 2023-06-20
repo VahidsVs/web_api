@@ -157,39 +157,37 @@ class CmsHeader extends LitElement {
 
     render() {
         return html`
-<div class="container">
-    <div class="row" style="padding-top: 20px;">
-        <div class="col-sm-3">
+<div class="container-fluid bg-primary">
+    <div class="container">
+        <nav class="navbar navbar-dark navbar-expand-lg py-0">
             <a class="navbar-brand" href="/">
                 <img src="/images/Logo.png" alt="" width="120" class="d-inline-block align-text-top">
             </a>
-        </div>
-        <div class="col-sm-9">
-            <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #282634">
-                <div class="container-fluid">
-                
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav me-auto mb-2 my-lg-0">
-                            
-                        </ul>
-                
-                        <ul class="navbar-nav d-flex" style="font-weight: bold !important; margin-top: 50px; margin-bottom: 10px;">
-                            <li class="nav-item">
-                                <a name="translate" caption="nav_link_home" class="nav-link" aria-current="page" href="/"></a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="/admin/index.html">مدیریت</a>
-                            </li>
-                            ${this.PnlLogin}
-                        </ul>
-
-                    </div>
+            <button type="button" class="navbar-toggler me-0" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse bg-transparent" id="navbarCollapse">
+                <div class="navbar-nav ms-auto mx-xl-auto p-0">
+                    <a href="/" class="nav-item nav-link">Home</a>
+                    <a href="/admin/index.html" class="nav-item nav-link">مدیریت</a>
+                    ${this.PnlLogin}
                 </div>
-            </nav>
-        </div>
+            </div>
+            <div class="d-none d-xl-flex flex-shirink-0">
+                <div id="phone-tada" class="d-flex align-items-center justify-content-center me-4">
+                    <a href="" class="position-relative animated tada infinite">
+                        <i class="fa fa-phone-alt text-white fa-2x"></i>
+                        <div class="position-absolute" style="top: -7px; left: 20px;">
+                            <span><i class="fa fa-comment-dots text-secondary"></i></span>
+                        </div>
+                    </a>
+                </div>
+                <div class="d-flex flex-column pe-4">
+                    <span class="text-white-50">Have any questions?</span>
+                    <span class="text-secondary">Call: + 0123 456 7890</span>
+                </div>
+            </div>
+        </nav>
     </div>
 </div>
         `;

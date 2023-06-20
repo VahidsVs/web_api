@@ -29,17 +29,21 @@ let lcid = 'en'; // getCookie("lcid");
 // }
 
 
-if(lcid == "fa") {
-    $("html").attr("lang", "fa").attr("dir", "rtl");
-    $("#mainCss").remove();
-    $("head").append(`<link id="mainCss" href="/bundle/site_rtl.css" type="text/css" rel="stylesheet" />`);
-}
-else {
+// if(lcid == "fa") {
+//     $("html").attr("lang", "fa").attr("dir", "rtl");
+//     $("#mainCss").remove();
+//     $("head").append(`<link id="mainCss" href="/bundle/site_rtl.css" type="text/css" rel="stylesheet" />`);
+// }
+// else {
     $("html").attr("lang", "en").attr("dir", "ltr");
     $("#mainCss").remove();
     $("head").append(`<link id="mainCss" href="/bundle/site_ltr.css" type="text/css" rel="stylesheet" />`);
-}
+// }
 
 require('../content/confirm.js');
 require('bootstrap/dist/js/bootstrap.bundle.js');
-require('@majidh1/jalalidatepicker/dist/jalaliDatepicker.js');
+require('../content/lib/wow/wow.min.js');
+require('../content/lib/easing/easing.min.js');
+require('../content/lib/waypoints/waypoints.min.js');
+require('../content/lib/owlcarousel/owl.carousel.min.js');
+require('../content/site.js');
