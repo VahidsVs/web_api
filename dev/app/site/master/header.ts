@@ -169,7 +169,6 @@ class CmsHeader extends LitElement {
             <div class="collapse navbar-collapse bg-transparent" id="navbarCollapse">
                 <div class="navbar-nav ms-auto mx-xl-auto p-0">
                     <a href="/" class="nav-item nav-link">Home</a>
-                    <a href="/admin/index.html" class="nav-item nav-link">مدیریت</a>
                     ${this.PnlLogin}
                 </div>
             </div>
@@ -184,7 +183,7 @@ class CmsHeader extends LitElement {
                 </div>
                 <div class="d-flex flex-column pe-4">
                     <span class="text-white-50">Have any questions?</span>
-                    <span class="text-secondary">Call: + 0123 456 7890</span>
+                    <span class="text-secondary">Call: +43 664 99657071</span>
                 </div>
             </div>
         </nav>
