@@ -43,7 +43,7 @@ class ContactUss
 			$bindParams["param"][4] = $parameters["message"];
 		}
 
-			$query = "Insert Into $this->tableName (name,email,mobile,subject,message) Values(?,?,?,?,now())";
+			$query = "Insert Into $this->tableName (name,email,mobile,subject,message,created_at) Values(?,?,?,?,?,now())";
 			$errorCode = $this->accessDatabase->executeAndFetch($action, $query, $bindParams);
 
 		if ($errorCode == 1452) {
