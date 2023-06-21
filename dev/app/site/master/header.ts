@@ -32,9 +32,7 @@ class CmsHeader extends LitElement {
                     document.cookie = "token= ; path=/;expires= Thu, 01 Jan 1970 00: 00: 00 UTC";
 
                     this.PnlLoginItems.push(html`
-<li class="nav-item">
-    <a name="translate" caption="nav_link_login" href="/login.html" class="nav-link"></a>
-</li>`);
+`);
 
                     this.requestUpdate();
                 }
@@ -44,32 +42,14 @@ class CmsHeader extends LitElement {
                     var isInGroup = data.isInGroup;
                             if (isInGroup === true) {
                                 this.PnlLoginItems.push(html`
-<li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-        <span>${UserName}</span>
-    </a>
-    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-        <li class="">
-            <a href="/admin/index.html" class="dropdown-item" target="_blank"><span class="fa fa-dashboard"></span> <span name="translate" caption="nav_link_admin_dashboard"></span></a>
-        </li>
-        <li class="">
-            <a href="#" class="dropdown-item" @click="${this.logout}"><span class="fa fa-sign-out"></span> <span name="translate" caption="nav_link_logout"></span></a>
-        </li>
-    </ul>
-</li>`);
+<a href="/admin/index.html" class="nav-item nav-link"><span name="translate" caption="nav_link_admin_dashboard"></span></a>
+<a href="#" @click="${this.logout}" class="nav-item nav-link"><span name="translate" caption="nav_link_logout"></span></a>
+`);
                             }
                             else {
                                 this.PnlLoginItems.push(html`
-<li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-        <span>${UserName}</span>
-    </a>
-    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-        <li class="">
-            <a href="#" class="dropdown-item" @click="${this.logout}"><span class="fa fa-sign-out"></span> <span name="translate" caption="nav_link_logout"></span></a>
-        </li>
-    </ul>
-</li>`);
+<a href="#" @click="${this.logout}" class="nav-item nav-link"><span name="translate" caption="nav_link_logout"></span></a>
+`);
                             }
 
                             this.requestUpdate();
@@ -80,9 +60,7 @@ class CmsHeader extends LitElement {
                     document.cookie = "token= ; path=/;expires= Thu, 01 Jan 1970 00: 00: 00 UTC";
 
                     this.PnlLoginItems.push(html`
-    <li class="nav-item">
-        <a name="translate" caption="nav_link_login" href="/login.html" class="nav-link"></a>
-    </li>`);
+`);
     
                     this.requestUpdate();
                 }

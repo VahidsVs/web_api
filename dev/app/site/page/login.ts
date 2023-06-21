@@ -105,6 +105,9 @@ class CmsLogin extends LitElement {
                                 </div>
                                 <span data-bind="visible: errors.password, text: errors.password" class="invalid"></span>
                             </div>
+                            <div class="mb-3">
+                                <img src="">
+                            </div>
                             <div class="col-md-12 mb-3">
                                 <input type="checkbox" id="chRememberMe" />&nbsp;<label name="translate" caption="label_remember_me" for="chRememberMe"></label>
                             </div>

@@ -334,7 +334,7 @@
 }
 
 .page-header {
-    background: linear-gradient(rgba(0, 0, 0, .6), rgba(0, 0, 0, .6)), url(c3868fe296695738520f.jpg) center center no-repeat;
+    /* background: linear-gradient(rgba(0, 0, 0, .6), rgba(0, 0, 0, .6)), url(../../images/carousel-1.jpg) center center no-repeat; */
     background-size: cover;
 }
 

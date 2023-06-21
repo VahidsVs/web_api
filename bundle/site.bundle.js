@@ -18234,7 +18234,7 @@ let lcid = 'en'; // getCookie("lcid");
 
 __webpack_require__(/*! ../content/confirm.js */ "../content/confirm.js");
 __webpack_require__(/*! bootstrap/dist/js/bootstrap.bundle.js */ "../node_modules/bootstrap/dist/js/bootstrap.bundle.js");
-__webpack_require__(/*! ../content/lib/wow/wow.min.js */ "../content/lib/wow/wow.min.js");
+__webpack_require__.g.WOW = __webpack_require__(/*! ../content/lib/wow/wow.min.js */ "../content/lib/wow/wow.min.js");
 __webpack_require__(/*! ../content/lib/easing/easing.min.js */ "../content/lib/easing/easing.min.js");
 __webpack_require__(/*! ../content/lib/waypoints/waypoints.min.js */ "../content/lib/waypoints/waypoints.min.js");
 __webpack_require__(/*! ../content/lib/owlcarousel/owl.carousel.min.js */ "../content/lib/owlcarousel/owl.carousel.min.js");

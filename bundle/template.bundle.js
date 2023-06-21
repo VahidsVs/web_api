@@ -27708,7 +27708,7 @@ let CmsController = class CmsController extends lit__WEBPACK_IMPORTED_MODULE_0__
     <cms-header></cms-header>
 <!-- Navbar End -->
 
-<div class="" style="min-height: calc(100vh - 150px);">
+<div class="" style="min-height: calc(100vh - 140px);">
 
     ${this.ModuleRender}
 
@@ -27767,9 +27767,7 @@ let CmsHeader = class CmsHeader extends lit__WEBPACK_IMPORTED_MODULE_0__.LitElem
                 window.localStorage.removeItem("CMSToken");
                 document.cookie = "token= ; path=/;expires= Thu, 01 Jan 1970 00: 00: 00 UTC";
                 this.PnlLoginItems.push(lit__WEBPACK_IMPORTED_MODULE_0__.html `
-<li class="nav-item">
-    <a name="translate" caption="nav_link_login" href="/login.html" class="nav-link"></a>
-</li>`);
+`);
                 this.requestUpdate();
             }
             else if (data.isAnonymous === false) {
@@ -27777,32 +27775,14 @@ let CmsHeader = class CmsHeader extends lit__WEBPACK_IMPORTED_MODULE_0__.LitElem
                 var isInGroup = data.isInGroup;
                 if (isInGroup === true) {
                     this.PnlLoginItems.push(lit__WEBPACK_IMPORTED_MODULE_0__.html `
-<li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-        <span>${UserName}</span>
-    </a>
-    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-        <li class="">
-            <a href="/admin/index.html" class="dropdown-item" target="_blank"><span class="fa fa-dashboard"></span> <span name="translate" caption="nav_link_admin_dashboard"></span></a>
-        </li>
-        <li class="">
-            <a href="#" class="dropdown-item" @click="${this.logout}"><span class="fa fa-sign-out"></span> <span name="translate" caption="nav_link_logout"></span></a>
-        </li>
-    </ul>
-</li>`);
+<a href="/admin/index.html" class="nav-item nav-link"><span name="translate" caption="nav_link_admin_dashboard"></span></a>
+<a href="#" @click="${this.logout}" class="nav-item nav-link"><span name="translate" caption="nav_link_logout"></span></a>
+`);
                 }
                 else {
                     this.PnlLoginItems.push(lit__WEBPACK_IMPORTED_MODULE_0__.html `
-<li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-        <span>${UserName}</span>
-    </a>
-    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-        <li class="">
-            <a href="#" class="dropdown-item" @click="${this.logout}"><span class="fa fa-sign-out"></span> <span name="translate" caption="nav_link_logout"></span></a>
-        </li>
-    </ul>
-</li>`);
+<a href="#" @click="${this.logout}" class="nav-item nav-link"><span name="translate" caption="nav_link_logout"></span></a>
+`);
                 }
                 this.requestUpdate();
             }
@@ -27810,9 +27790,7 @@ let CmsHeader = class CmsHeader extends lit__WEBPACK_IMPORTED_MODULE_0__.LitElem
                 window.localStorage.removeItem("CMSToken");
                 document.cookie = "token= ; path=/;expires= Thu, 01 Jan 1970 00: 00: 00 UTC";
                 this.PnlLoginItems.push(lit__WEBPACK_IMPORTED_MODULE_0__.html `
-    <li class="nav-item">
-        <a name="translate" caption="nav_link_login" href="/login.html" class="nav-link"></a>
-    </li>`);
+`);
                 this.requestUpdate();
             }
         });

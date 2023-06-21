@@ -77,7 +77,7 @@ class CmsController extends LitElement {
     <cms-header></cms-header>
 <!-- Navbar End -->
 
-<div class="" style="min-height: calc(100vh - 150px);">
+<div class="" style="min-height: calc(100vh - 140px);">
 
     ${this.ModuleRender}
 
