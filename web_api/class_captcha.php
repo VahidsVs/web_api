@@ -11,7 +11,6 @@ class Captcha
         $random_num = md5(random_bytes(64));
         $captcha_code = substr($random_num, 0, 6);
         // Assign captcha in session
-        $GLOBALS['captchaCode'] = $captcha_code;
         // Create captcha image
         $layer = imagecreatetruecolor(168, 37);
         $captcha_bg = imagecolorallocate($layer, 247, 174, 71);
@@ -28,12 +27,13 @@ class Captcha
         ob_end_clean();
         $imgBase64 = base64_encode($imgData);
 
-        return $imgBase64;
+        return [$imgBase64,$captcha_code];
     }
     function checkCaptcha($inputCode)
     {
         $isCorrect=false;
-        if($inputCode==$GLOBALS["captchaCode"])
+        session_start();
+        if($inputCode==$_SESSION["captchaCode"])
         $isCorrect=true;
         
         return $isCorrect;
