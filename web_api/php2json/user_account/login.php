@@ -1,5 +1,6 @@
 <?php
 include_once("../../interface/class_user.php");
+include_once("../../class_captcha.php");
 
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: POST");
