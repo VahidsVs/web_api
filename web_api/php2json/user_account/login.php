@@ -7,7 +7,7 @@ header("Access-Control-Allow-Headers: *");
 
 	$accessClass = new User("Select", $_POST);
 	if ($accessClass->getHttpResponseCode() == 200) {
-		session_start();
+		//session_start();
 		$_SESSION["isAnonymous"] = false;
 		$_SESSION["token"] = $accessClass->getJsonData()["token"];
 		$_SESSION["key"] = $accessClass->getKey();
