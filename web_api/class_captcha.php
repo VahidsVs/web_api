@@ -8,12 +8,10 @@ class Captcha
     function createCaptcha()
     {
         // Generate captcha code
-        session_start();
-
         $random_num = md5(random_bytes(64));
         $captcha_code = substr($random_num, 0, 6);
         // Assign captcha in session
-        $_SESSION['captchaCode'] = $captcha_code;
+        $GLOBALS['captchaCode'] = $captcha_code;
         // Create captcha image
         $layer = imagecreatetruecolor(168, 37);
         $captcha_bg = imagecolorallocate($layer, 247, 174, 71);
@@ -35,8 +33,7 @@ class Captcha
     function checkCaptcha($inputCode)
     {
         $isCorrect=false;
-        session_start();
-        if($inputCode==$_SESSION["captchaCode"])
+        if($inputCode==$GLOBALS["captchaCode"])
         $isCorrect=true;
         
         return $isCorrect;
