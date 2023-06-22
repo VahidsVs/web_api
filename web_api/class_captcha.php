@@ -32,7 +32,8 @@ class Captcha
     function checkCaptcha($inputCode)
     {
         $isCorrect=false;
-        if($inputCode==$_SESSION["captchaCode"])
+
+        if(array_key_exists("captchaCode",$_SESSION)&&($inputCode==$_SESSION["captchaCode"]));
         $isCorrect=true;
         
         return $isCorrect;
