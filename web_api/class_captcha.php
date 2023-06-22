@@ -11,7 +11,6 @@ class Captcha
         $random_num = md5(random_bytes(64));
         $captcha_code = substr($random_num, 0, 6);
         // Assign captcha in session
-        session_start();
         $_SESSION['captchaCode'] = $captcha_code;
         // Create captcha image
         $layer = imagecreatetruecolor(168, 37);
