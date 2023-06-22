@@ -9,7 +9,6 @@ class User
 {
 	private $accessCodes;
 	private $accessCaptcha;
-
 	private $accessUsers;
 	private $pk_user;
 	private $username;
@@ -41,7 +40,7 @@ class User
 	}
 	private function select($action, $parameters, $orderBy, $limit)
 	{
-		$message = ["", "", ""];
+		$message = ["", "", "", ""];
 		if (empty($parameters["username"])) {
 			$message[0] = Codes::msg_isEmpty;
 			$this->isDataOK = false;

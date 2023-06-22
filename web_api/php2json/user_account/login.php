@@ -5,9 +5,6 @@ header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Allow-Headers: *");
 
-
-$accessCaptcha = new Captcha();
-
 	$accessClass = new User("Select", $_POST);
 	if ($accessClass->getHttpResponseCode() == 200) {
 		session_start();
