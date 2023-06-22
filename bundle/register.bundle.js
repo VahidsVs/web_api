@@ -23460,9 +23460,11 @@ function getLangResources() {
     fa['/access-denied.html'] = "ورود غیر مجاز";
     fa['/register.html'] = "ثبت نام";
     fa['/my-home.html'] = "صفحه من";
+    fa['/contact-us.html'] = "ارتباط با ما";
+    fa['/about-us.html'] = "درباره ما";
     fa['title_login'] = "ورود به سامانه";
     fa['subtitle_login'] = "وارد شوید!";
-    fa['label_username'] = "نام کاربری (شماره موبایل):";
+    fa['label_username'] = "نام کاربری (پست الکترونیک):";
     fa['label_password'] = "کلمه عبور:";
     fa['label_password_confirm'] = "تکرار کلمه عبور:";
     fa['label_remember_me'] = "مرا به خاطر بسپار";
@@ -23478,6 +23480,7 @@ function getLangResources() {
     fa['msgPassAndPassConfirmNotSame'] = "کلمه عبور و تایید آن یکی نیست";
     fa['msgUsernameExists'] = "نام کاربری تکراری است";
     fa['msgTitleExists'] = "عنوان تکراری است";
+    fa['msgInvalidCaptchaInput'] = "کد امنیتی اشتباه است";
     fa['msgSuccessfulCUD'] = "عملیات با موفقیت انجام شد";
     en['hello_world'] = "Hello World";
     en['direction'] = "ltr",
@@ -23494,9 +23497,11 @@ function getLangResources() {
     en['/access-denied.html'] = "Access Denied";
     en['/register.html'] = "Register";
     en['/my-home.html'] = "My Page";
+    en['/contact-us.html'] = "Contact Us";
+    en['/about-us.html'] = "About Us";
     en['title_login'] = "Login to system";
     en['subtitle_login'] = "login!";
-    en['label_username'] = "Username (Mobile Number):";
+    en['label_username'] = "Username (Email):";
     en['label_password'] = "Password:";
     en['label_password_confirm'] = "Repeat Password:";
     en['label_remember_me'] = "Remember Me";
@@ -23512,6 +23517,7 @@ function getLangResources() {
     en['msgPassAndPassConfirmNotSame'] = "Password and Repeat Password is not match";
     en['msgUsernameExists'] = "Username is duplicated";
     en['msgTitleExists'] = "Title is duplicated";
+    fa['msgInvalidCaptchaInput'] = "Invalid captcha code input";
     en['msgSuccessfulCUD'] = "Successfully submited";
     var resources = new Array();
     resources['fa'] = fa;

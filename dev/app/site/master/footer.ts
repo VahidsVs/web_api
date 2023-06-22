@@ -39,26 +39,50 @@ class CmsFooter extends LitElement {
                 <a href="/">
                     <img src="/images/Logo.png" alt="" width="120" class="d-inline-block align-text-top">
                 </a>
-                <p class="mt-4 text-light">MegaTech is an IT company which works in the field of applications, newtork, web design, blockchain and AI. MegaTech is an innovative start-up company.</p>
+                <p class="mt-4 text-light">
+                    MegaTech is an IT company which works in the field of applications, newtork, web design, blockchain and AI. MegaTech is an innovative start-up company.
+                </p>
                 <div class="d-flex hightech-link">
-                    <a href="" target="_blank" class="btn-light nav-fill btn btn-square rounded-circle me-2"><i class="fab fa-facebook-f text-primary"></i></a>
-                    <a href="https://wa.me/4366499657071" target="_blank" class="btn-light nav-fill btn btn-square rounded-circle me-2"><i class="fab fa-whatsapp text-primary"></i></a>
-                    <a href="" target="_blank" class="btn-light nav-fill btn btn-square rounded-circle me-2"><i class="fab fa-instagram text-primary"></i></a>
-                    <a href="" target="_blank" class="btn-light nav-fill btn btn-square rounded-circle me-0"><i class="fab fa-linkedin-in text-primary"></i></a>
+                    <a href="" target="_blank" class="btn-light nav-fill btn btn-square rounded-circle me-2">
+                        <i class="fab fa-facebook-f text-primary"></i>
+                    </a>
+                    <a href="https://wa.me/4366499657071" target="_blank" class="btn-light nav-fill btn btn-square rounded-circle me-2">
+                        <i class="fab fa-whatsapp text-primary"></i>
+                    </a>
+                    <a href="" target="_blank" class="btn-light nav-fill btn btn-square rounded-circle me-2">
+                        <i class="fab fa-instagram text-primary"></i>
+                    </a>
+                    <a href="" target="_blank" class="btn-light nav-fill btn btn-square rounded-circle me-0">
+                        <i class="fab fa-linkedin-in text-primary"></i>
+                    </a>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6">
                 <span class="h3 text-secondary">Short Link</span>
                 <div class="mt-4 d-flex flex-column short-link">
-                    <a href="/" class="mb-2 text-white"><i class="fas fa-angle-right text-secondary me-2"></i>Home</a>
+                    <a href="/" class="mb-2 text-white">
+                        <i class="fas fa-angle-right text-secondary me-2"></i>Home
+                    </a>
+                    <a href="/contact-us.html" class="mb-2 text-white">
+                        <i class="fas fa-angle-right text-secondary me-2"></i>Contact Us
+                    </a>
+                    <a href="/about-us.html" class="mb-2 text-white">
+                        <i class="fas fa-angle-right text-secondary me-2"></i>About Us
+                    </a>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6">
                 <span class="h3 text-secondary">Contact Us</span>
                 <div class="text-white mt-4 d-flex flex-column contact-link">
-                    <a href="#" class="pb-3 text-light border-bottom border-primary"><i class="fas fa-map-marker-alt text-secondary me-2"></i> Weiz, Austria</a>
-                    <a href="#" class="py-3 text-light border-bottom border-primary"><i class="fas fa-phone-alt text-secondary me-2"></i> +43 664 99657071</a>
-                    <a href="#" class="py-3 text-light border-bottom border-primary"><i class="fas fa-envelope text-secondary me-2"></i> admin@megatechapp.at</a>
+                    <a href="#" class="pb-3 text-light border-bottom border-primary">
+                        <i class="fas fa-map-marker-alt text-secondary me-2"></i> Weiz, Austria
+                    </a>
+                    <a href="#" class="py-3 text-light border-bottom border-primary">
+                        <i class="fas fa-phone-alt text-secondary me-2"></i> +43 664 99657071
+                    </a>
+                    <a href="#" class="py-3 text-light border-bottom border-primary">
+                        <i class="fas fa-envelope text-secondary me-2"></i> admin@megatechapp.at
+                    </a>
                 </div>
             </div>
         </div>

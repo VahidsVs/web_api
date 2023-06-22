@@ -1,6 +1,6 @@
 ﻿import { LitElement, html, css } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
-import { getCookie, PostDataForm } from '../../cms_general';
+import { getCookie, GetData, GetDataWithoutLoading, PostDataForm } from '../../cms_general';
 import * as ko from 'knockout';
 import { getLangResources } from '../../site_localization';
 
@@ -18,17 +18,23 @@ class CmsLogin extends LitElement {
     private Model = {
         data: {
             username: ko.observable(""),
-            password: ko.observable("")
+            password: ko.observable(""),
+            CaptchaCode: ko.observable(""),
+        },
+        captcha: {
+            captcha: ko.observable(),
         },
         errors: {
             username: ko.observable(),
-            password: ko.observable()
+            password: ko.observable(),
+            captchaCode: ko.observable(),
         },
         setErrors: function (errors: any) {
             let lcid = getCookie("lcid");
             let resources = getLangResources()[lcid];
             this.errors.username(errors ? resources[errors.username] : undefined);
             this.errors.password(errors ? resources[errors.password] : undefined);
+            this.errors.captchaCode(errors ? resources[errors.captchaCode] : undefined);
         }
     };
 
@@ -46,6 +52,15 @@ class CmsLogin extends LitElement {
         ko.applyBindings(this.Model, document.getElementById("pnlLogin"));
 
         $('#txtUserName').focus();
+
+        this.ShowCaptcha();
+    }
+
+    ShowCaptcha() {
+        GetDataWithoutLoading("captcha/get_captcha.php", null)
+        .then(data => {
+            this.Model.captcha.captcha("data:image/png;base64," + data.base64Captcha);
+        })
     }
 
     txtKeyPress(e: any) {
@@ -105,8 +120,11 @@ class CmsLogin extends LitElement {
                                 </div>
                                 <span data-bind="visible: errors.password, text: errors.password" class="invalid"></span>
                             </div>
-                            <div class="mb-3">
-                                <img src="">
+                            <div class="mb-3 text-center">
+                                <img data-bind="attr:{ src: captcha.captcha }">
+                                <button class="btn btn-default" @click="${this.ShowCaptcha}"><i class="fas fa-sync fa-spin"></i></button>
+                                <input type="text" data-bind="value: data.captchaCode" class="form-control" id="txtCaptcha" @keypress="${this.txtKeyPress}" />
+                                <span data-bind="visible: errors.captchaCode, text: errors.captchaCode" class="invalid"></span>
                             </div>
                             <div class="col-md-12 mb-3">
                                 <input type="checkbox" id="chRememberMe" />&nbsp;<label name="translate" caption="label_remember_me" for="chRememberMe"></label>

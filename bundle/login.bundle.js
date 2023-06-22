@@ -23460,9 +23460,11 @@ function getLangResources() {
     fa['/access-denied.html'] = "ورود غیر مجاز";
     fa['/register.html'] = "ثبت نام";
     fa['/my-home.html'] = "صفحه من";
+    fa['/contact-us.html'] = "ارتباط با ما";
+    fa['/about-us.html'] = "درباره ما";
     fa['title_login'] = "ورود به سامانه";
     fa['subtitle_login'] = "وارد شوید!";
-    fa['label_username'] = "نام کاربری (شماره موبایل):";
+    fa['label_username'] = "نام کاربری (پست الکترونیک):";
     fa['label_password'] = "کلمه عبور:";
     fa['label_password_confirm'] = "تکرار کلمه عبور:";
     fa['label_remember_me'] = "مرا به خاطر بسپار";
@@ -23478,6 +23480,7 @@ function getLangResources() {
     fa['msgPassAndPassConfirmNotSame'] = "کلمه عبور و تایید آن یکی نیست";
     fa['msgUsernameExists'] = "نام کاربری تکراری است";
     fa['msgTitleExists'] = "عنوان تکراری است";
+    fa['msgInvalidCaptchaInput'] = "کد امنیتی اشتباه است";
     fa['msgSuccessfulCUD'] = "عملیات با موفقیت انجام شد";
     en['hello_world'] = "Hello World";
     en['direction'] = "ltr",
@@ -23494,9 +23497,11 @@ function getLangResources() {
     en['/access-denied.html'] = "Access Denied";
     en['/register.html'] = "Register";
     en['/my-home.html'] = "My Page";
+    en['/contact-us.html'] = "Contact Us";
+    en['/about-us.html'] = "About Us";
     en['title_login'] = "Login to system";
     en['subtitle_login'] = "login!";
-    en['label_username'] = "Username (Mobile Number):";
+    en['label_username'] = "Username (Email):";
     en['label_password'] = "Password:";
     en['label_password_confirm'] = "Repeat Password:";
     en['label_remember_me'] = "Remember Me";
@@ -23512,6 +23517,7 @@ function getLangResources() {
     en['msgPassAndPassConfirmNotSame'] = "Password and Repeat Password is not match";
     en['msgUsernameExists'] = "Username is duplicated";
     en['msgTitleExists'] = "Title is duplicated";
+    fa['msgInvalidCaptchaInput'] = "Invalid captcha code input";
     en['msgSuccessfulCUD'] = "Successfully submited";
     var resources = new Array();
     resources['fa'] = fa;
@@ -27461,17 +27467,23 @@ let CmsLogin = class CmsLogin extends lit__WEBPACK_IMPORTED_MODULE_0__.LitElemen
         this.Model = {
             data: {
                 username: knockout__WEBPACK_IMPORTED_MODULE_3__.observable(""),
-                password: knockout__WEBPACK_IMPORTED_MODULE_3__.observable("")
+                password: knockout__WEBPACK_IMPORTED_MODULE_3__.observable(""),
+                CaptchaCode: knockout__WEBPACK_IMPORTED_MODULE_3__.observable(""),
+            },
+            captcha: {
+                captcha: knockout__WEBPACK_IMPORTED_MODULE_3__.observable(),
             },
             errors: {
                 username: knockout__WEBPACK_IMPORTED_MODULE_3__.observable(),
-                password: knockout__WEBPACK_IMPORTED_MODULE_3__.observable()
+                password: knockout__WEBPACK_IMPORTED_MODULE_3__.observable(),
+                captchaCode: knockout__WEBPACK_IMPORTED_MODULE_3__.observable(),
             },
             setErrors: function (errors) {
                 let lcid = (0,_cms_general__WEBPACK_IMPORTED_MODULE_2__.getCookie)("lcid");
                 let resources = (0,_site_localization__WEBPACK_IMPORTED_MODULE_4__.getLangResources)()[lcid];
                 this.errors.username(errors ? resources[errors.username] : undefined);
                 this.errors.password(errors ? resources[errors.password] : undefined);
+                this.errors.captchaCode(errors ? resources[errors.captchaCode] : undefined);
             }
         };
     }
@@ -27483,6 +27495,13 @@ let CmsLogin = class CmsLogin extends lit__WEBPACK_IMPORTED_MODULE_0__.LitElemen
         }
         knockout__WEBPACK_IMPORTED_MODULE_3__.applyBindings(this.Model, document.getElementById("pnlLogin"));
         $('#txtUserName').focus();
+        this.ShowCaptcha();
+    }
+    ShowCaptcha() {
+        (0,_cms_general__WEBPACK_IMPORTED_MODULE_2__.GetDataWithoutLoading)("captcha/get_captcha.php", null)
+            .then(data => {
+            this.Model.captcha.captcha("data:image/png;base64," + data.base64Captcha);
+        });
     }
     txtKeyPress(e) {
         if (e.keyCode === 13) {
@@ -27536,8 +27555,11 @@ let CmsLogin = class CmsLogin extends lit__WEBPACK_IMPORTED_MODULE_0__.LitElemen
                                 </div>
                                 <span data-bind="visible: errors.password, text: errors.password" class="invalid"></span>
                             </div>
-                            <div class="mb-3">
-                                <img src="">
+                            <div class="mb-3 text-center">
+                                <img data-bind="attr:{ src: captcha.captcha }">
+                                <button class="btn btn-default" @click="${this.ShowCaptcha}"><i class="fas fa-sync fa-spin"></i></button>
+                                <input type="text" data-bind="value: data.captchaCode" class="form-control" id="txtCaptcha" @keypress="${this.txtKeyPress}" />
+                                <span data-bind="visible: errors.captchaCode, text: errors.captchaCode" class="invalid"></span>
                             </div>
                             <div class="col-md-12 mb-3">
                                 <input type="checkbox" id="chRememberMe" />&nbsp;<label name="translate" caption="label_remember_me" for="chRememberMe"></label>

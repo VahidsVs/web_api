@@ -23571,9 +23571,11 @@ function getLangResources() {
     fa['/access-denied.html'] = "ورود غیر مجاز";
     fa['/register.html'] = "ثبت نام";
     fa['/my-home.html'] = "صفحه من";
+    fa['/contact-us.html'] = "ارتباط با ما";
+    fa['/about-us.html'] = "درباره ما";
     fa['title_login'] = "ورود به سامانه";
     fa['subtitle_login'] = "وارد شوید!";
-    fa['label_username'] = "نام کاربری (شماره موبایل):";
+    fa['label_username'] = "نام کاربری (پست الکترونیک):";
     fa['label_password'] = "کلمه عبور:";
     fa['label_password_confirm'] = "تکرار کلمه عبور:";
     fa['label_remember_me'] = "مرا به خاطر بسپار";
@@ -23589,6 +23591,7 @@ function getLangResources() {
     fa['msgPassAndPassConfirmNotSame'] = "کلمه عبور و تایید آن یکی نیست";
     fa['msgUsernameExists'] = "نام کاربری تکراری است";
     fa['msgTitleExists'] = "عنوان تکراری است";
+    fa['msgInvalidCaptchaInput'] = "کد امنیتی اشتباه است";
     fa['msgSuccessfulCUD'] = "عملیات با موفقیت انجام شد";
     en['hello_world'] = "Hello World";
     en['direction'] = "ltr",
@@ -23605,9 +23608,11 @@ function getLangResources() {
     en['/access-denied.html'] = "Access Denied";
     en['/register.html'] = "Register";
     en['/my-home.html'] = "My Page";
+    en['/contact-us.html'] = "Contact Us";
+    en['/about-us.html'] = "About Us";
     en['title_login'] = "Login to system";
     en['subtitle_login'] = "login!";
-    en['label_username'] = "Username (Mobile Number):";
+    en['label_username'] = "Username (Email):";
     en['label_password'] = "Password:";
     en['label_password_confirm'] = "Repeat Password:";
     en['label_remember_me'] = "Remember Me";
@@ -23623,6 +23628,7 @@ function getLangResources() {
     en['msgPassAndPassConfirmNotSame'] = "Password and Repeat Password is not match";
     en['msgUsernameExists'] = "Username is duplicated";
     en['msgTitleExists'] = "Title is duplicated";
+    fa['msgInvalidCaptchaInput'] = "Invalid captcha code input";
     en['msgSuccessfulCUD'] = "Successfully submited";
     var resources = new Array();
     resources['fa'] = fa;
@@ -27675,6 +27681,12 @@ let CmsController = class CmsController extends lit__WEBPACK_IMPORTED_MODULE_0__
             case "cms-register":
                 this.ModuleRender = lit__WEBPACK_IMPORTED_MODULE_0__.html `<cms-register></cms-register>`;
                 break;
+            case "cms-contactus":
+                this.ModuleRender = lit__WEBPACK_IMPORTED_MODULE_0__.html `<cms-contactus></cms-contactus>`;
+                break;
+            case "cms-aboutus":
+                this.ModuleRender = lit__WEBPACK_IMPORTED_MODULE_0__.html `<cms-aboutus></cms-aboutus>`;
+                break;
         }
         super.performUpdate();
     }
@@ -27845,6 +27857,8 @@ let CmsHeader = class CmsHeader extends lit__WEBPACK_IMPORTED_MODULE_0__.LitElem
             <div class="collapse navbar-collapse bg-transparent" id="navbarCollapse">
                 <div class="navbar-nav ms-auto mx-xl-auto p-0">
                     <a href="/" class="nav-item nav-link">Home</a>
+                    <a href="/contact-us.html" class="nav-item nav-link">Contact Us</a>
+                    <a href="/about-us.html" class="nav-item nav-link">About Us</a>
                     ${this.PnlLogin}
                 </div>
             </div>
@@ -27927,26 +27941,50 @@ let CmsFooter = class CmsFooter extends lit__WEBPACK_IMPORTED_MODULE_0__.LitElem
                 <a href="/">
                     <img src="/images/Logo.png" alt="" width="120" class="d-inline-block align-text-top">
                 </a>
-                <p class="mt-4 text-light">MegaTech is an IT company which works in the field of applications, newtork, web design, blockchain and AI. MegaTech is an innovative start-up company.</p>
+                <p class="mt-4 text-light">
+                    MegaTech is an IT company which works in the field of applications, newtork, web design, blockchain and AI. MegaTech is an innovative start-up company.
+                </p>
                 <div class="d-flex hightech-link">
-                    <a href="" target="_blank" class="btn-light nav-fill btn btn-square rounded-circle me-2"><i class="fab fa-facebook-f text-primary"></i></a>
-                    <a href="https://wa.me/4366499657071" target="_blank" class="btn-light nav-fill btn btn-square rounded-circle me-2"><i class="fab fa-whatsapp text-primary"></i></a>
-                    <a href="" target="_blank" class="btn-light nav-fill btn btn-square rounded-circle me-2"><i class="fab fa-instagram text-primary"></i></a>
-                    <a href="" target="_blank" class="btn-light nav-fill btn btn-square rounded-circle me-0"><i class="fab fa-linkedin-in text-primary"></i></a>
+                    <a href="" target="_blank" class="btn-light nav-fill btn btn-square rounded-circle me-2">
+                        <i class="fab fa-facebook-f text-primary"></i>
+                    </a>
+                    <a href="https://wa.me/4366499657071" target="_blank" class="btn-light nav-fill btn btn-square rounded-circle me-2">
+                        <i class="fab fa-whatsapp text-primary"></i>
+                    </a>
+                    <a href="" target="_blank" class="btn-light nav-fill btn btn-square rounded-circle me-2">
+                        <i class="fab fa-instagram text-primary"></i>
+                    </a>
+                    <a href="" target="_blank" class="btn-light nav-fill btn btn-square rounded-circle me-0">
+                        <i class="fab fa-linkedin-in text-primary"></i>
+                    </a>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6">
                 <span class="h3 text-secondary">Short Link</span>
                 <div class="mt-4 d-flex flex-column short-link">
-                    <a href="/" class="mb-2 text-white"><i class="fas fa-angle-right text-secondary me-2"></i>Home</a>
+                    <a href="/" class="mb-2 text-white">
+                        <i class="fas fa-angle-right text-secondary me-2"></i>Home
+                    </a>
+                    <a href="/contact-us.html" class="mb-2 text-white">
+                        <i class="fas fa-angle-right text-secondary me-2"></i>Contact Us
+                    </a>
+                    <a href="/about-us.html" class="mb-2 text-white">
+                        <i class="fas fa-angle-right text-secondary me-2"></i>About Us
+                    </a>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6">
                 <span class="h3 text-secondary">Contact Us</span>
                 <div class="text-white mt-4 d-flex flex-column contact-link">
-                    <a href="#" class="pb-3 text-light border-bottom border-primary"><i class="fas fa-map-marker-alt text-secondary me-2"></i> Weiz, Austria</a>
-                    <a href="#" class="py-3 text-light border-bottom border-primary"><i class="fas fa-phone-alt text-secondary me-2"></i> +43 664 99657071</a>
-                    <a href="#" class="py-3 text-light border-bottom border-primary"><i class="fas fa-envelope text-secondary me-2"></i> admin@megatechapp.at</a>
+                    <a href="#" class="pb-3 text-light border-bottom border-primary">
+                        <i class="fas fa-map-marker-alt text-secondary me-2"></i> Weiz, Austria
+                    </a>
+                    <a href="#" class="py-3 text-light border-bottom border-primary">
+                        <i class="fas fa-phone-alt text-secondary me-2"></i> +43 664 99657071
+                    </a>
+                    <a href="#" class="py-3 text-light border-bottom border-primary">
+                        <i class="fas fa-envelope text-secondary me-2"></i> admin@megatechapp.at
+                    </a>
                 </div>
             </div>
         </div>

@@ -147,6 +147,8 @@ class CmsHeader extends LitElement {
             <div class="collapse navbar-collapse bg-transparent" id="navbarCollapse">
                 <div class="navbar-nav ms-auto mx-xl-auto p-0">
                     <a href="/" class="nav-item nav-link">Home</a>
+                    <a href="/contact-us.html" class="nav-item nav-link">Contact Us</a>
+                    <a href="/about-us.html" class="nav-item nav-link">About Us</a>
                     ${this.PnlLogin}
                 </div>
             </div>

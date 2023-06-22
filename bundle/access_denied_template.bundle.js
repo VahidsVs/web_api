@@ -27431,6 +27431,12 @@ let CmsController = class CmsController extends lit__WEBPACK_IMPORTED_MODULE_0__
             case "cms-register":
                 this.ModuleRender = lit__WEBPACK_IMPORTED_MODULE_0__.html `<cms-register></cms-register>`;
                 break;
+            case "cms-contactus":
+                this.ModuleRender = lit__WEBPACK_IMPORTED_MODULE_0__.html `<cms-contactus></cms-contactus>`;
+                break;
+            case "cms-aboutus":
+                this.ModuleRender = lit__WEBPACK_IMPORTED_MODULE_0__.html `<cms-aboutus></cms-aboutus>`;
+                break;
         }
         super.performUpdate();
     }
