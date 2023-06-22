@@ -11,7 +11,8 @@ class Captcha
         $random_num = md5(random_bytes(64));
         $captcha_code = substr($random_num, 0, 6);
         // Assign captcha in session
-        $_SESSION['CAPTCHA_CODE'] = $captcha_code;
+        session_start();
+        $_SESSION['captchaCode'] = $captcha_code;
         // Create captcha image
         $layer = imagecreatetruecolor(168, 37);
         $captcha_bg = imagecolorallocate($layer, 247, 174, 71);
@@ -30,10 +31,12 @@ class Captcha
 
         return $imgBase64;
     }
-    function checkCaptcha($userInput)
+    function checkCaptcha($inputCode)
     {
-        if($userInput==$_SESSION["CAPTCHA_CODE"])
+        if($inputCode==$_SESSION["captchaCode"])
         return true;
+        else
+        return $jsonData["errors"]=["captchaCode" =>"msgInvalidCaptchaInput"];
 
     }
 }
