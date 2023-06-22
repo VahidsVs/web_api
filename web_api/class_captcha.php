@@ -33,10 +33,11 @@ class Captcha
     }
     function checkCaptcha($inputCode)
     {
+        $isCorrect=false;
         if($inputCode==$_SESSION["captchaCode"])
-        return true;
-        else
-        return $jsonData["errors"]=["captchaCode" =>"msgInvalidCaptchaInput"];
+        $isCorrect=true;
+        
+        return $isCorrect;
 
     }
 }

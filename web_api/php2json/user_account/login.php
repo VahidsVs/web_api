@@ -1,6 +1,5 @@
 <?php
 include_once("../../interface/class_user.php");
-include_once("../../class_captcha.php");
 
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: POST");
@@ -8,8 +7,7 @@ header("Access-Control-Allow-Headers: *");
 
 
 $accessCaptcha = new Captcha();
-$captchaCheck = $accessCaptcha->checkCaptcha($_POST["captchaCode"]);
-if ($captchaCheck===true) {
+
 	$accessClass = new User("Select", $_POST);
 	if ($accessClass->getHttpResponseCode() == 200) {
 		session_start();
@@ -26,10 +24,5 @@ if ($captchaCheck===true) {
 		http_response_code($accessClass->getHttpResponseCode());
 	}
 	echo json_encode($accessClass->getJsonData());
-} else {
-	http_response_code(400);
-	echo json_encode($captchaCheck);
-}
-
 
 ?>
