@@ -1,6 +1,6 @@
 ﻿import { LitElement, html, css } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
-import { AjaxSuccessFunction, getCookie, PostDataForm } from '../../cms_general';
+import { AjaxSuccessFunction, PostDataForm, GetDataWithoutLoading } from '../../cms_general';
 import * as ko from 'knockout';
 import { getLangResources } from '../../site_localization';
 
@@ -28,6 +28,9 @@ class CmsRegister extends LitElement {
             mobile: ko.observable(""),
             email: ko.observable(""),
         },
+        captcha: {
+            captcha: ko.observable(),
+        },
         errors: {
             username: ko.observable(""),
             password: ko.observable(""),
@@ -38,7 +41,7 @@ class CmsRegister extends LitElement {
             email: ko.observable(""),
         },
         setErrors: function (errors: any) {
-            let lcid = getCookie("lcid");
+            let lcid = 'en';
             let resources = getLangResources()[lcid];
             this.errors.username(errors ? resources[errors.username] : undefined);
             this.errors.password(errors ? resources[errors.password] : undefined);
@@ -71,12 +74,21 @@ class CmsRegister extends LitElement {
     constructor() {
         super();
 
-        this.lcid = getCookie("lcid");
+        this.lcid = 'en';
         this.resources = getLangResources()[this.lcid];
     }
 
     firstUpdated(changedProperties: any) {
         ko.applyBindings(this.Model, document.getElementById("pnlRegister"));
+    
+        this.ShowCaptcha();
+    }
+
+    ShowCaptcha() {
+        GetDataWithoutLoading("captcha/get_captcha.php", null)
+        .then(data => {
+            this.Model.captcha.captcha("data:image/png;base64," + data.base64Captcha);
+        })
     }
 
     btnRegister_Click() {
@@ -157,6 +169,14 @@ class CmsRegister extends LitElement {
                                         <label name="translate" caption="label_email" class="form-label"></label>
                                         <input type="email" dir="ltr" class="form-control" data-bind="value: data.email">
                                         <span class="invalid" data-bind="text: errors.email"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <img data-bind="attr:{ src: captcha.captcha }">
+                                        <button class="btn btn-default" @click="${this.ShowCaptcha}"><i class="fas fa-sync fa-spin"></i></button>
+                                        <input type="text" data-bind="value: data.captchaCode" class="form-control" id="txtCaptcha" />
+                                        <span data-bind="visible: errors.captchaCode, text: errors.captchaCode" class="invalid"></span>
                                     </div>
                                 </div>
                             </div>

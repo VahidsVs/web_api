@@ -1,6 +1,8 @@
 ﻿import { LitElement, html, css } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
-import { GetData, PostData } from '../../cms_general';
+import { GetData, PostData, GetDataWithoutLoading } from '../../cms_general';
+import * as ko from 'knockout';
+import { getLangResources } from '../../site_localization';
 // import { unsafeHTML } from 'lit-html/directives/unsafe-html.js';
 
 @customElement('cms-contactus')
@@ -14,11 +16,50 @@ class CmsContactUs extends LitElement {
     //`;
     //    }
 
+    private lcid = 'fa';
+    private resources: any = [];
+
+    private Model = {
+        data: {
+            username: ko.observable(""),
+            password: ko.observable(""),
+            CaptchaCode: ko.observable(""),
+        },
+        captcha: {
+            captcha: ko.observable(),
+        },
+        errors: {
+            username: ko.observable(),
+            password: ko.observable(),
+            captchaCode: ko.observable(),
+        },
+        setErrors: function (errors: any) {
+            let lcid = 'en';
+            let resources = getLangResources()[lcid];
+            this.errors.username(errors ? resources[errors.username] : undefined);
+            this.errors.password(errors ? resources[errors.password] : undefined);
+            this.errors.captchaCode(errors ? resources[errors.captchaCode] : undefined);
+        }
+    };
+
     constructor() {
         super();
+
+        this.lcid = 'en';
+        this.resources = getLangResources()[this.lcid];
     }
 
     firstUpdated(changedProperties: any) {
+        ko.applyBindings(this.Model, document.getElementById("pnlContactUs"));
+
+        this.ShowCaptcha();
+    }
+
+    ShowCaptcha() {
+        GetDataWithoutLoading("captcha/get_captcha.php", null)
+        .then(data => {
+            this.Model.captcha.captcha("data:image/png;base64," + data.base64Captcha);
+        })
     }
 
     render() {
@@ -32,7 +73,7 @@ class CmsContactUs extends LitElement {
 <!-- Page Header End -->
 
 <!-- Contact Start -->
-<div class="container-fluid py-5 mt-5">
+<div class="container-fluid py-5 mt-5" id="pnlContactUs">
     <div class="container py-5">
         <div class="text-center mx-auto pb-5 wow fadeIn" data-wow-delay=".3s" style="max-width: 600px;">
             <h5 class="text-primary">Get In Touch</h5>
@@ -96,6 +137,12 @@ class CmsContactUs extends LitElement {
                         </div>
                         <div class="mb-4">
                             <textarea class="w-100 form-control border-0 py-3" rows="6" cols="10" placeholder="Message"></textarea>
+                        </div>
+                        <div class="mb-4">
+                            <img data-bind="attr:{ src: captcha.captcha }">
+                            <button class="btn btn-default" @click="${this.ShowCaptcha}"><i class="fas fa-sync fa-spin"></i></button>
+                            <input type="text" data-bind="value: data.captchaCode" class="form-control" id="txtCaptcha" />
+                            <span data-bind="visible: errors.captchaCode, text: errors.captchaCode" class="invalid"></span>
                         </div>
                         <div class="text-start">
                             <button class="btn bg-primary text-white py-3 px-5" type="button">Send Message</button>

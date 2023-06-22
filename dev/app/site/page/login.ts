@@ -15,6 +15,9 @@ class CmsLogin extends LitElement {
     //`;
     //    }
 
+    private lcid = 'fa';
+    private resources: any = [];
+
     private Model = {
         data: {
             username: ko.observable(""),
@@ -30,7 +33,7 @@ class CmsLogin extends LitElement {
             captchaCode: ko.observable(),
         },
         setErrors: function (errors: any) {
-            let lcid = getCookie("lcid");
+            let lcid = 'en';
             let resources = getLangResources()[lcid];
             this.errors.username(errors ? resources[errors.username] : undefined);
             this.errors.password(errors ? resources[errors.password] : undefined);
@@ -40,6 +43,9 @@ class CmsLogin extends LitElement {
 
     constructor() {
         super();
+
+        this.lcid = 'en';
+        this.resources = getLangResources()[this.lcid];
     }
 
     firstUpdated(changedProperties: any) {
