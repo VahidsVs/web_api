@@ -9,7 +9,7 @@ header("Access-Control-Allow-Headers: *");
 // New Data Input
 session_start();
 if (array_key_exists("captchaCode", $_POST) && ($_POST["captchaCode"] == $_SESSION["captchaCode"])) {
-    $accessClass = new ContactUs("Insert", $_POST);
+    $accessClass = new ContactUs("insert", $_POST);
     $jsonData = $accessClass->getJsonData();
     http_response_code($accessClass->getHttpResponseCode());
 } else {
