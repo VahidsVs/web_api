@@ -9,6 +9,7 @@ session_start();
 if (array_key_exists("captchaCode", $_POST) && ($_POST["captchaCode"] == $_SESSION["captchaCode"])) {
 	$accessClass = new User("Select", $_POST);
 	$jsonData = $accessClass->getJsonData();
+	http_response_code($accessClass->getHttpResponseCode());
 	if ($accessClass->getHttpResponseCode() == 200) {
 		$_SESSION["token"] = $accessClass->getJsonData()["token"];
 		$_SESSION["key"] = $accessClass->getKey();
@@ -16,7 +17,6 @@ if (array_key_exists("captchaCode", $_POST) && ($_POST["captchaCode"] == $_SESSI
 		$_SESSION["userId"] = $accessClass->getPkUser();
 		$_SESSION["loginTime"] = time();
 		
-		http_response_code($accessClass->getHttpResponseCode());
 	}
 } else {
 	if (!array_key_exists("captchaCode", $_POST))
