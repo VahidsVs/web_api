@@ -34,7 +34,7 @@ class Authorization
             $userRole = $userData[1];
             $userLoginTime = $userData[2];
             $param["userId"]=$userData[0];
-           $accessUsersInGroup = new UserInGroup("SelectWithRole",$param);
+           $accessUsersInGroup = new UserInGroup("selectWithRole",$param);
            $JSON_result=$accessUsersInGroup->getJsonData();
            foreach($JSON_result as $jsonRes)
            {
