@@ -78,7 +78,7 @@ class User
 			$this->httpResponseCode = 400;
 			$this->jsonData["errors"] = ["username" => $message[0], "password" => $message[1]];
 		} else { //check if username exists
-			$result = $this->accessUsers->select($action, $parameters, $orderBy, $limit);
+			$result = $this->accessUsers->selectByUsernameAndPassword($action, $parameters, $orderBy, $limit);
 			if (!$result) {
 				$message[0] = Codes::msg_invalidUsernameOrPassword;
 				$this->isDataOK = false;
