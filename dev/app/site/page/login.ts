@@ -15,14 +15,14 @@ class CmsLogin extends LitElement {
     //`;
     //    }
 
-    private lcid = 'fa';
+    private lcid;
     private resources: any = [];
 
     private Model = {
         data: {
             username: ko.observable(""),
             password: ko.observable(""),
-            CaptchaCode: ko.observable(""),
+            captchaCode: ko.observable(""),
         },
         captcha: {
             captcha: ko.observable(),
@@ -32,12 +32,11 @@ class CmsLogin extends LitElement {
             password: ko.observable(),
             captchaCode: ko.observable(),
         },
-        setErrors: function (errors: any) {
-            let lcid = 'en';
-            let resources = getLangResources()[lcid];
-            this.errors.username(errors ? resources[errors.username] : undefined);
-            this.errors.password(errors ? resources[errors.password] : undefined);
-            this.errors.captchaCode(errors ? resources[errors.captchaCode] : undefined);
+        setErrors: (errors: any) => {
+            let resources = this.resources;
+            this.Model.errors.username(errors ? resources[errors.username] : undefined);
+            this.Model.errors.password(errors ? resources[errors.password] : undefined);
+            this.Model.errors.captchaCode(errors ? resources[errors.captchaCode] : undefined);
         }
     };
 
@@ -60,6 +59,10 @@ class CmsLogin extends LitElement {
         $('#txtUserName').focus();
 
         this.ShowCaptcha();
+
+        $(() => {
+            
+        });
     }
 
     ShowCaptcha() {
@@ -114,7 +117,7 @@ class CmsLogin extends LitElement {
                                 <label name="translate" caption="label_username" class="form-label"></label>
                                 <div class="input-group">
                                     <span class="input-group-text"><span class="fa fa-user"></span></span>
-                                    <input type="text" data-bind="value: data.username" class="form-control" id="txtUserName" @keypress="${this.txtKeyPress}" />
+                                    <input type="email" data-bind="value: data.username" class="form-control" id="txtUserName" @keypress="${this.txtKeyPress}" />
                                 </div>
                                 <span data-bind="visible: errors.username, text: errors.username" class="invalid"></span>
                             </div>

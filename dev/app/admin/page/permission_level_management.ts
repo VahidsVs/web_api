@@ -32,10 +32,9 @@ class CmsPermissionLevelManagement extends LitElement {
         errors: {
             title: ko.observable(),
         },
-        setErrors: function (errors: any) {
-            let lcid = getCookie("lcid");
-            let resources = getLangResources()[lcid];
-            this.errors.title(errors ? resources[errors.title] : undefined);
+        setErrors: (errors: any) => {
+            let resources = this.resources;
+            this.Model.errors.title(errors ? resources[errors.title] : undefined);
         }
     };
 

@@ -159,7 +159,9 @@ class CmsHeader extends LitElement {
         return html`
 <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #0d6efd">
     <div class="container-fluid">
-        <a name="translate" caption="project_name" class="navbar-brand" href="/"></a>
+        <a class="navbar-brand" href="/">
+            <img src="/images/logo.png" alt="" width="60" class="d-inline-block align-text-top">
+        </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -170,6 +172,9 @@ class CmsHeader extends LitElement {
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" aria-current="page" href="/admin/permission-level-management.html">مدیریت سطوح دسترسی</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="/admin/contact-us.html">ارتباط با ما</a>
                 </li>
             </ul>
             

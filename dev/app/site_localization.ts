@@ -73,7 +73,7 @@
     en['/my-home.html'] = "My Page";
     en['/contact-us.html'] = "Contact Us";
     en['/about-us.html'] = "About Us";
-    en['/impressum.html'] = "impressum";
+    en['/impressum.html'] = "Impressum";
     
     en['title_login'] = "Login to system";
     en['subtitle_login'] = "login!";

@@ -15,7 +15,7 @@ class CmsRegister extends LitElement {
     //`;
     //    }
 
-    private lcid = 'fa';
+    private lcid;
     private resources: any = [];
 
     private Model = {
@@ -27,6 +27,7 @@ class CmsRegister extends LitElement {
             lastname: ko.observable(""),
             mobile: ko.observable(""),
             email: ko.observable(""),
+            captchaCode: ko.observable(""),
         },
         captcha: {
             captcha: ko.observable(),
@@ -39,17 +40,18 @@ class CmsRegister extends LitElement {
             lastname: ko.observable(""),
             mobile: ko.observable(""),
             email: ko.observable(""),
+            captchaCode: ko.observable(""),
         },
-        setErrors: function (errors: any) {
-            let lcid = 'en';
-            let resources = getLangResources()[lcid];
-            this.errors.username(errors ? resources[errors.username] : undefined);
-            this.errors.password(errors ? resources[errors.password] : undefined);
-            this.errors.passwordConfirm(errors ? resources[errors.passwordConfirm] : undefined);
-            this.errors.firstname(errors ? resources[errors.firstname] : undefined);
-            this.errors.lastname(errors ? resources[errors.lastname] : undefined);
-            this.errors.mobile(errors ? resources[errors.mobile] : undefined);
-            this.errors.email(errors ? resources[errors.email] : undefined);
+        setErrors: (errors: any) => {
+            let resources = this.resources;
+            this.Model.errors.username(errors ? resources[errors.username] : undefined);
+            this.Model.errors.password(errors ? resources[errors.password] : undefined);
+            this.Model.errors.passwordConfirm(errors ? resources[errors.passwordConfirm] : undefined);
+            this.Model.errors.firstname(errors ? resources[errors.firstname] : undefined);
+            this.Model.errors.lastname(errors ? resources[errors.lastname] : undefined);
+            this.Model.errors.mobile(errors ? resources[errors.mobile] : undefined);
+            this.Model.errors.email(errors ? resources[errors.email] : undefined);
+            this.Model.errors.captchaCode(errors ? resources[errors.captchaCode] : undefined);
         }
     };
 
@@ -61,6 +63,7 @@ class CmsRegister extends LitElement {
         this.Model.data.lastname("");
         this.Model.data.mobile("");
         this.Model.data.email("");
+        this.Model.data.captchaCode("");
 
         this.Model.errors.username("");
         this.Model.errors.password("");
@@ -69,6 +72,7 @@ class CmsRegister extends LitElement {
         this.Model.errors.lastname("");
         this.Model.errors.mobile("");
         this.Model.errors.email("");
+        this.Model.errors.captchaCode("");
     }
 
     constructor() {
@@ -82,6 +86,10 @@ class CmsRegister extends LitElement {
         ko.applyBindings(this.Model, document.getElementById("pnlRegister"));
     
         this.ShowCaptcha();
+
+        $(() => {
+            
+        });
     }
 
     ShowCaptcha() {

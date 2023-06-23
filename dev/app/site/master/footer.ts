@@ -77,13 +77,13 @@ class CmsFooter extends LitElement {
             <div class="col-lg-4 col-md-6">
                 <span class="h3 text-secondary">Contact Us</span>
                 <div class="text-white mt-4 d-flex flex-column contact-link">
-                    <a href="#" class="pb-3 text-light border-bottom border-primary">
+                    <a href="https://goo.gl/maps/e9B3Ns14DApVZXqv8" target="_blank" class="pb-3 text-light border-bottom border-primary">
                         <i class="fas fa-map-marker-alt text-secondary me-2"></i> Weiz, Austria
                     </a>
-                    <a href="#" class="py-3 text-light border-bottom border-primary">
+                    <a href="tel:+4366499657071" class="py-3 text-light border-bottom border-primary">
                         <i class="fas fa-phone-alt text-secondary me-2"></i> +43 664 99657071
                     </a>
-                    <a href="#" class="py-3 text-light border-bottom border-primary">
+                    <a href="mailto:admin@megatechapp.at" class="py-3 text-light border-bottom border-primary">
                         <i class="fas fa-envelope text-secondary me-2"></i> admin@megatechapp.at
                     </a>
                 </div>

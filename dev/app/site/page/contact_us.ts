@@ -1,6 +1,6 @@
 ﻿import { LitElement, html, css } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
-import { GetData, PostData, GetDataWithoutLoading } from '../../cms_general';
+import { GetData, PostData, GetDataWithoutLoading, PostDataForm, AjaxSuccessFunction } from '../../cms_general';
 import * as ko from 'knockout';
 import { getLangResources } from '../../site_localization';
 // import { unsafeHTML } from 'lit-html/directives/unsafe-html.js';
@@ -16,31 +16,55 @@ class CmsContactUs extends LitElement {
     //`;
     //    }
 
-    private lcid = 'fa';
+    private lcid;
     private resources: any = [];
 
     private Model = {
         data: {
-            username: ko.observable(""),
-            password: ko.observable(""),
-            CaptchaCode: ko.observable(""),
+            name: ko.observable(""),
+            email: ko.observable(""),
+            mobile: ko.observable(""),
+            subject: ko.observable(""),
+            message: ko.observable(""),
+            captchaCode: ko.observable(""),
         },
         captcha: {
             captcha: ko.observable(),
         },
         errors: {
-            username: ko.observable(),
-            password: ko.observable(),
+            name: ko.observable(),
+            email: ko.observable(),
+            mobile: ko.observable(),
+            subject: ko.observable(),
+            message: ko.observable(),
             captchaCode: ko.observable(),
         },
-        setErrors: function (errors: any) {
-            let lcid = 'en';
-            let resources = getLangResources()[lcid];
-            this.errors.username(errors ? resources[errors.username] : undefined);
-            this.errors.password(errors ? resources[errors.password] : undefined);
-            this.errors.captchaCode(errors ? resources[errors.captchaCode] : undefined);
+        setErrors: (errors: any) => {
+            let resources = this.resources;
+            this.Model.errors.name(errors ? resources[errors.name] : undefined);
+            this.Model.errors.email(errors ? resources[errors.email] : undefined);
+            this.Model.errors.mobile(errors ? resources[errors.mobile] : undefined);
+            this.Model.errors.subject(errors ? resources[errors.subject] : undefined);
+            this.Model.errors.message(errors ? resources[errors.message] : undefined);
+            this.Model.errors.captchaCode(errors ? resources[errors.captchaCode] : undefined);
         }
     };
+
+    ClearScr() {
+        this.Model.data.name("");
+        this.Model.data.email("");
+        this.Model.data.mobile("");
+        this.Model.data.subject("");
+        this.Model.data.message("");
+        this.Model.data.captchaCode("");
+
+        this.Model.errors.name("");
+        this.Model.errors.email("");
+        this.Model.errors.mobile("");
+        this.Model.errors.subject("");
+        this.Model.errors.message("");
+        this.Model.errors.captchaCode("");
+    }
 
     constructor() {
         super();
@@ -53,13 +77,29 @@ class CmsContactUs extends LitElement {
         ko.applyBindings(this.Model, document.getElementById("pnlContactUs"));
 
         this.ShowCaptcha();
+
+        $(() => {
+            
+        });
     }
 
     ShowCaptcha() {
         GetDataWithoutLoading("captcha/get_captcha.php", null)
-        .then(data => {
-            this.Model.captcha.captcha("data:image/png;base64," + data.base64Captcha);
-        })
+            .then(data => {
+                this.Model.captcha.captcha("data:image/png;base64," + data.base64Captcha);
+            })
+    }
+
+    SendMessage_Click() {
+        PostDataForm("contact_us/insert_contact_us.php", ko.toJS(this.Model.data))
+            .then(data => {
+                if(data.errors === undefined && data.message === undefined) {
+                    AjaxSuccessFunction(this.resources[data.msg]);
+
+                    this.ClearScr();
+                }
+                this.Model.setErrors(data.errors);
+            })
     }
 
     render() {
@@ -127,16 +167,24 @@ class CmsContactUs extends LitElement {
                 <div class="col-lg-6 wow fadeIn" data-wow-delay=".5s">
                     <div class="p-5 rounded contact-form">
                         <div class="mb-4">
-                            <input type="text" class="form-control border-0 py-3" placeholder="Your Name">
+                            <input type="text" class="form-control border-0 py-3" data-bind="value: data.name" placeholder="Your Name">
+                            <span data-bind="visible: errors.name, text: errors.name" class="invalid"></span>
                         </div>
                         <div class="mb-4">
-                            <input type="email" class="form-control border-0 py-3" placeholder="Your Email">
+                            <input type="email" class="form-control border-0 py-3" data-bind="value: data.email" placeholder="Your Email">
+                            <span data-bind="visible: errors.email, text: errors.email" class="invalid"></span>
                         </div>
                         <div class="mb-4">
-                            <input type="text" class="form-control border-0 py-3" placeholder="Project">
+                            <input type="text" class="form-control border-0 py-3" data-bind="value: data.mobile" placeholder="Your Mobile">
+                            <span data-bind="visible: errors.mobile, text: errors.mobile" class="invalid"></span>
                         </div>
                         <div class="mb-4">
-                            <textarea class="w-100 form-control border-0 py-3" rows="6" cols="10" placeholder="Message"></textarea>
+                            <input type="text" class="form-control border-0 py-3" data-bind="value: data.subject" placeholder="Subject">
+                            <span data-bind="visible: errors.subject, text: errors.subject" class="invalid"></span>
+                        </div>
+                        <div class="mb-4">
+                            <textarea class="w-100 form-control border-0 py-3" data-bind="value: data.message" rows="6" cols="10" placeholder="Message"></textarea>
+                            <span data-bind="visible: errors.message, text: errors.message" class="invalid"></span>
                         </div>
                         <div class="mb-4">
                             <img data-bind="attr:{ src: captcha.captcha }">
@@ -145,7 +193,7 @@ class CmsContactUs extends LitElement {
                             <span data-bind="visible: errors.captchaCode, text: errors.captchaCode" class="invalid"></span>
                         </div>
                         <div class="text-start">
-                            <button class="btn bg-primary text-white py-3 px-5" type="button">Send Message</button>
+                            <button class="btn bg-primary text-white py-3 px-5" type="button" @click="${this.SendMessage_Click}">Send Message</button>
                         </div>
                     </div>
                 </div>

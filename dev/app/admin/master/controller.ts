@@ -32,6 +32,9 @@ class CmsController extends LitElement {
             case "cms-permissionlevelmanagement":
                 this.ModuleRender = html`<cms-permissionlevelmanagement></cms-permissionlevelmanagement>`
                 break;
+            case "cms-contactus":
+                this.ModuleRender = html`<cms-contactus></cms-contactus>`
+                break;
         }
 
         super.performUpdate();

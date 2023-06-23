@@ -19,12 +19,14 @@
 
     fa['/admin/index.html'] = "داشبورد";
     fa['/admin/permission-level-management.html'] = "مدیریت سطوح دسترسی";
+    fa['/admin/contact-us.html'] = "ارتباط با ما";
 
     fa['tab_title_groups'] = "گروه ها";
     fa['tab_title_details'] = "جزئیات";
     fa['tab_title_grouproles'] = "دسترسی های گروه";
     fa['tab_title_groupusers'] = "اعضای گروه";
     fa['tab_title_allusers'] = "کل اعضا";
+    en['tab_title_messages'] = "پیام ها";
 
     fa['label_yes'] = "بله";
     fa['label_no'] = "خیر";
@@ -34,6 +36,10 @@
     fa['label_lastname'] = "نام خانوادگی";
     fa['label_mobile'] = "شماره موبایل";
     fa['label_grouptitle'] = "عنوان گروه";
+    fa['label_name'] = "نام";
+    fa['label_email'] = "ایمیل";
+    fa['label_subject'] = "موضوع";
+    fa['label_message'] = "پیام";
 
     fa['btn_submit'] = "ثبت";
     fa['btn_cancel'] = "انصراف";
@@ -60,6 +66,7 @@
     fa['permission_level_management'] = "مدیریت سطوح دسترسی";
     fa['slideshow_management'] = "مدیریت اسلایدشو";
     fa['advertisement_management'] = "مدیریت تبلیغات";
+    fa['contact_us_management'] = "ارتباط با ما";
 
     // caption tag name <<en>>
     en['hello_world'] = "Hello World";
@@ -78,12 +85,14 @@
 
     en['/admin/index.html'] = "Dashboard";
     en['/admin/permission-level-management.html'] = "Permission Level Management";
+    en['/admin/contact-us.html'] = "Contact Us";
 
     en['tab_title_groups'] = "Groups";
     en['tab_title_details'] = "Details";
     en['tab_title_grouproles'] = "Group Roles";
     en['tab_title_groupusers'] = "Group Users";
     en['tab_title_allusers'] = "All Users";
+    en['tab_title_messages'] = "Messages";
 
     en['label_yes'] = "Yes";
     en['label_no'] = "No";
@@ -93,6 +102,10 @@
     en['label_lastname'] = "Last Name";
     en['label_mobile'] = "Mobile";
     en['label_grouptitle'] = "Group Title";
+    en['label_name'] = "Name";
+    en['label_email'] = "Email";
+    en['label_subject'] = "Subject";
+    en['label_message'] = "Message";
 
     en['btn_submit'] = "Submit";
     en['btn_cancel'] = "Cancel";
@@ -119,6 +132,7 @@
     en['permission_level_management'] = "Permission Level Management";
     en['slideshow_management'] = "Slideshow Management";
     en['advertisement_management'] = "Advertisement Management";
+    en['contact_us_management'] = "Contact Us";
     
     // Added new array defined arrays.
     var resources: any = new Array();
