@@ -25,6 +25,7 @@
     fa['/my-home.html'] = "صفحه من";
     fa['/contact-us.html'] = "ارتباط با ما";
     fa['/about-us.html'] = "درباره ما";
+    fa['/impressum.html'] = "اثر";
     
     fa['title_login'] = "ورود به سامانه";
     fa['subtitle_login'] = "وارد شوید!";
@@ -72,6 +73,7 @@
     en['/my-home.html'] = "My Page";
     en['/contact-us.html'] = "Contact Us";
     en['/about-us.html'] = "About Us";
+    en['/impressum.html'] = "impressum";
     
     en['title_login'] = "Login to system";
     en['subtitle_login'] = "login!";
