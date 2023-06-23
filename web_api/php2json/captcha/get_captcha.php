@@ -7,7 +7,7 @@ header("Access-Control-Allow-Headers: *");
 
 
 // New Data Input
-session_start();
+//session_start();
 $accessCaptcha = new Captcha();
 $createCaptcha=$accessCaptcha->createCaptcha();
 $jsonCaptcha=["base64Captcha"=>$createCaptcha[0]];
