@@ -9,7 +9,7 @@ class Captcha
     {
         // Generate captcha code
         $random_num = md5(random_bytes(64));
-        $captcha_code = substr($random_num, 0, 6);
+        $captcha_code = substr($random_num, 0,5);
         // Assign captcha in session
         // Create captcha image
         $layer = imagecreatetruecolor(168, 37);

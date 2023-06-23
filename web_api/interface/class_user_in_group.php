@@ -46,18 +46,6 @@ class UserInGroup
 	}
 	private function select($action, $parameters, $orderBy, $limit)
 	{
-		$message=[""];
-				if (empty($parameters["fkGroup"])) {
-					$message[0]= Codes::msg_isRequired;
-					$this->isDataOK = false;
-				}
-				
-				if(!$this->isDataOK)
-				{
-					$this->httpResponseCode = 400;
-				$this->jsonData["errors"] = ["fkGroup" => $message[0]];
-				}
-
 				$result = $this->accessUsersInGroup->select($action, $parameters, $orderBy, $limit);
 				//if ($result) 
 				{

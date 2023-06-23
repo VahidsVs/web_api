@@ -1,4 +1,6 @@
 <?php
+include_once("../../interface/class_user_in_group.php");
+
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
@@ -14,9 +16,13 @@ if (array_key_exists("loginTime",$_SESSION) && (time() - $_SESSION['loginTime'] 
 
 } else {
 	if (array_key_exists("username", $_SESSION)) {
+		$param["fkUser"]=$_SESSION["userId"];
+		$accessClass = new UserInGroup("Select", $param);
+		$jsonSession["isInGroup"] = false;
 		$jsonSession["isAnonymous"] = false;
 		$jsonSession["username"] = $_SESSION["username"];
-		$jsonSession["isInGroup"] = false;
+		if(!empty($accessClass->getJsonData()))
+		$jsonSession["isInGroup"] = true;
 	} else {
 		$jsonSession["isAnonymous"] = true;
 	}
