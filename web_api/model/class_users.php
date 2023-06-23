@@ -38,7 +38,7 @@ class Users
 				$query = "Select * From  $this->tableName
 				  Where 1=1  $condition ";
 	
-		$result = $this->accessDatabase->executeAndFetch($action, $query, $bindParams, $orderBy, $limit);
+		$result = $this->accessDatabase->executeAndFetch("select", $query, $bindParams, $orderBy, $limit);
 		
 		return $result;
 	}
@@ -49,7 +49,7 @@ class Users
 				  Where 1=1 ";
 				//  echo $query;
 	
-		$result = $this->accessDatabase->executeAndFetch($action, $query, $bindParams, $orderBy, $limit);
+		$result = $this->accessDatabase->executeAndFetch("select", $query, $bindParams, $orderBy, $limit);
 		
 		return $result;
 	}

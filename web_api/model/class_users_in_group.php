@@ -38,7 +38,7 @@ class UsersInGroup
 
 		$query = "Select fk_group_role,fk_user,username,firstname,lastname,mobile,email From  $this->tableName,users Where 1=1 And fk_user=pk_user  $condition ";
 
-		$result = $this->accessDatabase->executeAndFetch($action, $query, $bindParams, $orderBy, $limit);
+		$result = $this->accessDatabase->executeAndFetch("select", $query, $bindParams, $orderBy, $limit);
 
 		return $result;
 	}

@@ -24,7 +24,7 @@ class Database
 
         }
 
-        if ($action == "Select"||$action == "SelectAll") {
+        if ($action == "select") {
             $result = $stmt->get_result();
             $fetchArray = $result->fetch_all(MYSQLI_ASSOC);
             //$fetchArray = $result->fetch_all(PDO::FETCH_ASSOC);
