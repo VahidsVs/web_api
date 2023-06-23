@@ -27544,6 +27544,7 @@ let CmsRegister = class CmsRegister extends lit__WEBPACK_IMPORTED_MODULE_0__.Lit
                 (0,_cms_general__WEBPACK_IMPORTED_MODULE_2__.AjaxSuccessFunction)(this.resources[data.msg], 3000);
             }
             this.Model.setErrors(data.errors);
+            this.ShowCaptcha();
         });
     }
     render() {

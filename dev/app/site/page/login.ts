@@ -94,6 +94,8 @@ class CmsLogin extends LitElement {
                     window.location.href = '/my-home.html';
                 }
                 this.Model.setErrors(data.errors);
+
+                this.ShowCaptcha();
             })
     }
 

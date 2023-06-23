@@ -27530,10 +27530,11 @@ let CmsContactUs = class CmsContactUs extends lit__WEBPACK_IMPORTED_MODULE_0__.L
         (0,_cms_general__WEBPACK_IMPORTED_MODULE_2__.PostDataForm)("contact_us/insert_contact_us.php", knockout__WEBPACK_IMPORTED_MODULE_3__.toJS(this.Model.data))
             .then(data => {
             if (data.errors === undefined && data.message === undefined) {
-                (0,_cms_general__WEBPACK_IMPORTED_MODULE_2__.AjaxSuccessFunction)(this.resources[data.msg]);
+                (0,_cms_general__WEBPACK_IMPORTED_MODULE_2__.AjaxSuccessFunction)(this.resources[data.msg], 3000);
                 this.ClearScr();
             }
             this.Model.setErrors(data.errors);
+            this.ShowCaptcha();
         });
     }
     render() {

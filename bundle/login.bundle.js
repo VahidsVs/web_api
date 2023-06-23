@@ -27527,6 +27527,7 @@ let CmsLogin = class CmsLogin extends lit__WEBPACK_IMPORTED_MODULE_0__.LitElemen
                 window.location.href = '/my-home.html';
             }
             this.Model.setErrors(data.errors);
+            this.ShowCaptcha();
         });
     }
     render() {

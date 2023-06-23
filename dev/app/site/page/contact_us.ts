@@ -94,11 +94,13 @@ class CmsContactUs extends LitElement {
         PostDataForm("contact_us/insert_contact_us.php", ko.toJS(this.Model.data))
             .then(data => {
                 if(data.errors === undefined && data.message === undefined) {
-                    AjaxSuccessFunction(this.resources[data.msg]);
+                    AjaxSuccessFunction(this.resources[data.msg], 3000);
 
                     this.ClearScr();
                 }
                 this.Model.setErrors(data.errors);
+
+                this.ShowCaptcha();
             })
     }
 

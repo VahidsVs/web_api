@@ -108,6 +108,8 @@ class CmsRegister extends LitElement {
                     AjaxSuccessFunction(this.resources[data.msg], 3000);
                 }
                 this.Model.setErrors(data.errors);
+
+                this.ShowCaptcha();
             })
     }
 
