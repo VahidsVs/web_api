@@ -51,6 +51,9 @@ class CmsHeader extends LitElement {
             <a href="/admin/index.html" class="dropdown-item" target="_blank"><span class="fa fa-dashboard"></span> <span name="translate" caption="nav_link_admin_dashboard"></span></a>
         </li>
         <li class="">
+            <a href="/profile.html" class="dropdown-item"><span class="fa fa-user"></span> <span name="translate" caption="nav_link_profile"></span></a>
+        </li>
+        <li class="">
             <a href="#" class="dropdown-item" @click="${this.logout}"><span class="fa fa-sign-out"></span> <span name="translate" caption="nav_link_logout"></span></a>
         </li>
     </ul>
@@ -63,6 +66,9 @@ class CmsHeader extends LitElement {
         <span>${UserName}</span>
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+        <li class="">
+            <a href="/profile.html" class="dropdown-item"><span class="fa fa-user"></span> <span name="translate" caption="nav_link_profile"></span></a>
+        </li>
         <li class="">
             <a href="#" class="dropdown-item" @click="${this.logout}"><span class="fa fa-sign-out"></span> <span name="translate" caption="nav_link_logout"></span></a>
         </li>

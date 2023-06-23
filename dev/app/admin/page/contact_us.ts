@@ -18,12 +18,6 @@ class CmsContactUs extends LitElement {
     private lcid = 'fa';
     private resources: any = [];
 
-    private Roles: any = [];
-    @state()
-    private HtmlRoles: any;
-
-    private AllRoles: any = [];
-
     private Model = {
         groups: {
             pk_group_role: ko.observable(),
@@ -54,11 +48,6 @@ class CmsContactUs extends LitElement {
 
         this.lcid = getCookie("lcid");
         this.resources = getLangResources()[this.lcid];
-
-        GetDataWithoutLoading("permission_level_management/select_role.php", null)
-            .then(allRoles => {
-                this.AllRoles = allRoles;
-            });
     }
 
     firstUpdated(changedProperties: any) {

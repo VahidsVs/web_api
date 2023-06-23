@@ -15,6 +15,7 @@
     fa['nav_link_register'] = "ثبت نام";
     fa['nav_link_logout'] = "خروج";
     fa['nav_link_admin_dashboard'] = "داشبورد مدیریت";
+    fa['nav_link_profile'] = "پروفایل";
     fa['nav_link_forget_password'] = "فراموشی کلمه عبور";
     
     fa['/'] = "صفحه اصلی";
@@ -22,6 +23,7 @@
     fa['/login.html'] = "ورود";
     fa['/access-denied.html'] = "ورود غیر مجاز";
     fa['/register.html'] = "ثبت نام";
+    fa['/profile.html'] = "پروفایل";
     fa['/my-home.html'] = "صفحه من";
     fa['/contact-us.html'] = "ارتباط با ما";
     fa['/about-us.html'] = "درباره ما";
@@ -29,6 +31,9 @@
     
     fa['title_login'] = "ورود به سامانه";
     fa['subtitle_login'] = "وارد شوید!";
+
+    fa['tab_title_editprofile'] = "ویرایش پروفایل";
+    fa['tab_title_resetpassword'] = "تغییر کلمه عبور";
     
     fa['label_username'] = "نام کاربری (پست الکترونیک):";
     fa['label_password'] = "کلمه عبور:";
@@ -38,6 +43,10 @@
     fa['label_lastname'] = "نام خانوادگی:";
     fa['label_mobile'] = "موبایل:";
     fa['label_email'] = "پست الکترونیک:";
+    fa['label_currentpassword'] = "کلمه عبور فعلی:";
+
+    fa['btn_submit'] = "ثبت";
+    fa['btn_edit'] = "ویرایش";
 
     fa['msg_unauthorized'] = "شما به این صفحه دسترسی ندارید.";
     fa['msg_unauthorized_desc'] = "در صورت نیاز با مدیریت تماس بگیرید.";
@@ -63,6 +72,7 @@
     en['nav_link_register'] = "Register";
     en['nav_link_logout'] = "Sign out";
     en['nav_link_admin_dashboard'] = "Admin dashboard";
+    en['nav_link_profile'] = "Profile";
     en['nav_link_forget_password'] = "Forget Password";
     
     en['/'] = "Home";
@@ -70,6 +80,7 @@
     en['/login.html'] = "Login";
     en['/access-denied.html'] = "Access Denied";
     en['/register.html'] = "Register";
+    en['/profile.html'] = "Profile";
     en['/my-home.html'] = "My Page";
     en['/contact-us.html'] = "Contact Us";
     en['/about-us.html'] = "About Us";
@@ -77,6 +88,9 @@
     
     en['title_login'] = "Login to system";
     en['subtitle_login'] = "login!";
+
+    en['tab_title_editprofile'] = "Edit Profile";
+    en['tab_title_resetpassword'] = "Reset Password";
     
     en['label_username'] = "Username (Email):";
     en['label_password'] = "Password:";
@@ -86,6 +100,10 @@
     en['label_lastname'] = "Last Name:";
     en['label_mobile'] = "Mobile:";
     en['label_email'] = "Email:";
+    en['label_currentpassword'] = "Current Password:";
+
+    en['btn_submit'] = "Submit";
+    en['btn_edit'] = "Edit";
 
     en['msg_unauthorized'] = "Unauthorized request.";
     en['msg_unauthorized_desc'] = "Contact to admin team.";

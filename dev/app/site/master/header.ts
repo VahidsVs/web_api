@@ -42,13 +42,25 @@ class CmsHeader extends LitElement {
                     var isInGroup = data.isInGroup;
                             if (isInGroup === true) {
                                 this.PnlLoginItems.push(html`
-<a href="/admin/index.html" class="nav-item nav-link"><span name="translate" caption="nav_link_admin_dashboard"></span></a>
-<a href="#" @click="${this.logout}" class="nav-item nav-link"><span name="translate" caption="nav_link_logout"></span></a>
+<div class="nav-item dropdown">
+    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">${UserName}</a>
+    <div class="dropdown-menu rounded">
+        <a href="/admin/index.html" class="dropdown-item"><span name="translate" caption="nav_link_admin_dashboard"></span></a>
+        <a href="/profile.html" class="dropdown-item"><span name="translate" caption="nav_link_profile"></span></a>
+        <a href="#" @click="${this.logout}" class="dropdown-item"><span name="translate" caption="nav_link_logout"></span></a>
+    </div>
+</div>
 `);
                             }
                             else {
                                 this.PnlLoginItems.push(html`
-<a href="#" @click="${this.logout}" class="nav-item nav-link"><span name="translate" caption="nav_link_logout"></span></a>
+<div class="nav-item dropdown">
+    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">${UserName}</a>
+    <div class="dropdown-menu rounded">
+        <a href="/profile.html" class="dropdown-item"><span name="translate" caption="nav_link_profile"></span></a>
+        <a href="#" @click="${this.logout}" class="dropdown-item"><span name="translate" caption="nav_link_logout"></span></a>
+    </div>
+</div>
 `);
                             }
 

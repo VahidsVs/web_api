@@ -60,6 +60,7 @@ module.exports = {
         index: './site/page/index.ts',
         my_home: './site/page/my_home.ts',
         login: './site/page/login.ts',
+        profile: './site/page/profile.ts',
         // register: './site/page/register.ts',
         contact_us: './site/page/contact_us.ts',
         about_us: './site/page/about_us.ts',

@@ -16,6 +16,7 @@
     fa['nav_link_register'] = "ثبت نام";
     fa['nav_link_logout'] = "خروج";
     fa['nav_link_admin_dashboard'] = "داشبورد مدیریت";
+    fa['nav_link_profile'] = "پروفایل";
 
     fa['/admin/index.html'] = "داشبورد";
     fa['/admin/permission-level-management.html'] = "مدیریت سطوح دسترسی";
@@ -82,6 +83,7 @@
     en['nav_link_register'] = "Register";
     en['nav_link_logout'] = "Sign out";
     en['nav_link_admin_dashboard'] = "Admin dashboard";
+    en['nav_link_profile'] = "Profile";
 
     en['/admin/index.html'] = "Dashboard";
     en['/admin/permission-level-management.html'] = "Permission Level Management";
