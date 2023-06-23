@@ -94,7 +94,7 @@
     en['msgPassAndPassConfirmNotSame'] = "Password and Repeat Password is not match";
     en['msgUsernameExists'] = "Username is duplicated";
     en['msgTitleExists'] = "Title is duplicated";
-    fa['msgInvalidCaptchaInput'] = "Invalid captcha code input";
+    en['msgInvalidCaptchaInput'] = "Invalid captcha code input";
     en['msgSuccessfulCUD'] = "Successfully submited";
     
     // Added new array defined arrays.
