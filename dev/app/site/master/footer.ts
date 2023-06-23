@@ -37,7 +37,7 @@ class CmsFooter extends LitElement {
         <div class="row g-5">
             <div class="col-lg-4 col-md-6">
                 <a href="/">
-                    <img src="/images/Logo.png" alt="" width="120" class="d-inline-block align-text-top">
+                    <img src="/images/logo.png" alt="" width="120" class="d-inline-block align-text-top">
                 </a>
                 <p class="mt-4 text-light">
                     MegaTech is an IT company which works in the field of applications, newtork, web design, blockchain and AI. MegaTech is an innovative start-up company.

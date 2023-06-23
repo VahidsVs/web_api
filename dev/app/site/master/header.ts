@@ -139,7 +139,7 @@ class CmsHeader extends LitElement {
     <div class="container">
         <nav class="navbar navbar-dark navbar-expand-lg py-0">
             <a class="navbar-brand" href="/">
-                <img src="/images/Logo.png" alt="" width="120" class="d-inline-block align-text-top">
+                <img src="/images/logo.png" alt="" width="120" class="d-inline-block align-text-top">
             </a>
             <button type="button" class="navbar-toggler me-0" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
