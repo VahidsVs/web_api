@@ -17,7 +17,7 @@ if (array_key_exists("loginTime",$_SESSION) && (time() - $_SESSION['loginTime'] 
 } else {
 	if (array_key_exists("username", $_SESSION)) {
 		$param["fkUser"]=$_SESSION["userId"];
-		$accessClass = new UserInGroup("Select", $param);
+		$accessClass = new UserInGroup("select", $param);
 		$jsonSession["isInGroup"] = false;
 		$jsonSession["isAnonymous"] = false;
 		$jsonSession["username"] = $_SESSION["username"];
