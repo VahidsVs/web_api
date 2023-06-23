@@ -20,7 +20,7 @@ class UsersInGroup
 
 		$query = "Select * From  $this->tableName ug,roles_in_group rg,roles r Where ug.fk_group_role = rg.fk_group_role And rg.fk_role = r.pk_role And 1=1  $condition ";
 
-		$result = $this->accessDatabase->executeAndFetch($action, $query, $bindParams, $orderBy, $limit);
+		$result = $this->accessDatabase->executeAndFetch("select", $query, $bindParams, $orderBy, $limit);
 		return $result;
 	}
 	function select($action, $parameters, $orderBy = null, $limit = null)
