@@ -7,12 +7,15 @@
     position: absolute;
     background: Black url(../../Images/FireFoxLoading.gif) center center no-repeat;
 }
-
 .title {
     text-align: center;
     z-index: 100000;
     color: #fff;
     margin: 10px auto;
+}
+.invalid {
+    color: red !important;
+    font-size: 9pt !important;
 }
 
 

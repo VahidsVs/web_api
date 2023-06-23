@@ -3869,9 +3869,9 @@ __webpack_require__.r(__webpack_exports__);
 var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
-/*!****************************!*\
-  !*** ./site/page/index.ts ***!
-  \****************************/
+/*!********************************!*\
+  !*** ./site/page/impressum.ts ***!
+  \********************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var lit__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lit */ "../node_modules/lit/index.js");
 /* harmony import */ var lit_decorators_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lit/decorators.js */ "../node_modules/lit/decorators.js");
@@ -3883,7 +3883,7 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 };
 
 
-let CmsIndex = class CmsIndex extends lit__WEBPACK_IMPORTED_MODULE_0__.LitElement {
+let CmsImpressum = class CmsImpressum extends lit__WEBPACK_IMPORTED_MODULE_0__.LitElement {
     createRenderRoot() {
         return this;
     }
@@ -3891,376 +3891,31 @@ let CmsIndex = class CmsIndex extends lit__WEBPACK_IMPORTED_MODULE_0__.LitElemen
         super();
     }
     firstUpdated(changedProperties) {
-        $(() => {
-            $(".owl-carousel").owlCarousel();
-        });
     }
     render() {
         return lit__WEBPACK_IMPORTED_MODULE_0__.html `
-<!-- Carousel Start -->
-<div class="container-fluid px-0">
-    <div id="carouselId" class="carousel slide" data-bs-ride="carousel">
-        <ol class="carousel-indicators">
-            <li data-bs-target="#carouselId" data-bs-slide-to="0" class="active" aria-current="true" aria-label="First slide"></li>
-            <li data-bs-target="#carouselId" data-bs-slide-to="1" aria-label="Second slide"></li>
-        </ol>
-        <div class="carousel-inner" role="listbox">
-            <div class="carousel-item active">
-                <img src="/images/carousel-1.jpg" class="img-fluid" alt="First slide">
-                <div class="carousel-caption">
-                    <div class="container carousel-content">
-                        <h6 class="text-secondary h4 animated fadeInUp">Best IT Solutions</h6>
-                        <h1 class="text-white display-1 mb-4 animated fadeInRight">An Innovative IT Solutions Agency</h1>
-                        <p class="mb-4 text-white fs-5 animated fadeInDown">
-                            IT-Outsourcing, Strong Design, Network & Webstie Security, Advantages, Low Price, High Speed, Support 24/7
-                        </p>
-                        <a href="/about-us.html" class="me-2"><button type="button" class="px-4 py-sm-3 px-sm-5 btn btn-primary rounded-pill carousel-content-btn1 animated fadeInLeft">About Us</button></a>
-                        <a href="/contact-us.html" class="ms-2"><button type="button" class="px-4 py-sm-3 px-sm-5 btn btn-primary rounded-pill carousel-content-btn2 animated fadeInRight">Contact Us</button></a>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="/images/carousel-2.jpg" class="img-fluid" alt="Second slide">
-                <div class="carousel-caption">
-                    <div class="container carousel-content">
-                        <h6 class="text-secondary h4 animated fadeInUp">Best IT Solutions</h6>
-                        <h1 class="text-white display-1 mb-4 animated fadeInLeft">Quality Digital Services You Really Need!</h1>
-                        <p class="mb-4 text-white fs-5 animated fadeInDown">
-                            IT-Outsourcing, Strong Design, Network & Webstie Security, Advantages, Low Price, High Speed, Support 24/7
-                        </p>
-                        <a href="/about-us.html" class="me-2"><button type="button" class="px-4 py-sm-3 px-sm-5 btn btn-primary rounded-pill carousel-content-btn1 animated fadeInLeft">About Us</button></a>
-                        <a href="/contact-us.html" class="ms-2"><button type="button" class="px-4 py-sm-3 px-sm-5 btn btn-primary rounded-pill carousel-content-btn2 animated fadeInRight">Contact Us</button></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselId" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselId" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
+<!-- Page Header Start -->
+<div class="container-fluid page-header py-5">
+    <div class="container text-center py-5">
+        <h1 class="display-2 text-white mb-4 animated slideInDown">Impressum</h1>
     </div>
 </div>
-<!-- Carousel End -->
+<!-- Page Header End -->
 
-<!-- Fact Start -->
-<div class="container-fluid bg-secondary py-5">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-3 wow fadeIn" data-wow-delay=".1s">
-                <div class="d-flex counter">
-                    <h1 class="me-3 text-primary counter-value">99</h1>
-                    <h5 class="text-white mt-1">Success in getting happy customer</h5>
-                </div>
-            </div>
-            <div class="col-lg-3 wow fadeIn" data-wow-delay=".3s">
-                <div class="d-flex counter">
-                    <h1 class="me-3 text-primary counter-value">25</h1>
-                    <h5 class="text-white mt-1">Thousands of successful business</h5>
-                </div>
-            </div>
-            <div class="col-lg-3 wow fadeIn" data-wow-delay=".5s">
-                <div class="d-flex counter">
-                    <h1 class="me-3 text-primary counter-value">120</h1>
-                    <h5 class="text-white mt-1">Total clients who love HighTech</h5>
-                </div>
-            </div>
-            <div class="col-lg-3 wow fadeIn" data-wow-delay=".7s">
-                <div class="d-flex counter">
-                    <h1 class="me-3 text-primary counter-value">5</h1>
-                    <h5 class="text-white mt-1">Stars reviews given by satisfied clients</h5>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Fact End -->
+<div class="container-fluid text-center p-5">
 
-<!-- Services Start -->
-<div class="container-fluid services py-5 mb-5">
-    <div class="container">
-        <div class="text-center mx-auto pb-5 wow fadeIn" data-wow-delay=".3s" style="max-width: 600px;">
-            <h5 class="text-primary">Our Services</h5>
-            <h1>Services Built Specifically For Your Business</h1>
-        </div>
-        <div class="row g-5 services-inner">
-            <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay=".3s">
-                <div class="services-item bg-light">
-                    <div class="p-4 text-center services-content">
-                        <div class="services-content-icon">
-                            <i class="fa fa-code fa-7x mb-4 text-primary"></i>
-                            <h4 class="mb-3">Web Design</h4>
-                            <!-- <p class="mb-4">Lorem ipsum dolor sit amet elit. Sed efficitur quis purus ut interdum. Aliquam dolor eget urna ultricies tincidunt.</p> -->
-                            <!-- <a href="" class="btn btn-secondary text-white px-5 py-3 rounded-pill">Read More</a> -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay=".5s">
-                <div class="services-item bg-light">
-                    <div class="p-4 text-center services-content">
-                        <div class="services-content-icon">
-                            <i class="fa fa-file-code fa-7x mb-4 text-primary"></i>
-                            <h4 class="mb-3">Web Development</h4>
-                            <!-- <p class="mb-4">Lorem ipsum dolor sit amet elit. Sed efficitur quis purus ut interdum. Aliquam dolor eget urna ultricies tincidunt.</p> -->
-                            <!-- <a href="" class="btn btn-secondary text-white px-5 py-3 rounded-pill">Read More</a> -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay=".7s">
-                <div class="services-item bg-light">
-                    <div class="p-4 text-center services-content">
-                        <div class="services-content-icon">
-                            <i class="fa fa-external-link-alt fa-7x mb-4 text-primary"></i>
-                            <h4 class="mb-3">UI/UX Design</h4>
-                            <!-- <p class="mb-4">Lorem ipsum dolor sit amet elit. Sed efficitur quis purus ut interdum. Aliquam dolor eget urna ultricies tincidunt.</p> -->
-                            <!-- <a href="" class="btn btn-secondary text-white px-5 py-3 rounded-pill">Read More</a> -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay=".3s">
-                <div class="services-item bg-light">
-                    <div class="p-4 text-center services-content">
-                        <div class="services-content-icon">
-                            <i class="fas fa-user-secret fa-7x mb-4 text-primary"></i>
-                            <h4 class="mb-3">Web Security</h4>
-                            <!-- <p class="mb-4">Lorem ipsum dolor sit amet elit. Sed efficitur quis purus ut interdum. Aliquam dolor eget urna ultricies tincidunt.</p> -->
-                            <!-- <a href="" class="btn btn-secondary text-white px-5 py-3 rounded-pill">Read More</a> -->
-                        </div>
-                        
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay=".5s">
-                <div class="services-item bg-light">
-                    <div class="p-4 text-center services-content">
-                        <div class="services-content-icon">
-                            <i class="fa fa-envelope-open fa-7x mb-4 text-primary"></i>
-                            <h4 class="mb-3">Digital Marketing</h4>
-                            <!-- <p class="mb-4">Lorem ipsum dolor sit amet elit. Sed efficitur quis purus ut interdum. Aliquam dolor eget urna ultricies tincidunt.</p> -->
-                            <!-- <a href="" class="btn btn-secondary text-white px-5 py-3 rounded-pill">Read More</a> -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay=".7s">
-                <div class="services-item bg-light">
-                    <div class="p-4 text-center services-content">
-                        <div class="services-content-icon">
-                            <i class="fas fa-laptop fa-7x mb-4 text-primary"></i>
-                            <h4 class="mb-3">Programming</h4>
-                            <!-- <p class="mb-4">Lorem ipsum dolor sit amet elit. Sed efficitur quis purus ut interdum. Aliquam dolor eget urna ultricies tincidunt.</p> -->
-                            <!-- <a href="" class="btn btn-secondary text-white px-5 py-3 rounded-pill">Read More</a> -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Services End -->
+    <p><b>Offenlegung laut § 25 Mediengesetz</b></p><p><b>Medieninhaber</b></p><p>MegaTech Co </p><p><b>Die Adresse</b></p><p>Ludersdorf 247/2 / Bürozentrum 8200 Ludersdorf (Gleisdorf)</p><p><br></p><p><b>Unternehmensgegenstand</b></p><p>&nbsp;Betrieb eines Onlinedienstes (Internet-Anzeigen-Portal und)</p><p><br></p><p><b>Geschäftsführer:</b> Milad Karim Tehrani</p><p><br></p><p><b>Telefonnummer :&nbsp;<a href="tel:+4366499657071">+4366499657071</a></b></p><p><b>E-mail:</b> admin@megatechapp.at</p><p><br></p><p><b>Kammer: </b>Wirtschaftskammer Wien; Fachgruppe UBIT; Fachgruppe der gewerblichen Finanzdienstleister.</p><p><br></p><p>Anwendbare Vorschriften: Österr. Gewerbeordnung <a href="https://www.ris.bka.gv.at/">https://www.ris.bka.gv.at/</a></p><p>Sofern die MegaTech im Zuge von "MegaTech" in Ausübung des Gewerbes unter </p><p><a href="https://www.ris.bka.gv.at/">https://www.ris.bka.gv.at/</a></p><p><br></p><p>MegaTech ist an folgendem Unternehmen unmittelbar beteiligt:<b> Mega Tech, Weiz</b></p><p><b><br></b></p><p><b>Kontakt:</b> Klick hier bzw. per E-Mail unter <b>admin@Megatechapp.at</b></p><p><b><br></b></p><p>Informationen für gewerbliche Kunden zur Mediation: Im Falle einer freiwilligen außergerichtlichen Beilegung von Streitigkeiten mit gewerblichen Nutzern ist MegaTech bereit mit verschiedene Mediationsstellen zusammenzuarbeiten. </p><p><br></p><p><b>Dem Stiftungsvorstand gehören an: Vorsitzender Generaldirektor</b></p><p><b>1. Einverständnis</b></p><p>Megatech stellt Ihnen diese Website MegaTech Website“) und die Serviceleistungen auf Grundlage der folgenden Nutzungsbedingungen zur Verfügung. Durch Zugriff auf irgendeine Seite dieser MegaTech Website erklären Sie sich mit diesen Nutzungsbedingungen einverstanden.</p><p><b>2. Geltungsbereich</b></p><p>MegaTech ist ausschließlich für Inhalte verantwortlich, die selbst erstellt, veröffentlicht und verbreitet werden. Die Nutzungsbedingungen gelten für die Inhalte der Website <a href="http://www.Megatech.at">www.Megatech.at</a> sowie aller zu dieser Domain gehörenden Subdomains.</p><p><b>3. Copyright</b></p><p>Der gesamte Inhalt (Texte, Bilder, Illustrationen, Grafiken) der Megatech Website (sowie deren Subdomains) unterliegt dem Urheberrecht und anderen Gesetzen zum Schutze geistigen Eigentums. Falls nichts anders angegeben, ist niemand berechtigt, irgendwelche Informationen dieser Website zu kopieren oder wieder zu veröffentlichen. Die dargestellten Inhalte dieser Website dürfen in keiner Weise kopiert, reproduziert, wieder veröffentlicht, herunterladen, verschickt, übertragen oder verteilt werden. Ausschließlich für den nicht kommerziellen Eigengebrauch ist das Herunterladen von Informationen auf einen Computer gestattet, unter der Bedingung, dass das Urheberrecht und die anderen Eigentumsvorbehalte beachtet werden. Ausnahmen von der Regelung sind ausdrücklich durch den Hinweis „Download“ gekennzeichnet und sind mit der entsprechenden Download-Funktionalität hinterlegt.</p><p><b>4. Nutzung</b></p><p>Die Megatech Website steht Ihnen kostenlos zur Verfügung und darf nur für private, nicht kommerzielle Zwecke benutzt werden. Jede Art von Support zu Ihrer Unterstützung erfolgt ausschließlich um Sie zu informieren. Megatech behält sich das Recht vor, Änderungen an der Megatech Website vorzunehmen oder auf Anfragen nicht zu antworten oder keinen Support in Verbindung mit der Megatech Website anzubieten. Es ist nicht gestattet, Websites mit anstößigem oder anderweitig ungeeignetem Inhalt mit der Megatech Website zu verknüpfen oder zu verlinken. Auf Aufforderung von Megatech sind Sie verpflichtet, eine solche Verknüpfung rückgängig zu machen.</p><p><b>5. Haftungsbeschränkung</b></p><p>Megatech hat keinerlei Kontrolle über den Inhalt von Websites die außerhalb der Megatech Website liegen auf welche direkt oder indirekt durch „Hyperlinks“ Verweisen wurde. Ewand erklärt hiermit ausdrücklich, dass zum Zeitpunkt der Linksetzung keine illegalen Inhalte auf den zu verlinkenden Seiten erkennbar waren. Auf die aktuelle und zukünftige Gestaltung, die Inhalte oder die Urheberschaft der verlinkten/verknüpften Seiten hat Ewand keinerlei Einfluss. Deshalb distanziert Ewand sich hiermit ausdrücklich von allen Inhalten aller verlinkten /verknüpften Seiten, die nach der Linksetzung verändert wurden. Für illegale, fehlerhafte oder unvollständige Inhalte und insbesondere für Schäden, die aus der Nutzung oder Nichtnutzung solcherart dargebotener Informationen entstehen, haftet allein der Anbieter der Seite, auf welche verwiesen wurde, nicht derjenige, der über Links auf die jeweilige Veröffentlichung lediglich verweist.</p><p>Die Ewand Website wird von Ihnen auf Ihr eigenes Risiko genutzt. Ewand ist nicht für Schäden verantwortlich, die Ihnen oder Dritten durch die Verwendung der Website entstehen. In jedem Fall ist die Haftung von Ewand für Einkommensausfälle oder entgangenen Gewinn, Verlust von Daten für direkte oder indirekte Schäden, gleich welcher Art, ausgeschlossen. Ewand haftet nicht für Schäden, die sich aus der Nutzung der Ewand Website oder in Verbindung mit der Nutzung, der Unmöglichkeit der Nutzung oder den Ergebnissen der Nutzung dieser Ewand Website, aller mit dieser Ewand Website verbundenen Websites oder dem Inhalt solcher Websites, einschließlich, jedoch nicht beschränkt auf Schäden die durch Fehler, Verzögerungen oder Unterbrechungen in der Übermittlung, bei Störungen der technischen Anlagen und des Services, unrichtige Inhalte, Verlust oder Löschung von Daten entstehen. Sowie Verluste oder Schäden durch Virenbefall Ihrer Computerausstattung, Software, Daten oder anderer Vermögenswerte, die durch Zugriff, Nutzung oder Browsen auf dieser Ewand Website oder durch das Herunterladen von Inhalten dieser Ewand Website oder anderen, mit dieser Ewand Website verbundenen Websites verursacht werden. Dies gilt nicht, soweit z.B. nach dem Produkthaftungsgesetz oder in Fällen des Vorsatzes zwingend gehaftet wird.</p><p>Ewand schließt hiermit alle Zusicherungen, Gewährleistungen, Garantien oder sonstige Erklärungen in Bezug auf das Anbieten oder das beabsichtigte Anbieten, eine nicht erfolgte Ausführung oder eine verspätete Ausführung von Serviceleistungen in Verbindung mit der Ewand Website oder in Bezug auf Richtigkeit, Vollständigkeit oder Aktualität der Megatech Website aus.</p><p><b>6. Widerspruch Werbe-Mails</b></p><p>Der Nutzung von im Rahmen der Impressumspflicht veröffentlichten Kontaktdaten zur Übersendung von nicht ausdrücklich angeforderter Werbung und Informationsmaterialien wird hiermit widersprochen. Die Betreiber der Seiten behalten sich ausdrücklich rechtliche Schritte im Falle der unverlangten Zusendung von Werbeinformationen, etwa durch Spam-E-Mails, vor.</p><p><b>7. Zugriffsdaten</b></p><p>Der Websitebetreiber bzw. Seitenprovider erhebt Daten über Zugriffe auf die Seite und speichert diese als „Server-Logfiles“ ab. Folgende Daten werden so protokolliert: Besuchte Website, Uhrzeit zum Zeitpunkt des Zugriffes, Menge der gesendeten Daten in Byte, Quelle/Verweis, von welchem Sie auf die Seite gelangten, Verwendeter Browser, Verwendetes Betriebssystem, Verwendete IP-Adresse (ggf.: in anonymisierter Form). Die erhobenen Daten dienen lediglich statistischen Auswertungen und zur Verbesserung der Website. Der Websitebetreiber behält sich allerdings vor, die Server-Logfiles nachträglich zu überprüfen, sollten konkrete Anhaltspunkte auf eine rechtswidrige Nutzung hinweisen.</p><p><b>8. Anwendbares Recht</b></p><p>Diese Nutzungsbedingungen unterliegen österreichischem Recht. Ausschließlicher Gerichtsstand bei Streitfragen in Zusammenhang mit diesen Nutzungsbedingungen ist Wien, Österreich</p>
 
-<!-- Project Start -->
-<div class="container-fluid project py-5 mb-5">
-    <div class="container">
-        <div class="text-center mx-auto pb-5 wow fadeIn" data-wow-delay=".3s" style="max-width: 600px;">
-            <h5 class="text-primary">Our Project</h5>
-            <h1>Our Recently Completed Projects</h1>
-        </div>
-        <div class="row g-5">
-            <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay=".3s">
-                <div class="project-item">
-                    <div class="project-img">
-                        <img src="/images/project-1.jpg" class="img-fluid w-100 rounded" alt="">
-                        <div class="project-content">
-                            <a href="#" class="text-center">
-                                <h4 class="text-secondary">Web design</h4>
-                                <p class="m-0 text-white">Web Analysis</p>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay=".5s">
-                <div class="project-item">
-                    <div class="project-img">
-                        <img src="/images/project-1.jpg" class="img-fluid w-100 rounded" alt="">
-                        <div class="project-content">
-                            <a href="#" class="text-center">
-                                <h4 class="text-secondary">Cyber Security</h4>
-                                <p class="m-0 text-white">Cyber Security Core</p>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay=".7s">
-                <div class="project-item">
-                    <div class="project-img">
-                        <img src="/images/project-1.jpg" class="img-fluid w-100 rounded" alt="">
-                        <div class="project-content">
-                            <a href="#" class="text-center">
-                                <h4 class="text-secondary">Mobile Info</h4>
-                                <p class="m-0 text-white">Upcomming Phone</p>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay=".3s">
-                <div class="project-item">
-                    <div class="project-img">
-                        <img src="/images/project-1.jpg" class="img-fluid w-100 rounded" alt="">
-                        <div class="project-content">
-                            <a href="#" class="text-center">
-                                <h4 class="text-secondary">Web Development</h4>
-                                <p class="m-0 text-white">Web Analysis</p>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay=".5s">
-                <div class="project-item">
-                    <div class="project-img">
-                        <img src="/images/project-1.jpg" class="img-fluid w-100 rounded" alt="">
-                        <div class="project-content">
-                            <a href="#" class="text-center">
-                                <h4 class="text-secondary">Digital Marketing</h4>
-                                <p class="m-0 text-white">Marketing Analysis</p>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay=".7s">
-                <div class="project-item">
-                    <div class="project-img">
-                        <img src="/images/project-1.jpg" class="img-fluid w-100 rounded" alt="">
-                        <div class="project-content">
-                            <a href="#" class="text-center">
-                                <h4 class="text-secondary">keyword Research</h4>
-                                <p class="m-0 text-white">keyword Analysis</p>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
-<!-- Project End -->
-
-<!-- Testimonial Start -->
-<div class="container-fluid testimonial py-5 mb-5">
-    <div class="container">
-        <div class="text-center mx-auto pb-5 wow fadeIn" data-wow-delay=".3s" style="max-width: 600px;">
-            <h5 class="text-primary">Our Testimonial</h5>
-            <h1>Our Client Saying!</h1>
-        </div>
-        <div class="owl-carousel testimonial-carousel wow fadeIn" data-wow-delay=".5s">
-            <div class="testimonial-item border p-4">
-                <div class="d-flex align-items-center">
-                    <div class="">
-                        <img src="/images/avatar.png" alt="">
-                    </div>
-                    <div class="ms-4">
-                        <h4 class="text-secondary">Client Name</h4>
-                        <p class="m-0 pb-3">Profession</p>
-                        <div class="d-flex pe-5">
-                            <i class="fas fa-star me-1 text-primary"></i>
-                            <i class="fas fa-star me-1 text-primary"></i>
-                            <i class="fas fa-star me-1 text-primary"></i>
-                            <i class="fas fa-star me-1 text-primary"></i>
-                            <i class="fas fa-star me-1 text-primary"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="border-top mt-4 pt-3">
-                    <!-- <p class="mb-0">Lorem ipsum dolor sit amet elit. Sed efficitur quis purus ut interdum aliquam dolor eget urna. Nam volutpat libero sit amet leo cursus, ac viverra eros morbi quis quam mi.</p> -->
-                </div>
-            </div>
-            <div class="testimonial-item border p-4">
-                <div class=" d-flex align-items-center">
-                    <div class="">
-                        <img src="/images/avatar.png" alt="">
-                    </div>
-                    <div class="ms-4">
-                        <h4 class="text-secondary">Client Name</h4>
-                        <p class="m-0 pb-3">Profession</p>
-                        <div class="d-flex pe-5">
-                            <i class="fas fa-star me-1 text-primary"></i>
-                            <i class="fas fa-star me-1 text-primary"></i>
-                            <i class="fas fa-star me-1 text-primary"></i>
-                            <i class="fas fa-star me-1 text-primary"></i>
-                            <i class="fas fa-star me-1 text-primary"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="border-top mt-4 pt-3">
-                    <!-- <p class="mb-0">Lorem ipsum dolor sit amet elit. Sed efficitur quis purus ut interdum aliquam dolor eget urna. Nam volutpat libero sit amet leo cursus, ac viverra eros morbi quis quam mi.</p> -->
-                </div>
-            </div>
-            <div class="testimonial-item border p-4">
-                <div class=" d-flex align-items-center">
-                    <div class="">
-                        <img src="/images/avatar.png" alt="">
-                    </div>
-                    <div class="ms-4">
-                        <h4 class="text-secondary">Client Name</h4>
-                        <p class="m-0 pb-3">Profession</p>
-                        <div class="d-flex pe-5">
-                            <i class="fas fa-star me-1 text-primary"></i>
-                            <i class="fas fa-star me-1 text-primary"></i>
-                            <i class="fas fa-star me-1 text-primary"></i>
-                            <i class="fas fa-star me-1 text-primary"></i>
-                            <i class="fas fa-star me-1 text-primary"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="border-top mt-4 pt-3">
-                    <!-- <p class="mb-0">Lorem ipsum dolor sit amet elit. Sed efficitur quis purus ut interdum aliquam dolor eget urna. Nam volutpat libero sit amet leo cursus, ac viverra eros morbi quis quam mi.</p> -->
-                </div>
-            </div>
-            <div class="testimonial-item border p-4">
-                <div class=" d-flex align-items-center">
-                    <div class="">
-                        <img src="/images/avatar.png" alt="">
-                    </div>
-                    <div class="ms-4">
-                        <h4 class="text-secondary">Client Name</h4>
-                        <p class="m-0 pb-3">Profession</p>
-                        <div class="d-flex pe-5">
-                            <i class="fas fa-star me-1 text-primary"></i>
-                            <i class="fas fa-star me-1 text-primary"></i>
-                            <i class="fas fa-star me-1 text-primary"></i>
-                            <i class="fas fa-star me-1 text-primary"></i>
-                            <i class="fas fa-star me-1 text-primary"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="border-top mt-4 pt-3">
-                    <!-- <p class="mb-0">Lorem ipsum dolor sit amet elit. Sed efficitur quis purus ut interdum aliquam dolor eget urna. Nam volutpat libero sit amet leo cursus, ac viverra eros morbi quis quam mi.</p> -->
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Testimonial End -->
         `;
     }
 };
-CmsIndex = __decorate([
-    (0,lit_decorators_js__WEBPACK_IMPORTED_MODULE_1__.customElement)('cms-index')
-], CmsIndex);
+CmsImpressum = __decorate([
+    (0,lit_decorators_js__WEBPACK_IMPORTED_MODULE_1__.customElement)('cms-impressum')
+], CmsImpressum);
 
 })();
 
 /******/ })()
 ;
-//# sourceMappingURL=index.bundle.js.map
+//# sourceMappingURL=impressum.bundle.js.map

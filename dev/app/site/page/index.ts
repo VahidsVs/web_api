@@ -42,9 +42,11 @@ class CmsIndex extends LitElement {
                     <div class="container carousel-content">
                         <h6 class="text-secondary h4 animated fadeInUp">Best IT Solutions</h6>
                         <h1 class="text-white display-1 mb-4 animated fadeInRight">An Innovative IT Solutions Agency</h1>
-                        <p class="mb-4 text-white fs-5 animated fadeInDown">Lorem ipsum dolor sit amet elit. Sed efficitur quis purus ut interdum. Pellentesque aliquam dolor eget urna ultricies tincidunt.</p>
-                        <a href="" class="me-2"><button type="button" class="px-4 py-sm-3 px-sm-5 btn btn-primary rounded-pill carousel-content-btn1 animated fadeInLeft">About Us</button></a>
-                        <a href="" class="ms-2"><button type="button" class="px-4 py-sm-3 px-sm-5 btn btn-primary rounded-pill carousel-content-btn2 animated fadeInRight">Contact Us</button></a>
+                        <p class="mb-4 text-white fs-5 animated fadeInDown">
+                            IT-Outsourcing, Strong Design, Network & Webstie Security, Advantages, Low Price, High Speed, Support 24/7
+                        </p>
+                        <a href="/about-us.html" class="me-2"><button type="button" class="px-4 py-sm-3 px-sm-5 btn btn-primary rounded-pill carousel-content-btn1 animated fadeInLeft">About Us</button></a>
+                        <a href="/contact-us.html" class="ms-2"><button type="button" class="px-4 py-sm-3 px-sm-5 btn btn-primary rounded-pill carousel-content-btn2 animated fadeInRight">Contact Us</button></a>
                     </div>
                 </div>
             </div>
@@ -54,9 +56,11 @@ class CmsIndex extends LitElement {
                     <div class="container carousel-content">
                         <h6 class="text-secondary h4 animated fadeInUp">Best IT Solutions</h6>
                         <h1 class="text-white display-1 mb-4 animated fadeInLeft">Quality Digital Services You Really Need!</h1>
-                        <p class="mb-4 text-white fs-5 animated fadeInDown">Lorem ipsum dolor sit amet elit. Sed efficitur quis purus ut interdum. Pellentesque aliquam dolor eget urna ultricies tincidunt.</p>
-                        <a href="" class="me-2"><button type="button" class="px-4 py-sm-3 px-sm-5 btn btn-primary rounded-pill carousel-content-btn1 animated fadeInLeft">About Us</button></a>
-                        <a href="" class="ms-2"><button type="button" class="px-4 py-sm-3 px-sm-5 btn btn-primary rounded-pill carousel-content-btn2 animated fadeInRight">Contact Us</button></a>
+                        <p class="mb-4 text-white fs-5 animated fadeInDown">
+                            IT-Outsourcing, Strong Design, Network & Webstie Security, Advantages, Low Price, High Speed, Support 24/7
+                        </p>
+                        <a href="/about-us.html" class="me-2"><button type="button" class="px-4 py-sm-3 px-sm-5 btn btn-primary rounded-pill carousel-content-btn1 animated fadeInLeft">About Us</button></a>
+                        <a href="/contact-us.html" class="ms-2"><button type="button" class="px-4 py-sm-3 px-sm-5 btn btn-primary rounded-pill carousel-content-btn2 animated fadeInRight">Contact Us</button></a>
                     </div>
                 </div>
             </div>
@@ -120,8 +124,8 @@ class CmsIndex extends LitElement {
                         <div class="services-content-icon">
                             <i class="fa fa-code fa-7x mb-4 text-primary"></i>
                             <h4 class="mb-3">Web Design</h4>
-                            <p class="mb-4">Lorem ipsum dolor sit amet elit. Sed efficitur quis purus ut interdum. Aliquam dolor eget urna ultricies tincidunt.</p>
-                            <a href="" class="btn btn-secondary text-white px-5 py-3 rounded-pill">Read More</a>
+                            <!-- <p class="mb-4">Lorem ipsum dolor sit amet elit. Sed efficitur quis purus ut interdum. Aliquam dolor eget urna ultricies tincidunt.</p> -->
+                            <!-- <a href="" class="btn btn-secondary text-white px-5 py-3 rounded-pill">Read More</a> -->
                         </div>
                     </div>
                 </div>
@@ -132,8 +136,8 @@ class CmsIndex extends LitElement {
                         <div class="services-content-icon">
                             <i class="fa fa-file-code fa-7x mb-4 text-primary"></i>
                             <h4 class="mb-3">Web Development</h4>
-                            <p class="mb-4">Lorem ipsum dolor sit amet elit. Sed efficitur quis purus ut interdum. Aliquam dolor eget urna ultricies tincidunt.</p>
-                            <a href="" class="btn btn-secondary text-white px-5 py-3 rounded-pill">Read More</a>
+                            <!-- <p class="mb-4">Lorem ipsum dolor sit amet elit. Sed efficitur quis purus ut interdum. Aliquam dolor eget urna ultricies tincidunt.</p> -->
+                            <!-- <a href="" class="btn btn-secondary text-white px-5 py-3 rounded-pill">Read More</a> -->
                         </div>
                     </div>
                 </div>
@@ -144,8 +148,8 @@ class CmsIndex extends LitElement {
                         <div class="services-content-icon">
                             <i class="fa fa-external-link-alt fa-7x mb-4 text-primary"></i>
                             <h4 class="mb-3">UI/UX Design</h4>
-                            <p class="mb-4">Lorem ipsum dolor sit amet elit. Sed efficitur quis purus ut interdum. Aliquam dolor eget urna ultricies tincidunt.</p>
-                            <a href="" class="btn btn-secondary text-white px-5 py-3 rounded-pill">Read More</a>
+                            <!-- <p class="mb-4">Lorem ipsum dolor sit amet elit. Sed efficitur quis purus ut interdum. Aliquam dolor eget urna ultricies tincidunt.</p> -->
+                            <!-- <a href="" class="btn btn-secondary text-white px-5 py-3 rounded-pill">Read More</a> -->
                         </div>
                     </div>
                 </div>
@@ -155,9 +159,9 @@ class CmsIndex extends LitElement {
                     <div class="p-4 text-center services-content">
                         <div class="services-content-icon">
                             <i class="fas fa-user-secret fa-7x mb-4 text-primary"></i>
-                            <h4 class="mb-3">Web Cecurity</h4>
-                            <p class="mb-4">Lorem ipsum dolor sit amet elit. Sed efficitur quis purus ut interdum. Aliquam dolor eget urna ultricies tincidunt.</p>
-                            <a href="" class="btn btn-secondary text-white px-5 py-3 rounded-pill">Read More</a>
+                            <h4 class="mb-3">Web Security</h4>
+                            <!-- <p class="mb-4">Lorem ipsum dolor sit amet elit. Sed efficitur quis purus ut interdum. Aliquam dolor eget urna ultricies tincidunt.</p> -->
+                            <!-- <a href="" class="btn btn-secondary text-white px-5 py-3 rounded-pill">Read More</a> -->
                         </div>
                         
                     </div>
@@ -169,8 +173,8 @@ class CmsIndex extends LitElement {
                         <div class="services-content-icon">
                             <i class="fa fa-envelope-open fa-7x mb-4 text-primary"></i>
                             <h4 class="mb-3">Digital Marketing</h4>
-                            <p class="mb-4">Lorem ipsum dolor sit amet elit. Sed efficitur quis purus ut interdum. Aliquam dolor eget urna ultricies tincidunt.</p>
-                            <a href="" class="btn btn-secondary text-white px-5 py-3 rounded-pill">Read More</a>
+                            <!-- <p class="mb-4">Lorem ipsum dolor sit amet elit. Sed efficitur quis purus ut interdum. Aliquam dolor eget urna ultricies tincidunt.</p> -->
+                            <!-- <a href="" class="btn btn-secondary text-white px-5 py-3 rounded-pill">Read More</a> -->
                         </div>
                     </div>
                 </div>
@@ -181,8 +185,8 @@ class CmsIndex extends LitElement {
                         <div class="services-content-icon">
                             <i class="fas fa-laptop fa-7x mb-4 text-primary"></i>
                             <h4 class="mb-3">Programming</h4>
-                            <p class="mb-4">Lorem ipsum dolor sit amet elit. Sed efficitur quis purus ut interdum. Aliquam dolor eget urna ultricies tincidunt.</p>
-                            <a href="" class="btn btn-secondary text-white px-5 py-3 rounded-pill">Read More</a>
+                            <!-- <p class="mb-4">Lorem ipsum dolor sit amet elit. Sed efficitur quis purus ut interdum. Aliquam dolor eget urna ultricies tincidunt.</p> -->
+                            <!-- <a href="" class="btn btn-secondary text-white px-5 py-3 rounded-pill">Read More</a> -->
                         </div>
                     </div>
                 </div>
@@ -309,7 +313,7 @@ class CmsIndex extends LitElement {
                     </div>
                 </div>
                 <div class="border-top mt-4 pt-3">
-                    <p class="mb-0">Lorem ipsum dolor sit amet elit. Sed efficitur quis purus ut interdum aliquam dolor eget urna. Nam volutpat libero sit amet leo cursus, ac viverra eros morbi quis quam mi.</p>
+                    <!-- <p class="mb-0">Lorem ipsum dolor sit amet elit. Sed efficitur quis purus ut interdum aliquam dolor eget urna. Nam volutpat libero sit amet leo cursus, ac viverra eros morbi quis quam mi.</p> -->
                 </div>
             </div>
             <div class="testimonial-item border p-4">
@@ -330,7 +334,7 @@ class CmsIndex extends LitElement {
                     </div>
                 </div>
                 <div class="border-top mt-4 pt-3">
-                    <p class="mb-0">Lorem ipsum dolor sit amet elit. Sed efficitur quis purus ut interdum aliquam dolor eget urna. Nam volutpat libero sit amet leo cursus, ac viverra eros morbi quis quam mi.</p>
+                    <!-- <p class="mb-0">Lorem ipsum dolor sit amet elit. Sed efficitur quis purus ut interdum aliquam dolor eget urna. Nam volutpat libero sit amet leo cursus, ac viverra eros morbi quis quam mi.</p> -->
                 </div>
             </div>
             <div class="testimonial-item border p-4">
@@ -351,7 +355,7 @@ class CmsIndex extends LitElement {
                     </div>
                 </div>
                 <div class="border-top mt-4 pt-3">
-                    <p class="mb-0">Lorem ipsum dolor sit amet elit. Sed efficitur quis purus ut interdum aliquam dolor eget urna. Nam volutpat libero sit amet leo cursus, ac viverra eros morbi quis quam mi.</p>
+                    <!-- <p class="mb-0">Lorem ipsum dolor sit amet elit. Sed efficitur quis purus ut interdum aliquam dolor eget urna. Nam volutpat libero sit amet leo cursus, ac viverra eros morbi quis quam mi.</p> -->
                 </div>
             </div>
             <div class="testimonial-item border p-4">
@@ -372,9 +376,7 @@ class CmsIndex extends LitElement {
                     </div>
                 </div>
                 <div class="border-top mt-4 pt-3">
-                    <p class="mb-0">
-                        Lorem ipsum dolor sit amet elit. Sed efficitur quis purus ut interdum aliquam dolor eget urna. Nam volutpat libero sit amet leo cursus, ac viverra eros morbi quis quam mi.
-                    </p>
+                    <!-- <p class="mb-0">Lorem ipsum dolor sit amet elit. Sed efficitur quis purus ut interdum aliquam dolor eget urna. Nam volutpat libero sit amet leo cursus, ac viverra eros morbi quis quam mi.</p> -->
                 </div>
             </div>
         </div>

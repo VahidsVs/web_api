@@ -46,6 +46,9 @@ class CmsController extends LitElement {
             case "cms-aboutus":
                 this.ModuleRender = html`<cms-aboutus></cms-aboutus>`
                 break;
+            case "cms-impressum":
+                this.ModuleRender = html`<cms-impressum></cms-impressum>`
+                break;
         }
 
         super.performUpdate();

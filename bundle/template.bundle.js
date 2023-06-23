@@ -27687,6 +27687,9 @@ let CmsController = class CmsController extends lit__WEBPACK_IMPORTED_MODULE_0__
             case "cms-aboutus":
                 this.ModuleRender = lit__WEBPACK_IMPORTED_MODULE_0__.html `<cms-aboutus></cms-aboutus>`;
                 break;
+            case "cms-impressum":
+                this.ModuleRender = lit__WEBPACK_IMPORTED_MODULE_0__.html `<cms-impressum></cms-impressum>`;
+                break;
         }
         super.performUpdate();
     }
@@ -27859,6 +27862,7 @@ let CmsHeader = class CmsHeader extends lit__WEBPACK_IMPORTED_MODULE_0__.LitElem
                     <a href="/" class="nav-item nav-link">Home</a>
                     <a href="/contact-us.html" class="nav-item nav-link">Contact Us</a>
                     <a href="/about-us.html" class="nav-item nav-link">About Us</a>
+                    <a href="/impressum.html" class="nav-item nav-link">Impressum</a>
                     ${this.PnlLogin}
                 </div>
             </div>
@@ -27970,6 +27974,9 @@ let CmsFooter = class CmsFooter extends lit__WEBPACK_IMPORTED_MODULE_0__.LitElem
                     </a>
                     <a href="/about-us.html" class="mb-2 text-white">
                         <i class="fas fa-angle-right text-secondary me-2"></i>About Us
+                    </a>
+                    <a href="/impressum.html" class="mb-2 text-white">
+                        <i class="fas fa-angle-right text-secondary me-2"></i>Impressum
                     </a>
                 </div>
             </div>

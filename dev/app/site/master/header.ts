@@ -149,6 +149,7 @@ class CmsHeader extends LitElement {
                     <a href="/" class="nav-item nav-link">Home</a>
                     <a href="/contact-us.html" class="nav-item nav-link">Contact Us</a>
                     <a href="/about-us.html" class="nav-item nav-link">About Us</a>
+                    <a href="/impressum.html" class="nav-item nav-link">Impressum</a>
                     ${this.PnlLogin}
                 </div>
             </div>
