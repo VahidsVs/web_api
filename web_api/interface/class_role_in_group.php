@@ -23,7 +23,7 @@ class RoleInGroup
 	{
 		$message=[""];
 				if (empty($parameters["fk"])) {
-					$message[0]= Codes::msg_isEmpty;
+					$message[0]= Codes::msg_isRequired;
 					$this->isDataOK = false;
 				}
 				
@@ -47,7 +47,7 @@ class RoleInGroup
 		$message = [""];
 
 				if (empty($parameters["fkGroup"])) {
-					$message[0] = Codes::msg_isEmpty;
+					$message[0] = Codes::msg_isRequired;
 					$this->isDataOK = false;
 				}
 

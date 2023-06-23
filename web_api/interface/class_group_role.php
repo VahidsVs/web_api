@@ -38,7 +38,7 @@ class GroupRole
 	{
 		$message = [""];
 				if (empty($parameters["title"])) {
-					$message[0] = Codes::msg_isEmpty;
+					$message[0] = Codes::msg_isRequired;
 					$this->isDataOK = false;
 				}
 
@@ -70,11 +70,11 @@ class GroupRole
 		$message = [];
 
 				if (empty($parameters["pk"])) {
-					$message[0] = Codes::msg_isEmpty;
+					$message[0] = Codes::msg_isRequired;
 					$this->isDataOK = false;
 				}
 				if (empty($parameters["item"]["title"])) {
-					$message[1] = Codes::msg_isEmpty;
+					$message[1] = Codes::msg_isRequired;
 					$this->isDataOK = false;
 				}
 				
@@ -104,7 +104,7 @@ class GroupRole
 		$message = [""];
 
 				if (empty($parameters["pk"])) {
-					$message[0] = Codes::msg_isEmpty;
+					$message[0] = Codes::msg_isRequired;
 					$this->isDataOK = false;
 				}
 

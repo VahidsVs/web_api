@@ -34,23 +34,23 @@ class ContactUs
     {
         $message = ["", "", "", "", ""];
         if (empty($parameters["name"])) {
-            $message[0] = Codes::msg_isEmpty;
+            $message[0] = Codes::msg_isRequired;
             $this->isDataOK = false;
         }
         if (empty($parameters["email"])) {
-            $message[1] = Codes::msg_isEmpty;
+            $message[1] = Codes::msg_isRequired;
             $this->isDataOK = false;
         }
         if (empty($parameters["mobile"])) {
-            $message[2] = Codes::msg_isEmpty;
+            $message[2] = Codes::msg_isRequired;
             $this->isDataOK = false;
         }
         if (empty($parameters["subject"])) {
-            $message[3] = Codes::msg_isEmpty;
+            $message[3] = Codes::msg_isRequired;
             $this->isDataOK = false;
         }
         if (empty($parameters["message"])) {
-            $message[4] = Codes::msg_isEmpty;
+            $message[4] = Codes::msg_isRequired;
             $this->isDataOK = false;
         }
 

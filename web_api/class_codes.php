@@ -2,7 +2,7 @@
 class Codes
 {
     #region Users
-    public  const msg_isEmpty = "msgIsRequired"; //is empty!
+    public  const msg_isRequired = "msgIsRequired"; //is empty!
     public  const msg_isLessThan8chars = "msgLessThan8Chars"; //Username is less than 8 characters!
     public  const msg_invalidUsernameOrPassword = "msgInvalidUsernameOrPassword"; //Invalid username!
     public  const msg_invalidCaptchaInput = "msgInvalidCaptchaInput"; //Invalid username!

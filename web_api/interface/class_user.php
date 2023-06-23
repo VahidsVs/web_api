@@ -42,27 +42,16 @@ class User
 	{
 		$message = ["", "", "", ""];
 		if (empty($parameters["username"])) {
-			$message[0] = Codes::msg_isEmpty;
+			$message[0] = Codes::msg_isRequired;
 			$this->isDataOK = false;
 		}
 		if (empty($parameters["password"])) {
-			$message[1] = Codes::msg_isEmpty;
+			$message[1] = Codes::msg_isRequired;
 			$this->isDataOK = false;
 		}
-		if (empty($parameters["captchaCode"])) {
-			$message[2] = Codes::msg_isEmpty;
-			$this->isDataOK = false;
-		} else {//checkCaptcha
-			$resultCheckCaptcha = $this->accessCaptcha->checkCaptcha($parameters["captchaCode"]);
-			if (!$resultCheckCaptcha) {
-				$this->isDataOK = false;
-				$message[3] = Codes::msg_invalidCaptchaInput;
-			}
-		}
-
 		if (!$this->isDataOK) {
 			$this->httpResponseCode = 400;
-			$this->jsonData["errors"] = ["username" => $message[0], "password" => $message[1], "captchaCode" => $message[2] . $message[3]];
+			$this->jsonData["errors"] = ["username" => $message[0], "password" => $message[1]];
 		} else { //check if username exists
 			$result = $this->accessUsers->select($action, $parameters, $orderBy, $limit);
 			if (!$result) {
@@ -103,7 +92,7 @@ class User
 
 		$message = ["", "", "", "", "", "", "", ""];
 		if (empty($parameters["username"])) {
-			$message[0] = Codes::msg_isEmpty;
+			$message[0] = Codes::msg_isRequired;
 			$this->isDataOK = false;
 		}
 		if (!empty($parameters["username"]) && intval(strlen($parameters["username"]) < $GLOBALS["iniConfig"]["min-username-length"])) {
@@ -112,7 +101,7 @@ class User
 		}
 		if (empty($parameters["password"])) {
 
-			$message[2] = Codes::msg_isEmpty;
+			$message[2] = Codes::msg_isRequired;
 			$this->isDataOK = false;
 
 		}
@@ -121,17 +110,17 @@ class User
 			$this->isDataOK = false;
 		}
 		if (empty($parameters["passwordConfirm"])) {
-			$message[4] = Codes::msg_isEmpty;
+			$message[4] = Codes::msg_isRequired;
 			$this->isDataOK = false;
 
 		}
 		if (empty($parameters["firstname"])) {
-			$message[5] = Codes::msg_isEmpty;
+			$message[5] = Codes::msg_isRequired;
 			$this->isDataOK = false;
 		}
 
 		if (empty($parameters["lastname"])) {
-			$message[6] = Codes::msg_isEmpty;
+			$message[6] = Codes::msg_isRequired;
 			$this->isDataOK = false;
 
 		}

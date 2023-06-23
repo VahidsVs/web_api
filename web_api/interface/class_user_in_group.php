@@ -25,7 +25,7 @@ class UserInGroup
 	{
 		$message=[""];
 				if (empty($parameters["userId"])) {
-					$message[0]= Codes::msg_isEmpty;
+					$message[0]= Codes::msg_isRequired;
 					$this->isDataOK = false;
 				}
 				
@@ -48,7 +48,7 @@ class UserInGroup
 	{
 		$message=[""];
 				if (empty($parameters["fkGroup"])) {
-					$message[0]= Codes::msg_isEmpty;
+					$message[0]= Codes::msg_isRequired;
 					$this->isDataOK = false;
 				}
 				
@@ -72,11 +72,11 @@ class UserInGroup
 		$message = ["",""];
 
 				if (empty($parameters["fkGroup"])) {
-					$message[0] = Codes::msg_isEmpty;
+					$message[0] = Codes::msg_isRequired;
 					$this->isDataOK = false;
 				}
 				if (empty($parameters["fkUser"])) {
-					$message[1] = Codes::msg_isEmpty;
+					$message[1] = Codes::msg_isRequired;
 					$this->isDataOK = false;
 				}
 
@@ -107,7 +107,7 @@ class UserInGroup
 		$message = [""];
 
 				if (empty($parameters["fkUser"])) {
-					$message[0] = Codes::msg_isEmpty;
+					$message[0] = Codes::msg_isRequired;
 					$this->isDataOK = false;
 				}
 
