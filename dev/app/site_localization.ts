@@ -92,7 +92,7 @@
 
     en['msgIsRequired'] = "Required";
     en['msgLessThan8Chars'] = "Minimum 8 characters";
-    en['msgInvalidUsernameOrPassword'] = "Username of Password is invalid";
+    en['msgInvalidUsernameOrPassword'] = "Username or Password is invalid";
     en['msgPassAndPassConfirmNotSame'] = "Password and Repeat Password is not match";
     en['msgUsernameExists'] = "Username is duplicated";
     en['msgTitleExists'] = "Title is duplicated";

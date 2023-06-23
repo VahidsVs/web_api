@@ -35,8 +35,9 @@ class CmsIndex extends LitElement {
 
     render() {
         return html`
-
-
+<div class="container-fluid">
+    
+</div>
         `;
     }
 }

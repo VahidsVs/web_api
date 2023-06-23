@@ -147,9 +147,9 @@ class CmsLogin extends LitElement {
 
                             <hr />
                             <div class="row text-center">
-                                <div class="col-md-6 d-grid">
+                                <!-- <div class="col-md-6 d-grid">
                                     <a name="translate" caption="nav_link_register" class="btn btn-primary" href="/register.html"></a>
-                                </div>
+                                </div> -->
                                 <div class="col-md-6 d-grid">
                                     <a name="translate" caption="nav_link_forget_password" class="btn btn-secondary" href="/forget-password.html"></a>
                                 </div>

@@ -34,7 +34,9 @@ class CmsMyHome extends LitElement {
 
     render() {
         return html`
-<span name="translate" caption="hello_world"></span>
+<div class="container-fluid p-5">
+    
+</div>
         `;
     }
 }
