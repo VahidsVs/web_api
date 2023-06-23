@@ -23,12 +23,37 @@ class User
 	{
 		$this->accessUsers = new Users();
 		$this->accessCaptcha = new Captcha();
-		if ($action == "Select")
-			self::select($action, $parameters, $orderBy, $limit);
-		if ($action == "Insert")
+		if ($action == "selectByUsernameAndPassword")
+			self::selectByUsernameAndPassword($action, $parameters, $orderBy, $limit);
+		if ($action == "insert")
 			self::insert($action, $parameters);
-		if ($action == "SelectAll")
+		if ($action == "selectAll")
 			self::selectAll($action, $parameters, $orderBy, $limit);
+		if ($action == "selectByPkUser")
+			self::selectByPkUser($action, $parameters, $orderBy, $limit);
+
+	}
+	private function selectByPkUser($action, $parameters, $orderBy, $limit)
+	{
+		$message = [""];
+
+		if (empty($parameters["pkUser"])) {
+			$message[0] = Codes::msg_isRequired;
+			$this->isDataOK = false;
+		}
+		if (!$this->isDataOK) {
+			$this->httpResponseCode = 401;
+			$this->jsonData["errors"] = ["pkUser" => $message[0]];
+		}
+		if ($this->isDataOK) {
+
+				$result = $this->accessUsers->selectByPkUser($action, $parameters, $orderBy, $limit);
+			if ($result)
+			 {
+					$this->jsonData = $result;
+					$this->httpResponseCode = 200;
+			 }
+		}
 
 	}
 	private function selectAll($action, $parameters, $orderBy, $limit)
@@ -38,7 +63,7 @@ class User
 			$this->httpResponseCode = 200;
 		}
 	}
-	private function select($action, $parameters, $orderBy, $limit)
+	private function selectByUsernameAndPassword($action, $parameters, $orderBy, $limit)
 	{
 		$message = ["", "", "", ""];
 		if (empty($parameters["username"])) {

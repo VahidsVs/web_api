@@ -10,8 +10,23 @@ class Users
 	{
 		$this->accessDatabase = new Database();
 	}
+	function selectByPkUser($action, $parameters, $orderBy = null, $limit = null)
+	{
+		$condition = "";
+		$bindParams = null;
+		if (array_key_exists("pkUser", $parameters)) {
+			$bindParams["param"][0] = $parameters["pkUser"];
+			$condition .= " And pk_user = ?";
 
-	function select($action, $parameters, $orderBy = null, $limit = null)
+		}
+				$query = "Select pk_user,username,firstname,lastname,mobile,email From  $this->tableName
+				  Where 1=1  $condition ";
+	
+		$result = $this->accessDatabase->executeAndFetch($action, $query, $bindParams, $orderBy, $limit);
+		
+		return $result;
+	}
+	function selectByUsernameAndPassword($action, $parameters, $orderBy = null, $limit = null)
 	{
 		$condition = "";
 		$bindParams = null;

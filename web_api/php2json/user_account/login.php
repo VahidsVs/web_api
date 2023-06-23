@@ -7,7 +7,7 @@ header("Access-Control-Allow-Headers: *");
 
 session_start();
 if (array_key_exists("captchaCode", $_POST) && ($_POST["captchaCode"] == $_SESSION["captchaCode"])) {
-	$accessClass = new User("Select", $_POST);
+	$accessClass = new User("selectByUsernameAndPassword", $_POST);
 	$jsonData = $accessClass->getJsonData();
 	http_response_code($accessClass->getHttpResponseCode());
 	if ($accessClass->getHttpResponseCode() == 200) {
