@@ -87,12 +87,15 @@ class CmsProfile extends LitElement {
 
         GetData("user_account/profile.php", null, "#tab1-pane")
             .then(data => {
-                this.Model.data.pk_user(data.pk_user);
-                this.Model.data.username(data.username);
-                this.Model.data.firstname(data.firstname);
-                this.Model.data.lastname(data.lastname);
-                this.Model.data.mobile(data.mobile);
-                this.Model.data.email(data.email);
+                if(data[0]) {
+                    let dataItem = data[0];
+                    this.Model.data.pk_user(dataItem.pk_user);
+                    this.Model.data.username(dataItem.username);
+                    this.Model.data.firstname(dataItem.firstname);
+                    this.Model.data.lastname(dataItem.lastname);
+                    this.Model.data.mobile(dataItem.mobile);
+                    this.Model.data.email(dataItem.email);
+                }
             })
     }
 
