@@ -13,6 +13,7 @@ if (array_key_exists("captchaCode", $_POST) && ($_POST["captchaCode"] == $_SESSI
 		$_SESSION["token"] = $accessClass->getJsonData()["token"];
 		$_SESSION["key"] = $accessClass->getKey();
 		$_SESSION["username"] = $accessClass->getUsername();
+		$_SESSION["userId"] = $accessClass->getPkUser();
 		$_SESSION["loginTime"] = time();
 		
 		http_response_code($accessClass->getHttpResponseCode());
