@@ -2,6 +2,7 @@
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const RemoveEmptyScriptsPlugin = require("webpack-remove-empty-scripts");
+const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
     context: path.join(__dirname, 'app'),
@@ -82,6 +83,11 @@ module.exports = {
             "../content/site.css",
         ],
         //</site>
+    },
+    optimization: {
+        minimizer: [new TerserPlugin({
+            extractComments: false,
+        })],
     },
     output: {
         path: path.join(__dirname, '../bundle'),
