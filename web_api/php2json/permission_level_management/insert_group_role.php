@@ -16,7 +16,7 @@ if (array_key_exists("Authorization", $headers) && array_key_exists("token", $_S
 
 if($isAuthorized["auth"]&&$isAuthorized["aa"])
 {
-$accessGroupRole = new GroupRole("Insert", $_POST);
+$accessGroupRole = new GroupRole("insert", $_POST);
 http_response_code($accessGroupRole->getHttpResponseCode());
 echo json_encode($accessGroupRole->getJsonData());
 }

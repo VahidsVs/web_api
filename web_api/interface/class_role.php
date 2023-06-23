@@ -14,7 +14,7 @@ class Role
 	function __construct($action, $parameters, $orderBy = null, $limit = null)
 	{
 		$this->accessRoles = new Roles();
-		if ($action == "Select")
+		if ($action == "select")
 			self::select($action, $parameters, $orderBy, $limit);
 	}
 	private function select($action, $parameters, $orderBy, $limit)

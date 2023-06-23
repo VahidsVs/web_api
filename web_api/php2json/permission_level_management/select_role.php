@@ -17,7 +17,7 @@ if (array_key_exists("Authorization", $headers) && array_key_exists("token", $_S
 
 if ($isAuthorized["auth"] && $isAuthorized["aa"]) {
 
-    $accessRole = new Role("Select", $_GET);
+    $accessRole = new Role("select", $_GET);
     http_response_code($accessRole->getHttpResponseCode());
     echo json_encode($accessRole->getJsonData());
 } else {

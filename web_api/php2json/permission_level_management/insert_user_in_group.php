@@ -17,7 +17,7 @@ if (array_key_exists("Authorization", $headers) && array_key_exists("token", $_S
 if($isAuthorized["auth"]&&$isAuthorized["aa"])
 {
 $jsonPost = json_decode(file_get_contents('php://input'), true);
-$accessClass = new UserInGroup("Insert", $jsonPost);   
+$accessClass = new UserInGroup("insert", $jsonPost);   
 http_response_code($accessClass->getHttpResponseCode());
 echo json_encode($accessClass->getJsonData());
 }

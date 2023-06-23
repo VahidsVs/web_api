@@ -54,7 +54,7 @@ class UsersInGroup
 
 		}
 		$parameter["fkUser"] = $parameters["fkUser"];
-		$resultSelect = self::select("Select", $parameter);
+		$resultSelect = self::select("select", $parameter);
 		if (!$resultSelect) {
 			$query = "Insert Into $this->tableName (fk_group_role,fk_user) Values(?,?)";
 			$errorCode = $this->accessDatabase->executeAndFetch($action, $query, $bindParams);

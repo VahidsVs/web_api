@@ -14,13 +14,13 @@ class GroupRole
 	function __construct($action, $parameters, $orderBy = null, $limit = null)
 	{
 		$this->accessGroupRoles = new GroupRoles();
-		if ($action == "Select")
+		if ($action == "select")
 			self::select($action, $parameters, $orderBy, $limit);
-		if ($action == "Insert")
+		if ($action == "insert")
 			self::insert($action, $parameters);
-		if ($action == "Update")
+		if ($action == "update")
 			self::update($action, $parameters);
-		if ($action == "Delete")
+		if ($action == "delete")
 			self::delete($action, $parameters);
 
 	}

@@ -12,16 +12,16 @@ class UserInGroup
 	function __construct($action, $parameters, $orderBy = null, $limit = null)
 	{
 		$this->accessUsersInGroup = new UsersInGroup();
-		if ($action == "Select")
+		if ($action == "select")
 			self::select($action, $parameters, $orderBy, $limit);
-		if ($action == "Insert")
+		if ($action == "insert")
 			self::insert($action, $parameters);
-		if ($action == "Delete")
+		if ($action == "delete")
 			self::delete($action, $parameters);
-		if ($action == "SelectWithRole")
-			self::SelectWithRole($action, $parameters, $orderBy, $limit);
+		if ($action == "selectWithRole")
+			self::selectWithRole($action, $parameters, $orderBy, $limit);
 	}
-	private function SelectWithRole($action, $parameters, $orderBy, $limit)
+	private function selectWithRole($action, $parameters, $orderBy, $limit)
 	{
 		$message=[""];
 				if (empty($parameters["userId"])) {
@@ -35,7 +35,7 @@ class UserInGroup
 				$this->jsonData["errors"] = ["userId" => $message[0]];
 				}
 
-				$result = $this->accessUsersInGroup->selectWithRole("SelectAll", $parameters, $orderBy, $limit);
+				$result = $this->accessUsersInGroup->selectWithRole($action, $parameters, $orderBy, $limit);
 				
 				//if ($result) 
 				{

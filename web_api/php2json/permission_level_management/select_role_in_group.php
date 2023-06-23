@@ -18,7 +18,7 @@ $isAuthorized=$accessAuthorization->isAuthorized($headers["Authorization"],$_SES
 
 if($isAuthorized["auth"]&&$isAuthorized["aa"])
 {
-$accessClass = new RoleInGroup("Select", $_GET);
+$accessClass = new RoleInGroup("select", $_GET);
 http_response_code($accessClass->getHttpResponseCode());
 echo json_encode($accessClass->getJsonData());
 }

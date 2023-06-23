@@ -14,9 +14,9 @@ class RoleInGroup
 	function __construct($action, $parameters, $orderBy = null, $limit = null)
 	{
 		$this->accessRolesInGroup = new RolesInGroup();
-		if ($action == "Select")
+		if ($action == "select")
 			self::select($action, $parameters, $orderBy, $limit);
-		if ($action == "InsertDelete")
+		if ($action == "insertDelete")
 			self::insertDelete($action, $parameters);
 	}
 	private function select($action, $parameters, $orderBy, $limit)

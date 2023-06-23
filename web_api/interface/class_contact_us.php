@@ -14,9 +14,9 @@ class ContactUs
     function __construct($action, $parameters, $orderBy = null, $limit = null)
     {
         $this->accessContactUss = new ContactUss();
-        if ($action == "Select")
+        if ($action == "select")
             self::select($action, $parameters, $orderBy, $limit);
-        if ($action == "Insert")
+        if ($action == "insert")
             self::insert($action, $parameters);
 
     }

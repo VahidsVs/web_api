@@ -16,7 +16,7 @@ if (array_key_exists("Authorization", $headers) && array_key_exists("token", $_S
 
 if($isAuthorized["auth"]&&$isAuthorized["aa"])
 {
-$accessClass = new User("SelectAll", $_GET);
+$accessClass = new User("selectAll", $_GET);
 http_response_code($accessClass->getHttpResponseCode());
 echo json_encode($accessClass->getJsonData());
 }

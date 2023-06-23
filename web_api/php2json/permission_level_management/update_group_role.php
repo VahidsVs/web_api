@@ -17,7 +17,7 @@ if($isAuthorized["auth"]&&$isAuthorized["aa"])
 {
 $jsonPost = json_decode(file_get_contents('php://input'), true);
 
-$accessGroupRole = new GroupRole("Update", $jsonPost);
+$accessGroupRole = new GroupRole("update", $jsonPost);
 http_response_code($accessGroupRole->getHttpResponseCode());
 echo json_encode($accessGroupRole->getJsonData());
 }}

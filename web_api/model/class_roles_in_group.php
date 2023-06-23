@@ -29,7 +29,7 @@ class RolesInGroup
 		$bindParamsInsert["param"] = $bindParamsDelete["param"] = $fromDB = $fromUI = $placesDelete = $placesInsert = [];
 		$errorCodeInsert = $errorCodeDelete = null;
 		$param["fk"] = $parameters["fkGroup"];
-		$resultSelect = self::select("Select", $param);
+		$resultSelect = self::select("select", $param);
 		foreach ($resultSelect as $res) {
 			$fromDB[] = $res["fk_role"]; //From DB
 		}
