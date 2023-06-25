@@ -30,6 +30,20 @@ class CmsProfile extends LitElement {
             password: ko.observable(),
             passwordConfirm: ko.observable(),
         },
+        translate: {
+            tab_title_editprofile: ko.observable(),
+            tab_title_resetpassword: ko.observable(),
+            label_username: ko.observable(),
+            label_firstname: ko.observable(),
+            label_lastname: ko.observable(),
+            label_mobile: ko.observable(),
+            label_email: ko.observable(),
+            label_currentpassword: ko.observable(),
+            label_password: ko.observable(),
+            label_password_confirm: ko.observable(),
+            btn_submit: ko.observable(),
+            btn_edit: ko.observable(),
+        },
         errors: {
             username: ko.observable(""),
             firstname: ko.observable(""),
@@ -75,6 +89,21 @@ class CmsProfile extends LitElement {
 
         this.lcid = 'en';
         this.resources = getLangResources()[this.lcid];
+
+        document.title = this.resources[window.location.pathname.toLowerCase()];
+
+        this.Model.translate.tab_title_editprofile(this.resources['tab_title_editprofile']);
+        this.Model.translate.tab_title_resetpassword(this.resources['tab_title_resetpassword']);
+        this.Model.translate.label_username(this.resources['label_username']);
+        this.Model.translate.label_firstname(this.resources['label_firstname']);
+        this.Model.translate.label_lastname(this.resources['label_lastname']);
+        this.Model.translate.label_mobile(this.resources['label_mobile']);
+        this.Model.translate.label_email(this.resources['label_email']);
+        this.Model.translate.label_currentpassword(this.resources['label_currentpassword']);
+        this.Model.translate.label_password(this.resources['label_password']);
+        this.Model.translate.label_password_confirm(this.resources['label_password_confirm']);
+        this.Model.translate.btn_edit(this.resources['btn_edit']);
+        this.Model.translate.btn_submit(this.resources['btn_submit']);
     }
 
     firstUpdated(changedProperties: any) {
@@ -116,98 +145,98 @@ class CmsProfile extends LitElement {
     <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item" role="presentation">
             <button class="nav-link active" data-bs-target="#tab1-pane" data-bs-toggle="tab">
-                <span name="translate" caption="tab_title_editprofile"></span>
+                <span data-bind="text: translate.tab_title_editprofile"></span>
             </button>
         </li>
         <li class="nav-item" role="presentation">
             <button class="nav-link" data-bs-target="#tab2-pane" data-bs-toggle="tab">
-                <span name="translate" caption="tab_title_resetpassword"></span>
+                <span data-bind="text: translate.tab_title_resetpassword"></span>
             </button>
         </li>
     </ul>
     <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active" id="tab1-pane">
             <div class="container-fluid p-2">
-                <div class="row p-2">
-                    <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-6 p-2">
                         <div class="form-group">
-                            <label name="translate" caption="label_username" class="form-label"></label><span class="invalid"> *</span>
+                            <label data-bind="text: translate.label_username" class="form-label"></label><span class="invalid"> *</span>
                             <p data-bind="text: data.username"></p>
                             <span class="invalid" data-bind="text: errors.username"></span>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6 p-2">
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6 p-2">
                         <div class="form-group">
-                            <label name="translate" caption="label_firstname" class="form-label"></label><span class="invalid"> *</span>
+                            <label data-bind="text: translate.label_firstname" class="form-label"></label><span class="invalid"> *</span>
                             <input type="text" class="form-control" data-bind="value: data.firstname">
                             <span class="invalid" data-bind="text: errors.firstname"></span>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6 p-2">
                         <div class="form-group">
-                            <label name="translate" caption="label_lastname" class="form-label"></label><span class="invalid"> *</span>
+                            <label data-bind="text: translate.label_lastname" class="form-label"></label><span class="invalid"> *</span>
                             <input type="text" class="form-control" data-bind="value: data.lastname">
                             <span class="invalid" data-bind="text: errors.lastname"></span>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6 p-2">
                         <div class="form-group">
-                            <label name="translate" caption="label_mobile" class="form-label"></label>
+                            <label data-bind="text: translate.label_mobile" class="form-label"></label>
                             <input type="text" class="form-control" data-bind="value: data.mobile">
                             <span class="invalid" data-bind="text: errors.mobile"></span>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6 p-2">
                         <div class="form-group">
-                            <label name="translate" caption="label_email" class="form-label"></label>
+                            <label data-bind="text: translate.label_email" class="form-label"></label>
                             <input type="email" dir="ltr" class="form-control" data-bind="value: data.email">
                             <span class="invalid" data-bind="text: errors.email"></span>
                         </div>
                     </div>
                 </div>
 
-                <div class="row p-2">
+                <div class="row">
                     <div class="col-md-12">
-                        <button name="translate" caption="btn_edit" class="btn btn-primary" @click="${this.btnEditProfile_Click}"></button>
+                        <button data-bind="text: translate.btn_edit" class="btn btn-primary" @click="${this.btnEditProfile_Click}"></button>
                     </div>
                 </div>
             </div>
         </div>
         <div class="tab-pane fade" id="tab2-pane">
             <div class="container-fluid p-2">
-                <div class="row p-2">
-                    <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-6 p-2">
                         <div class="form-group">
-                            <label name="translate" caption="label_currentpassword" class="form-label"></label><span class="invalid"> *</span>
+                            <label data-bind="text: translate.label_currentpassword" class="form-label"></label><span class="invalid"> *</span>
                             <input type="password" class="form-control" data-bind="value: data.password">
                             <span class="invalid" data-bind="text: errors.password"></span>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6 p-2">
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6 p-2">
                         <div class="form-group">
-                            <label name="translate" caption="label_password" class="form-label"></label><span class="invalid"> *</span>
+                            <label data-bind="text: translate.label_password" class="form-label"></label><span class="invalid"> *</span>
                             <input type="password" class="form-control" data-bind="value: data.password">
                             <span class="invalid" data-bind="text: errors.password"></span>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6 p-2">
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6 p-2">
                         <div class="form-group">
-                            <label name="translate" caption="label_password_confirm" class="form-label"></label><span class="invalid"> *</span>
+                            <label data-bind="text: translate.label_password_confirm" class="form-label"></label><span class="invalid"> *</span>
                             <input type="password" class="form-control" data-bind="value: data.passwordConfirm">
                             <span class="invalid" data-bind="text: errors.passwordConfirm"></span>
                         </div>
                     </div>
                 </div>
 
-                <div class="row p-2">
+                <div class="row">
                     <div class="col-md-12">
-                        <button name="translate" caption="btn_submit" class="btn btn-primary" @click="${this.btnResetPassword_Click}"></button>
+                        <button data-bind="text: translate.btn_submit" class="btn btn-primary" @click="${this.btnResetPassword_Click}"></button>
                     </div>
                 </div>
             </div>

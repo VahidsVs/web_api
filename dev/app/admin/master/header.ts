@@ -15,13 +15,27 @@ class CmsHeader extends LitElement {
     //`;
     //    }
 
+    private lcid;
+    private resources: any = [];
+
     @state()
     private PnlLoginItems: any = [];
     @state()
     private PnlLogin: any;
 
+    private Model = {
+        translate: {
+            nav_link_home: ko.observable(),
+        },
+    };
+
     constructor() {
         super();
+
+        this.lcid = getCookie('lcid');
+        this.resources = getLangResources()[this.lcid];
+        
+        this.Model.translate.nav_link_home(this.resources['nav_link_home']);
 
         GetData("user_account/authentication.php", null)
             .then(data => {
@@ -31,7 +45,7 @@ class CmsHeader extends LitElement {
 
                     this.PnlLoginItems.push(html`
 <li class="nav-item">
-    <a name="translate" caption="nav_link_login" href="/login.html" class="nav-link"></a>
+    <a href="/login.html" class="nav-link">${this.resources['nav_link_login']}</a>
 </li>`);
 
                     this.requestUpdate();
@@ -48,13 +62,13 @@ class CmsHeader extends LitElement {
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
         <li class="">
-            <a href="/admin/index.html" class="dropdown-item" target="_blank"><span class="fa fa-dashboard"></span> <span name="translate" caption="nav_link_admin_dashboard"></span></a>
+            <a href="/admin/index.html" class="dropdown-item" target="_blank"><span class="fa fa-dashboard"></span> <span>${this.resources['nav_link_admin_dashboard']}</span></a>
         </li>
         <li class="">
-            <a href="/profile.html" class="dropdown-item"><span class="fa fa-user"></span> <span name="translate" caption="nav_link_profile"></span></a>
+            <a href="/profile.html" class="dropdown-item"><span class="fa fa-user"></span> <span>${this.resources['nav_link_profile']}</span></a>
         </li>
         <li class="">
-            <a href="#" class="dropdown-item" @click="${this.logout}"><span class="fa fa-sign-out"></span> <span name="translate" caption="nav_link_logout"></span></a>
+            <a href="#" class="dropdown-item" @click="${this.logout}"><span class="fa fa-sign-out"></span> <span>${this.resources['nav_link_logout']}</span></a>
         </li>
     </ul>
 </li>`);
@@ -67,10 +81,10 @@ class CmsHeader extends LitElement {
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
         <li class="">
-            <a href="/profile.html" class="dropdown-item"><span class="fa fa-user"></span> <span name="translate" caption="nav_link_profile"></span></a>
+            <a href="/profile.html" class="dropdown-item"><span class="fa fa-user"></span> <span>${this.resources['nav_link_profile']}</span></a>
         </li>
         <li class="">
-            <a href="#" class="dropdown-item" @click="${this.logout}"><span class="fa fa-sign-out"></span> <span name="translate" caption="nav_link_logout"></span></a>
+            <a href="#" class="dropdown-item" @click="${this.logout}"><span class="fa fa-sign-out"></span> <span>${this.resources['nav_link_logout']}</span></a>
         </li>
     </ul>
 </li>`);
@@ -85,7 +99,7 @@ class CmsHeader extends LitElement {
 
                     this.PnlLoginItems.push(html`
     <li class="nav-item">
-        <a name="translate" caption="nav_link_login" href="/login.html" class="nav-link"></a>
+        <a href="/login.html" class="nav-link">${this.resources['nav_link_login']}</a>
     </li>`);
 
                     this.requestUpdate();
@@ -103,34 +117,22 @@ class CmsHeader extends LitElement {
     }
 
     firstUpdated(changedProperties: any) {
+
+        ko.applyBindings(this.Model, document.getElementById("pnlHeader"));
+
         $(() => {
             
         })
+
+        $("#" + this.lcid + "Lang").addClass("active");
     }
 
     updated(changedProperties: any) {
         super.updated(changedProperties);
 
-        let lcid = getCookie("lcid");
-
         $(() => {
-            this.ChangeLanguage(lcid);
+            
         })
-    }
-
-    ChangeLanguage(lcid: string) {
-
-        $("#faLang").removeClass("active");
-        $("#enLang").removeClass("active");
-        $("#" + lcid + "Lang").addClass("active");
-        
-        var resources = getLangResources()[lcid];
-        
-        document.title = resources[window.location.pathname.toLowerCase()];
-
-        $("[name='translate']").each(function(i, elt){
-            $(elt).text(resources[$(elt).attr("caption")]);
-        });
     }
 
     ChangeLanguage_Click(e: any) {
@@ -163,7 +165,7 @@ class CmsHeader extends LitElement {
 
     render() {
         return html`
-<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #0d6efd">
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #0d6efd" id="pnlHeader">
     <div class="container-fluid">
         <a class="navbar-brand" href="/">
             <img src="/images/logo.png" alt="" width="60" class="d-inline-block align-text-top">
@@ -174,7 +176,7 @@ class CmsHeader extends LitElement {
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 my-lg-0">
                 <li class="nav-item">
-                    <a name="translate" caption="nav_link_home" class="nav-link" aria-current="page" href="/"></a>
+                    <a data-bind="text: translate.nav_link_home" class="nav-link" aria-current="page" href="/"></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" aria-current="page" href="/admin/permission-level-management.html">مدیریت سطوح دسترسی</a>

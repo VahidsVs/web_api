@@ -32,6 +32,16 @@ class CmsRegister extends LitElement {
         captcha: {
             captcha: ko.observable(),
         },
+        translate: {
+            nav_link_register: ko.observable(),
+            label_username: ko.observable(),
+            label_password: ko.observable(),
+            label_password_confirm: ko.observable(),
+            label_firstname: ko.observable(),
+            label_lastname: ko.observable(),
+            label_mobile: ko.observable(),
+            label_email: ko.observable(),
+        },
         errors: {
             username: ko.observable(""),
             password: ko.observable(""),
@@ -80,6 +90,17 @@ class CmsRegister extends LitElement {
 
         this.lcid = 'en';
         this.resources = getLangResources()[this.lcid];
+
+        document.title = this.resources[window.location.pathname.toLowerCase()];
+        
+        this.Model.translate.nav_link_register(this.resources['nav_link_register']);
+        this.Model.translate.label_username(this.resources['label_username']);
+        this.Model.translate.label_password(this.resources['label_password']);
+        this.Model.translate.label_password_confirm(this.resources['label_password_confirm']);
+        this.Model.translate.label_firstname(this.resources['label_firstname']);
+        this.Model.translate.label_lastname(this.resources['label_lastname']);
+        this.Model.translate.label_mobile(this.resources['label_mobile']);
+        this.Model.translate.label_email(this.resources['label_email']);
     }
 
     firstUpdated(changedProperties: any) {
@@ -125,14 +146,14 @@ class CmsRegister extends LitElement {
                     <div class="card border-primary p-2">
                         <div class="card-body">
                             <div class="card-title">
-                                <h3 name="translate" caption="nav_link_register"></h3>
+                                <h3 data-bind="text: translate.nav_link_register"></h3>
                             </div>
                             <hr />
                             
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label name="translate" caption="label_username" class="form-label"></label><span class="invalid"> *</span>
+                                        <label data-bind="text: translate.label_username" class="form-label"></label><span class="invalid"> *</span>
                                         <input type="text" class="form-control" data-bind="value: data.username">
                                         <span class="invalid" data-bind="text: errors.username"></span>
                                     </div>
@@ -141,42 +162,42 @@ class CmsRegister extends LitElement {
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label name="translate" caption="label_password" class="form-label"></label><span class="invalid"> *</span>
+                                        <label data-bind="text: translate.label_password" class="form-label"></label><span class="invalid"> *</span>
                                         <input type="password" class="form-control" data-bind="value: data.password">
                                         <span class="invalid" data-bind="text: errors.password"></span>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label name="translate" caption="label_password_confirm" class="form-label"></label><span class="invalid"> *</span>
+                                        <label data-bind="text: translate.label_password_confirm" class="form-label"></label><span class="invalid"> *</span>
                                         <input type="password" class="form-control" data-bind="value: data.passwordConfirm">
                                         <span class="invalid" data-bind="text: errors.passwordConfirm"></span>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label name="translate" caption="label_firstname" class="form-label"></label><span class="invalid"> *</span>
+                                        <label data-bind="text: translate.label_firstname" class="form-label"></label><span class="invalid"> *</span>
                                         <input type="text" class="form-control" data-bind="value: data.firstname">
                                         <span class="invalid" data-bind="text: errors.firstname"></span>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label name="translate" caption="label_lastname" class="form-label"></label><span class="invalid"> *</span>
+                                        <label data-bind="text: translate.label_lastname" class="form-label"></label><span class="invalid"> *</span>
                                         <input type="text" class="form-control" data-bind="value: data.lastname">
                                         <span class="invalid" data-bind="text: errors.lastname"></span>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label name="translate" caption="label_mobile" class="form-label"></label>
+                                        <label data-bind="text: translate.label_mobile" class="form-label"></label>
                                         <input type="text" class="form-control" data-bind="value: data.mobile">
                                         <span class="invalid" data-bind="text: errors.mobile"></span>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label name="translate" caption="label_email" class="form-label"></label>
+                                        <label data-bind="text: translate.label_email" class="form-label"></label>
                                         <input type="email" dir="ltr" class="form-control" data-bind="value: data.email">
                                         <span class="invalid" data-bind="text: errors.email"></span>
                                     </div>
@@ -194,7 +215,7 @@ class CmsRegister extends LitElement {
                             <hr />
                             <div class="row text-center">
                                 <div class="col-md-12 d-grid">
-                                    <button name="translate" caption="nav_link_register" class="btn btn-primary" @click="${this.btnRegister_Click}"></button>
+                                    <button data-bind="text: translate.nav_link_register" class="btn btn-primary" @click="${this.btnRegister_Click}"></button>
                                 </div>
                             </div>
                         </div>

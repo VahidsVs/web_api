@@ -15,7 +15,7 @@ class CmsPermissionLevelManagement extends LitElement {
     //`;
     //    }
 
-    private lcid = 'fa';
+    private lcid;
     private resources: any = [];
 
     private Roles: any = [];
@@ -28,6 +28,19 @@ class CmsPermissionLevelManagement extends LitElement {
         groups: {
             pk_group_role: ko.observable(),
             title: ko.observable(),
+        },
+        translate: {
+            menu_permission_level_management: ko.observable(),
+            tab_title_groups: ko.observable(),
+            tab_title_details: ko.observable(),
+            tab_title_grouproles: ko.observable(),
+            tab_title_groupusers: ko.observable(),
+            tab_title_allusers: ko.observable(),
+            label_title: ko.observable(),
+            window_title_selectuser: ko.observable(),
+            btn_new: ko.observable(),
+            btn_submit: ko.observable(),
+            btn_cancel: ko.observable(),
         },
         errors: {
             title: ko.observable(),
@@ -56,6 +69,20 @@ class CmsPermissionLevelManagement extends LitElement {
 
         this.lcid = getCookie("lcid");
         this.resources = getLangResources()[this.lcid];
+
+        document.title = this.resources[window.location.pathname.toLowerCase()];
+
+        this.Model.translate.menu_permission_level_management(this.resources['menu_permission_level_management']);
+        this.Model.translate.tab_title_groups(this.resources['tab_title_groups']);
+        this.Model.translate.tab_title_details(this.resources['tab_title_details']);
+        this.Model.translate.tab_title_grouproles(this.resources['tab_title_grouproles']);
+        this.Model.translate.tab_title_groupusers(this.resources['tab_title_groupusers']);
+        this.Model.translate.tab_title_allusers(this.resources['tab_title_allusers']);
+        this.Model.translate.label_title(this.resources['label_title']);
+        this.Model.translate.window_title_selectuser(this.resources['window_title_selectuser']);
+        this.Model.translate.btn_new(this.resources['btn_new']);
+        this.Model.translate.btn_submit(this.resources['btn_submit']);
+        this.Model.translate.btn_cancel(this.resources['btn_cancel']);
 
         GetDataWithoutLoading("permission_level_management/select_role.php", null)
             .then(allRoles => {
@@ -768,32 +795,32 @@ class CmsPermissionLevelManagement extends LitElement {
 
 <div class="container-fluid" id="pnlGroupManagement">
     <div class="fade-in">
-        <h3><span name="translate" caption="/admin/permission-level-management.html"></span> <span data-bind="text: groups.title() ? '(' + groups.title() + ')' : ''"></span></h3>
+        <h3><span data-bind="text: translate.menu_permission_level_management"></span> <span data-bind="text: groups.title() ? '(' + groups.title() + ')' : ''"></span></h3>
     </div>
     <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item" role="presentation">
             <button class="nav-link active" data-bs-target="#tab1-pane" data-bs-toggle="tab">
-                <span name="translate" caption="tab_title_groups"></span>
+                <span data-bind="text: translate.tab_title_groups"></span>
             </button>
         </li>
         <li class="nav-item" role="presentation">
             <button class="nav-link" style="display: none;" data-bs-target="#tab2-pane" data-bs-toggle="tab">
-                <span name="translate" caption="tab_title_details"></span>
+                <span data-bind="text: translate.tab_title_details"></span>
             </button>
         </li>
         <li class="nav-item" role="presentation">
             <button class="nav-link" style="display: none;" data-bs-target="#tab3-pane" data-bs-toggle="tab">
-                <span name="translate" caption="tab_title_grouproles"></span>
+                <span data-bind="text: translate.tab_title_grouproles"></span>
             </button>
         </li>
         <li class="nav-item" role="presentation">
             <button class="nav-link" style="display: none;" data-bs-target="#tab4-pane" data-bs-toggle="tab">
-                <span name="translate" caption="tab_title_groupusers"></span>
+                <span data-bind="text: translate.tab_title_groupusers"></span>
             </button>
         </li>
         <li class="nav-item" role="presentation">
             <button class="nav-link" data-bs-target="#tab5-pane" data-bs-toggle="tab">
-                <span name="translate" caption="tab_title_allusers"></span>
+                <span data-bind="text: translate.tab_title_allusers"></span>
             </button>
         </li>
     </ul>
@@ -802,7 +829,7 @@ class CmsPermissionLevelManagement extends LitElement {
             <div class="container-fluid p-2">
                 <div class="row">
                     <div class="col-md-12 p-2">
-                        <button class="btn btn-primary" @click="${this.btnNewGroup_Click}"><span class="fa fa-plus"></span> <span name="translate" caption="btn_new"></span></button>
+                        <button class="btn btn-primary" @click="${this.btnNewGroup_Click}"><span class="fa fa-plus"></span> <span data-bind="text: translate.btn_new"></span></button>
                     </div>
                 </div>
                 <div id="gridGroups"></div>
@@ -813,7 +840,7 @@ class CmsPermissionLevelManagement extends LitElement {
                 <div class="row p-2">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label name="translate" caption="label_title" class="form-label"></label><span class="invalid">*</span>
+                            <label data-bind="text: translate.label_title" class="form-label"></label><span class="invalid">*</span>
                             <input type="text" class="form-control" data-bind="value: groups.title">
                             <span class="invalid" data-bind="text: errors.title"></span>
                         </div>
@@ -822,8 +849,8 @@ class CmsPermissionLevelManagement extends LitElement {
                 <div class="row p-2">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <button @click="${this.SubmitGroup_Click}" class="btn btn-success"><span class="fa fa-save"></span> <span name="translate" caption="btn_submit"></span></button>
-                            <button @click="${this.CancelGroup_Click}" class="btn btn-danger"><span class="fa fa-close"></span> <span name="translate" caption="btn_cancel"></span></button>
+                            <button @click="${this.SubmitGroup_Click}" class="btn btn-success"><span class="fa fa-save"></span> <span data-bind="text: translate.btn_submit"></span></button>
+                            <button @click="${this.CancelGroup_Click}" class="btn btn-danger"><span class="fa fa-close"></span> <span data-bind="text: translate.btn_cancel"></span></button>
                         </div>
                     </div>
                 </div>
@@ -839,8 +866,8 @@ class CmsPermissionLevelManagement extends LitElement {
                 <div class="row p-2">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <button @click="${this.SubmitRoles_Click}" class="btn btn-success"><span class="fa fa-save"></span> <span name="translate" caption="btn_submit"></span></button>
-                            <button @click="${this.CancelRoles_Click}" class="btn btn-danger"><span class="fa fa-close"></span> <span name="translate" caption="btn_cancel"></span></button>
+                            <button @click="${this.SubmitRoles_Click}" class="btn btn-success"><span class="fa fa-save"></span> <span data-bind="text: translate.btn_submit"></span></button>
+                            <button @click="${this.CancelRoles_Click}" class="btn btn-danger"><span class="fa fa-close"></span> <span data-bind="text: translate.btn_cancel"></span></button>
                         </div>
                     </div>
                 </div>
@@ -850,7 +877,7 @@ class CmsPermissionLevelManagement extends LitElement {
             <div class="container-fluid p-2">
                 <div class="row">
                     <div class="col-md-12 p-2">
-                        <button class="btn btn-primary" @click="${this.btnNewUserGroup_Click}"><span class="fa fa-plus"></span> <span name="translate" caption="btn_new"></span></button>
+                        <button class="btn btn-primary" @click="${this.btnNewUserGroup_Click}"><span class="fa fa-plus"></span> <span data-bind="text: translate.btn_new"></span></button>
                     </div>
                 </div>
                 <div id="gridUsers"></div>
@@ -870,7 +897,7 @@ class CmsPermissionLevelManagement extends LitElement {
         <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 name="translate" caption="window_title_selectuser" class="modal-title fs-6"></h1>
+                    <h1 data-bind="text: translate.window_title_selectuser" class="modal-title fs-6"></h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">

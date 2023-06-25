@@ -18,6 +18,9 @@
     fa['nav_link_admin_dashboard'] = "داشبورد مدیریت";
     fa['nav_link_profile'] = "پروفایل";
 
+    fa['menu_permission_level_management'] = "مدیریت سطوح دسترسی";
+    fa['menu_contact_us'] = "ارتباط با ما";
+
     fa['/admin/index.html'] = "داشبورد";
     fa['/admin/permission-level-management.html'] = "مدیریت سطوح دسترسی";
     fa['/admin/contact-us.html'] = "ارتباط با ما";
@@ -27,7 +30,7 @@
     fa['tab_title_grouproles'] = "دسترسی های گروه";
     fa['tab_title_groupusers'] = "اعضای گروه";
     fa['tab_title_allusers'] = "کل اعضا";
-    en['tab_title_messages'] = "پیام ها";
+    fa['tab_title_messages'] = "پیام ها";
 
     fa['label_yes'] = "بله";
     fa['label_no'] = "خیر";
@@ -84,6 +87,9 @@
     en['nav_link_logout'] = "Sign out";
     en['nav_link_admin_dashboard'] = "Admin dashboard";
     en['nav_link_profile'] = "Profile";
+
+    en['menu_permission_level_management'] = "Permission Level Management";
+    en['menu_contact_us'] = "Contact Us";
 
     en['/admin/index.html'] = "Dashboard";
     en['/admin/permission-level-management.html'] = "Permission Level Management";

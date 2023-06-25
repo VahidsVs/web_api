@@ -15,6 +15,9 @@ class CmsHeader extends LitElement {
     //`;
     //    }
 
+    private lcid;
+    private resources: any = [];
+
     @state()
     private PnlLoginItems: any = [];
     @state()
@@ -22,6 +25,9 @@ class CmsHeader extends LitElement {
 
     constructor() {
         super();
+
+        this.lcid = 'en';
+        this.resources = getLangResources()[this.lcid];
 
         //بررسی لاگین بودن شخص
         GetData("user_account/authentication.php", null)
@@ -45,9 +51,9 @@ class CmsHeader extends LitElement {
 <div class="nav-item dropdown">
     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">${UserName}</a>
     <div class="dropdown-menu rounded">
-        <a href="/admin/index.html" class="dropdown-item"><span name="translate" caption="nav_link_admin_dashboard"></span></a>
-        <a href="/profile.html" class="dropdown-item"><span name="translate" caption="nav_link_profile"></span></a>
-        <a href="#" @click="${this.logout}" class="dropdown-item"><span name="translate" caption="nav_link_logout"></span></a>
+        <a href="/admin/index.html" class="dropdown-item"><span>${this.resources['nav_link_admin_dashboard']}</span></a>
+        <a href="/profile.html" class="dropdown-item"><span>${this.resources['nav_link_profile']}</span></a>
+        <a href="#" @click="${this.logout}" class="dropdown-item"><span>${this.resources['nav_link_logout']}</span></a>
     </div>
 </div>
 `);
@@ -57,8 +63,8 @@ class CmsHeader extends LitElement {
 <div class="nav-item dropdown">
     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">${UserName}</a>
     <div class="dropdown-menu rounded">
-        <a href="/profile.html" class="dropdown-item"><span name="translate" caption="nav_link_profile"></span></a>
-        <a href="#" @click="${this.logout}" class="dropdown-item"><span name="translate" caption="nav_link_logout"></span></a>
+        <a href="/profile.html" class="dropdown-item"><span>${this.resources['nav_link_profile']}</span></a>
+        <a href="#" @click="${this.logout}" class="dropdown-item"><span>${this.resources['nav_link_logout']}</span></a>
     </div>
 </div>
 `);
@@ -87,6 +93,7 @@ class CmsHeader extends LitElement {
     }
 
     firstUpdated(changedProperties: any) {
+
         $(() => {
             
         })
@@ -95,26 +102,9 @@ class CmsHeader extends LitElement {
     updated(changedProperties: any) {
         super.updated(changedProperties);
 
-        let lcid = 'en';//getCookie("lcid");
-
         $(() => {
-            this.ChangeLanguage(lcid);
+            
         })
-    }
-
-    ChangeLanguage(lcid: string) {
-
-        $("#faLang").removeClass("active");
-        $("#enLang").removeClass("active");
-        $("#" + lcid + "Lang").addClass("active");
-        
-        var resources = getLangResources()[lcid];
-        
-        document.title = resources[window.location.pathname.toLowerCase()];
-
-        $("[name='translate']").each(function(i, elt){
-            $(elt).text(resources[$(elt).attr("caption")]);
-        });
     }
 
     // ChangeLanguage_Click(e: any) {
@@ -147,7 +137,7 @@ class CmsHeader extends LitElement {
 
     render() {
         return html`
-<div class="container-fluid bg-primary">
+<div class="container-fluid bg-primary" id="pnlHeader">
     <div class="container">
         <nav class="navbar navbar-dark navbar-expand-lg py-0">
             <a class="navbar-brand" href="/">

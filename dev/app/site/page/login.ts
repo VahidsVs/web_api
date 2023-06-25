@@ -27,6 +27,16 @@ class CmsLogin extends LitElement {
         captcha: {
             captcha: ko.observable(),
         },
+        translate: {
+            title_login: ko.observable(),
+            subtitle_login: ko.observable(),
+            label_username: ko.observable(),
+            label_password: ko.observable(),
+            label_remember_me: ko.observable(),
+            nav_link_login: ko.observable(),
+            nav_link_register: ko.observable(),
+            nav_link_forget_password: ko.observable(),
+        },
         errors: {
             username: ko.observable(),
             password: ko.observable(),
@@ -45,6 +55,17 @@ class CmsLogin extends LitElement {
 
         this.lcid = 'en';
         this.resources = getLangResources()[this.lcid];
+
+        document.title = this.resources[window.location.pathname.toLowerCase()];
+
+        this.Model.translate.title_login(this.resources['title_login']);
+        this.Model.translate.subtitle_login(this.resources['subtitle_login']);
+        this.Model.translate.label_username(this.resources['label_username']);
+        this.Model.translate.label_password(this.resources['label_password']);
+        this.Model.translate.label_remember_me(this.resources['label_remember_me']);
+        this.Model.translate.nav_link_login(this.resources['nav_link_login']);
+        this.Model.translate.nav_link_register(this.resources['nav_link_register']);
+        this.Model.translate.nav_link_forget_password(this.resources['nav_link_forget_password']);
     }
 
     firstUpdated(changedProperties: any) {
@@ -111,12 +132,12 @@ class CmsLogin extends LitElement {
                     <div class="card border-primary p-2">
                         <div class="card-body">
                             <div class="card-title">
-                                <h3 name="translate" caption="title_login"></h3>
-                                <p name="translate" caption="subtitle_login" class="text-muted"></p>
+                                <h3 data-bind="text: translate.title_login"></h3>
+                                <p data-bind="text: translate.subtitle_login" class="text-muted"></p>
                             </div>
                             <hr />
                             <div class="mb-3">
-                                <label name="translate" caption="label_username" class="form-label"></label>
+                                <label data-bind="text: translate.label_username" class="form-label"></label>
                                 <div class="input-group">
                                     <span class="input-group-text"><span class="fa fa-user"></span></span>
                                     <input type="email" data-bind="value: data.username" class="form-control" id="txtUserName" @keypress="${this.txtKeyPress}" />
@@ -124,7 +145,7 @@ class CmsLogin extends LitElement {
                                 <span data-bind="visible: errors.username, text: errors.username" class="invalid"></span>
                             </div>
                             <div class="mb-3">
-                                <label name="translate" caption="label_password" class="form-label"></label>
+                                <label data-bind="text: translate.label_password" class="form-label"></label>
                                 <div class="input-group">
                                     <span class="input-group-text"><span class="fa fa-lock"></span></span>
                                     <input type="password" data-bind="value: data.password" class="form-control" id="txtPassword" @keypress="${this.txtKeyPress}" />
@@ -138,20 +159,20 @@ class CmsLogin extends LitElement {
                                 <span data-bind="visible: errors.captchaCode, text: errors.captchaCode" class="invalid"></span>
                             </div>
                             <div class="col-md-12 mb-3">
-                                <input type="checkbox" id="chRememberMe" />&nbsp;<label name="translate" caption="label_remember_me" for="chRememberMe"></label>
+                                <input type="checkbox" id="chRememberMe" />&nbsp;<label data-bind="text: translate.label_remember_me" for="chRememberMe"></label>
                             </div>
 
                             <button id="btnLogin" type="button" class="btn btn-block btn-success" style="width: 100%" @click="${this.btnLogin}">
-                                <span class="fa fa-sign-in"></span> <span name="translate" caption="nav_link_login"></span>
+                                <span class="fa fa-sign-in"></span> <span data-bind="text: translate.nav_link_login"></span>
                             </button>
 
                             <hr />
                             <div class="row text-center">
-                                <!-- <div class="col-md-6 d-grid">
-                                    <a name="translate" caption="nav_link_register" class="btn btn-primary" href="/register.html"></a>
-                                </div> -->
                                 <div class="col-md-6 d-grid">
-                                    <a name="translate" caption="nav_link_forget_password" class="btn btn-secondary" href="/forget-password.html"></a>
+                                    <a data-bind="text: translate.nav_link_register" class="btn btn-primary" href="/register.html"></a>
+                                </div>
+                                <div class="col-md-6 d-grid">
+                                    <a data-bind="text: translate.nav_link_forget_password" class="btn btn-secondary" href="/forget-password.html"></a>
                                 </div>
                             </div>
                         </div>

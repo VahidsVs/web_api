@@ -15,13 +15,18 @@ class CmsContactUs extends LitElement {
     //`;
     //    }
 
-    private lcid = 'fa';
+    private lcid;
     private resources: any = [];
 
     private Model = {
         groups: {
             pk_group_role: ko.observable(),
             title: ko.observable(),
+        },
+        translate: {
+            menu_contact_us: ko.observable(),
+            tab_title_messages: ko.observable(),
+
         },
         errors: {
             title: ko.observable(),
@@ -48,6 +53,11 @@ class CmsContactUs extends LitElement {
 
         this.lcid = getCookie("lcid");
         this.resources = getLangResources()[this.lcid];
+
+        document.title = this.resources[window.location.pathname.toLowerCase()];
+
+        this.Model.translate.menu_contact_us(this.resources['menu_contact_us']);
+        this.Model.translate.tab_title_messages(this.resources['tab_title_messages']);
     }
 
     firstUpdated(changedProperties: any) {
@@ -223,12 +233,12 @@ class CmsContactUs extends LitElement {
 
 <div class="container-fluid" id="pnlContactUs">
     <div class="fade-in">
-        <h3><span name="translate" caption="/admin/contact-us.html"></span></h3>
+        <h3><span data-bind="text: translate.menu_contact_us"></span></h3>
     </div>
     <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item" role="presentation">
             <button class="nav-link active" data-bs-target="#tab1-pane" data-bs-toggle="tab">
-                <span name="translate" caption="tab_title_messages"></span>
+                <span data-bind="text: translate.tab_title_messages"></span>
             </button>
         </li>
     </ul>
