@@ -53,7 +53,6 @@ class Authorization
                 $isAuthorized = false;
         }
         return ["auth" => $isAuthorized, "aa" => $isActionAuthorized];
-
     }
 }
 
