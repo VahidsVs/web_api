@@ -16,36 +16,18 @@ class Menu
         if (is_null($newMenu["parentId"])) {
             $listMenu[] = $newMenu;
         } else {
-            $existedParentMenu = null;
+            $existedParentMenu = $key =null;
             $key = array_search($newMenu["parentId"], array_column($listMenu, 'id'));
-            print_r($key);
-            $key ? $existedParentMenu = $listMenu[$key] : null;
-            
-
-            // foreach ($listMenu as $value) {
-            //     if ($value["id"] == $newMenu["parentId"]) {
-            //         $existedParentMenu = $value;
-            //         break;
-            //     }
-            // }
+            !empty($key) ? $existedParentMenu = $listMenu[$key] : null;
             if (is_null($existedParentMenu)) {
                 $key = array_search($newMenu["parentId"], array_column(self::getParentMenu(), 'id'));
-                 if($key)
-                 {
-                    $listMenu = self::addMenu($listMenu, self::getParentMenu()[$key] );
+                if(!is_null($key)) {
+                    $listMenu = self::addMenu($listMenu, self::getParentMenu()[$key]);
                     $listMenu[] = $newMenu;
-                 }
+                }
 
-                // foreach (self::getParentMenu() as $value) {
-                //     if ($value["id"] == $newMenu["parentId"]) {
-                //         $listMenu = self::addMenu($listMenu, $value);
-                //         $listMenu[] = $newMenu;
-                //         break;
-                //     }
-                // }
-            } else {
+            } else
                 $listMenu[] = $newMenu;
-            }
         }
         return $listMenu;
 
@@ -55,18 +37,36 @@ class Menu
         $classUsersInGroup = new UserInGroup("selectWithRole", $param);
         $jsonData = $classUsersInGroup->getJsonData();
         $menuArray = [];
-        foreach ($jsonData as $jsonRes) {
-            switch ($jsonRes["title"]) {
-                case RolesTitle::role_permissionLevelManagement:
-                    $newMenu = ["id" => 101, "parentId" => 1, "title" => "menu_permission_level_management", "url" => "/admin/permission-level-management.html"];
-                    $menuArray = self::addMenu($menuArray, $newMenu);
-                    break;
-            }
 
+        $key = array_search(RolesTitle::role_permissionLevelManagement, array_column($jsonData , 'title'));
+        if(!is_null($key)) {
+            $newMenu = ["id" => 101, "parentId" => 1, "title" => "menu_permission_level_management", "url" => "/admin/permission-level-management.html"];
+            $menuArray = self::addMenu($menuArray, $newMenu);
         }
+     
         return $menuArray;
     }
-
 }
+// foreach ($listMenu as $value) {
+//     if ($value["id"] == $newMenu["parentId"]) {
+//         $existedParentMenu = $value;
+//         break;
+//     }
+// }
+// foreach (self::getParentMenu() as $value) {
+//     if ($value["id"] == $newMenu["parentId"]) {
+//         $listMenu = self::addMenu($listMenu, $value);
+//         $listMenu[] = $newMenu;
+//         break;
+//     }
+// }
+   // foreach ($jsonData as $jsonRes) {
+        //     switch ($jsonRes["title"]) {
+        //         case RolesTitle::role_permissionLevelManagement:
+        //             $newMenu = ["id" => 101, "parentId" => 1, "title" => "menu_permission_level_management", "url" => "/admin/permission-level-management.html"];
+        //             $menuArray = self::addMenu($menuArray, $newMenu);
+        //             break;
+        //     }
 
+        // }
 ?>
