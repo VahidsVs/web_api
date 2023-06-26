@@ -32,6 +32,10 @@
     fa['tab_title_allusers'] = "کل اعضا";
     fa['tab_title_messages'] = "پیام ها";
 
+    fa['label_contains'] = "شامل باشد با";
+    fa['label_doesnotcontain'] = "شامل نباشد با";
+    fa['label_equal'] = "برابر باشد با";
+    fa['label_notequal'] = "برابر نباشد با";
     fa['label_yes'] = "بله";
     fa['label_no'] = "خیر";
     fa['label_title'] = "عنوان";
@@ -81,6 +85,10 @@
     
     en['copyright'] = "All rights reserved.";
 
+    en['label_contains'] = "contains";
+    en['label_doesnotcontain'] = "does not contain";
+    en['label_equal'] = "is equal to";
+    en['label_notequal'] = "is not equal to";
     en['nav_link_home'] = "Home";
     en['nav_link_login'] = "Login";
     en['nav_link_register'] = "Register";

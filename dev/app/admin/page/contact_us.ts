@@ -154,6 +154,16 @@ class CmsContactUs extends LitElement {
                     width: 100,
                     groupable: false,
                     headerAttributes: { style: "white-space: normal" },
+                    filterable: {
+                        operators: {
+                            string: {
+                                contains: this.resources["label_contains"],
+                                doesnotcontain: this.resources["label_doesnotcontain"],
+                                eq: this.resources["label_equal"],
+                                neq: this.resources["label_notequal"],
+                            }
+                        }
+                    },
                 },
                 {
                     field: "email",
@@ -161,6 +171,16 @@ class CmsContactUs extends LitElement {
                     width: 100,
                     groupable: false,
                     headerAttributes: { style: "white-space: normal" },
+                    filterable: {
+                        operators: {
+                            string: {
+                                contains: this.resources["label_contains"],
+                                doesnotcontain: this.resources["label_doesnotcontain"],
+                                eq: this.resources["label_equal"],
+                                neq: this.resources["label_notequal"],
+                            }
+                        }
+                    },
                 },
                 {
                     field: "mobile",
@@ -168,6 +188,16 @@ class CmsContactUs extends LitElement {
                     width: 100,
                     groupable: false,
                     headerAttributes: { style: "white-space: normal" },
+                    filterable: {
+                        operators: {
+                            string: {
+                                contains: this.resources["label_contains"],
+                                doesnotcontain: this.resources["label_doesnotcontain"],
+                                eq: this.resources["label_equal"],
+                                neq: this.resources["label_notequal"],
+                            }
+                        }
+                    },
                 },
                 {
                     field: "subject",
@@ -175,6 +205,16 @@ class CmsContactUs extends LitElement {
                     width: 100,
                     groupable: false,
                     headerAttributes: { style: "white-space: normal" },
+                    filterable: {
+                        operators: {
+                            string: {
+                                contains: this.resources["label_contains"],
+                                doesnotcontain: this.resources["label_doesnotcontain"],
+                                eq: this.resources["label_equal"],
+                                neq: this.resources["label_notequal"],
+                            }
+                        }
+                    },
                 },
                 {
                     field: "message",
@@ -182,6 +222,16 @@ class CmsContactUs extends LitElement {
                     width: 400,
                     groupable: false,
                     headerAttributes: { style: "white-space: normal" },
+                    filterable: {
+                        operators: {
+                            string: {
+                                contains: this.resources["label_contains"],
+                                doesnotcontain: this.resources["label_doesnotcontain"],
+                                eq: this.resources["label_equal"],
+                                neq: this.resources["label_notequal"],
+                            }
+                        }
+                    },
                 },
             ]
         });
