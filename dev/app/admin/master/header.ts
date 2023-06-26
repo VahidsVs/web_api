@@ -1,6 +1,6 @@
 ﻿import { LitElement, html, css } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
-import { GetData, PostDataForm, getCookie } from '../../cms_general';
+import { GetData, GetDataWithoutLoading, PostDataForm, getCookie } from '../../cms_general';
 import { getLangResources } from '../../admin_localization';
 import * as ko from 'knockout';
 
@@ -22,6 +22,11 @@ class CmsHeader extends LitElement {
     private PnlLoginItems: any = [];
     @state()
     private PnlLogin: any;
+
+    MenuItems: any[];
+
+    @state()
+    Menu: any;
 
     private Model = {
         translate: {
@@ -111,7 +116,71 @@ class CmsHeader extends LitElement {
         this.PnlLogin = html`${this.PnlLoginItems}`;
     }
 
+    AddMenu(menuItem: any): any {
+
+        //آیا این منو فرزند دارد یا خیر
+        let children = this.MenuItems.filter(p => p.ParentIndex == menuItem.MenuIndex);
+        if (children.length != 0) {
+            let menuItems: any = [];
+            for (var i = 0; i < children.length; i++) {
+                menuItems.push(this.AddMenu(children[i]));
+            }
+
+            if (menuItem.ParentIndex == null) {
+                return (html`
+<li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" data-bs-auto-close="outside">
+        ${menuItem.Title}
+    </a>
+    <ul class="dropdown-menu shadow" style="background-color: #364b6d !important;">
+        ${menuItems}
+    </ul>
+</li>`);
+            }
+            else {
+                return (html`
+<li class="dropend">
+    <a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown" data-bs-auto-close="outside">
+        ${menuItem.Title}
+    </a>
+    <ul class="dropdown-menu shadow" style="background-color: #364b6d !important;">
+        ${menuItems}
+    </ul>
+</li>`);
+            }
+        } else {
+            if (menuItem.ParentIndex != null) {
+                return (html`
+<li>
+    <a class="dropdown-item" href="${menuItem.Url}">${menuItem.Title}</a>
+</li>`);
+            }
+            else {
+                return (html`
+<li class="nav-item">
+    <a class="nav-link" href="${menuItem.Url}">${menuItem.Title}</a>
+</li>
+`);
+            }
+        }
+    }
+
     async performUpdate() {
+        // میتوانستیم از این روش استفاده نکنیم و تمام موارد این قسمت را در fristUpdated بیاوریم
+        // با این تفاوت که باید await را حذف کنیم
+        await GetDataWithoutLoading("user_account/menu.php", null)
+            .then(data => {
+                this.MenuItems = data;
+
+                let parents = this.MenuItems.filter(p => p.ParentIndex == null);
+
+                let menuItems: any = [];
+                for (var i = 0; i < parents.length; i++) {
+                    menuItems.push(this.AddMenu(parents[i]));
+                }
+
+                this.Menu = html`${menuItems}`;
+            });
 
         super.performUpdate();
     }
