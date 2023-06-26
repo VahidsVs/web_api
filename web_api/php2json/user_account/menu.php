@@ -6,17 +6,13 @@ header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Allow-Headers: *");
 
-
-// New Data Input
+session_start();
 $param["userId"]=$_SESSION["userId"];
 
+$accessMenu = new Menu();
+$jsonData=$accessMenu->getMenu($param);
 
-$classMenu = new Menu();
-$jsonData=$classMenu->getMenu($param);
-
-
-    http_response_code($accessClass->getHttpResponseCode());
+    http_response_code(200);
     echo json_encode($jsonData);
-    
 
 ?>
