@@ -172,14 +172,14 @@ class CmsHeader extends LitElement {
             .then(data => {
                 this.MenuItems = data;
 
-                let parents = this.MenuItems.filter(p => p.ParentIndex == null);
+                // let parents = this.MenuItems.filter(p => p.ParentIndex == null);
 
-                let menuItems: any = [];
-                for (var i = 0; i < parents.length; i++) {
-                    menuItems.push(this.AddMenu(parents[i]));
-                }
+                // let menuItems: any = [];
+                // for (var i = 0; i < parents.length; i++) {
+                //     menuItems.push(this.AddMenu(parents[i]));
+                // }
 
-                this.Menu = html`${menuItems}`;
+                // this.Menu = html`${menuItems}`;
             });
 
         super.performUpdate();
