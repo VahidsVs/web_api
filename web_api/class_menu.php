@@ -17,20 +17,32 @@ class Menu
             $listMenu[] = $newMenu;
         } else {
             $existedParentMenu = null;
-            foreach ($listMenu as $value) {
-                if ($value["id"] == $newMenu["parentId"]) {
-                    $existedParentMenu = $value;
-                    break;
-                }
-            }
+            $key = array_search($newMenu["parentId"], array_column($listMenu, 'id'));
+            print_r($key);
+            $key ? $existedParentMenu = $listMenu[$key] : null;
+            
+
+            // foreach ($listMenu as $value) {
+            //     if ($value["id"] == $newMenu["parentId"]) {
+            //         $existedParentMenu = $value;
+            //         break;
+            //     }
+            // }
             if (is_null($existedParentMenu)) {
-                foreach (self::getParentMenu() as $value) {
-                    if ($value["id"] == $newMenu["parentId"]) {
-                        $listMenu = self::addMenu($listMenu, $value);
-                        $listMenu[] = $newMenu;
-                        break;
-                    }
-                }
+                $key = array_search($newMenu["parentId"], array_column(self::getParentMenu(), 'id'));
+                 if($key)
+                 {
+                    $listMenu = self::addMenu($listMenu, self::getParentMenu()[$key] );
+                    $listMenu[] = $newMenu;
+                 }
+
+                // foreach (self::getParentMenu() as $value) {
+                //     if ($value["id"] == $newMenu["parentId"]) {
+                //         $listMenu = self::addMenu($listMenu, $value);
+                //         $listMenu[] = $newMenu;
+                //         break;
+                //     }
+                // }
             } else {
                 $listMenu[] = $newMenu;
             }
