@@ -1,8 +1,11 @@
 ﻿import { LitElement, html, css } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
-import { getCookie } from '../../cms_general';
+import { 
+    getLanguage,
+    getTranslate,
+    getDirectionFromLanguage,
+ } from '../../cms_general';
 import * as ko from 'knockout';
-import { getLangResources } from '../../admin_localization';
 
 @customElement('cms-footer')
 class CmsFooter extends LitElement {
@@ -16,7 +19,6 @@ class CmsFooter extends LitElement {
 //    }
 
     private lcid;
-    private resources: any = [];
 
     private Model = {
         translate: {
@@ -27,12 +29,9 @@ class CmsFooter extends LitElement {
     constructor() {
         super();
 
-        this.lcid = getCookie('lcid');
-        this.resources = getLangResources()[this.lcid];
+        this.lcid = getLanguage();
 
-        document.title = this.resources[window.location.pathname.toLowerCase()];
-
-        this.Model.translate.copyright(this.resources['copyright']);
+        this.Model.translate.copyright(getTranslate('copyright'));
     }
 
     firstUpdated(changedProperties: any) {

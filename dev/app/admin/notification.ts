@@ -1,7 +1,9 @@
 ﻿import { LitElement, html, css } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
-import { getCookie } from '../cms_general';
-import { getLangResources } from '../admin_localization';
+import { 
+    getLanguage,
+    getTranslate,
+    getDirectionFromLanguage } from '../cms_general';
 
 @customElement('cms-notification')
 export class CmsNotification extends LitElement {
@@ -9,14 +11,12 @@ export class CmsNotification extends LitElement {
         return this;
     }
 
-    private lcid = 'fa';
-    private resources: any = [];
+    private lcid;
 
     constructor() {
         super();
 
-        this.lcid = getCookie("lcid");
-        this.resources = getLangResources()[this.lcid];
+        this.lcid = getLanguage();
     }
 
 
@@ -35,8 +35,8 @@ export class CmsNotification extends LitElement {
                     break;
             }
 
-            let translate = this.resources[message];
-            $("#lblMessage")[0].innerText = translate == undefined ? message : translate;
+            let translate = getTranslate(message);
+            $("#lblMessage")[0].innerText = translate;
             onShow($("#popupNotification"));
             $("#popupNotification").slideDown(500);
             if (duration != 0) {

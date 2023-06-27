@@ -1,8 +1,15 @@
 ﻿import { LitElement, html, css } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
-import { GetData, PostData, GetDataWithoutLoading, PostDataForm, AjaxSuccessFunction } from '../../cms_general';
+import { 
+    getLanguage,
+    getTranslate,
+    getDirectionFromLanguage,
+    GetData, 
+    PostData, 
+    GetDataWithoutLoading, 
+    PostDataForm, 
+    AjaxSuccessFunction } from '../../cms_general';
 import * as ko from 'knockout';
-import { getLangResources } from '../../site_localization';
 // import { unsafeHTML } from 'lit-html/directives/unsafe-html.js';
 
 @customElement('cms-contactus')
@@ -17,7 +24,6 @@ class CmsContactUs extends LitElement {
     //    }
 
     private lcid;
-    private resources: any = [];
 
     private Model = {
         data: {
@@ -40,13 +46,12 @@ class CmsContactUs extends LitElement {
             captchaCode: ko.observable(),
         },
         setErrors: (errors: any) => {
-            let resources = this.resources;
-            this.Model.errors.name(errors ? resources[errors.name] : undefined);
-            this.Model.errors.email(errors ? resources[errors.email] : undefined);
-            this.Model.errors.mobile(errors ? resources[errors.mobile] : undefined);
-            this.Model.errors.subject(errors ? resources[errors.subject] : undefined);
-            this.Model.errors.message(errors ? resources[errors.message] : undefined);
-            this.Model.errors.captchaCode(errors ? resources[errors.captchaCode] : undefined);
+            this.Model.errors.name(errors ? getTranslate(errors.name) : undefined);
+            this.Model.errors.email(errors ? getTranslate(errors.email) : undefined);
+            this.Model.errors.mobile(errors ? getTranslate(errors.mobile) : undefined);
+            this.Model.errors.subject(errors ? getTranslate(errors.subject) : undefined);
+            this.Model.errors.message(errors ? getTranslate(errors.message) : undefined);
+            this.Model.errors.captchaCode(errors ? getTranslate(errors.captchaCode) : undefined);
         }
     };
 
@@ -69,8 +74,7 @@ class CmsContactUs extends LitElement {
     constructor() {
         super();
 
-        this.lcid = 'en';
-        this.resources = getLangResources()[this.lcid];
+        this.lcid = getLanguage();
     }
 
     firstUpdated(changedProperties: any) {
@@ -94,7 +98,7 @@ class CmsContactUs extends LitElement {
         PostDataForm("contact_us/insert_contact_us.php", ko.toJS(this.Model.data))
             .then(data => {
                 if(data.errors === undefined && data.message === undefined) {
-                    AjaxSuccessFunction(this.resources[data.msg], 3000);
+                    AjaxSuccessFunction(data.msg, 3000);
 
                     this.ClearScr();
                 }

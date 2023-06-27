@@ -1,8 +1,15 @@
 ﻿import { LitElement, html, css } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
-import { GetData, PostData, PostDataForm, AjaxSuccessFunction, getCookie, GetDataWithoutLoading } from '../../cms_general';
+import { 
+    getLanguage,
+    getTranslate,
+    getDirectionFromLanguage,
+    GetData, 
+    PostData, 
+    PostDataForm, 
+    AjaxSuccessFunction, 
+    GetDataWithoutLoading } from '../../cms_general';
 import * as ko from 'knockout';
-import { getLangResources } from '../../admin_localization';
 
 @customElement('cms-permissionlevelmanagement')
 class CmsPermissionLevelManagement extends LitElement {
@@ -16,7 +23,6 @@ class CmsPermissionLevelManagement extends LitElement {
     //    }
 
     private lcid;
-    private resources: any = [];
 
     private Roles: any = [];
     @state()
@@ -46,8 +52,7 @@ class CmsPermissionLevelManagement extends LitElement {
             title: ko.observable(),
         },
         setErrors: (errors: any) => {
-            let resources = this.resources;
-            this.Model.errors.title(errors ? resources[errors.title] : undefined);
+            this.Model.errors.title(errors ? getTranslate(errors.title) : undefined);
         }
     };
 
@@ -67,22 +72,21 @@ class CmsPermissionLevelManagement extends LitElement {
     constructor() {
         super();
 
-        this.lcid = getCookie("lcid");
-        this.resources = getLangResources()[this.lcid];
+        this.lcid = getLanguage();
 
-        document.title = this.resources[window.location.pathname.toLowerCase()];
+        document.title = getTranslate('menu_permission_level_management');
 
-        this.Model.translate.menu_permission_level_management(this.resources['menu_permission_level_management']);
-        this.Model.translate.tab_title_groups(this.resources['tab_title_groups']);
-        this.Model.translate.tab_title_details(this.resources['tab_title_details']);
-        this.Model.translate.tab_title_grouproles(this.resources['tab_title_grouproles']);
-        this.Model.translate.tab_title_groupusers(this.resources['tab_title_groupusers']);
-        this.Model.translate.tab_title_allusers(this.resources['tab_title_allusers']);
-        this.Model.translate.label_title(this.resources['label_title']);
-        this.Model.translate.window_title_selectuser(this.resources['window_title_selectuser']);
-        this.Model.translate.btn_new(this.resources['btn_new']);
-        this.Model.translate.btn_submit(this.resources['btn_submit']);
-        this.Model.translate.btn_cancel(this.resources['btn_cancel']);
+        this.Model.translate.menu_permission_level_management(getTranslate('menu_permission_level_management'));
+        this.Model.translate.tab_title_groups(getTranslate('tab_title_groups'));
+        this.Model.translate.tab_title_details(getTranslate('tab_title_details'));
+        this.Model.translate.tab_title_grouproles(getTranslate('tab_title_grouproles'));
+        this.Model.translate.tab_title_groupusers(getTranslate('tab_title_groupusers'));
+        this.Model.translate.tab_title_allusers(getTranslate('tab_title_allusers'));
+        this.Model.translate.label_title(getTranslate('label_title'));
+        this.Model.translate.window_title_selectuser(getTranslate('window_title_selectuser'));
+        this.Model.translate.btn_new(getTranslate('btn_new'));
+        this.Model.translate.btn_submit(getTranslate('btn_submit'));
+        this.Model.translate.btn_cancel(getTranslate('btn_cancel'));
 
         GetDataWithoutLoading("permission_level_management/select_role.php", null)
             .then(allRoles => {
@@ -107,7 +111,7 @@ class CmsPermissionLevelManagement extends LitElement {
 
     InitGridGroups() {
 
-        if (this.resources['direction'] == "rtl") {
+        if (getDirectionFromLanguage(this.lcid) == "rtl") {
             $("#gridGroups").addClass("k-rtl");
         } else {
             $("#gridGroups").addClass("k-ltr");
@@ -182,7 +186,7 @@ class CmsPermissionLevelManagement extends LitElement {
                     width: 50,
                 },
                 {
-                    title: this.resources['btn_select'],
+                    title: getTranslate('btn_select'),
                     width: 100,
                     command: {
                         name: "Select",
@@ -206,7 +210,7 @@ class CmsPermissionLevelManagement extends LitElement {
                     }
                 },
                 {
-                    title: this.resources['btn_edit'],
+                    title: getTranslate('btn_edit'),
                     width: 100,
                     command: {
                         name: "Edit",
@@ -228,7 +232,7 @@ class CmsPermissionLevelManagement extends LitElement {
                     }
                 },
                 {
-                    title: this.resources['btn_delete'],
+                    title: getTranslate('btn_delete'),
                     width: 100,
                     command: {
                         name: "Delete",
@@ -241,15 +245,15 @@ class CmsPermissionLevelManagement extends LitElement {
                             
                             //@ts-ignore
                             $("<div></div>").confirm({
-                                okText: this.resources['label_yes'],
-                                cancelText: this.resources['label_no'],
-                                title: this.resources['btn_delete'],
-                                content: this.resources['msg_are_you_sure'],
+                                okText: getTranslate('label_yes'),
+                                cancelText: getTranslate('label_no'),
+                                title: getTranslate('btn_delete'),
+                                content: getTranslate('msg_are_you_sure'),
                                 okCallback: () => {
                                     GetData("permission_level_management/delete_group_role.php", { pk: dataItem.pk_group_role }, "#gridGroups")
                                         .then(data => {
                                             if (data.message === undefined) {
-                                                AjaxSuccessFunction(this.resources[data.msg], 3000);
+                                                AjaxSuccessFunction(data.msg, 3000);
 
                                                 this.FillDataGridGroups();
                                             }
@@ -261,10 +265,20 @@ class CmsPermissionLevelManagement extends LitElement {
                 },
                 {
                     field: "title",
-                    title: this.resources['label_title'],
+                    title: getTranslate('label_title'),
                     width: 400,
                     groupable: false,
                     headerAttributes: { style: "white-space: normal" },
+                    filterable: {
+                        operators: {
+                            string: {
+                                contains: getTranslate("label_contains"),
+                                doesnotcontain: getTranslate("label_doesnotcontain"),
+                                eq: getTranslate("label_equal"),
+                                neq: getTranslate("label_notequal"),
+                            }
+                        }
+                    },
                 },
             ]
         });
@@ -272,7 +286,7 @@ class CmsPermissionLevelManagement extends LitElement {
 
     InitGridUsers() {
         
-        if (this.resources['direction'] == "rtl") {
+        if (getDirectionFromLanguage(this.lcid) == "rtl") {
             $("#gridUsers").addClass("k-rtl");
         } else {
             $("#gridUsers").addClass("k-ltr");
@@ -347,7 +361,7 @@ class CmsPermissionLevelManagement extends LitElement {
                     width: 50,
                 },
                 {
-                    title: this.resources['btn_delete'],
+                    title: getTranslate('btn_delete'),
                     width: 100,
                     command: {
                         name: "Delete",
@@ -360,15 +374,15 @@ class CmsPermissionLevelManagement extends LitElement {
                             
                             //@ts-ignore
                             $("<div></div>").confirm({
-                                okText: this.resources['label_yes'],
-                                cancelText: this.resources['label_no'],
-                                title: this.resources['btn_delete'],
-                                content: this.resources['msg_are_you_sure'],
+                                okText: getTranslate('label_yes'),
+                                cancelText: getTranslate('label_no'),
+                                title: getTranslate('btn_delete'),
+                                content: getTranslate('msg_are_you_sure'),
                                 okCallback: () => {
                                     GetData("permission_level_management/delete_user_in_group.php", { fkUser: dataItem.fk_user }, "#tab4-pane")
                                         .then(data => {
                                             if (data.message === undefined) {
-                                                AjaxSuccessFunction(this.resources[data.msg], 3000);
+                                                AjaxSuccessFunction(data.msg, 3000);
 
                                                 this.FillDataGridUsers();
                                                 this.FillDataGridAllUsers();
@@ -381,31 +395,71 @@ class CmsPermissionLevelManagement extends LitElement {
                 },
                 {
                     field: "username",
-                    title: this.resources['label_username'],
+                    title: getTranslate('label_username'),
                     width: 200,
                     groupable: false,
                     headerAttributes: { style: "white-space: normal" },
+                    filterable: {
+                        operators: {
+                            string: {
+                                contains: getTranslate("label_contains"),
+                                doesnotcontain: getTranslate("label_doesnotcontain"),
+                                eq: getTranslate("label_equal"),
+                                neq: getTranslate("label_notequal"),
+                            }
+                        }
+                    },
                 },
                 {
                     field: "firstname",
-                    title: this.resources['label_firstname'],
+                    title: getTranslate('label_firstname'),
                     width: 200,
                     groupable: false,
                     headerAttributes: { style: "white-space: normal" },
+                    filterable: {
+                        operators: {
+                            string: {
+                                contains: getTranslate("label_contains"),
+                                doesnotcontain: getTranslate("label_doesnotcontain"),
+                                eq: getTranslate("label_equal"),
+                                neq: getTranslate("label_notequal"),
+                            }
+                        }
+                    },
                 },
                 {
                     field: "lastname",
-                    title: this.resources['label_lastname'],
+                    title: getTranslate('label_lastname'),
                     width: 200,
                     groupable: false,
                     headerAttributes: { style: "white-space: normal" },
+                    filterable: {
+                        operators: {
+                            string: {
+                                contains: getTranslate("label_contains"),
+                                doesnotcontain: getTranslate("label_doesnotcontain"),
+                                eq: getTranslate("label_equal"),
+                                neq: getTranslate("label_notequal"),
+                            }
+                        }
+                    },
                 },
                 {
                     field: "mobile",
-                    title: this.resources['label_mobile'],
+                    title: getTranslate('label_mobile'),
                     width: 200,
                     groupable: false,
                     headerAttributes: { style: "white-space: normal" },
+                    filterable: {
+                        operators: {
+                            string: {
+                                contains: getTranslate("label_contains"),
+                                doesnotcontain: getTranslate("label_doesnotcontain"),
+                                eq: getTranslate("label_equal"),
+                                neq: getTranslate("label_notequal"),
+                            }
+                        }
+                    },
                 },
             ]
         });
@@ -413,7 +467,7 @@ class CmsPermissionLevelManagement extends LitElement {
 
     InitGridSelectUser() {
         
-        if (this.resources['direction'] == "rtl") {
+        if (getDirectionFromLanguage(this.lcid) == "rtl") {
             $("#gridSelectUser").addClass("k-rtl");
         } else {
             $("#gridSelectUser").addClass("k-ltr");
@@ -488,7 +542,7 @@ class CmsPermissionLevelManagement extends LitElement {
                     width: 50,
                 },
                 {
-                    title: this.resources['btn_select'],
+                    title: getTranslate('btn_select'),
                     width: 100,
                     command: {
                         name: "Select",
@@ -502,7 +556,7 @@ class CmsPermissionLevelManagement extends LitElement {
                             PostData("permission_level_management/insert_user_in_group.php", ko.toJSON({ fkGroup: this.Model.groups.pk_group_role(), fkUser: dataItem.pk_user }), "#windowSelectUser")
                                 .then(data => {
                                     if (data.message === undefined) {
-                                        AjaxSuccessFunction(this.resources[data.msg], 3000);
+                                        AjaxSuccessFunction(data.msg, 3000);
 
                                         this.FillDataGridUsers();
                                         this.FillDataGridAllUsers();
@@ -516,31 +570,71 @@ class CmsPermissionLevelManagement extends LitElement {
                 },
                 {
                     field: "username",
-                    title: this.resources['label_username'],
+                    title: getTranslate('label_username'),
                     width: 200,
                     groupable: false,
                     headerAttributes: { style: "white-space: normal" },
+                    filterable: {
+                        operators: {
+                            string: {
+                                contains: getTranslate("label_contains"),
+                                doesnotcontain: getTranslate("label_doesnotcontain"),
+                                eq: getTranslate("label_equal"),
+                                neq: getTranslate("label_notequal"),
+                            }
+                        }
+                    },
                 },
                 {
                     field: "firstname",
-                    title: this.resources['label_firstname'],
+                    title: getTranslate('label_firstname'),
                     width: 200,
                     groupable: false,
                     headerAttributes: { style: "white-space: normal" },
+                    filterable: {
+                        operators: {
+                            string: {
+                                contains: getTranslate("label_contains"),
+                                doesnotcontain: getTranslate("label_doesnotcontain"),
+                                eq: getTranslate("label_equal"),
+                                neq: getTranslate("label_notequal"),
+                            }
+                        }
+                    },
                 },
                 {
                     field: "lastname",
-                    title: this.resources['label_lastname'],
+                    title: getTranslate('label_lastname'),
                     width: 200,
                     groupable: false,
                     headerAttributes: { style: "white-space: normal" },
+                    filterable: {
+                        operators: {
+                            string: {
+                                contains: getTranslate("label_contains"),
+                                doesnotcontain: getTranslate("label_doesnotcontain"),
+                                eq: getTranslate("label_equal"),
+                                neq: getTranslate("label_notequal"),
+                            }
+                        }
+                    },
                 },
                 {
                     field: "mobile",
-                    title: this.resources['label_mobile'],
+                    title: getTranslate('label_mobile'),
                     width: 200,
                     groupable: false,
                     headerAttributes: { style: "white-space: normal" },
+                    filterable: {
+                        operators: {
+                            string: {
+                                contains: getTranslate("label_contains"),
+                                doesnotcontain: getTranslate("label_doesnotcontain"),
+                                eq: getTranslate("label_equal"),
+                                neq: getTranslate("label_notequal"),
+                            }
+                        }
+                    },
                 },
             ]
         });
@@ -548,7 +642,7 @@ class CmsPermissionLevelManagement extends LitElement {
 
     InitGridAllUsers() {
         
-        if (this.resources['direction'] == "rtl") {
+        if (getDirectionFromLanguage(this.lcid) == "rtl") {
             $("#gridAllUsers").addClass("k-rtl");
         } else {
             $("#gridAllUsers").addClass("k-ltr");
@@ -624,38 +718,88 @@ class CmsPermissionLevelManagement extends LitElement {
                 },
                 {
                     field: "username",
-                    title: this.resources['label_username'],
+                    title: getTranslate('label_username'),
                     width: 200,
                     groupable: false,
                     headerAttributes: { style: "white-space: normal" },
+                    filterable: {
+                        operators: {
+                            string: {
+                                contains: getTranslate("label_contains"),
+                                doesnotcontain: getTranslate("label_doesnotcontain"),
+                                eq: getTranslate("label_equal"),
+                                neq: getTranslate("label_notequal"),
+                            }
+                        }
+                    },
                 },
                 {
                     field: "firstname",
-                    title: this.resources['label_firstname'],
+                    title: getTranslate('label_firstname'),
                     width: 200,
                     groupable: false,
                     headerAttributes: { style: "white-space: normal" },
+                    filterable: {
+                        operators: {
+                            string: {
+                                contains: getTranslate("label_contains"),
+                                doesnotcontain: getTranslate("label_doesnotcontain"),
+                                eq: getTranslate("label_equal"),
+                                neq: getTranslate("label_notequal"),
+                            }
+                        }
+                    },
                 },
                 {
                     field: "lastname",
-                    title: this.resources['label_lastname'],
+                    title: getTranslate('label_lastname'),
                     width: 200,
                     groupable: false,
                     headerAttributes: { style: "white-space: normal" },
+                    filterable: {
+                        operators: {
+                            string: {
+                                contains: getTranslate("label_contains"),
+                                doesnotcontain: getTranslate("label_doesnotcontain"),
+                                eq: getTranslate("label_equal"),
+                                neq: getTranslate("label_notequal"),
+                            }
+                        }
+                    },
                 },
                 {
                     field: "mobile",
-                    title: this.resources['label_mobile'],
+                    title: getTranslate('label_mobile'),
                     width: 200,
                     groupable: false,
                     headerAttributes: { style: "white-space: normal" },
+                    filterable: {
+                        operators: {
+                            string: {
+                                contains: getTranslate("label_contains"),
+                                doesnotcontain: getTranslate("label_doesnotcontain"),
+                                eq: getTranslate("label_equal"),
+                                neq: getTranslate("label_notequal"),
+                            }
+                        }
+                    },
                 },
                 {
                     field: "groupTitle",
-                    title: this.resources['label_grouptitle'],
+                    title: getTranslate('label_grouptitle'),
                     width: 200,
                     groupable: false,
                     headerAttributes: { style: "white-space: normal" },
+                    filterable: {
+                        operators: {
+                            string: {
+                                contains: getTranslate("label_contains"),
+                                doesnotcontain: getTranslate("label_doesnotcontain"),
+                                eq: getTranslate("label_equal"),
+                                neq: getTranslate("label_notequal"),
+                            }
+                        }
+                    },
                 },
             ]
         });
@@ -699,7 +843,7 @@ class CmsPermissionLevelManagement extends LitElement {
                 .then(data => {
                     if (data.errors === undefined && data.message === undefined) {
                         this.ClearScrGroups();
-                        AjaxSuccessFunction(this.resources[data.msg], 3000);
+                        AjaxSuccessFunction(data.msg, 3000);
                         this.FillDataGridGroups();
                         this.FillDataGridAllUsers();
                     }
@@ -711,7 +855,7 @@ class CmsPermissionLevelManagement extends LitElement {
                 .then(data => {
                     if (data.errors === undefined && data.message === undefined) {
                         this.ClearScrGroups();
-                        AjaxSuccessFunction(this.resources[data.msg], 3000);
+                        AjaxSuccessFunction(data.msg, 3000);
                         this.FillDataGridGroups();
                         this.FillDataGridAllUsers();
                     }
@@ -741,14 +885,14 @@ class CmsPermissionLevelManagement extends LitElement {
                         this.Roles.push(html`
                             <div class="form-check" style="padding-top: 5px;">
                                 <input class="form-check-input" type="checkbox" id="${element.pk_role}" name="${element.pk_role}" checked />
-                                <label class="form-check-label" for="${element.pk_role}">${this.resources[element.description]}</label>
+                                <label class="form-check-label" for="${element.pk_role}">${getTranslate(element.description)}</label>
                             </div>
                         `);
                     else
                         this.Roles.push(html`
                             <div class="form-check" style="padding-top: 5px;">
                                 <input class="form-check-input" type="checkbox" id="${element.pk_role}" name="${element.pk_role}" />
-                                <label class="form-check-label" for="${element.pk_role}">${this.resources[element.description]}</label>
+                                <label class="form-check-label" for="${element.pk_role}">${getTranslate(element.description)}</label>
                             </div>
                         `);
                 }
@@ -773,7 +917,7 @@ class CmsPermissionLevelManagement extends LitElement {
         PostData("permission_level_management/insert_delete_role_in_group.php", ko.toJSON({ fkGroup: this.Model.groups.pk_group_role(), roles: join}), "#tab3-pane")
             .then(data => {
                 if(data.message == undefined) {
-                    AjaxSuccessFunction(this.resources[data.msg], 3000);
+                    AjaxSuccessFunction(data.msg, 3000);
                     this.GenerateRoles(this.Model.groups.pk_group_role());
                 }
             })

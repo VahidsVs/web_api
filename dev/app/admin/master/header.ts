@@ -1,8 +1,15 @@
 ﻿import { LitElement, html, css } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
-import { GetData, GetDataWithoutLoading, PostDataForm, getCookie } from '../../cms_general';
-import { getLangResources } from '../../admin_localization';
+import { 
+    getLanguage,
+    getTranslate,
+    getDirectionFromLanguage,
+    GetData,
+    GetDataWithoutLoading, 
+    PostDataForm,
+    getCookie } from '../../cms_general';
 import * as ko from 'knockout';
+import { getLangResources } from '../../admin_localization';
 
 @customElement('cms-header')
 class CmsHeader extends LitElement {
@@ -16,7 +23,6 @@ class CmsHeader extends LitElement {
     //    }
 
     private lcid;
-    private resources: any = [];
 
     @state()
     private PnlLoginItems: any = [];
@@ -37,10 +43,9 @@ class CmsHeader extends LitElement {
     constructor() {
         super();
 
-        this.lcid = getCookie('lcid');
-        this.resources = getLangResources()[this.lcid];
+        this.lcid = getLanguage();
         
-        this.Model.translate.nav_link_home(this.resources['nav_link_home']);
+        this.Model.translate.nav_link_home(getTranslate('nav_link_home'));
 
         GetData("user_account/authentication.php", null)
             .then(data => {
@@ -50,7 +55,7 @@ class CmsHeader extends LitElement {
 
                     this.PnlLoginItems.push(html`
 <li class="nav-item">
-    <a href="/login.html" class="nav-link">${this.resources['nav_link_login']}</a>
+    <a href="/login.html" class="nav-link">${getTranslate('nav_link_login')}</a>
 </li>`);
 
                     this.requestUpdate();
@@ -67,13 +72,13 @@ class CmsHeader extends LitElement {
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
         <li class="">
-            <a href="/admin/index.html" class="dropdown-item" target="_blank"><span class="fa fa-dashboard"></span> <span>${this.resources['nav_link_admin_dashboard']}</span></a>
+            <a href="/admin/index.html" class="dropdown-item" target="_blank"><span class="fa fa-dashboard"></span> <span>${getTranslate('nav_link_admin_dashboard')}</span></a>
         </li>
         <li class="">
-            <a href="/profile.html" class="dropdown-item"><span class="fa fa-user"></span> <span>${this.resources['nav_link_profile']}</span></a>
+            <a href="/profile.html" class="dropdown-item"><span class="fa fa-user"></span> <span>${getTranslate('nav_link_profile')}</span></a>
         </li>
         <li class="">
-            <a href="#" class="dropdown-item" @click="${this.logout}"><span class="fa fa-sign-out"></span> <span>${this.resources['nav_link_logout']}</span></a>
+            <a href="#" class="dropdown-item" @click="${this.logout}"><span class="fa fa-sign-out"></span> <span>${getTranslate('nav_link_logout')}</span></a>
         </li>
     </ul>
 </li>`);
@@ -86,10 +91,10 @@ class CmsHeader extends LitElement {
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
         <li class="">
-            <a href="/profile.html" class="dropdown-item"><span class="fa fa-user"></span> <span>${this.resources['nav_link_profile']}</span></a>
+            <a href="/profile.html" class="dropdown-item"><span class="fa fa-user"></span> <span>${getTranslate('nav_link_profile')}</span></a>
         </li>
         <li class="">
-            <a href="#" class="dropdown-item" @click="${this.logout}"><span class="fa fa-sign-out"></span> <span>${this.resources['nav_link_logout']}</span></a>
+            <a href="#" class="dropdown-item" @click="${this.logout}"><span class="fa fa-sign-out"></span> <span>${getTranslate('nav_link_logout')}</span></a>
         </li>
     </ul>
 </li>`);
@@ -104,7 +109,7 @@ class CmsHeader extends LitElement {
 
                     this.PnlLoginItems.push(html`
     <li class="nav-item">
-        <a href="/login.html" class="nav-link">${this.resources['nav_link_login']}</a>
+        <a href="/login.html" class="nav-link">${getTranslate('nav_link_login')}</a>
     </li>`);
 
                     this.requestUpdate();
@@ -206,7 +211,8 @@ class CmsHeader extends LitElement {
 
     ChangeLanguage_Click(e: any) {
         let lcid = e.target.textContent;
-        document.cookie = "lcid=" + lcid + "; path=/;SameSite=None;Secure";
+        sessionStorage.lcid = lcid;
+        sessionStorage.translate = getLangResources(lcid);
 
         location.reload();
     }

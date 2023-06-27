@@ -1,8 +1,12 @@
 ﻿import { LitElement, html, css } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
-import { GetData, PostData } from '../../cms_general';
+import { 
+    getLanguage,
+    getTranslate,
+    getDirectionFromLanguage,
+    GetData, 
+    PostData } from '../../cms_general';
 import * as ko from 'knockout';
-import { getLangResources } from '../../site_localization';
 // import { unsafeHTML } from 'lit-html/directives/unsafe-html.js';
 
 @customElement('cms-profile')
@@ -17,7 +21,6 @@ class CmsProfile extends LitElement {
     //    }
 
     private lcid;
-    private resources: any = [];
     
     private Model = {
         data: {
@@ -54,14 +57,13 @@ class CmsProfile extends LitElement {
             passwordConfirm: ko.observable(""),
         },
         setErrors: (errors: any) => {
-            let resources = this.resources;
-            this.Model.errors.username(errors ? resources[errors.username] : undefined);
-            this.Model.errors.password(errors ? resources[errors.password] : undefined);
-            this.Model.errors.passwordConfirm(errors ? resources[errors.passwordConfirm] : undefined);
-            this.Model.errors.firstname(errors ? resources[errors.firstname] : undefined);
-            this.Model.errors.lastname(errors ? resources[errors.lastname] : undefined);
-            this.Model.errors.mobile(errors ? resources[errors.mobile] : undefined);
-            this.Model.errors.email(errors ? resources[errors.email] : undefined);
+            this.Model.errors.username(errors ? getTranslate(errors.username) : undefined);
+            this.Model.errors.password(errors ? getTranslate(errors.password) : undefined);
+            this.Model.errors.passwordConfirm(errors ? getTranslate(errors.passwordConfirm) : undefined);
+            this.Model.errors.firstname(errors ? getTranslate(errors.firstname) : undefined);
+            this.Model.errors.lastname(errors ? getTranslate(errors.lastname) : undefined);
+            this.Model.errors.mobile(errors ? getTranslate(errors.mobile) : undefined);
+            this.Model.errors.email(errors ? getTranslate(errors.email) : undefined);
         }
     };
 
@@ -87,23 +89,22 @@ class CmsProfile extends LitElement {
     constructor() {
         super();
 
-        this.lcid = 'en';
-        this.resources = getLangResources()[this.lcid];
+        this.lcid = getLanguage();
 
-        document.title = this.resources[window.location.pathname.toLowerCase()];
+        document.title = getTranslate('menu_profile');
 
-        this.Model.translate.tab_title_editprofile(this.resources['tab_title_editprofile']);
-        this.Model.translate.tab_title_resetpassword(this.resources['tab_title_resetpassword']);
-        this.Model.translate.label_username(this.resources['label_username']);
-        this.Model.translate.label_firstname(this.resources['label_firstname']);
-        this.Model.translate.label_lastname(this.resources['label_lastname']);
-        this.Model.translate.label_mobile(this.resources['label_mobile']);
-        this.Model.translate.label_email(this.resources['label_email']);
-        this.Model.translate.label_currentpassword(this.resources['label_currentpassword']);
-        this.Model.translate.label_password(this.resources['label_password']);
-        this.Model.translate.label_password_confirm(this.resources['label_password_confirm']);
-        this.Model.translate.btn_edit(this.resources['btn_edit']);
-        this.Model.translate.btn_submit(this.resources['btn_submit']);
+        this.Model.translate.tab_title_editprofile(getTranslate('tab_title_editprofile'));
+        this.Model.translate.tab_title_resetpassword(getTranslate('tab_title_resetpassword'));
+        this.Model.translate.label_username(getTranslate('label_username'));
+        this.Model.translate.label_firstname(getTranslate('label_firstname'));
+        this.Model.translate.label_lastname(getTranslate('label_lastname'));
+        this.Model.translate.label_mobile(getTranslate('label_mobile'));
+        this.Model.translate.label_email(getTranslate('label_email'));
+        this.Model.translate.label_currentpassword(getTranslate('label_currentpassword'));
+        this.Model.translate.label_password(getTranslate('label_password'));
+        this.Model.translate.label_password_confirm(getTranslate('label_password_confirm'));
+        this.Model.translate.btn_edit(getTranslate('btn_edit'));
+        this.Model.translate.btn_submit(getTranslate('btn_submit'));
     }
 
     firstUpdated(changedProperties: any) {

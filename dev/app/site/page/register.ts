@@ -1,8 +1,13 @@
 ﻿import { LitElement, html, css } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
-import { AjaxSuccessFunction, PostDataForm, GetDataWithoutLoading } from '../../cms_general';
+import { 
+    getLanguage,
+    getTranslate,
+    getDirectionFromLanguage,
+    AjaxSuccessFunction, 
+    PostDataForm, 
+    GetDataWithoutLoading } from '../../cms_general';
 import * as ko from 'knockout';
-import { getLangResources } from '../../site_localization';
 
 @customElement('cms-register')
 class CmsRegister extends LitElement {
@@ -16,7 +21,6 @@ class CmsRegister extends LitElement {
     //    }
 
     private lcid;
-    private resources: any = [];
 
     private Model = {
         data: {
@@ -53,15 +57,14 @@ class CmsRegister extends LitElement {
             captchaCode: ko.observable(""),
         },
         setErrors: (errors: any) => {
-            let resources = this.resources;
-            this.Model.errors.username(errors ? resources[errors.username] : undefined);
-            this.Model.errors.password(errors ? resources[errors.password] : undefined);
-            this.Model.errors.passwordConfirm(errors ? resources[errors.passwordConfirm] : undefined);
-            this.Model.errors.firstname(errors ? resources[errors.firstname] : undefined);
-            this.Model.errors.lastname(errors ? resources[errors.lastname] : undefined);
-            this.Model.errors.mobile(errors ? resources[errors.mobile] : undefined);
-            this.Model.errors.email(errors ? resources[errors.email] : undefined);
-            this.Model.errors.captchaCode(errors ? resources[errors.captchaCode] : undefined);
+            this.Model.errors.username(errors ? getTranslate(errors.username) : undefined);
+            this.Model.errors.password(errors ? getTranslate(errors.password) : undefined);
+            this.Model.errors.passwordConfirm(errors ? getTranslate(errors.passwordConfirm) : undefined);
+            this.Model.errors.firstname(errors ? getTranslate(errors.firstname) : undefined);
+            this.Model.errors.lastname(errors ? getTranslate(errors.lastname) : undefined);
+            this.Model.errors.mobile(errors ? getTranslate(errors.mobile) : undefined);
+            this.Model.errors.email(errors ? getTranslate(errors.email) : undefined);
+            this.Model.errors.captchaCode(errors ? getTranslate(errors.captchaCode) : undefined);
         }
     };
 
@@ -88,19 +91,18 @@ class CmsRegister extends LitElement {
     constructor() {
         super();
 
-        this.lcid = 'en';
-        this.resources = getLangResources()[this.lcid];
+        this.lcid = getLanguage();
 
-        document.title = this.resources[window.location.pathname.toLowerCase()];
+        document.title = getTranslate('menu_register');
         
-        this.Model.translate.nav_link_register(this.resources['nav_link_register']);
-        this.Model.translate.label_username(this.resources['label_username']);
-        this.Model.translate.label_password(this.resources['label_password']);
-        this.Model.translate.label_password_confirm(this.resources['label_password_confirm']);
-        this.Model.translate.label_firstname(this.resources['label_firstname']);
-        this.Model.translate.label_lastname(this.resources['label_lastname']);
-        this.Model.translate.label_mobile(this.resources['label_mobile']);
-        this.Model.translate.label_email(this.resources['label_email']);
+        this.Model.translate.nav_link_register(getTranslate('nav_link_register'));
+        this.Model.translate.label_username(getTranslate('label_username'));
+        this.Model.translate.label_password(getTranslate('label_password'));
+        this.Model.translate.label_password_confirm(getTranslate('label_password_confirm'));
+        this.Model.translate.label_firstname(getTranslate('label_firstname'));
+        this.Model.translate.label_lastname(getTranslate('label_lastname'));
+        this.Model.translate.label_mobile(getTranslate('label_mobile'));
+        this.Model.translate.label_email(getTranslate('label_email'));
     }
 
     firstUpdated(changedProperties: any) {
@@ -126,7 +128,7 @@ class CmsRegister extends LitElement {
             .then(data => {
                 if (data.errors === undefined && data.message === undefined) {
                     this.ClearScr();
-                    AjaxSuccessFunction(this.resources[data.msg], 3000);
+                    AjaxSuccessFunction(data.msg, 3000);
                 }
                 this.Model.setErrors(data.errors);
 

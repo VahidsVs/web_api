@@ -3,6 +3,31 @@ import { CmsNotification } from './admin/notification';
 
 const webUrl = '/web_api/php2json/';
 
+export function getLanguage() {
+    return sessionStorage.lcid;
+}
+
+export function getTranslate(key: string) {
+
+    if(key == undefined || key == "") {
+        return "";
+    }
+
+    let resources = JSON.parse(sessionStorage.translate);
+
+    let resource = resources.find((p: any) => p.Key == key);
+
+    return resource ? (resource.Translate != null ? resource.Translate : '[' + key + ']') : '[' + key + ']';
+}
+
+export function getDirectionFromLanguage(lcid: string) {
+    let languages = JSON.parse(sessionStorage.language);
+
+    let language = languages.find((p: any) => p.lcid == lcid);
+
+    return language.isRTL == true ? "rtl" : "ltr";
+}
+
 export async function GetData(address: string, param: any, divId: string = "body") {
     let content: any;
 

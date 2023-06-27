@@ -1,7 +1,11 @@
 ﻿import { LitElement, html, css } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
-import { getCookie, GetData, PostData } from '../../cms_general';
-import { getLangResources } from '../../site_localization';
+import { 
+    getLanguage,
+    getTranslate,
+    getDirectionFromLanguage,
+    GetData, 
+    PostData } from '../../cms_general';
 import * as ko from 'knockout';
 
 @customElement('cms-header')
@@ -16,7 +20,6 @@ class CmsHeader extends LitElement {
     //    }
 
     private lcid;
-    private resources: any = [];
 
     @state()
     private PnlLoginItems: any = [];
@@ -26,8 +29,7 @@ class CmsHeader extends LitElement {
     constructor() {
         super();
 
-        this.lcid = 'en';
-        this.resources = getLangResources()[this.lcid];
+        this.lcid = getLanguage();
 
         //بررسی لاگین بودن شخص
         GetData("user_account/authentication.php", null)
@@ -51,9 +53,9 @@ class CmsHeader extends LitElement {
 <div class="nav-item dropdown">
     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">${UserName}</a>
     <div class="dropdown-menu rounded">
-        <a href="/admin/index.html" class="dropdown-item"><span>${this.resources['nav_link_admin_dashboard']}</span></a>
-        <a href="/profile.html" class="dropdown-item"><span>${this.resources['nav_link_profile']}</span></a>
-        <a href="#" @click="${this.logout}" class="dropdown-item"><span>${this.resources['nav_link_logout']}</span></a>
+        <a href="/admin/index.html" class="dropdown-item"><span>${getTranslate('nav_link_admin_dashboard')}</span></a>
+        <a href="/profile.html" class="dropdown-item"><span>${getTranslate('nav_link_profile')}</span></a>
+        <a href="#" @click="${this.logout}" class="dropdown-item"><span>${getTranslate('nav_link_logout')}</span></a>
     </div>
 </div>
 `);
@@ -63,8 +65,8 @@ class CmsHeader extends LitElement {
 <div class="nav-item dropdown">
     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">${UserName}</a>
     <div class="dropdown-menu rounded">
-        <a href="/profile.html" class="dropdown-item"><span>${this.resources['nav_link_profile']}</span></a>
-        <a href="#" @click="${this.logout}" class="dropdown-item"><span>${this.resources['nav_link_logout']}</span></a>
+        <a href="/profile.html" class="dropdown-item"><span>${getTranslate('nav_link_profile')}</span></a>
+        <a href="#" @click="${this.logout}" class="dropdown-item"><span>${getTranslate('nav_link_logout')}</span></a>
     </div>
 </div>
 `);

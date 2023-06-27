@@ -1,8 +1,13 @@
 ﻿import { LitElement, html, css } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
-import { getCookie, GetData, PostData, PostDataForm } from '../../cms_general';
+import { 
+    getLanguage, 
+    getTranslate,
+    getDirectionFromLanguage,
+    GetData, 
+    PostData, 
+    PostDataForm } from '../../cms_general';
 import * as ko from 'knockout';
-import { getLangResources } from '../../admin_localization';
 
 @customElement('cms-index')
 class CmsIndex extends LitElement {
@@ -16,7 +21,6 @@ class CmsIndex extends LitElement {
     //    }
 
     private lcid;
-    private resources: any = [];
 
     private Model = {
         data: {
@@ -33,10 +37,9 @@ class CmsIndex extends LitElement {
     constructor() {
         super();
 
-        this.lcid = getCookie('lcid');
-        this.resources = getLangResources()[this.lcid];
+        this.lcid = getLanguage();
 
-        document.title = this.resources[window.location.pathname.toLowerCase()];
+        document.title = getTranslate('menu_admin_dashboard');
     }
 
     firstUpdated(changedProperties: any) {

@@ -1,8 +1,14 @@
 ﻿import { LitElement, html, css } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
-import { getCookie, GetData, GetDataWithoutLoading, PostDataForm } from '../../cms_general';
+import { 
+    getLanguage,
+    getTranslate,
+    getDirectionFromLanguage,
+    getCookie, 
+    GetData, 
+    GetDataWithoutLoading, 
+    PostDataForm } from '../../cms_general';
 import * as ko from 'knockout';
-import { getLangResources } from '../../site_localization';
 
 @customElement('cms-login')
 class CmsLogin extends LitElement {
@@ -16,7 +22,6 @@ class CmsLogin extends LitElement {
     //    }
 
     private lcid;
-    private resources: any = [];
 
     private Model = {
         data: {
@@ -43,29 +48,27 @@ class CmsLogin extends LitElement {
             captchaCode: ko.observable(),
         },
         setErrors: (errors: any) => {
-            let resources = this.resources;
-            this.Model.errors.username(errors ? resources[errors.username] : undefined);
-            this.Model.errors.password(errors ? resources[errors.password] : undefined);
-            this.Model.errors.captchaCode(errors ? resources[errors.captchaCode] : undefined);
+            this.Model.errors.username(errors ? getTranslate(errors.username) : undefined);
+            this.Model.errors.password(errors ? getTranslate(errors.password) : undefined);
+            this.Model.errors.captchaCode(errors ? getTranslate(errors.captchaCode) : undefined);
         }
     };
 
     constructor() {
         super();
 
-        this.lcid = 'en';
-        this.resources = getLangResources()[this.lcid];
+        this.lcid = getLanguage();
 
-        document.title = this.resources[window.location.pathname.toLowerCase()];
+        document.title = getTranslate('menu_login');
 
-        this.Model.translate.title_login(this.resources['title_login']);
-        this.Model.translate.subtitle_login(this.resources['subtitle_login']);
-        this.Model.translate.label_username(this.resources['label_username']);
-        this.Model.translate.label_password(this.resources['label_password']);
-        this.Model.translate.label_remember_me(this.resources['label_remember_me']);
-        this.Model.translate.nav_link_login(this.resources['nav_link_login']);
-        this.Model.translate.nav_link_register(this.resources['nav_link_register']);
-        this.Model.translate.nav_link_forget_password(this.resources['nav_link_forget_password']);
+        this.Model.translate.title_login(getTranslate('title_login'));
+        this.Model.translate.subtitle_login(getTranslate('subtitle_login'));
+        this.Model.translate.label_username(getTranslate('label_username'));
+        this.Model.translate.label_password(getTranslate('label_password'));
+        this.Model.translate.label_remember_me(getTranslate('label_remember_me'));
+        this.Model.translate.nav_link_login(getTranslate('nav_link_login'));
+        this.Model.translate.nav_link_register(getTranslate('nav_link_register'));
+        this.Model.translate.nav_link_forget_password(getTranslate('nav_link_forget_password'));
     }
 
     firstUpdated(changedProperties: any) {

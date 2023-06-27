@@ -1,8 +1,12 @@
 ﻿import { LitElement, html, css } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
-import { getCookie, GetData, PostData } from '../../cms_general';
+import { 
+    getLanguage,
+    getTranslate,
+    getDirectionFromLanguage,
+    GetData, 
+    PostData } from '../../cms_general';
 import * as ko from 'knockout';
-import { getLangResources } from '../../site_localization';
 
 @customElement('cms-accessdenied')
 class CmsAccessDenied extends LitElement {
@@ -16,7 +20,6 @@ class CmsAccessDenied extends LitElement {
     //    }
 
     private lcid;
-    private resources: any = [];
 
     private Model = {
         translate: {
@@ -29,14 +32,13 @@ class CmsAccessDenied extends LitElement {
     constructor() {
         super();
 
-        this.lcid = 'en';
-        this.resources = getLangResources()[this.lcid];
+        this.lcid = getLanguage();
 
-        document.title = this.resources[window.location.pathname.toLowerCase()];
+        document.title = getTranslate('menu_unauthorized');
 
-        this.Model.translate.msg_unauthorized(this.resources['msg_unauthorized']);
-        this.Model.translate.msg_unauthorized_desc(this.resources['msg_unauthorized_desc']);
-        this.Model.translate.nav_link_login(this.resources['nav_link_login']);
+        this.Model.translate.msg_unauthorized(getTranslate('msg_unauthorized'));
+        this.Model.translate.msg_unauthorized_desc(getTranslate('msg_unauthorized_desc'));
+        this.Model.translate.nav_link_login(getTranslate('nav_link_login'));
     }
 
     firstUpdated(changedProperties: any) {

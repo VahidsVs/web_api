@@ -1,8 +1,15 @@
 ﻿import { LitElement, html, css } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
-import { GetData, PostData, PostDataForm, AjaxSuccessFunction, getCookie, GetDataWithoutLoading } from '../../cms_general';
+import { 
+    getLanguage,
+    getTranslate,
+    getDirectionFromLanguage,
+    GetData, 
+    PostData, 
+    PostDataForm, 
+    AjaxSuccessFunction, 
+    GetDataWithoutLoading } from '../../cms_general';
 import * as ko from 'knockout';
-import { getLangResources } from '../../admin_localization';
 
 @customElement('cms-contactus')
 class CmsContactUs extends LitElement {
@@ -16,7 +23,6 @@ class CmsContactUs extends LitElement {
     //    }
 
     private lcid;
-    private resources: any = [];
 
     private Model = {
         groups: {
@@ -32,8 +38,7 @@ class CmsContactUs extends LitElement {
             title: ko.observable(),
         },
         setErrors: (errors: any) => {
-            let resources = this.resources;
-            this.Model.errors.title(errors ? resources[errors.title] : undefined);
+            this.Model.errors.title(errors ? getTranslate(errors.title) : undefined);
         }
     };
 
@@ -51,13 +56,12 @@ class CmsContactUs extends LitElement {
     constructor() {
         super();
 
-        this.lcid = getCookie("lcid");
-        this.resources = getLangResources()[this.lcid];
+        this.lcid = getLanguage();
 
-        document.title = this.resources[window.location.pathname.toLowerCase()];
+        document.title = getTranslate('menu_contact_us');
 
-        this.Model.translate.menu_contact_us(this.resources['menu_contact_us']);
-        this.Model.translate.tab_title_messages(this.resources['tab_title_messages']);
+        this.Model.translate.menu_contact_us(getTranslate('menu_contact_us'));
+        this.Model.translate.tab_title_messages(getTranslate('tab_title_messages'));
     }
 
     firstUpdated(changedProperties: any) {
@@ -74,7 +78,7 @@ class CmsContactUs extends LitElement {
 
     InitGrid() {
 
-        if (this.resources['direction'] == "rtl") {
+        if (getDirectionFromLanguage(this.lcid) == "rtl") {
             $("#gridContactUs").addClass("k-rtl");
         } else {
             $("#gridContactUs").addClass("k-ltr");
@@ -150,85 +154,85 @@ class CmsContactUs extends LitElement {
                 },
                 {
                     field: "name",
-                    title: this.resources['label_name'],
+                    title: getTranslate('label_name'),
                     width: 100,
                     groupable: false,
                     headerAttributes: { style: "white-space: normal" },
                     filterable: {
                         operators: {
                             string: {
-                                contains: this.resources["label_contains"],
-                                doesnotcontain: this.resources["label_doesnotcontain"],
-                                eq: this.resources["label_equal"],
-                                neq: this.resources["label_notequal"],
+                                contains: getTranslate("label_contains"),
+                                doesnotcontain: getTranslate("label_doesnotcontain"),
+                                eq: getTranslate("label_equal"),
+                                neq: getTranslate("label_notequal"),
                             }
                         }
                     },
                 },
                 {
                     field: "email",
-                    title: this.resources['label_email'],
+                    title: getTranslate('label_email'),
                     width: 100,
                     groupable: false,
                     headerAttributes: { style: "white-space: normal" },
                     filterable: {
                         operators: {
                             string: {
-                                contains: this.resources["label_contains"],
-                                doesnotcontain: this.resources["label_doesnotcontain"],
-                                eq: this.resources["label_equal"],
-                                neq: this.resources["label_notequal"],
+                                contains: getTranslate("label_contains"),
+                                doesnotcontain: getTranslate("label_doesnotcontain"),
+                                eq: getTranslate("label_equal"),
+                                neq: getTranslate("label_notequal"),
                             }
                         }
                     },
                 },
                 {
                     field: "mobile",
-                    title: this.resources['label_mobile'],
+                    title: getTranslate('label_mobile'),
                     width: 100,
                     groupable: false,
                     headerAttributes: { style: "white-space: normal" },
                     filterable: {
                         operators: {
                             string: {
-                                contains: this.resources["label_contains"],
-                                doesnotcontain: this.resources["label_doesnotcontain"],
-                                eq: this.resources["label_equal"],
-                                neq: this.resources["label_notequal"],
+                                contains: getTranslate("label_contains"),
+                                doesnotcontain: getTranslate("label_doesnotcontain"),
+                                eq: getTranslate("label_equal"),
+                                neq: getTranslate("label_notequal"),
                             }
                         }
                     },
                 },
                 {
                     field: "subject",
-                    title: this.resources['label_subject'],
+                    title: getTranslate('label_subject'),
                     width: 100,
                     groupable: false,
                     headerAttributes: { style: "white-space: normal" },
                     filterable: {
                         operators: {
                             string: {
-                                contains: this.resources["label_contains"],
-                                doesnotcontain: this.resources["label_doesnotcontain"],
-                                eq: this.resources["label_equal"],
-                                neq: this.resources["label_notequal"],
+                                contains: getTranslate("label_contains"),
+                                doesnotcontain: getTranslate("label_doesnotcontain"),
+                                eq: getTranslate("label_equal"),
+                                neq: getTranslate("label_notequal"),
                             }
                         }
                     },
                 },
                 {
                     field: "message",
-                    title: this.resources['label_message'],
+                    title: getTranslate('label_message'),
                     width: 400,
                     groupable: false,
                     headerAttributes: { style: "white-space: normal" },
                     filterable: {
                         operators: {
                             string: {
-                                contains: this.resources["label_contains"],
-                                doesnotcontain: this.resources["label_doesnotcontain"],
-                                eq: this.resources["label_equal"],
-                                neq: this.resources["label_notequal"],
+                                contains: getTranslate("label_contains"),
+                                doesnotcontain: getTranslate("label_doesnotcontain"),
+                                eq: getTranslate("label_equal"),
+                                neq: getTranslate("label_notequal"),
                             }
                         }
                     },

@@ -5,28 +5,30 @@ window.jQuery = $;
 import JSZip from 'jszip';//--> for export to excel kendo
 window.JSZip = JSZip;
 
-function getCookie(cname) {
-    var name = cname + "=";
-    var decodedCookie = decodeURIComponent(document.cookie);
-    var ca = decodedCookie.split(';');
-    for (var i = 0; i < ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0) === ' ') {
-            c = c.substring(1);
-        }
-        if (c.indexOf(name) === 0) {
-            return c.substring(name.length, c.length);
-        }
-    }
-    return "";
+import { getLangResources } from './site_localization';
+
+if (typeof (Storage) !== "undefined") {
+    // Code for localStorage/sessionStorage.
+} else {
+    // Sorry! No Web Storage support..
+    alert("Sorry! No Web Storage support... Please update your browser");
 }
 
 //ست کردن کد زبان 
-let lcid = 'en'; // getCookie("lcid");
-// if (!lcid) {
-//     lcid = "fa";
-//     document.cookie = "lcid=" + lcid + "; path=/;SameSite=None;Secure";
+let lcid = 'en';
+// if (!lcid || (lcid != 'fa' && lcid != 'en')) {
+sessionStorage.lcid = lcid;
 // }
+
+if (!sessionStorage.translate) {
+    sessionStorage.translate = JSON.stringify(getLangResources(lcid));
+}
+if (!sessionStorage.language) {
+    sessionStorage.language = JSON.stringify([
+        { lcid: 'fa', isRTL: true },
+        { lcid: 'en', isRTL: false },
+    ]);
+}
 
 
 // if(lcid == "fa") {
