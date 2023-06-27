@@ -60,6 +60,7 @@ class CmsLogin extends LitElement {
         this.lcid = getLanguage();
 
         document.title = getTranslate('menu_login');
+        console.log(getTranslate('menu_login'))
 
         this.Model.translate.title_login(getTranslate('title_login'));
         this.Model.translate.subtitle_login(getTranslate('subtitle_login'));

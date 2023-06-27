@@ -22,6 +22,8 @@ sessionStorage.lcid = lcid;
 
 if (!sessionStorage.translate) {
     sessionStorage.translate = JSON.stringify(getLangResources(lcid));
+} else if (sessionStorage.translate != JSON.stringify(getLangResources(lcid))) {
+    sessionStorage.translate = JSON.stringify(getLangResources(lcid));
 }
 if (!sessionStorage.language) {
     sessionStorage.language = JSON.stringify([

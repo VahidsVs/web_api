@@ -17,7 +17,8 @@ if (typeof (Storage) !== "undefined") {
 //ست کردن کد زبان 
 let lcid = sessionStorage.lcid;
 if (!lcid || (lcid != 'fa' && lcid != 'en')) {
-    sessionStorage.lcid = 'en';
+    lcid = 'en';
+    sessionStorage.lcid = lcid;
 }
 
 if (!sessionStorage.translate) {

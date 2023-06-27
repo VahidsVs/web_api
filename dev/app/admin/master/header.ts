@@ -212,7 +212,7 @@ class CmsHeader extends LitElement {
     ChangeLanguage_Click(e: any) {
         let lcid = e.target.textContent;
         sessionStorage.lcid = lcid;
-        sessionStorage.translate = getLangResources(lcid);
+        sessionStorage.translate = JSON.stringify(getLangResources(lcid));
 
         location.reload();
     }
