@@ -124,20 +124,20 @@ class CmsHeader extends LitElement {
     AddMenu(menuItem: any): any {
 
         //آیا این منو فرزند دارد یا خیر
-        let children = this.MenuItems.filter(p => p.parentid == menuItem.id);
+        let children = this.MenuItems.filter(p => p.parentId == menuItem.id);
         if (children.length != 0) {
             let menuItems: any = [];
             for (var i = 0; i < children.length; i++) {
                 menuItems.push(this.AddMenu(children[i]));
             }
 
-            if (menuItem.parentid == null) {
+            if (menuItem.parentId == null) {
                 return (html`
 <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" data-bs-auto-close="outside">
+    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
         ${getTranslate(menuItem.title)}
     </a>
-    <ul class="dropdown-menu shadow" style="background-color: #364b6d !important;">
+    <ul class="dropdown-menu shadow" style="background-color: #fff !important;">
         ${menuItems}
     </ul>
 </li>`);
@@ -145,16 +145,16 @@ class CmsHeader extends LitElement {
             else {
                 return (html`
 <li class="dropend">
-    <a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown" data-bs-auto-close="outside">
+    <a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown">
         ${menuItem.Title}
     </a>
-    <ul class="dropdown-menu shadow" style="background-color: #364b6d !important;">
+    <ul class="dropdown-menu shadow" style="background-color: #fff !important;">
         ${menuItems}
     </ul>
 </li>`);
             }
         } else {
-            if (menuItem.parentid != null) {
+            if (menuItem.parentId != null) {
                 return (html`
 <li>
     <a class="dropdown-item" href="${menuItem.url}">${getTranslate(menuItem.title)}</a>
@@ -177,7 +177,7 @@ class CmsHeader extends LitElement {
             .then(data => {
                 this.MenuItems = data;
 
-                let parents = this.MenuItems.filter(p => p.parentid == null);
+                let parents = this.MenuItems.filter(p => p.parentId == null);
 
                 let menuItems: any = [];
                 for (var i = 0; i < parents.length; i++) {
@@ -254,12 +254,6 @@ class CmsHeader extends LitElement {
                     <a data-bind="text: translate.nav_link_home" class="nav-link" aria-current="page" href="/admin/index.html"></a>
                 </li>
                 ${this.Menu}
-                <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="/admin/permission-level-management.html">مدیریت سطوح دسترسی</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="/admin/contact-us.html">ارتباط با ما</a>
-                </li>
             </ul>
             
             <div class="btn-group btn-group-sm">
