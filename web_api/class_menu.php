@@ -7,8 +7,8 @@ class Menu
 
     public function getParentMenu()
     {
-        $parentMenu[] = ["id" => 1, "parentId" => null, "title" => "management", "url" => "#"];
-        $parentMenu[] = ["id" => 2, "parentId" => null, "title" => "baseInformation", "url" => "#"];
+        $parentMenu[] = ["id" => 1, "parentId" => null, "title" => "menu_management", "url" => "#"];
+        $parentMenu[] = ["id" => 2, "parentId" => null, "title" => "menu_baseInformation", "url" => "#"];
         return $parentMenu;
     }
     public function addMenu($listMenu, $newMenu)
@@ -37,6 +37,8 @@ class Menu
         $classUsersInGroup = new UserInGroup("selectWithRole", $param);
         $jsonData = $classUsersInGroup->getJsonData();
         $menuArray = [];
+
+       // $keys = array_keys(array_column($userdb, 'uid'), 40489); if mutiple value is in array userdb
 
         $key = array_search(RolesTitle::role_permissionLevelManagement, array_column($jsonData , 'title'));
         if(!is_null($key)) {
