@@ -16,16 +16,21 @@ class Menu
         if (is_null($newMenu["parentId"])) {
             $listMenu[] = $newMenu;
         } else {
-            $existedParentMenu = $key =null;
-            $key = array_search($newMenu["parentId"], array_column($listMenu, 'id'));
-            !empty($key) ? $existedParentMenu = $listMenu[$key] : null;
-            if (is_null($existedParentMenu)) {
-                $key = array_search($newMenu["parentId"], array_column(self::getParentMenu(), 'id'));
-                if(!is_null($key)) {
-                    $listMenu = self::addMenu($listMenu, self::getParentMenu()[$key]);
-                    $listMenu[] = $newMenu;
-                }
+            $existedParentMenu = $index = null;
+            $index = array_search($newMenu["parentId"], array_column($listMenu, 'id'));
 
+            array_key_exists($index, $listMenu) && $newMenu["parentId"] == $listMenu[$index]["id"] ? $existedParentMenu = $listMenu[$index] : $existedParentMenu = null;
+            //$existedParentMenu=null;
+            // foreach ($listMenu as $value) {
+            //     if ($value["id"] == $newMenu["parentId"]) {
+            //         $existedParentMenu = $value;
+            //         break;
+            //     }
+            // }
+            if (is_null($existedParentMenu)) {
+                $index = array_search($newMenu["parentId"], array_column(self::getParentMenu(), 'id'));
+                $listMenu = self::addMenu($listMenu, self::getParentMenu()[$index]);
+                $listMenu[] = $newMenu;
             } else
                 $listMenu[] = $newMenu;
         }
@@ -38,21 +43,46 @@ class Menu
         $jsonData = $classUsersInGroup->getJsonData();
         $menuArray = [];
 
-       // $keys = array_keys(array_column($userdb, 'uid'), 40489); if mutiple value is in array userdb
+        // $keys = array_keys(array_column($userdb, 'uid'), 40489); if mutiple value is in array userdb
 
-        $keyPLM = array_search(RolesTitle::role_permissionLevelManagement, array_column($jsonData , 'title')); //Permission Level Management
-        $keyCUM = array_search(RolesTitle::role_contactUs, array_column($jsonData , 'title')); //Contact Us Management
-        if(!is_null($keyPLM)) {
+        $keyPLM = array_search(RolesTitle::role_permissionLevelManagement, array_column($jsonData, 'title')); //Permission Level Management
+        $keyCUM = array_search(RolesTitle::role_contactUs, array_column($jsonData, 'title')); //Contact Us Management
+        if (!is_null($keyPLM)) {
             $newMenu = ["id" => 101, "parentId" => 1, "title" => "menu_permission_level_management", "url" => "/admin/permission-level-management.html"];
             $menuArray = self::addMenu($menuArray, $newMenu);
         }
-        if(!is_null($keyCUM)) {
+        if (!is_null($keyCUM)) {
             $newMenu = ["id" => 102, "parentId" => 1, "title" => "menu_contact_us", "url" => "/admin/contact-us.html"];
             $menuArray = self::addMenu($menuArray, $newMenu);
         }
-     
+        if (!is_null($keyPLM)) {
+            $newMenu = ["id" => 201, "parentId" => 2, "title" => "menu_permission_level_management", "url" => "/admin/permission-level-management.html"];
+            $menuArray = self::addMenu($menuArray, $newMenu);
+        }
+        if (!is_null($keyCUM)) {
+            $newMenu = ["id" => 202, "parentId" => 2, "title" => "menu_contact_us", "url" => "/admin/contact-us.html"];
+            $menuArray = self::addMenu($menuArray, $newMenu);
+        }
+
         return $menuArray;
     }
 }
+// foreach (self::getParentMenu() as $value) {
+//     if ($value["id"] == $newMenu["parentId"]) {
+//         $listMenu = self::addMenu($listMenu, $value);
+//         $listMenu[] = $newMenu;
+//         break;
+//     }
+// }
+// foreach ($jsonData as $jsonRes) {
+//     switch ($jsonRes["title"]) {
+//         case RolesTitle::role_permissionLevelManagement:
+//             $newMenu = ["id" => 101, "parentId" => 1, "title" => "menu_permission_level_management", "url" => "/admin/permission-level-management.html"];
+//             $menuArray = self::addMenu($menuArray, $newMenu);
+//             break;
+//     }
+
+// }
+
 
 ?>
