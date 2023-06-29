@@ -40,35 +40,19 @@ class Menu
 
        // $keys = array_keys(array_column($userdb, 'uid'), 40489); if mutiple value is in array userdb
 
-        $key = array_search(RolesTitle::role_permissionLevelManagement, array_column($jsonData , 'title'));
-        if(!is_null($key)) {
+        $keyPLM = array_search(RolesTitle::role_permissionLevelManagement, array_column($jsonData , 'title')); //Permission Level Management
+        $keyCUM = array_search(RolesTitle::role_contactUsManagement, array_column($jsonData , 'title')); //Contact Us Management
+        if(!is_null($keyPLM)) {
             $newMenu = ["id" => 101, "parentId" => 1, "title" => "menu_permission_level_management", "url" => "/admin/permission-level-management.html"];
+            $menuArray = self::addMenu($menuArray, $newMenu);
+        }
+        if(!is_null($keyCUM)) {
+            $newMenu = ["id" => 102, "parentId" => 1, "title" => "menu_contact_us_management", "url" => "/admin/contact-us-management.html"];
             $menuArray = self::addMenu($menuArray, $newMenu);
         }
      
         return $menuArray;
     }
 }
-// foreach ($listMenu as $value) {
-//     if ($value["id"] == $newMenu["parentId"]) {
-//         $existedParentMenu = $value;
-//         break;
-//     }
-// }
-// foreach (self::getParentMenu() as $value) {
-//     if ($value["id"] == $newMenu["parentId"]) {
-//         $listMenu = self::addMenu($listMenu, $value);
-//         $listMenu[] = $newMenu;
-//         break;
-//     }
-// }
-   // foreach ($jsonData as $jsonRes) {
-        //     switch ($jsonRes["title"]) {
-        //         case RolesTitle::role_permissionLevelManagement:
-        //             $newMenu = ["id" => 101, "parentId" => 1, "title" => "menu_permission_level_management", "url" => "/admin/permission-level-management.html"];
-        //             $menuArray = self::addMenu($menuArray, $newMenu);
-        //             break;
-        //     }
 
-        // }
 ?>
