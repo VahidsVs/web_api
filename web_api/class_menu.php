@@ -41,13 +41,13 @@ class Menu
        // $keys = array_keys(array_column($userdb, 'uid'), 40489); if mutiple value is in array userdb
 
         $keyPLM = array_search(RolesTitle::role_permissionLevelManagement, array_column($jsonData , 'title')); //Permission Level Management
-        $keyCUM = array_search(RolesTitle::role_contactUsManagement, array_column($jsonData , 'title')); //Contact Us Management
+        $keyCUM = array_search(RolesTitle::role_contactUs, array_column($jsonData , 'title')); //Contact Us Management
         if(!is_null($keyPLM)) {
             $newMenu = ["id" => 101, "parentId" => 1, "title" => "menu_permission_level_management", "url" => "/admin/permission-level-management.html"];
             $menuArray = self::addMenu($menuArray, $newMenu);
         }
         if(!is_null($keyCUM)) {
-            $newMenu = ["id" => 102, "parentId" => 1, "title" => "menu_contact_us_management", "url" => "/admin/contact-us-management.html"];
+            $newMenu = ["id" => 102, "parentId" => 1, "title" => "menu_contact_us", "url" => "/admin/contact-us.html"];
             $menuArray = self::addMenu($menuArray, $newMenu);
         }
      
