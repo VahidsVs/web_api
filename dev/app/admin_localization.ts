@@ -19,6 +19,8 @@
             array.push({ Key: 'nav_link_admin_dashboard', Translate: "داشبورد مدیریت" });
             array.push({ Key: 'nav_link_profile', Translate: "پروفایل" });
             
+            array.push({ Key: 'menu_management', Translate: "مدیریت" });
+            array.push({ Key: 'menu_baseinformation', Translate: "اطلاعات پایه" });
             array.push({ Key: 'menu_permission_level_management', Translate: "مدیریت سطوح دسترسی" });
             array.push({ Key: 'menu_contact_us', Translate: "ارتباط با ما" });
             array.push({ Key: 'menu_admin_dashboard', Translate: "داشبورد" });
@@ -86,6 +88,8 @@
             array.push({ Key: 'nav_link_admin_dashboard', Translate: "Admin dashboard" });
             array.push({ Key: 'nav_link_profile', Translate: "Profile" });
             
+            array.push({ Key: 'menu_management', Translate: "Management" });
+            array.push({ Key: 'menu_baseinformation', Translate: "Base Info" });
             array.push({ Key: 'menu_permission_level_management', Translate: "Permission Level Management" });
             array.push({ Key: 'menu_contact_us', Translate: "Contact Us" });
             array.push({ Key: 'menu_admin_dashboard', Translate: "Dashboard" });

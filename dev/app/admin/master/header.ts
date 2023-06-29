@@ -124,18 +124,18 @@ class CmsHeader extends LitElement {
     AddMenu(menuItem: any): any {
 
         //آیا این منو فرزند دارد یا خیر
-        let children = this.MenuItems.filter(p => p.ParentIndex == menuItem.MenuIndex);
+        let children = this.MenuItems.filter(p => p.parentid == menuItem.id);
         if (children.length != 0) {
             let menuItems: any = [];
             for (var i = 0; i < children.length; i++) {
                 menuItems.push(this.AddMenu(children[i]));
             }
 
-            if (menuItem.ParentIndex == null) {
+            if (menuItem.parentid == null) {
                 return (html`
 <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" data-bs-auto-close="outside">
-        ${menuItem.Title}
+        ${getTranslate(menuItem.title)}
     </a>
     <ul class="dropdown-menu shadow" style="background-color: #364b6d !important;">
         ${menuItems}
@@ -154,16 +154,16 @@ class CmsHeader extends LitElement {
 </li>`);
             }
         } else {
-            if (menuItem.ParentIndex != null) {
+            if (menuItem.parentid != null) {
                 return (html`
 <li>
-    <a class="dropdown-item" href="${menuItem.Url}">${menuItem.Title}</a>
+    <a class="dropdown-item" href="${menuItem.url}">${getTranslate(menuItem.title)}</a>
 </li>`);
             }
             else {
                 return (html`
 <li class="nav-item">
-    <a class="nav-link" href="${menuItem.Url}">${menuItem.Title}</a>
+    <a class="nav-link" href="${menuItem.url}">${getTranslate(menuItem.title)}</a>
 </li>
 `);
             }
@@ -177,14 +177,14 @@ class CmsHeader extends LitElement {
             .then(data => {
                 this.MenuItems = data;
 
-                // let parents = this.MenuItems.filter(p => p.ParentIndex == null);
+                let parents = this.MenuItems.filter(p => p.parentid == null);
 
-                // let menuItems: any = [];
-                // for (var i = 0; i < parents.length; i++) {
-                //     menuItems.push(this.AddMenu(parents[i]));
-                // }
+                let menuItems: any = [];
+                for (var i = 0; i < parents.length; i++) {
+                    menuItems.push(this.AddMenu(parents[i]));
+                }
 
-                // this.Menu = html`${menuItems}`;
+                this.Menu = html`${menuItems}`;
             });
 
         super.performUpdate();
@@ -251,8 +251,9 @@ class CmsHeader extends LitElement {
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 my-lg-0">
                 <li class="nav-item">
-                    <a data-bind="text: translate.nav_link_home" class="nav-link" aria-current="page" href="/"></a>
+                    <a data-bind="text: translate.nav_link_home" class="nav-link" aria-current="page" href="/admin/index.html"></a>
                 </li>
+                ${this.Menu}
                 <li class="nav-item">
                     <a class="nav-link" aria-current="page" href="/admin/permission-level-management.html">مدیریت سطوح دسترسی</a>
                 </li>
