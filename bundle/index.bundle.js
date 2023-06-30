@@ -495,9 +495,9 @@ var ie;null===(ie=window.HTMLSlotElement)||void 0===ie||ie.prototype.assignedEle
                     <div class="project-img">
                         <img src="/images/project-2.jpg" class="img-fluid w-100 rounded" alt="">
                         <div class="project-content">
-                            <a href="#" class="text-center">
-                                <h4 class="text-secondary">Cyber Security</h4>
-                                <p class="m-0 text-white">Cyber Security Core</p>
+                            <a href="https://wayofhope.at" target="_blank" class="text-center">
+                                <h4 class="text-secondary">Way of Hope</h4>
+                                <p class="m-0 text-white">Wayofhope.at</p>
                             </a>
                         </div>
                     </div>
