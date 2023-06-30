@@ -8,7 +8,7 @@ class Menu
     public function getParentMenu()
     {
         $parentMenu[] = ["id" => 1, "parentId" => null, "title" => "menu_management", "url" => "#"];
-        $parentMenu[] = ["id" => 2, "parentId" => null, "title" => "menu_baseInformation", "url" => "#"];
+        $parentMenu[] = ["id" => 2, "parentId" => null, "title" => "menu_base_information", "url" => "#"];
         return $parentMenu;
     }
     public function addMenu($listMenu, $newMenu)

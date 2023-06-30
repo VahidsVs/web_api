@@ -89,7 +89,7 @@
             array.push({ Key: 'nav_link_profile', Translate: "Profile" });
             
             array.push({ Key: 'menu_management', Translate: "Management" });
-            array.push({ Key: 'menu_baseinformation', Translate: "Base Info" });
+            array.push({ Key: 'menu_base_information', Translate: "Base Info" });
             array.push({ Key: 'menu_permission_level_management', Translate: "Permission Level Management" });
             array.push({ Key: 'menu_contact_us', Translate: "Contact Us" });
             array.push({ Key: 'menu_admin_dashboard', Translate: "Dashboard" });
