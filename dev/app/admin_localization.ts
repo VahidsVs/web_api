@@ -25,6 +25,11 @@
             array.push({ Key: 'menu_contact_us', Translate: "ارتباط با ما" });
             array.push({ Key: 'menu_admin_dashboard', Translate: "داشبورد" });
             
+            array.push({ Key: 'role_contact_us', Translate: "مدیریت ارتباط با ما" });
+            array.push({ Key: 'role_permission_level_management', Translate: "مدیریت سطوح دسترسی" });
+            array.push({ Key: 'role_slideshow_management', Translate: "مدیریت اسلایدشو" });
+            array.push({ Key: 'role_advertisement_management', Translate: "مدیریت تبلیغات" });
+            
             array.push({ Key: 'tab_title_groups', Translate: "گروه ها" });
             array.push({ Key: 'tab_title_details', Translate: "جزئیات" });
             array.push({ Key: 'tab_title_grouproles', Translate: "دسترسی های گروه" });
@@ -93,6 +98,11 @@
             array.push({ Key: 'menu_permission_level_management', Translate: "Permission Level Management" });
             array.push({ Key: 'menu_contact_us', Translate: "Contact Us" });
             array.push({ Key: 'menu_admin_dashboard', Translate: "Dashboard" });
+            
+            array.push({ Key: 'role_contact_us', Translate: "Contact Us Management" });
+            array.push({ Key: 'role_permission_level_management', Translate: "Permission Level Management" });
+            array.push({ Key: 'role_slideshow_management', Translate: "Slideshow Management" });
+            array.push({ Key: 'role_advertisement_management', Translate: "Advertisement Management" });
             
             array.push({ Key: 'tab_title_groups', Translate: "Groups" });
             array.push({ Key: 'tab_title_details', Translate: "Details" });
