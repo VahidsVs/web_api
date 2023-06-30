@@ -42,24 +42,24 @@ class Menu
         $classUsersInGroup = new UserInGroup("selectWithRole", $param);
         $jsonData = $classUsersInGroup->getJsonData();
         $menuArray = [];
-
         // $keys = array_keys(array_column($userdb, 'uid'), 40489); if mutiple value is in array userdb
 
-        $keyPLM = array_search(RolesTitle::role_permissionLevelManagement, array_column($jsonData, 'title')); //Permission Level Management
-        $keyCUM = array_search(RolesTitle::role_contactUs, array_column($jsonData, 'title')); //Contact Us Management
-        if (!is_null($keyPLM)) {
+        $indexPLM = array_search(RolesTitle::role_permissionLevelManagement, array_column($jsonData, 'title')); //Permission Level Management
+        $indexCUM = array_search(RolesTitle::role_contactUs, array_column($jsonData, 'title')); //Contact Us Management
+
+        if (array_key_exists($indexPLM, $jsonData)) {
             $newMenu = ["id" => 101, "parentId" => 1, "title" => "menu_permission_level_management", "url" => "/admin/permission-level-management.html"];
             $menuArray = self::addMenu($menuArray, $newMenu);
         }
-        if (!is_null($keyCUM)) {
+        if (array_key_exists($indexCUM, $jsonData)) {
             $newMenu = ["id" => 102, "parentId" => 1, "title" => "menu_contact_us", "url" => "/admin/contact-us.html"];
             $menuArray = self::addMenu($menuArray, $newMenu);
         }
-        if (!is_null($keyPLM)) {
+        if (array_key_exists($indexPLM, $jsonData)) {
             $newMenu = ["id" => 201, "parentId" => 2, "title" => "menu_permission_level_management", "url" => "/admin/permission-level-management.html"];
             $menuArray = self::addMenu($menuArray, $newMenu);
         }
-        if (!is_null($keyCUM)) {
+        if (array_key_exists($indexCUM, $jsonData)) {
             $newMenu = ["id" => 202, "parentId" => 2, "title" => "menu_contact_us", "url" => "/admin/contact-us.html"];
             $menuArray = self::addMenu($menuArray, $newMenu);
         }
