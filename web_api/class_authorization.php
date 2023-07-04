@@ -24,7 +24,6 @@ class Authorization
         $iv = $GLOBALS["iniConfig"]["encrypt-iv"];
         $authToken = str_replace("CMS ", "", $authToken);
         $decryptedToken = openssl_decrypt($authToken,$cipher,$key,10,$iv);
-
         if (str_replace("\\", "", $authToken) == str_replace("\\", "", $sessionToken)) {
             $isAuthorized = true;
             $userData = explode(":", $decryptedToken);
