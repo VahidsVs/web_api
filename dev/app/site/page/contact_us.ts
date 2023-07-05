@@ -168,7 +168,7 @@ class CmsContactUs extends LitElement {
                 <div class="col-lg-6 wow fadeIn" data-wow-delay=".3s">
                     <div class="p-5 h-100 rounded contact-map">
                         <iframe class="rounded w-100 h-100" 
-                        src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d1865.4046273627896!2d15.679625945352528!3d47.111188072339104!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNDfCsDA2JzQwLjciTiAxNcKwNDAnNTAuOSJF!5e0!3m2!1sen!2s!4v1688579683297!5m2!1sen!2s"
+                        src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d2715.3758315622863!2d15.6808056!3d47.111305599999994!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNDfCsDA2JzQwLjciTiAxNcKwNDAnNTAuOSJF!5e0!3m2!1sen!2s!4v1688572594976!5m2!1sen!2s"
                         style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
                 </div>
