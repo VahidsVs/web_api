@@ -22,6 +22,7 @@ module.exports = {
         admin_index: './admin/page/index.ts',
         admin_permission_level_management: './admin/page/permission_level_management.ts',
         admin_contact_us: './admin/page/contact_us.ts',
+        admin_post: './admin/page/post.ts',
 
         admin: [
             "./admin_mainjs.js",

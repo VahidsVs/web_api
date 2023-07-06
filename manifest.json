@@ -1,0 +1,12 @@
+{
+    "dir": "ltr",
+    "name": "Mega Tech App",
+    "short_name": "MegaTechApp",
+    "scope": "/",
+    "id": "megatechapp",
+    "start_url": "/index.html",
+    "display": "fullscreen",
+    "orientation": "portrait",
+    "theme_color": "#fff",
+    "background_color": "#fff"
+  }
