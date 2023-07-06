@@ -1,14 +1,11 @@
 <?php
 include_once("../../model/class_users.php");
-include_once("../../class_authorization.php");
-include_once("../../class_captcha.php");
 
 $GLOBALS["iniConfig"] = parse_ini_file("../../config.ini");
 
 class User
 {
 	private $accessCodes;
-	private $accessCaptcha;
 	private $accessUsers;
 	private $pk_user;
 	private $username;
@@ -22,7 +19,6 @@ class User
 	function __construct($action, $parameters, $orderBy = null, $limit = null)
 	{
 		$this->accessUsers = new Users();
-		$this->accessCaptcha = new Captcha();
 		if ($action == "selectByUsernameAndPassword")
 			self::selectByUsernameAndPassword($action, $parameters, $orderBy, $limit);
 		if ($action == "insert")

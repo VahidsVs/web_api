@@ -1,12 +1,10 @@
 <?php
 include_once("../../interface/class_user_in_group.php");
-
 $GLOBALS["iniConfig"] = parse_ini_file("../../config.ini");
 class Authorization
 {
     function __construct()
     {
-
 
     }
     function createRandomKey()

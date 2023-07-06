@@ -4,7 +4,6 @@ include_once("../../class_roles_title.php");
 
 class Menu
 {
-
     public function getParentMenu()
     {
         $parentMenu[] = ["id" => 1, "parentId" => null, "title" => "menu_management", "url" => "#"];
@@ -20,13 +19,7 @@ class Menu
             $index = array_search($newMenu["parentId"], array_column($listMenu, 'id'));
 
             array_key_exists($index, $listMenu) && $newMenu["parentId"] == $listMenu[$index]["id"] ? $existedParentMenu = $listMenu[$index] : $existedParentMenu = null;
-            //$existedParentMenu=null;
-            // foreach ($listMenu as $value) {
-            //     if ($value["id"] == $newMenu["parentId"]) {
-            //         $existedParentMenu = $value;
-            //         break;
-            //     }
-            // }
+
             if (is_null($existedParentMenu)) {
                 $index = array_search($newMenu["parentId"], array_column(self::getParentMenu(), 'id'));
                 $listMenu = self::addMenu($listMenu, self::getParentMenu()[$index]);
@@ -67,6 +60,14 @@ class Menu
         return $menuArray;
     }
 }
+            //$existedParentMenu=null;
+            // foreach ($listMenu as $value) {
+            //     if ($value["id"] == $newMenu["parentId"]) {
+            //         $existedParentMenu = $value;
+            //         break;
+            //     }
+            // }
+
 // foreach (self::getParentMenu() as $value) {
 //     if ($value["id"] == $newMenu["parentId"]) {
 //         $listMenu = self::addMenu($listMenu, $value);
