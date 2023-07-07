@@ -1,5 +1,6 @@
 <?php
 include_once("../../model/class_users.php");
+include_once("../../model/class_users.php");
 
 $GLOBALS["iniConfig"] = parse_ini_file("../../config.ini");
 
