@@ -62,6 +62,7 @@ require('@progress/kendo-ui/js/kendo.grid.js');
 require('@progress/kendo-ui/js/kendo.multiselect.js');
 require('@progress/kendo-ui/js/kendo.combobox.js');
 require('@progress/kendo-ui/js/kendo.tooltip.js');
+require('@progress/kendo-ui/js/kendo.editor.js');
 if(lcid == 'fa') {
     require('@progress/kendo-ui/js/messages/kendo.messages.fa-IR.js');
 }

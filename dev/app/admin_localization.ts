@@ -24,11 +24,13 @@
             array.push({ Key: 'menu_permission_level_management', Translate: "مدیریت سطوح دسترسی" });
             array.push({ Key: 'menu_contact_us', Translate: "ارتباط با ما" });
             array.push({ Key: 'menu_admin_dashboard', Translate: "داشبورد" });
+            array.push({ Key: 'menu_post_management', Translate: "مدیریت پست ها" });
             
             array.push({ Key: 'role_contact_us', Translate: "مدیریت ارتباط با ما" });
             array.push({ Key: 'role_permission_level_management', Translate: "مدیریت سطوح دسترسی" });
             array.push({ Key: 'role_slideshow_management', Translate: "مدیریت اسلایدشو" });
             array.push({ Key: 'role_advertisement_management', Translate: "مدیریت تبلیغات" });
+            array.push({ Key: 'role_post_management', Translate: "مدیریت پست ها" });
             
             array.push({ Key: 'tab_title_groups', Translate: "گروه ها" });
             array.push({ Key: 'tab_title_details', Translate: "جزئیات" });
@@ -36,6 +38,7 @@
             array.push({ Key: 'tab_title_groupusers', Translate: "اعضای گروه" });
             array.push({ Key: 'tab_title_allusers', Translate: "کل اعضا" });
             array.push({ Key: 'tab_title_messages', Translate: "پیام ها" });
+            array.push({ Key: 'tab_title_list', Translate: "لیست" });
 
             array.push({ Key: 'label_contains', Translate: "شامل باشد با" });
             array.push({ Key: 'label_doesnotcontain', Translate: "شامل نباشد با" });
@@ -98,11 +101,13 @@
             array.push({ Key: 'menu_permission_level_management', Translate: "Permission Level Management" });
             array.push({ Key: 'menu_contact_us', Translate: "Contact Us" });
             array.push({ Key: 'menu_admin_dashboard', Translate: "Dashboard" });
+            array.push({ Key: 'menu_post_management', Translate: "Post Management" });
             
             array.push({ Key: 'role_contact_us', Translate: "Contact Us Management" });
             array.push({ Key: 'role_permission_level_management', Translate: "Permission Level Management" });
             array.push({ Key: 'role_slideshow_management', Translate: "Slideshow Management" });
             array.push({ Key: 'role_advertisement_management', Translate: "Advertisement Management" });
+            array.push({ Key: 'role_post_management', Translate: "Post Management" });
             
             array.push({ Key: 'tab_title_groups', Translate: "Groups" });
             array.push({ Key: 'tab_title_details', Translate: "Details" });
@@ -110,6 +115,7 @@
             array.push({ Key: 'tab_title_groupusers', Translate: "Group Users" });
             array.push({ Key: 'tab_title_allusers', Translate: "All Users" });
             array.push({ Key: 'tab_title_messages', Translate: "Messages" });
+            array.push({ Key: 'tab_title_list', Translate: "List" });
 
             array.push({ Key: 'label_contains', Translate: "contains" });
             array.push({ Key: 'label_doesnotcontain', Translate: "does not contain" });
