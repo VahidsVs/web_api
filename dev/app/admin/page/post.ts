@@ -104,7 +104,7 @@ class CmsPost extends LitElement {
         let dataSource = new kendo.data.DataSource({
             transport: {
                 read: (e) => {
-                    GetData("permission_level_management/select_group_role.php", null, "#tab1-pane")
+                    GetData("post/select_post_admin.php", null, "#tab1-pane")
                         .then(data => {
                             e.success(data);
                         })
@@ -218,6 +218,125 @@ class CmsPost extends LitElement {
                 },
                 {
                     field: "title",
+                    title: getTranslate('label_title'),
+                    width: 400,
+                    groupable: false,
+                    headerAttributes: { style: "white-space: normal" },
+                    filterable: {
+                        operators: {
+                            string: {
+                                contains: getTranslate("label_contains"),
+                                doesnotcontain: getTranslate("label_doesnotcontain"),
+                                eq: getTranslate("label_equal"),
+                                neq: getTranslate("label_notequal"),
+                            }
+                        }
+                    },
+                },
+                {
+                    field: "slug",
+                    title: getTranslate('label_title'),
+                    width: 400,
+                    groupable: false,
+                    headerAttributes: { style: "white-space: normal" },
+                    filterable: {
+                        operators: {
+                            string: {
+                                contains: getTranslate("label_contains"),
+                                doesnotcontain: getTranslate("label_doesnotcontain"),
+                                eq: getTranslate("label_equal"),
+                                neq: getTranslate("label_notequal"),
+                            }
+                        }
+                    },
+                },
+                {
+                    field: "cat_title",
+                    title: getTranslate('label_title'),
+                    width: 400,
+                    groupable: false,
+                    headerAttributes: { style: "white-space: normal" },
+                    filterable: {
+                        operators: {
+                            string: {
+                                contains: getTranslate("label_contains"),
+                                doesnotcontain: getTranslate("label_doesnotcontain"),
+                                eq: getTranslate("label_equal"),
+                                neq: getTranslate("label_notequal"),
+                            }
+                        }
+                    },
+                },
+                {
+                    field: "pac_title",
+                    title: getTranslate('label_title'),
+                    width: 400,
+                    groupable: false,
+                    headerAttributes: { style: "white-space: normal" },
+                    filterable: {
+                        operators: {
+                            string: {
+                                contains: getTranslate("label_contains"),
+                                doesnotcontain: getTranslate("label_doesnotcontain"),
+                                eq: getTranslate("label_equal"),
+                                neq: getTranslate("label_notequal"),
+                            }
+                        }
+                    },
+                },
+                {
+                    field: "created_at",
+                    title: getTranslate('label_title'),
+                    width: 400,
+                    groupable: false,
+                    headerAttributes: { style: "white-space: normal" },
+                    filterable: {
+                        operators: {
+                            string: {
+                                contains: getTranslate("label_contains"),
+                                doesnotcontain: getTranslate("label_doesnotcontain"),
+                                eq: getTranslate("label_equal"),
+                                neq: getTranslate("label_notequal"),
+                            }
+                        }
+                    },
+                },
+                {
+                    field: "updated_at",
+                    title: getTranslate('label_title'),
+                    width: 400,
+                    groupable: false,
+                    headerAttributes: { style: "white-space: normal" },
+                    filterable: {
+                        operators: {
+                            string: {
+                                contains: getTranslate("label_contains"),
+                                doesnotcontain: getTranslate("label_doesnotcontain"),
+                                eq: getTranslate("label_equal"),
+                                neq: getTranslate("label_notequal"),
+                            }
+                        }
+                    },
+                },
+                {
+                    field: "username",
+                    title: getTranslate('label_title'),
+                    width: 400,
+                    groupable: false,
+                    headerAttributes: { style: "white-space: normal" },
+                    filterable: {
+                        operators: {
+                            string: {
+                                contains: getTranslate("label_contains"),
+                                doesnotcontain: getTranslate("label_doesnotcontain"),
+                                eq: getTranslate("label_equal"),
+                                neq: getTranslate("label_notequal"),
+                            }
+                        }
+                    },
+                },
+                {
+                    field: "status",
                     title: getTranslate('label_title'),
                     width: 400,
                     groupable: false,
