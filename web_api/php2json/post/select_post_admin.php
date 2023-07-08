@@ -1,5 +1,5 @@
 <?php
-include_once("../../interface/class_user.php");
+include_once("../../interface/class_post.php");
 include_once("../../class_authorization.php");
 include_once("../../class_roles_title.php");
 
@@ -12,10 +12,10 @@ session_start();
 $accessAuthorization = new Authorization();
 $isAuthorized["auth"] = $isAuthorized["aa"] = false;
 if (array_key_exists("Authorization", $headers) && array_key_exists("token", $_SESSION) && array_key_exists("key", $_SESSION))
-    $isAuthorized = $accessAuthorization->isAuthorized($headers["Authorization"], $_SESSION["token"], $_SESSION["key"], RolesTitle::role_permissionLevelManagement);
+    $isAuthorized = $accessAuthorization->isAuthorized($headers["Authorization"], $_SESSION["token"], $_SESSION["key"], RolesTitle::role_postManagement);
 
 if ($isAuthorized["auth"] && $isAuthorized["aa"]) {
-    $accessClass = new User("selectAll", $_GET);
+    $accessClass = new Post("select", $_GET);
     http_response_code($accessClass->getHttpResponseCode());
     echo json_encode($accessClass->getJsonData());
 } else {
@@ -23,5 +23,6 @@ if ($isAuthorized["auth"] && $isAuthorized["aa"]) {
     $unathorizedMsg = ["message" => "Unauthorized access!"];
     echo json_encode($unathorizedMsg);
 }
+
 
 ?>
