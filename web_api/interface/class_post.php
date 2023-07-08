@@ -1,6 +1,5 @@
 <?php
-
-include_once("../../model/class_group_roles.php");
+include_once("../../model/class_posts.php");
 include_once("../../class_codes.php");
 
 $GLOBALS["iniConfig"] = parse_ini_file("../../config.ini");
@@ -14,8 +13,6 @@ class Post
 	function __construct($action, $parameters, $orderBy = null, $limit = null)
 	{
 		$this->accessPosts = new Posts();
-		if ($action == "selectAll")
-			self::select($action, $parameters, $orderBy, $limit);
 		if ($action == "select")
 			self::select($action, $parameters, $orderBy, $limit);
 		if ($action == "insert")

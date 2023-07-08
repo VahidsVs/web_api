@@ -30,9 +30,7 @@ if(!in_array($fileType,["jpg","jpeg","png"])){
 if ($isUploadOk) {
 // if everything is ok, try to upload file
   if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $renamedFileName)) {
-$headers = getallheaders();
-$jsonData=["token"=>$headers["Authorization"]];
-http_response_code(200);
+
 echo json_encode($jsonData);
   } else {
     echo "Sorry, there was an error uploading your file.";
