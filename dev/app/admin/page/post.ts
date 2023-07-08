@@ -311,7 +311,7 @@ class CmsPost extends LitElement {
                     <div class="col-md-6">
                         <div class="form-group">
                             <label data-bind="text: translate.label_title" class="form-label"></label><span class="invalid">*</span>
-                            <input type="text" class="form-control" data-bind="value: groups.title">
+                            <input type="text" class="form-control" data-bind="value: data.title">
                             <span class="invalid" data-bind="text: errors.title"></span>
                         </div>
                     </div>

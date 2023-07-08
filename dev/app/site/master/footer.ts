@@ -72,6 +72,9 @@ class CmsFooter extends LitElement {
                     <a href="/impressum.html" class="mb-2 text-white">
                         <i class="fas fa-angle-right text-secondary me-2"></i>Impressum
                     </a>
+                    <a href="/login.html" class="mb-2 text-white">
+                        <i class="fas fa-angle-right text-secondary me-2"></i>Login
+                    </a>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6">
