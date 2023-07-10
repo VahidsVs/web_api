@@ -25,6 +25,8 @@ class CmsAboutUs extends LitElement {
         super();
 
         this.lcid = getLanguage();
+
+        document.title = "About Us";
     }
 
     firstUpdated(changedProperties: any) {

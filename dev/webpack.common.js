@@ -3,96 +3,102 @@ const webpack = require('webpack');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const RemoveEmptyScriptsPlugin = require("webpack-remove-empty-scripts");
 const TerserPlugin = require('terser-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+let sitePages = [
+    'index',
+    'my_home',
+    'login',
+    'profile',
+    'register',
+    'contact_us',
+    'about_us',
+    'impressum',
+    'access_denied',
+];
+
+let adminPages = [
+    'test',
+
+    'index',
+    'permission_level_management',
+    'contact_us',
+    'post',
+];
 
 module.exports = {
     context: path.join(__dirname, 'app'),
-    entry: {
-
-        //<admin>
-        admin_template: [
-            './admin/notification.ts',
-            
-            './admin/master/controller.ts',
-            './admin/master/header.ts',
-            './admin/master/footer.ts',
-        ],
-
-        admin_test: './admin/page/test.ts',
-
-        admin_index: './admin/page/index.ts',
-        admin_permission_level_management: './admin/page/permission_level_management.ts',
-        admin_contact_us: './admin/page/contact_us.ts',
-        admin_post: './admin/page/post.ts',
-
-        admin: [
-            "./admin_mainjs.js",
-        ],
-        admin_rtl: [
-            "../node_modules/bootstrap/dist/css/bootstrap.rtl.css",
-            "../content/font-awesome.css",
-            "../content/admin_rtl.css",
-            "../node_modules/@majidh1/jalalidatepicker/dist/jalaliDatepicker.min.css",
-            "../node_modules/@progress/kendo-ui/css/web/classic-main.css",
-        ],
-        admin_ltr: [
-            "../node_modules/bootstrap/dist/css/bootstrap.css",
-            "../content/font-awesome.css",
-            "../content/admin_ltr.css",
-            "../node_modules/@majidh1/jalalidatepicker/dist/jalaliDatepicker.min.css",
-            "../node_modules/@progress/kendo-ui/css/web/classic-main.css",
-        ],
-        //</admin>
-
-        //<site>
-        template: [
-            './admin/notification.ts',
-            
-            './site/master/controller.ts',
-            './site/master/header.ts',
-            './site/master/footer.ts',
-        ],
-        access_denied_template: [
-            './admin/notification.ts',
-            
-            './site/master/controller.ts',
-        ],
-        
-        access_denied: './site/page/access_denied.ts',
-
-        index: './site/page/index.ts',
-        my_home: './site/page/my_home.ts',
-        login: './site/page/login.ts',
-        profile: './site/page/profile.ts',
-        register: './site/page/register.ts',
-        contact_us: './site/page/contact_us.ts',
-        about_us: './site/page/about_us.ts',
-        impressum: './site/page/impressum.ts',
-
-        site: [
-            "./site_mainjs.js",
-        ],
-        // site_rtl: [
-        //     "../node_modules/bootstrap/dist/css/bootstrap.rtl.css",
-        //     "../content/font-awesome.css",
-        //     "../content/site_rtl.css",
-        //     "../node_modules/@majidh1/jalalidatepicker/dist/jalaliDatepicker.min.css",
-        // ],
-        site_ltr: [
-            "../content/bootstrap.min.css",
-            "../content/lib/animate/animate.min.css",
-            "../content/lib/owlcarousel/assets/owl.carousel.min.css",
-            "../content/site.css",
-        ],
-        //</site>
+    entry: sitePages.reduce((config, page) => {
+        config[page] = `./site/page/${page}.ts`;
+        return config;
     },
-    optimization: {
-        minimizer: [new TerserPlugin({
-            extractComments: false,
-        })],
-    },
+        adminPages.reduce((config, page) => {
+            config['admin_' + page] = `./admin/page/${page}.ts`;
+            return config;
+        },
+            {
+                //<admin>
+                admin_template: [
+                    './admin/notification.ts',
+
+                    './admin/master/controller.ts',
+                    './admin/master/header.ts',
+                    './admin/master/footer.ts',
+                ],
+
+                admin: [
+                    "./admin_mainjs.js",
+                ],
+                admin_rtl: [
+                    "../node_modules/bootstrap/dist/css/bootstrap.rtl.css",
+                    "../content/font-awesome.css",
+                    "../content/admin_rtl.css",
+                    "../node_modules/@majidh1/jalalidatepicker/dist/jalaliDatepicker.min.css",
+                    "../node_modules/@progress/kendo-ui/css/web/classic-main.css",
+                ],
+                admin_ltr: [
+                    "../node_modules/bootstrap/dist/css/bootstrap.css",
+                    "../content/font-awesome.css",
+                    "../content/admin_ltr.css",
+                    "../node_modules/@majidh1/jalalidatepicker/dist/jalaliDatepicker.min.css",
+                    "../node_modules/@progress/kendo-ui/css/web/classic-main.css",
+                ],
+                //</admin>
+
+                //<site>
+                template: [
+                    './admin/notification.ts',
+
+                    './site/master/controller.ts',
+                    './site/master/header.ts',
+                    './site/master/footer.ts',
+                ],
+                access_denied_template: [
+                    './admin/notification.ts',
+
+                    './site/master/controller.ts',
+                ],
+
+                site: [
+                    "./site_mainjs.js",
+                ],
+                // site_rtl: [
+                //     "../node_modules/bootstrap/dist/css/bootstrap.rtl.css",
+                //     "../content/font-awesome.css",
+                //     "../content/site_rtl.css",
+                //     "../node_modules/@majidh1/jalalidatepicker/dist/jalaliDatepicker.min.css",
+                // ],
+                site_ltr: [
+                    "../content/bootstrap.min.css",
+                    "../content/lib/animate/animate.min.css",
+                    "../content/lib/owlcarousel/assets/owl.carousel.min.css",
+                    "../content/site.css",
+                ],
+                //</site>
+            })),
     output: {
         path: path.join(__dirname, '../bundle'),
-        filename: '[name].bundle.js',
+        filename: '[name].bundle.[contenthash].js',
         clean: true,
     },
     plugins: [
@@ -100,7 +106,44 @@ module.exports = {
         new MiniCssExtractPlugin({
             filename: '[name].css',
         }),
-    ],
+    ].concat(
+        sitePages.map(
+            (page) =>
+                new HtmlWebpackPlugin({
+                    inject: 'body',
+                    template: path.join(__dirname, 'app/site_template.ejs'),
+                    filename: `../${page}.html`,
+                    chunksSortMode: 'manual',
+                    chunks: ['site', 'template', `${page}`],
+                    templateParameters: {
+                        'mainCss': '<link id="mainCss" href="/bundle/site_ltr.css" type="text/css" rel="stylesheet" />',
+                        'controller': `<cms-controller ComponentName="cms-${page.replace("_", "")}"></cms-controller>`,
+                    }
+                }),
+        ),
+        // <- here goes array(s) of other plugins
+    ).concat(
+        adminPages.map(
+            (page) =>
+                new HtmlWebpackPlugin({
+                    inject: 'body',
+                    template: path.join(__dirname, 'app/admin_template.ejs'),
+                    filename: `../admin/${page}.html`,
+                    chunksSortMode: 'manual',
+                    chunks: ['admin', 'admin_template', `admin_${page}`],
+                    templateParameters: {
+                        'mainCss': '<link id="mainCss" href="/bundle/admin_ltr.css" type="text/css" rel="stylesheet" />',
+                        'controller': `<cms-controller ComponentName="cms-${page.replace("_", "")}"></cms-controller>`,
+                    }
+                }),
+        ),
+        // <- here goes array(s) of other plugins
+    ),
+    optimization: {
+        minimizer: [new TerserPlugin({
+            extractComments: false,
+        })],
+    },
     module: {
         rules: [
             {

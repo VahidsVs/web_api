@@ -76,7 +76,7 @@ class CmsLogin extends LitElement {
         var myToken = getCookie("token");
         var myTokenStorage = window.localStorage.getItem("CMSToken");
         if (myToken !== '' || myTokenStorage !== null) {
-            window.location.href = '/my-home.html';
+            window.location.href = '/my_home.html';
         }
 
         ko.applyBindings(this.Model, document.getElementById("pnlLogin"));
@@ -116,7 +116,7 @@ class CmsLogin extends LitElement {
                     }
 
                     document.cookie = "token=" + data.token + "; path=/;SameSite=None;Secure";
-                    window.location.href = '/my-home.html';
+                    window.location.href = '/my_home.html';
                 }
                 this.Model.setErrors(data.errors);
 

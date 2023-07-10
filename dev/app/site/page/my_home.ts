@@ -25,6 +25,8 @@ class CmsMyHome extends LitElement {
         super();
 
         this.lcid = getLanguage();
+
+        document.title = "My Home";
     }
 
     firstUpdated(changedProperties: any) {

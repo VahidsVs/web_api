@@ -25,6 +25,8 @@ class CmsImpressum extends LitElement {
         super();
 
         this.lcid = getLanguage();
+
+        document.title = "Impressum";
     }
 
     firstUpdated(changedProperties: any) {

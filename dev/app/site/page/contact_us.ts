@@ -75,6 +75,8 @@ class CmsContactUs extends LitElement {
         super();
 
         this.lcid = getLanguage();
+
+        document.title = "Contact Us";
     }
 
     firstUpdated(changedProperties: any) {

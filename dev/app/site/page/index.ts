@@ -25,6 +25,8 @@ class CmsIndex extends LitElement {
         super();
 
         this.lcid = getLanguage();
+
+        document.title = "Home";
     }
 
     firstUpdated(changedProperties: any) {
