@@ -532,7 +532,7 @@ class CmsPost extends LitElement {
     Submit_Click() {
 
         if (this.Model.data.pk_post() == null) {
-            PostDataForm("permission_level_management/insert_group_role.php", ko.toJS(this.Model.data), "#tab2-pane")
+            PostDataForm("post/insert_post_admin.php", ko.toJS(this.Model.data), "#tab2-pane")
                 .then(data => {
                     if (data.errors === undefined && data.message === undefined) {
                         this.ClearScr();
@@ -543,7 +543,7 @@ class CmsPost extends LitElement {
                 })
         }
         else {
-            PostData("permission_level_management/update_group_role.php", ko.toJSON({ pk: this.Model.data.pk_post(), item: this.Model.data }), "#tab2-pane")
+            PostData("post/update_post_admin.php", ko.toJSON({ pk: this.Model.data.pk_post(), item: this.Model.data }), "#tab2-pane")
                 .then(data => {
                     if (data.errors === undefined && data.message === undefined) {
                         this.ClearScr();
