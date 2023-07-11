@@ -57,9 +57,25 @@ class CmsPost extends LitElement {
         },
         errors: {
             title: ko.observable(),
+            slug: ko.observable(),
+            fk_category: ko.observable(),
+            fk_parent_category: ko.observable(),
+            summary: ko.observable(),
+            content: ko.observable(),
+            meta_keyword: ko.observable(),
+            meta_description: ko.observable(),
+            status: ko.observable(),
         },
         setErrors: function (errors: any) {
-            this.errors.title(errors ? errors.title : undefined);
+            this.errors.title(errors ? getTranslate(errors.title) : undefined);
+            this.errors.slug(errors ? getTranslate(errors.slug) : undefined);
+            this.errors.fk_category(errors ? getTranslate(errors.fk_category) : undefined);
+            this.errors.fk_parent_category(errors ? getTranslate(errors.fk_parent_category) : undefined);
+            this.errors.summary(errors ? getTranslate(errors.summary) : undefined);
+            this.errors.content(errors ? getTranslate(errors.content) : undefined);
+            this.errors.meta_keyword(errors ? getTranslate(errors.meta_keyword) : undefined);
+            this.errors.meta_description(errors ? getTranslate(errors.meta_description) : undefined);
+            this.errors.status(errors ? getTranslate(errors.status) : undefined);
         }
     };
 
@@ -633,7 +649,7 @@ class CmsPost extends LitElement {
                     </div>
                     <div class="col-md-12 p-2">
                         <div class="form-group">
-                            <label data-bind="text: translate.label_summary" class="form-label"></label>
+                            <label data-bind="text: translate.label_summary" class="form-label"></label> <span class="invalid">*</span>
                             <textarea class="form-control" style="width:100%;" data-bind="value: data.summary"></textarea>
                             <span class="invalid" data-bind="text: errors.summary"></span>
                         </div>
@@ -654,7 +670,7 @@ class CmsPost extends LitElement {
                     </div>
                     <div class="col-md-6 p-2">
                         <div class="form-group">
-                            <label data-bind="text: translate.label_status" class="form-label"></label>
+                            <label data-bind="text: translate.label_status" class="form-label"></label> <span class="invalid">*</span>
                             <input type="text" id="cmbStatus" class="form-control" data-bind="value: data.status" style="width:100%;">
                             <span class="invalid" data-bind="text: errors.status"></span>
                         </div>
