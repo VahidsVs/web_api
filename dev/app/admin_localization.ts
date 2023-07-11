@@ -56,6 +56,16 @@
             array.push({ Key: 'label_email', Translate: "ایمیل" });
             array.push({ Key: 'label_subject', Translate: "موضوع" });
             array.push({ Key: 'label_message', Translate: "پیام" });
+            array.push({ Key: 'label_slug', Translate: "Slug" });
+            array.push({ Key: 'label_category', Translate: "دسته بندی" });
+            array.push({ Key: 'label_parent_category', Translate: "نوع دسته بندی" });
+            array.push({ Key: 'label_created_at', Translate: "تاریخ ثبت" });
+            array.push({ Key: 'label_updated_at', Translate: "تاریخ ویرایش" });
+            array.push({ Key: 'label_status', Translate: "وضعیت" });
+            array.push({ Key: 'label_summary', Translate: "خلاصه" });
+            array.push({ Key: 'label_meta_keyword', Translate: "کلمات کلیدی متا" });
+            array.push({ Key: 'label_meta_description', Translate: "توضیحات متا" });
+            array.push({ Key: 'label_content', Translate: "محتوا" });
             
             array.push({ Key: 'btn_submit', Translate: "ثبت" });
             array.push({ Key: 'btn_cancel', Translate: "انصراف" });
@@ -133,6 +143,16 @@
             array.push({ Key: 'label_email', Translate: "Email" });
             array.push({ Key: 'label_subject', Translate: "Subject" });
             array.push({ Key: 'label_message', Translate: "Message" });
+            array.push({ Key: 'label_slug', Translate: "Slug" });
+            array.push({ Key: 'label_category', Translate: "Category" });
+            array.push({ Key: 'label_parent_category', Translate: "Category Type" });
+            array.push({ Key: 'label_created_at', Translate: "Created at" });
+            array.push({ Key: 'label_updated_at', Translate: "Updated at" });
+            array.push({ Key: 'label_status', Translate: "Status" });
+            array.push({ Key: 'label_summary', Translate: "Summary" });
+            array.push({ Key: 'label_meta_keyword', Translate: "Meta Keyword" });
+            array.push({ Key: 'label_meta_description', Translate: "Meta Descripiton" });
+            array.push({ Key: 'label_content', Translate: "Content" });
             
             array.push({ Key: 'btn_submit', Translate: "Submit" });
             array.push({ Key: 'btn_cancel', Translate: "Cancel" });

@@ -28,11 +28,31 @@ class CmsPost extends LitElement {
         data: {
             pk_post: ko.observable(),
             title: ko.observable(),
+            slug: ko.observable(),
+            fk_category: ko.observable(),
+            fk_parent_category: ko.observable(),
+            summary: ko.observable(),
+            content: ko.observable(),
+            meta_keyword: ko.observable(),
+            meta_description: ko.observable(),
+            status: ko.observable(),
         },
         translate: {
             menu_post_management: ko.observable(),
             tab_title_list: ko.observable(),
             tab_title_details: ko.observable(),
+            btn_submit: ko.observable(),
+            btn_new: ko.observable(),
+            btn_cancel: ko.observable(),
+            label_title: ko.observable(),
+            label_slug: ko.observable(),
+            label_category: ko.observable(),
+            label_parent_category: ko.observable(),
+            label_summary: ko.observable(),
+            label_content: ko.observable(),
+            label_meta_keyword: ko.observable(),
+            label_meta_description: ko.observable(),
+            label_status: ko.observable(),
         },
         errors: {
             title: ko.observable(),
@@ -60,6 +80,18 @@ class CmsPost extends LitElement {
         this.Model.translate.menu_post_management(getTranslate('menu_post_management'));
         this.Model.translate.tab_title_list(getTranslate('tab_title_list'));
         this.Model.translate.tab_title_details(getTranslate('tab_title_details'));
+        this.Model.translate.btn_submit(getTranslate('btn_submit'));
+        this.Model.translate.btn_new(getTranslate('btn_new'));
+        this.Model.translate.btn_cancel(getTranslate('btn_cancel'));
+        this.Model.translate.label_title(getTranslate('label_title'));
+        this.Model.translate.label_slug(getTranslate('label_slug'));
+        this.Model.translate.label_category(getTranslate('label_category'));
+        this.Model.translate.label_parent_category(getTranslate('label_parent_category'));
+        this.Model.translate.label_summary(getTranslate('label_summary'));
+        this.Model.translate.label_content(getTranslate('label_content'));
+        this.Model.translate.label_meta_keyword(getTranslate('label_meta_keyword'));
+        this.Model.translate.label_meta_description(getTranslate('label_meta_description'));
+        this.Model.translate.label_status(getTranslate('label_status'));
     }
 
     firstUpdated(changedProperties: any) {
@@ -73,6 +105,10 @@ class CmsPost extends LitElement {
 
         this.FillDataGrid();
         this.InitEditor();
+
+        this.FillDataCmbParentCategory();
+        this.FillDataCmbCategory();
+        this.FillDataCmbStatus();
     }
 
     InitEditor() {
@@ -84,14 +120,134 @@ class CmsPost extends LitElement {
         });
     }
 
-    FillDataGrid() {
-
-        let kendoGrid = $("#grid").data("kendoGrid");
-        if (kendoGrid) {
+    FillDataCmbParentCategory() {
+        let kendoWidget = $("#cmbParentCategory").data("kendoDropDownList");
+        if (kendoWidget) {
             // kendoGrid.destroy();
             // $("#grid").empty();
-            kendoGrid.dataSource.read();
-            kendoGrid.refresh();
+            kendoWidget.dataSource.read();
+            kendoWidget.refresh();
+            return;
+        }
+
+        if (getDirectionFromLanguage(this.lcid) == "rtl") {
+            $("#cmbParentCategory").addClass("k-rtl");
+        } else {
+            $("#cmbParentCategory").addClass("k-ltr");
+        }
+
+        let dataSource = new kendo.data.DataSource({
+            transport: {
+                read: (e) => {
+                    // GetData("post/select_post_admin.php", null, "#cmbParentCategory")
+                    //     .then(data => {
+                            e.success([{pk_category: 1, title: 'title'}]);
+                        // })
+                },
+            },
+        });
+
+        $("#cmbParentCategory").kendoDropDownList({
+            dataSource: dataSource,
+            dataTextField: "title",
+            dataValueField: "pk_parent_category",
+            filter: "contains",
+            cascade: (e) => {
+                var value = e.sender.value();
+
+                this.Model.data.fk_parent_category(value);
+            }
+        });
+    }
+
+    FillDataCmbCategory() {
+        let kendoWidget = $("#cmbCategory").data("kendoDropDownList");
+        if (kendoWidget) {
+            // kendoGrid.destroy();
+            // $("#grid").empty();
+            kendoWidget.dataSource.read();
+            kendoWidget.refresh();
+            return;
+        }
+
+        if (getDirectionFromLanguage(this.lcid) == "rtl") {
+            $("#cmbCategory").addClass("k-rtl");
+        } else {
+            $("#cmbCategory").addClass("k-ltr");
+        }
+
+        let dataSource = new kendo.data.DataSource({
+            transport: {
+                read: (e) => {
+                    // GetData("post/select_post_admin.php", null, "#cmbParentCategory")
+                    //     .then(data => {
+                            e.success([{pk_category: 1, title: 'title'}]);
+                        // })
+                },
+            },
+        });
+
+        $("#cmbCategory").kendoDropDownList({
+            dataSource: dataSource,
+            dataTextField: "title",
+            dataValueField: "pk_category",
+            filter: "contains",
+            cascade: (e) => {
+                var value = e.sender.value();
+
+                this.Model.data.fk_category(value);
+            }
+        });
+    }
+
+    FillDataCmbStatus() {
+        let kendoWidget = $("#cmbStatus").data("kendoDropDownList");
+        if (kendoWidget) {
+            // kendoGrid.destroy();
+            // $("#grid").empty();
+            kendoWidget.dataSource.read();
+            kendoWidget.refresh();
+            return;
+        }
+
+        if (getDirectionFromLanguage(this.lcid) == "rtl") {
+            $("#cmbStatus").addClass("k-rtl");
+        } else {
+            $("#cmbStatus").addClass("k-ltr");
+        }
+
+        let dataSource = new kendo.data.DataSource({
+            transport: {
+                read: (e) => {
+                    e.success([
+                        { pk_status: 'Published', title: 'Published' },
+                        { pk_status: 'Unpublished', title: 'Unpublished' },
+                    ]);
+                },
+            },
+        });
+
+        $("#cmbStatus").kendoDropDownList({
+            dataSource: dataSource,
+            dataTextField: "title",
+            dataValueField: "pk_status",
+            filter: "contains",
+            cascade: (e) => {
+                var value = e.sender.value();
+
+                this.Model.data.status(value);
+            }
+        });
+    }
+
+    FillDataGrid() {
+
+        let kendoWidget = $("#grid").data("kendoGrid");
+        if (kendoWidget) {
+            // kendoGrid.destroy();
+            // $("#grid").empty();
+            kendoWidget.dataSource.read();
+            kendoWidget.refresh();
             return;
         }
 
@@ -148,7 +304,7 @@ class CmsPost extends LitElement {
             },
             pageable: {
                 pageSizes: [10, 50, 100, 200],
-            }, 
+            },
             dataBinding: function () {
                 record = (this.dataSource.page() - 1) * this.dataSource.pageSize();
             },
@@ -180,7 +336,15 @@ class CmsPost extends LitElement {
                             //@ts-ignore
                             $("#myTab button").eq(1).show().tab('show');
 
-                            
+                            this.Model.data.pk_post(dataItem.pk_post);
+                            this.Model.data.title(dataItem.pk_post);
+                            this.Model.data.slug(dataItem.pk_post);
+                            this.Model.data.fk_category(dataItem.pk_post);
+                            this.Model.data.summary(dataItem.pk_post);
+                            this.Model.data.content(dataItem.pk_post);
+                            this.Model.data.meta_keyword(dataItem.pk_post);
+                            this.Model.data.meta_description(dataItem.pk_post);
+                            this.Model.data.status(dataItem.pk_post);
                         }
                     }
                 },
@@ -195,7 +359,7 @@ class CmsPost extends LitElement {
 
                             let row = $(e.currentTarget).closest("tr")[0];
                             var dataItem: any = $("#grid").data("kendoGrid").dataItem(row);
-                            
+
                             //@ts-ignore
                             $("<div></div>").confirm({
                                 okText: getTranslate('label_yes'),
@@ -219,7 +383,7 @@ class CmsPost extends LitElement {
                 {
                     field: "title",
                     title: getTranslate('label_title'),
-                    width: 400,
+                    width: 150,
                     groupable: false,
                     headerAttributes: { style: "white-space: normal" },
                     filterable: {
@@ -235,8 +399,8 @@ class CmsPost extends LitElement {
                 },
                 {
                     field: "slug",
-                    title: getTranslate('label_title'),
-                    width: 400,
+                    title: getTranslate('label_slug'),
+                    width: 150,
                     groupable: false,
                     headerAttributes: { style: "white-space: normal" },
                     filterable: {
@@ -252,8 +416,8 @@ class CmsPost extends LitElement {
                 },
                 {
                     field: "cat_title",
-                    title: getTranslate('label_title'),
-                    width: 400,
+                    title: getTranslate('label_category'),
+                    width: 150,
                     groupable: false,
                     headerAttributes: { style: "white-space: normal" },
                     filterable: {
@@ -269,8 +433,8 @@ class CmsPost extends LitElement {
                 },
                 {
                     field: "pac_title",
-                    title: getTranslate('label_title'),
-                    width: 400,
+                    title: getTranslate('label_parent_category'),
+                    width: 150,
                     groupable: false,
                     headerAttributes: { style: "white-space: normal" },
                     filterable: {
@@ -286,8 +450,8 @@ class CmsPost extends LitElement {
                 },
                 {
                     field: "created_at",
-                    title: getTranslate('label_title'),
-                    width: 400,
+                    title: getTranslate('label_created_at'),
+                    width: 150,
                     groupable: false,
                     headerAttributes: { style: "white-space: normal" },
                     filterable: {
@@ -303,8 +467,8 @@ class CmsPost extends LitElement {
                 },
                 {
                     field: "updated_at",
-                    title: getTranslate('label_title'),
-                    width: 400,
+                    title: getTranslate('label_updated_at'),
+                    width: 150,
                     groupable: false,
                     headerAttributes: { style: "white-space: normal" },
                     filterable: {
@@ -320,8 +484,8 @@ class CmsPost extends LitElement {
                 },
                 {
                     field: "username",
-                    title: getTranslate('label_title'),
-                    width: 400,
+                    title: getTranslate('label_username'),
+                    width: 150,
                     groupable: false,
                     headerAttributes: { style: "white-space: normal" },
                     filterable: {
@@ -337,8 +501,8 @@ class CmsPost extends LitElement {
                 },
                 {
                     field: "status",
-                    title: getTranslate('label_title'),
-                    width: 400,
+                    title: getTranslate('label_status'),
+                    width: 150,
                     groupable: false,
                     headerAttributes: { style: "white-space: normal" },
                     filterable: {
@@ -404,7 +568,7 @@ class CmsPost extends LitElement {
     <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item" role="presentation">
             <button class="nav-link active" data-bs-target="#tab1-pane" data-bs-toggle="tab">
-                <span data-bind="text: translate.tab_title_groups"></span>
+                <span data-bind="text: translate.tab_title_list"></span>
             </button>
         </li>
         <li class="nav-item" role="presentation">
@@ -427,18 +591,67 @@ class CmsPost extends LitElement {
         <div class="tab-pane fade" id="tab2-pane">
             <div class="container-fluid p-2">
                 <div class="row p-2">
-                    <div class="col-md-6">
+                    <div class="col-md-6 p-2">
                         <div class="form-group">
-                            <label data-bind="text: translate.label_title" class="form-label"></label><span class="invalid">*</span>
+                            <label data-bind="text: translate.label_title" class="form-label"></label> <span class="invalid">*</span>
                             <input type="text" class="form-control" data-bind="value: data.title">
                             <span class="invalid" data-bind="text: errors.title"></span>
                         </div>
                     </div>
-                    <div class="col-md-12">
+                    <div class="col-md-6 p-2">
                         <div class="form-group">
-                            <label data-bind="text: translate.label_title" class="form-label"></label><span class="invalid">*</span>
-                            <textarea id="editor" rows="10" cols="30" style="width:100%; height:450px"></textarea>
-                            <span class="invalid" data-bind="text: errors.title"></span>
+                            <label data-bind="text: translate.label_slug" class="form-label"></label> <span class="invalid">*</span>
+                            <input type="text" class="form-control" data-bind="value: data.slug">
+                            <span class="invalid" data-bind="text: errors.slug"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6 p-2">
+                        <div class="form-group">
+                            <label data-bind="text: translate.label_parent_category" class="form-label"></label> <span class="invalid">*</span>
+                            <input type="text" id="cmbParentCategory" class="form-control" data-bind="value: data.fk_parent_category" style="width: 100%">
+                            <span class="invalid" data-bind="text: errors.fk_parent_category"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6 p-2">
+                        <div class="form-group">
+                            <label data-bind="text: translate.label_category" class="form-label"></label> <span class="invalid">*</span>
+                            <input type="text" id="cmbCategory" class="form-control" data-bind="value: data.fk_category" style="width: 100%">
+                            <span class="invalid" data-bind="text: errors.fk_category"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-12 p-2">
+                        <div class="form-group">
+                            <label data-bind="text: translate.label_summary" class="form-label"></label>
+                            <textarea class="form-control" style="width:100%;" data-bind="value: data.summary"></textarea>
+                            <span class="invalid" data-bind="text: errors.summary"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-12 p-2">
+                        <div class="form-group">
+                            <label data-bind="text: translate.label_meta_keyword" class="form-label"></label>
+                            <input type="text" class="form-control" data-bind="value: data.meta_keyword">
+                            <span class="invalid" data-bind="text: errors.meta_keyword"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-12 p-2">
+                        <div class="form-group">
+                            <label data-bind="text: translate.label_meta_description" class="form-label"></label>
+                            <input type="text" class="form-control" data-bind="value: data.meta_description">
+                            <span class="invalid" data-bind="text: errors.meta_description"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6 p-2">
+                        <div class="form-group">
+                            <label data-bind="text: translate.label_status" class="form-label"></label>
+                            <input type="text" id="cmbStatus" class="form-control" data-bind="value: data.status" style="width:100%;">
+                            <span class="invalid" data-bind="text: errors.status"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-12 p-2">
+                        <div class="form-group">
+                            <label data-bind="text: translate.label_content" class="form-label"></label> <span class="invalid">*</span>
+                            <textarea id="editor" class="form-control" rows="10" cols="30" style="width:100%; height:450px" data-bind="value: data.content"></textarea>
+                            <span class="invalid" data-bind="text: errors.content"></span>
                         </div>
                     </div>
                 </div>

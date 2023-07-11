@@ -27,6 +27,9 @@ let adminPages = [
 ];
 
 module.exports = {
+    cache: {
+        type: 'filesystem',
+    },
     context: path.join(__dirname, 'app'),
     entry: sitePages.reduce((config, page) => {
         config[page] = `./site/page/${page}.ts`;
@@ -140,6 +143,16 @@ module.exports = {
         // <- here goes array(s) of other plugins
     ),
     optimization: {
+        runtimeChunk: 'single',
+        // splitChunks: {
+        //     cacheGroups: {
+        //         vendor: {
+        //             test: /[\\/]node_modules[\\/]/,
+        //             name: 'vendors',
+        //             chunks: 'all',
+        //         },
+        //     },
+        // },
         minimizer: [new TerserPlugin({
             extractComments: false,
         })],
