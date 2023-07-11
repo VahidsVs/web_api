@@ -67,15 +67,15 @@ class CmsPost extends LitElement {
 
         this.Model.data.pk(null);
         this.Model.data.pk_post(null);
-        this.Model.data.title(null);
-        this.Model.data.slug(null);
+        this.Model.data.title("");
+        this.Model.data.slug("");
         this.Model.data.fk_category(null);
         this.Model.data.fk_parent_category(null);
-        this.Model.data.summary(null);
-        this.Model.data.content(null);
-        this.Model.data.meta_keyword(null);
-        this.Model.data.meta_description(null);
-        this.Model.data.status(null);
+        this.Model.data.summary("");
+        this.Model.data.content("");
+        this.Model.data.meta_keyword("");
+        this.Model.data.meta_description("");
+        this.Model.data.status("");
 
         //@ts-ignore
         $("#myTab button").eq(0).show().tab('show');
