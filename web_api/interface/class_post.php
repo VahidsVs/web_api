@@ -31,15 +31,31 @@ class Post
 	}
 	private function insert($action, $parameters)
 	{
-		$message = [""];
-		if (empty($parameters["pk_post"])) {
+		$message = ["","","","",""];
+		if (empty($parameters["title"])) {
 			$message[0] = Codes::msg_isRequired;
+			$this->isDataOK = false;
+		}
+		if (empty($parameters["slug"])) {
+			$message[1] = Codes::msg_isRequired;
+			$this->isDataOK = false;
+		}
+		if (empty($parameters["summary"])) {
+			$message[2] = Codes::msg_isRequired;
+			$this->isDataOK = false;
+		}
+		if (empty($parameters["fkCategory"])) {
+			$message[3] = Codes::msg_isRequired;
+			$this->isDataOK = false;
+		}
+		if (empty($parameters["content"])) {
+			$message[4] = Codes::msg_isRequired;
 			$this->isDataOK = false;
 		}
 
 		if (!$this->isDataOK) {
 			$this->httpResponseCode = 400;
-			$this->jsonData["errors"] = ["title" => $message[0]];
+			$this->jsonData["errors"] = ["title" => $message[0],"slug" => $message[1],"summary" => $message[2],"fkCategory" => $message[3],"content" => $message[4]];
 		}
 
 		if ($this->isDataOK) {

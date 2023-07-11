@@ -36,13 +36,35 @@ class Posts
 		if (array_key_exists("title", $parameters)) {
 			$bindParams["param"][0] = $parameters["title"];
 		}
+		if (array_key_exists("slug", $parameters)) {
+			$bindParams["param"][1] = $parameters["slug"];
+		}
+		if (array_key_exists("summary", $parameters)) {
+			$bindParams["param"][2] = $parameters["summary"];
+		}
+		if (array_key_exists("fk_category", $parameters)) {
+			$bindParams["param"][3] = $parameters["fk_category"];
+		}
+		if (array_key_exists("content", $parameters)) {
+			$bindParams["param"][4] = $parameters["content"];
+		}
+		if (array_key_exists("meta_keyword", $parameters)) {
+			$bindParams["param"][5] = $parameters["meta_keyword"];
+		}
+		if (array_key_exists("meta_description", $parameters)) {
+			$bindParams["param"][6] = $parameters["meta_description"];
+		}
+		if (array_key_exists("status", $parameters)) {
+			$bindParams["param"][7] = $parameters["status"];
+		}
 
-				$query = "Insert Into $this->tableName (pk_group_role,title) Values(UUID(),?) ";
+		$query = "Insert Into $this->tableName (fk_user,title,slug,summary,fk_category,content,meta_keyword,meta_description,status,created_at)
+		 Values(?,?,?,?,?,?,?,?,?,?) ";
 	
 		$errorCode = $this->accessDatabase->executeAndFetch($action, $query, $bindParams);
 		if($errorCode==1062)
 		{
-			$code=Codes::msg_groupTitleExists;
+			$code=Codes::msg_groupSlugExists;
 		}
 		if(is_null($errorCode))
 		{
