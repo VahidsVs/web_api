@@ -33,33 +33,38 @@ class Posts
 
 	function insert($action, $parameters)
 	{
+		if (array_key_exists("fk_user", $parameters)) {
+			$bindParams["param"][0] = $parameters["fk_user"];
+		}
 		if (array_key_exists("title", $parameters)) {
-			$bindParams["param"][0] = $parameters["title"];
+			$bindParams["param"][1] = $parameters["title"];
 		}
 		if (array_key_exists("slug", $parameters)) {
-			$bindParams["param"][1] = $parameters["slug"];
+			$bindParams["param"][2] = $parameters["slug"];
 		}
 		if (array_key_exists("summary", $parameters)) {
-			$bindParams["param"][2] = $parameters["summary"];
+			$bindParams["param"][3] = $parameters["summary"];
 		}
 		if (array_key_exists("fk_category", $parameters)) {
-			$bindParams["param"][3] = $parameters["fk_category"];
+			$bindParams["param"][4] = $parameters["fk_category"];
 		}
 		if (array_key_exists("content", $parameters)) {
-			$bindParams["param"][4] = $parameters["content"];
+			$bindParams["param"][5] = $parameters["content"];
 		}
+		$bindParams["param"][6]=null;
 		if (array_key_exists("meta_keyword", $parameters)) {
-			$bindParams["param"][5] = $parameters["meta_keyword"];
+			$bindParams["param"][6] = $parameters["meta_keyword"];
 		}
+		$bindParams["param"][7]=null;
 		if (array_key_exists("meta_description", $parameters)) {
-			$bindParams["param"][6] = $parameters["meta_description"];
+			$bindParams["param"][7] = $parameters["meta_description"];
 		}
 		if (array_key_exists("status", $parameters)) {
-			$bindParams["param"][7] = $parameters["status"];
+			$bindParams["param"][8] = $parameters["status"];
 		}
 
 		$query = "Insert Into $this->tableName (fk_user,title,slug,summary,fk_category,content,meta_keyword,meta_description,status,created_at)
-		 Values(?,?,?,?,?,?,?,?,?,?) ";
+		 Values(?,?,?,?,?,?,?,?,?,now()) ";
 	
 		$errorCode = $this->accessDatabase->executeAndFetch($action, $query, $bindParams);
 		if($errorCode==1062)
