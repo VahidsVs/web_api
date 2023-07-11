@@ -153,7 +153,7 @@ class CmsPost extends LitElement {
                 read: (e) => {
                     // GetData("post/select_post_admin.php", null, "#cmbParentCategory")
                     //     .then(data => {
-                            e.success([{pk_category: 1, title: 'title'}]);
+                            e.success([{pk_parent_category: 1, title: 'title'}]);
                         // })
                 },
             },
@@ -555,7 +555,7 @@ class CmsPost extends LitElement {
                 })
         }
         else {
-            PostDataForm("post/update_post_admin.php", ko.toJSON(this.Model.data), "#tab2-pane")
+            PostDataForm("post/update_post_admin.php", ko.toJS(this.Model.data), "#tab2-pane")
                 .then(data => {
                     if (data.errors === undefined && data.message === undefined) {
                         this.ClearScr();
