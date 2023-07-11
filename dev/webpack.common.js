@@ -120,7 +120,7 @@ module.exports = {
                     chunks: ['site', 'template', `${page}`],
                     templateParameters: {
                         'mainCss': '<link id="mainCss" href="/bundle/site_ltr.css" type="text/css" rel="stylesheet" />',
-                        'controller': `<cms-controller ComponentName="cms-${page.replace("_", "")}"></cms-controller>`,
+                        'controller': `<cms-controller ComponentName="cms-${page.replaceAll("_", "")}"></cms-controller>`,
                     }
                 }),
         ),
@@ -136,7 +136,7 @@ module.exports = {
                     chunks: ['admin', 'admin_template', `admin_${page}`],
                     templateParameters: {
                         'mainCss': '<link id="mainCss" href="/bundle/admin_ltr.css" type="text/css" rel="stylesheet" />',
-                        'controller': `<cms-controller ComponentName="cms-${page.replace("_", "")}"></cms-controller>`,
+                        'controller': `<cms-controller ComponentName="cms-${page.replaceAll("_", "")}"></cms-controller>`,
                     }
                 }),
         ),
