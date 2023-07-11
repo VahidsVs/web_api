@@ -26,6 +26,7 @@ class CmsPost extends LitElement {
 
     private Model = {
         data: {
+            pk: ko.observable(),
             pk_post: ko.observable(),
             title: ko.observable(),
             slug: ko.observable(),
@@ -64,6 +65,17 @@ class CmsPost extends LitElement {
 
     ClearScr() {
 
+        this.Model.data.pk(null);
+        this.Model.data.pk_post(null);
+        this.Model.data.title(null);
+        this.Model.data.slug(null);
+        this.Model.data.fk_category(null);
+        this.Model.data.fk_parent_category(null);
+        this.Model.data.summary(null);
+        this.Model.data.content(null);
+        this.Model.data.meta_keyword(null);
+        this.Model.data.meta_description(null);
+        this.Model.data.status(null);
 
         //@ts-ignore
         $("#myTab button").eq(0).show().tab('show');
@@ -543,7 +555,7 @@ class CmsPost extends LitElement {
                 })
         }
         else {
-            PostData("post/update_post_admin.php", ko.toJSON({ pk: this.Model.data.pk_post(), item: this.Model.data }), "#tab2-pane")
+            PostDataForm("post/update_post_admin.php", ko.toJSON(this.Model.data), "#tab2-pane")
                 .then(data => {
                     if (data.errors === undefined && data.message === undefined) {
                         this.ClearScr();
