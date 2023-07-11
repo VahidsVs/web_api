@@ -44,7 +44,7 @@ class Post
 			$message[2] = Codes::msg_isRequired;
 			$this->isDataOK = false;
 		}
-		if (empty($parameters["fkCategory"])) {
+		if (empty($parameters["fk_category"])) {
 			$message[3] = Codes::msg_isRequired;
 			$this->isDataOK = false;
 		}
@@ -52,12 +52,10 @@ class Post
 			$message[4] = Codes::msg_isRequired;
 			$this->isDataOK = false;
 		}
-
 		if (!$this->isDataOK) {
 			$this->httpResponseCode = 400;
-			$this->jsonData["errors"] = ["title" => $message[0],"slug" => $message[1],"summary" => $message[2],"fkCategory" => $message[3],"content" => $message[4]];
+			$this->jsonData["errors"] = ["title" => $message[0],"slug" => $message[1],"summary" => $message[2],"fk_category" => $message[3],"content" => $message[4]];
 		}
-
 		if ($this->isDataOK) {
 			$result = $this->accessPosts->insert($action, $parameters);
 			if ($result["code"] == "msgSuccessfulCUD") {

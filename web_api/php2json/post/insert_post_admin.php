@@ -15,6 +15,7 @@ if (array_key_exists("Authorization", $headers) && array_key_exists("token", $_S
     $isAuthorized = $accessAuthorization->isAuthorized($headers["Authorization"], $_SESSION["token"], $_SESSION["key"], RolesTitle::role_postManagement);
 
 if ($isAuthorized["auth"] && $isAuthorized["aa"]) {
+    echo "haaa";
     $accessClass = new Post("insert", $_POST);
     http_response_code($accessClass->getHttpResponseCode());
     echo json_encode($accessClass->getJsonData());
