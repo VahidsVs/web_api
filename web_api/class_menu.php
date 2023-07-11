@@ -42,11 +42,11 @@ class Menu
         $indexPM = array_search(RolesTitle::role_postManagement, array_column($jsonData, 'title')); //Post Management
 
         if (array_key_exists($indexPLM, $jsonData)) {
-            $newMenu = ["id" => 101, "parentId" => 1, "title" => "menu_permission_level_management", "url" => "/admin/permission-level-management.html"];
+            $newMenu = ["id" => 101, "parentId" => 1, "title" => "menu_permission_level_management", "url" => "/admin/permission_level_management.html"];
             $menuArray = self::addMenu($menuArray, $newMenu);
         }
         if (array_key_exists($indexCUM, $jsonData)) {
-            $newMenu = ["id" => 102, "parentId" => 1, "title" => "menu_contact_us", "url" => "/admin/contact-us.html"];
+            $newMenu = ["id" => 102, "parentId" => 1, "title" => "menu_contact_us", "url" => "/admin/contact_us.html"];
             $menuArray = self::addMenu($menuArray, $newMenu);
         }
         if (array_key_exists($indexPM, $jsonData)) {
