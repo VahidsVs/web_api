@@ -62,7 +62,7 @@ class Posts
 		if (array_key_exists("status", $parameters)) {
 			$bindParams["param"][8] = $parameters["status"];
 		}
-
+		print_r($bindParams["param"]);
 		$query = "Insert Into $this->tableName (fk_user,title,slug,summary,fk_category,content,meta_keyword,meta_description,status,created_at)
 		 Values(?,?,?,?,?,?,?,?,?,now()) ";
 	

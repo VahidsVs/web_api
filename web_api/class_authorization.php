@@ -46,7 +46,7 @@ class Authorization
             if ((time() - $userLoginTime) > $GLOBALS["iniConfig"]["session-timeout"])
                 $isAuthorized = false;
         }
-        return ["auth" => $isAuthorized, "aa" => $isActionAuthorized, "userId" => $param["fkUser"]];
+        return ["auth" => $isAuthorized, "aa" => $isActionAuthorized, "fkUser" => $param["fkUser"]];
     }
 }
 
