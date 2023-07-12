@@ -368,6 +368,7 @@ class CmsPost extends LitElement {
                             //@ts-ignore
                             $("#myTab button").eq(1).show().tab('show');
 
+                            this.Model.data.pk(dataItem.pk_post);
                             this.Model.data.pk_post(dataItem.pk_post);
                             this.Model.data.title(dataItem.pk_post);
                             this.Model.data.slug(dataItem.pk_post);
@@ -563,7 +564,7 @@ class CmsPost extends LitElement {
 
     Submit_Click() {
 
-        if (this.Model.data.pk_post() == null) {
+        if (this.Model.data.pk_post() == null || this.Model.data.pk_post() == "") {
             PostDataForm("post/insert_post_admin.php", ko.toJS(this.Model.data), "#tab2-pane")
                 .then(data => {
                     if (data.errors === undefined && data.message === undefined) {
