@@ -34,54 +34,6 @@ class Posts
 	function insert($action, $parameters)
 	{
 		if (array_key_exists("fk_user", $parameters)) {
-			$bindParams["param"]["fk_user"] = $parameters["fk_user"];
-		}
-		if (array_key_exists("title", $parameters)) {
-			$bindParams["param"]["title"] = $parameters["title"];
-		}
-		if (array_key_exists("slug", $parameters)) {
-			$bindParams["param"]["slug"] = $parameters["slug"];
-		}
-		if (array_key_exists("summary", $parameters)) {
-			$bindParams["param"]["summary"] = $parameters["summary"];
-		}
-		if (array_key_exists("fk_category", $parameters)) {
-			$bindParams["param"]["fk_category"] = $parameters["fk_category"];
-		}
-		if (array_key_exists("content", $parameters)) {
-			$bindParams["param"]["content"] = $parameters["content"];
-		}
-		$bindParams["param"]["meta_keyword"] = null;
-		if (array_key_exists("meta_keyword", $parameters)) {
-			$bindParams["param"]["meta_keyword"] = $parameters["meta_keyword"];
-		}
-		$bindParams["param"]["meta_description"] = null;
-		if (array_key_exists("meta_description", $parameters)) {
-			$bindParams["param"]["meta_description"] = $parameters["meta_description"];
-		}
-		if (array_key_exists("status", $parameters)) {
-			$bindParams["param"]["status"] = $parameters["status"];
-		}
-		print_r($bindParams["param"]);
-		$query = "Insert Into $this->tableName (fk_user,title,slug,summary,fk_category,content,meta_keyword,meta_description,status,created_at)
-		 Values(?,?,?,?,?,?,?,?,?,now()) ";
-
-		$errorCode = $this->accessDatabase->executeAndFetch($action, $query, $bindParams);
-		if ($errorCode == 1062) {
-			$code = Codes::msg_groupSlugExists;
-		}
-		if (is_null($errorCode)) {
-			$code = Codes::msg_SuccessfulCUD;
-		}
-		return ["code" => $code];
-	}
-
-	function update($action, $parameters)
-	{
-		if (array_key_exists("pk", $parameters)) {
-			$bindParams["param"][0] = $parameters["pk"];
-		}
-		if (array_key_exists("fk_user", $parameters)) {
 			$bindParams["param"][0] = $parameters["fk_user"];
 		}
 		if (array_key_exists("title", $parameters)) {
@@ -110,8 +62,53 @@ class Posts
 		if (array_key_exists("status", $parameters)) {
 			$bindParams["param"][8] = $parameters["status"];
 		}
-		$query = "Update $this->tableName Set fk_user = ? , title = ? , slug = ? summary = ? , fk_category = ?
-				content = ? , meta_keyword ? meta_description = ? status = ?   Where pk_post = ?";
+		$query = "Insert Into $this->tableName (fk_user,title,slug,summary,fk_category,content,meta_keyword,meta_description,status,created_at)
+		 Values(?,?,?,?,?,?,?,?,?,now()) ";
+
+		$errorCode = $this->accessDatabase->executeAndFetch($action, $query, $bindParams);
+		if ($errorCode == 1062) {
+			$code = Codes::msg_groupSlugExists;
+		}
+		if (is_null($errorCode)) {
+			$code = Codes::msg_SuccessfulCUD;
+		}
+		return ["code" => $code];
+	}
+
+	function update($action, $parameters)
+	{
+		if (array_key_exists("fk_user", $parameters)) {
+			$bindParams["param"][] = $parameters["fk_user"];
+		}
+		if (array_key_exists("title", $parameters)) {
+			$bindParams["param"][] = $parameters["title"];
+		}
+		if (array_key_exists("slug", $parameters)) {
+			$bindParams["param"][] = $parameters["slug"];
+		}
+		if (array_key_exists("summary", $parameters)) {
+			$bindParams["param"][] = $parameters["summary"];
+		}
+		if (array_key_exists("fk_category", $parameters)) {
+			$bindParams["param"][] = $parameters["fk_category"];
+		}
+		if (array_key_exists("content", $parameters)) {
+			$bindParams["param"][] = $parameters["content"];
+		}
+		if (array_key_exists("meta_keyword", $parameters)) {
+			$bindParams["param"][] = $parameters["meta_keyword"];
+		}
+		if (array_key_exists("meta_description", $parameters)) {
+			$bindParams["param"][] = $parameters["meta_description"];
+		}
+		if (array_key_exists("status", $parameters)) {
+			$bindParams["param"][] = $parameters["status"];
+		}
+		if (array_key_exists("pk", $parameters)) {
+			$bindParams["param"][] = $parameters["pk"];
+		}
+		$query = "Update $this->tableName Set fk_user = ? , title = ? , slug = ? , summary = ? , fk_category = ? ,
+				content = ? , meta_keyword = ? , meta_description = ? , status = ?   Where pk_post = ?";
 
 		$errorCode = $this->accessDatabase->executeAndFetch($action, $query, $bindParams);
 		if ($errorCode == 1062) {

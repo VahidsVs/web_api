@@ -95,10 +95,6 @@ class Post
 			$message["content"] = Codes::msg_isRequired;
 			$this->isDataOK = false;
 		}
-		if (empty($parameters["item"]["title"])) {
-			$message[6] = Codes::msg_isRequired;
-			$this->isDataOK = false;
-		}
 
 		if (!$this->isDataOK) {
 			$this->httpResponseCode = 400;
