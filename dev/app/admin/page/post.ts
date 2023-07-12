@@ -81,17 +81,21 @@ class CmsPost extends LitElement {
 
     ClearScr() {
 
-        this.Model.data.pk(null);
-        this.Model.data.pk_post(null);
+        this.Model.data.pk("");
+        this.Model.data.pk_post("");
         this.Model.data.title("");
         this.Model.data.slug("");
-        this.Model.data.fk_category(null);
-        this.Model.data.fk_parent_category(null);
+        this.Model.data.fk_category("");
+        this.Model.data.fk_parent_category("");
         this.Model.data.summary("");
         this.Model.data.content("");
         this.Model.data.meta_keyword("");
         this.Model.data.meta_description("");
         this.Model.data.status("");
+
+        $("#cmbParentCategory").data("kendoDropDownList").value(null);
+        $("#cmbCategory").data("kendoDropDownList").value(null);
+        $("#cmbStatus").data("kendoDropDownList").value(null);
 
         //@ts-ignore
         $("#myTab button").eq(0).show().tab('show');
@@ -180,7 +184,7 @@ class CmsPost extends LitElement {
             dataTextField: "title",
             dataValueField: "pk_parent_category",
             filter: "contains",
-            cascade: (e) => {
+            change: (e) => {
                 var value = e.sender.value();
 
                 this.Model.data.fk_parent_category(value);
@@ -220,7 +224,7 @@ class CmsPost extends LitElement {
             dataTextField: "title",
             dataValueField: "pk_category",
             filter: "contains",
-            cascade: (e) => {
+            change: (e) => {
                 var value = e.sender.value();
 
                 this.Model.data.fk_category(value);
@@ -260,7 +264,7 @@ class CmsPost extends LitElement {
             dataTextField: "title",
             dataValueField: "pk_status",
             filter: "contains",
-            cascade: (e) => {
+            change: (e) => {
                 var value = e.sender.value();
 
                 this.Model.data.status(value);
