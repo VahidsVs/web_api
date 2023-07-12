@@ -31,30 +31,29 @@ class Post
 	}
 	private function insert($action, $parameters)
 	{
-		$message = ["","","","",""];
 		if (empty($parameters["title"])) {
-			$message[0] = Codes::msg_isRequired;
+			$message["title"] = Codes::msg_isRequired;
 			$this->isDataOK = false;
 		}
 		if (empty($parameters["slug"])) {
-			$message[1] = Codes::msg_isRequired;
+			$message["slug"] = Codes::msg_isRequired;
 			$this->isDataOK = false;
 		}
 		if (empty($parameters["summary"])) {
-			$message[2] = Codes::msg_isRequired;
+			$message["summary"] = Codes::msg_isRequired;
 			$this->isDataOK = false;
 		}
 		if (empty($parameters["fk_category"])) {
-			$message[3] = Codes::msg_isRequired;
+			$message["fk_category"] = Codes::msg_isRequired;
 			$this->isDataOK = false;
 		}
 		if (empty($parameters["content"])) {
-			$message[4] = Codes::msg_isRequired;
+			$message["content"] = Codes::msg_isRequired;
 			$this->isDataOK = false;
 		}
 		if (!$this->isDataOK) {
 			$this->httpResponseCode = 400;
-			$this->jsonData["errors"] = ["title" => $message[0],"slug" => $message[1],"summary" => $message[2],"fk_category" => $message[3],"content" => $message[4]];
+			$this->jsonData["errors"] = ["title" => $message["title"],"slug" => $message["slug"],"summary" => $message["summary"],"fk_category" => $message["fk_category"],"content" => $message["content"]];
 		}
 		if ($this->isDataOK) {
 			$result = $this->accessPosts->insert($action, $parameters);
@@ -72,22 +71,38 @@ class Post
 	}
 	private function update($action, $parameters)
 	{
-		$this->isDataOK = true;
-		$message = [];
-
 		if (empty($parameters["pk"])) {
-			$message[0] = Codes::msg_isRequired;
+			$message["pk"] = Codes::msg_isRequired;
 			$this->isDataOK = false;
 		}
-
+		if (empty($parameters["title"])) {
+			$message["title"] = Codes::msg_isRequired;
+			$this->isDataOK = false;
+		}
+		if (empty($parameters["slug"])) {
+			$message["slug"] = Codes::msg_isRequired;
+			$this->isDataOK = false;
+		}
+		if (empty($parameters["summary"])) {
+			$message["summary"] = Codes::msg_isRequired;
+			$this->isDataOK = false;
+		}
+		if (empty($parameters["fk_category"])) {
+			$message["fk_category"] = Codes::msg_isRequired;
+			$this->isDataOK = false;
+		}
+		if (empty($parameters["content"])) {
+			$message["content"] = Codes::msg_isRequired;
+			$this->isDataOK = false;
+		}
 		if (empty($parameters["item"]["title"])) {
-			$message[1] = Codes::msg_isRequired;
+			$message[6] = Codes::msg_isRequired;
 			$this->isDataOK = false;
 		}
 
 		if (!$this->isDataOK) {
 			$this->httpResponseCode = 400;
-			$this->jsonData["errors"] = ["pk" => $message[0], "title" => $message[1]];
+			$this->jsonData["errors"] = ["pk"=>$message["pk"],"title" => $message["title"],"slug" => $message["slug"],"summary" => $message["summary"],"fk_category" => $message["fk_category"],"content" => $message["content"]];
 		}
 
 		if ($this->isDataOK) {
