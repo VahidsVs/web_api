@@ -23,7 +23,7 @@ class Posts
 			$condition .= " And slug = ?";
 
 		}
-		$query = "Select $this->tableName.*,users.username,cat.title as cat_title, pac.title as pac_title From  $this->tableName, categories cat, parents_category pac, users Where $this->tableName.fk_category = cat.pk_category And
+		$query = "Select $this->tableName.*,users.username,cat.title as cat_title, cat.fk_parent_category, pac.title as pac_title From  $this->tableName, categories cat, parents_category pac, users Where $this->tableName.fk_category = cat.pk_category And
 				 cat.fk_parent_category = pac.pk_parent_category And $this->tableName.fk_user = users.pk_user And  1=1  $condition ";
 
 		$result = $this->accessDatabase->executeAndFetch("select", $query, $bindParams, $orderBy, $limit);

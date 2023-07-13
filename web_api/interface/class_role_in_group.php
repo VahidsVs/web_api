@@ -26,7 +26,6 @@ class RoleInGroup
 					$message[0]= Codes::msg_isRequired;
 					$this->isDataOK = false;
 				}
-				
 				if(!$this->isDataOK)
 				{
 					$this->httpResponseCode = 400;
