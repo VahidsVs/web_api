@@ -23,70 +23,63 @@ class UserInGroup
 	}
 	private function selectWithRole($action, $parameters, $orderBy, $limit)
 	{
-		$message=[""];
-				if (empty($parameters["userId"])) {
-					$message[0]= Codes::msg_isRequired;
-					$this->isDataOK = false;
-				}
-				
-				if(!$this->isDataOK)
-				{
-					$this->httpResponseCode = 400;
-				$this->jsonData["errors"] = ["userId" => $message[0]];
-				}
+		$message = [""];
+		if (empty($parameters["userId"])) {
+			$message[0] = Codes::msg_isRequired;
+			$this->isDataOK = false;
+		}
 
-				$result = $this->accessUsersInGroup->selectWithRole($action, $parameters, $orderBy, $limit);
-				
-				//if ($result) 
-				{
-					$this->jsonData = $result;
-					$this->httpResponseCode = 200;
-				}
-				
+		if (!$this->isDataOK) {
+			$this->httpResponseCode = 400;
+			$this->jsonData["errors"] = ["userId" => $message[0]];
+		}
+		if ($this->isDataOK) {
+			$result = $this->accessUsersInGroup->selectWithRole($action, $parameters, $orderBy, $limit);
+			$this->jsonData = $result;
+			$this->httpResponseCode = 200;
+
+		}
 	}
 	private function select($action, $parameters, $orderBy, $limit)
 	{
-				$result = $this->accessUsersInGroup->select($action, $parameters, $orderBy, $limit);
-				//if ($result) 
-				{
-					$this->jsonData = $result;
-					$this->httpResponseCode = 200;
-				}
-				
+		$result = $this->accessUsersInGroup->select($action, $parameters, $orderBy, $limit);
+		//if ($result) 
+		{
+			$this->jsonData = $result;
+			$this->httpResponseCode = 200;
+		}
+
 	}
 	private function insert($action, $parameters)
 	{
 		$this->isDataOK = true;
-		$message = ["",""];
+		$message = ["", ""];
 
-				if (empty($parameters["fkGroup"])) {
-					$message[0] = Codes::msg_isRequired;
-					$this->isDataOK = false;
-				}
-				if (empty($parameters["fkUser"])) {
-					$message[1] = Codes::msg_isRequired;
-					$this->isDataOK = false;
-				}
+		if (empty($parameters["fkGroup"])) {
+			$message[0] = Codes::msg_isRequired;
+			$this->isDataOK = false;
+		}
+		if (empty($parameters["fkUser"])) {
+			$message[1] = Codes::msg_isRequired;
+			$this->isDataOK = false;
+		}
 
-				if (!$this->isDataOK) {
-					$this->httpResponseCode = 400;
-					$this->jsonData["errors"] = ["fkGroup" => $message[0],"fkUser" => $message[1]];
-				}
-				if ($this->isDataOK) {
-				
-					$result = $this->accessUsersInGroup->insert($action, $parameters);
-					if($result["code"]=="msgSuccessfulCUD")
-					{
-					$this->httpResponseCode = 200;
-					$this->jsonData=["msg"=>$result["code"]];
-					}
-					else
-					{
-					$this->httpResponseCode = 400;
-					$this->jsonData=["message"=>$result["code"]];
-					}
+		if (!$this->isDataOK) {
+			$this->httpResponseCode = 400;
+			$this->jsonData["errors"] = ["fkGroup" => $message[0], "fkUser" => $message[1]];
+		}
+		if ($this->isDataOK) {
 
-				}
+			$result = $this->accessUsersInGroup->insert($action, $parameters);
+			if ($result["code"] == "msgSuccessfulCUD") {
+				$this->httpResponseCode = 200;
+				$this->jsonData = ["msg" => $result["code"]];
+			} else {
+				$this->httpResponseCode = 400;
+				$this->jsonData = ["message" => $result["code"]];
+			}
+
+		}
 
 	}
 	private function delete($action, $parameters)
@@ -94,31 +87,28 @@ class UserInGroup
 		$this->isDataOK = true;
 		$message = [""];
 
-				if (empty($parameters["fkUser"])) {
-					$message[0] = Codes::msg_isRequired;
-					$this->isDataOK = false;
-				}
+		if (empty($parameters["fkUser"])) {
+			$message[0] = Codes::msg_isRequired;
+			$this->isDataOK = false;
+		}
 
-				if (!$this->isDataOK) {
-					$this->httpResponseCode = 400;
-					$this->jsonData["errors"] = ["fkUser" => $message[0]];
-				}
+		if (!$this->isDataOK) {
+			$this->httpResponseCode = 400;
+			$this->jsonData["errors"] = ["fkUser" => $message[0]];
+		}
 
-				if ($this->isDataOK) {
-					$result = $this->accessUsersInGroup->delete($action, $parameters);
-					if($result["code"]=="msgSuccessfulCUD")
-					{
-					$this->httpResponseCode = 200;
-					$this->jsonData=["msg"=>$result["code"]];
-					}
-					else
-					{
-					$this->httpResponseCode = 400;
-					$this->jsonData=["message"=>$result["code"]];
-					}
+		if ($this->isDataOK) {
+			$result = $this->accessUsersInGroup->delete($action, $parameters);
+			if ($result["code"] == "msgSuccessfulCUD") {
+				$this->httpResponseCode = 200;
+				$this->jsonData = ["msg" => $result["code"]];
+			} else {
+				$this->httpResponseCode = 400;
+				$this->jsonData = ["message" => $result["code"]];
+			}
 
-				}
-	
+		}
+
 	}
 
 	#region Get Methods

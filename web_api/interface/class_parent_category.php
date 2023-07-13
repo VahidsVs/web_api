@@ -28,7 +28,6 @@ class ParentCategory
 		
 	}
 }
-
 	#region Get Methods
 	public function getHttpResponseCode()
 	{
