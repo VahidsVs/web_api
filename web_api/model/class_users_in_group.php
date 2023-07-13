@@ -46,11 +46,11 @@ class UsersInGroup
 	{
 		$errorCode = null;
 		if (array_key_exists("fkGroup", $parameters)) {
-			$bindParams["param"][0] = $parameters["fkGroup"];
+			$bindParams["param"][] = $parameters["fkGroup"];
 
 		}
 		if (array_key_exists("fkUser", $parameters)) {
-			$bindParams["param"][1] = $parameters["fkUser"];
+			$bindParams["param"][] = $parameters["fkUser"];
 
 		}
 		$parameter["fkUser"] = $parameters["fkUser"];
@@ -74,7 +74,7 @@ class UsersInGroup
 	{
 		$errorCode=null;
 		if (array_key_exists("fkUser", $parameters)) {
-			$bindParams["param"][0] = $parameters["fkUser"];
+			$bindParams["param"][] = $parameters["fkUser"];
 		}
 		$query = "Delete From $this->tableName Where fk_user = ?";
 	

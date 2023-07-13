@@ -14,7 +14,7 @@ class Roles
 		$condition = "";
 		$bindParams = null;
 		if (array_key_exists("title", $parameters)) {
-			$bindParams["param"][0] = $parameters["title"];
+			$bindParams["param"][] = $parameters["title"];
 			$condition .= " And title = ?";
 
 		}

@@ -15,7 +15,7 @@ class Users
 		$condition = "";
 		$bindParams = null;
 		if (array_key_exists("pkUser", $parameters)) {
-			$bindParams["param"][0] = $parameters["pkUser"];
+			$bindParams["param"][] = $parameters["pkUser"];
 			$condition .= " And pk_user = ?";
 
 		}
@@ -57,22 +57,22 @@ class Users
 	function insert($action, $parameters)
 	{
 		if (array_key_exists("username", $parameters)) {
-			$bindParams["param"][0] = $parameters["username"];
+			$bindParams["param"][] = $parameters["username"];
 		}
 		if (array_key_exists("password", $parameters)) {
-			$bindParams["param"][1] = $parameters["password"];
+			$bindParams["param"][] = $parameters["password"];
 		}
 		if (array_key_exists("firstname", $parameters)) {
-			$bindParams["param"][2] = $parameters["firstname"];
+			$bindParams["param"][] = $parameters["firstname"];
 		}
 		if (array_key_exists("lastname", $parameters)) {
-			$bindParams["param"][3] = $parameters["lastname"];
+			$bindParams["param"][] = $parameters["lastname"];
 		}
 		if (array_key_exists("mobile", $parameters)) {
-			$bindParams["param"][4] = $parameters["mobile"];
+			$bindParams["param"][] = $parameters["mobile"];
 		}
 		if (array_key_exists("email", $parameters)) {
-			$bindParams["param"][5] = $parameters["email"];
+			$bindParams["param"][] = $parameters["email"];
 		}
 
 				$query = "Insert Into $this->tableName (pk_user,username,password,firstname,lastname,mobile,email) Values(UUID(),?,?,?,?,?,?) ";

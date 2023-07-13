@@ -75,7 +75,7 @@ class GroupRoles
 		
 		$errorCode=null;
 		if (array_key_exists("pk", $parameters)) {
-			$bindParams["param"][0] = $parameters["pk"];
+			$bindParams["param"][] = $parameters["pk"];
 		}
 		$query = "Delete From $this->tableName Where pk_group_role = ?";
 	

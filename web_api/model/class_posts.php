@@ -14,12 +14,12 @@ class Posts
 		$condition = "";
 		$bindParams = null;
 		if (array_key_exists("pk", $parameters)) {
-			$bindParams["param"][0] = $parameters["pk"];
+			$bindParams["param"][] = $parameters["pk"];
 			$condition .= " And pk_post = ?";
 
 		}
 		if (array_key_exists("slug", $parameters)) {
-			$bindParams["param"][1] = $parameters["slug"];
+			$bindParams["param"][] = $parameters["slug"];
 			$condition .= " And slug = ?";
 
 		}
@@ -34,33 +34,31 @@ class Posts
 	function insert($action, $parameters)
 	{
 		if (array_key_exists("fk_user", $parameters)) {
-			$bindParams["param"][0] = $parameters["fk_user"];
+			$bindParams["param"][] = $parameters["fk_user"];
 		}
 		if (array_key_exists("title", $parameters)) {
-			$bindParams["param"][1] = $parameters["title"];
+			$bindParams["param"][] = $parameters["title"];
 		}
 		if (array_key_exists("slug", $parameters)) {
-			$bindParams["param"][2] = $parameters["slug"];
+			$bindParams["param"][] = $parameters["slug"];
 		}
 		if (array_key_exists("summary", $parameters)) {
-			$bindParams["param"][3] = $parameters["summary"];
+			$bindParams["param"][] = $parameters["summary"];
 		}
 		if (array_key_exists("fk_category", $parameters)) {
-			$bindParams["param"][4] = $parameters["fk_category"];
+			$bindParams["param"][] = $parameters["fk_category"];
 		}
 		if (array_key_exists("content", $parameters)) {
-			$bindParams["param"][5] = $parameters["content"];
+			$bindParams["param"][] = $parameters["content"];
 		}
-		$bindParams["param"][6] = null;
 		if (array_key_exists("meta_keyword", $parameters)) {
-			$bindParams["param"][6] = $parameters["meta_keyword"];
+			$bindParams["param"][] = $parameters["meta_keyword"];
 		}
-		$bindParams["param"][7] = null;
 		if (array_key_exists("meta_description", $parameters)) {
-			$bindParams["param"][7] = $parameters["meta_description"];
+			$bindParams["param"][] = $parameters["meta_description"];
 		}
 		if (array_key_exists("status", $parameters)) {
-			$bindParams["param"][8] = $parameters["status"];
+			$bindParams["param"][] = $parameters["status"];
 		}
 		$query = "Insert Into $this->tableName (fk_user,title,slug,summary,fk_category,content,meta_keyword,meta_description,status,created_at)
 		 Values(?,?,?,?,?,?,?,?,?,now()) ";
@@ -125,9 +123,9 @@ class Posts
 
 		$errorCode = null;
 		if (array_key_exists("pk", $parameters)) {
-			$bindParams["param"][0] = $parameters["pk"];
+			$bindParams["param"][] = $parameters["pk"];
 		}
-		$query = "Delete From $this->tableName Where pk_group_role = ?";
+		$query = "Delete From $this->tableName Where pk_post = ?";
 
 		$errorCode = $this->accessDatabase->executeAndFetch($action, $query, $bindParams);
 

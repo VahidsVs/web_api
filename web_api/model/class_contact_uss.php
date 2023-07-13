@@ -28,19 +28,19 @@ class ContactUss
 	{
 		$errorCode = null;
 		if (array_key_exists("name", $parameters)) {
-			$bindParams["param"][0] = $parameters["name"];
+			$bindParams["param"][] = $parameters["name"];
 		}
 		if (array_key_exists("email", $parameters)) {
-			$bindParams["param"][1] = $parameters["email"];
+			$bindParams["param"][] = $parameters["email"];
 		}
 		if (array_key_exists("mobile", $parameters)) {
-			$bindParams["param"][2] = $parameters["mobile"];
+			$bindParams["param"][] = $parameters["mobile"];
 		}
 		if (array_key_exists("subject", $parameters)) {
-			$bindParams["param"][3] = $parameters["subject"];
+			$bindParams["param"][] = $parameters["subject"];
 		}
 		if (array_key_exists("message", $parameters)) {
-			$bindParams["param"][4] = $parameters["message"];
+			$bindParams["param"][] = $parameters["message"];
 		}
 
 			$query = "Insert Into $this->tableName (name,email,mobile,subject,message,created_at) Values(?,?,?,?,?,now())";

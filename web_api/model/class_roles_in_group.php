@@ -14,7 +14,7 @@ class RolesInGroup
 		$condition = "";
 		$bindParams = null;
 		if (array_key_exists("fk", $parameters)) {
-			$bindParams["param"][0] = $parameters["fk"];
+			$bindParams["param"][] = $parameters["fk"];
 			$condition .= " And fk_group_role = ?";
 
 		} 
