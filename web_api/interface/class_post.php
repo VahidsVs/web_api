@@ -57,7 +57,7 @@ class Post
 		}
 		if (!$this->isDataOK) {
 			$this->httpResponseCode = 400;
-			$this->jsonData["errors"] = ["title" => $message["title"],"slug" => $message["slug"],"summary" => $message["summary"],"fk_category" => $message["fk_category"],"content" => $message["content"]];
+			$this->jsonData["errors"] = ["title" => $message["title"],"slug" => $message["slug"],"summary" => $message["summary"],"fk_category" => $message["fk_category"],"status" => $message["status"],"content" => $message["content"]];
 		}
 		if ($this->isDataOK) {
 			$result = $this->accessPosts->insert($action, $parameters);
