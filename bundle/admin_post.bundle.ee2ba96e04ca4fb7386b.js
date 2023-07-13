@@ -23490,7 +23490,7 @@ let CmsPost = class CmsPost extends lit__WEBPACK_IMPORTED_MODULE_0__.LitElement 
                                 title: (0,_cms_general__WEBPACK_IMPORTED_MODULE_2__.getTranslate)('btn_delete'),
                                 content: (0,_cms_general__WEBPACK_IMPORTED_MODULE_2__.getTranslate)('msg_are_you_sure'),
                                 okCallback: () => {
-                                    (0,_cms_general__WEBPACK_IMPORTED_MODULE_2__.GetData)("permission_level_management/delete_group_role.php", { pk: dataItem.pk_group_role }, "#grid")
+                                    (0,_cms_general__WEBPACK_IMPORTED_MODULE_2__.GetData)("post/delete_post_admin.php", { pk: dataItem.pk_post }, "#grid")
                                         .then(data => {
                                         if (data.message === undefined) {
                                             (0,_cms_general__WEBPACK_IMPORTED_MODULE_2__.AjaxSuccessFunction)(data.msg, 3000);
@@ -27939,4 +27939,4 @@ __webpack_require__.r(__webpack_exports__);
 /******/ var __webpack_exports__ = (__webpack_exec__("./admin/page/post.ts"));
 /******/ }
 ]);
-//# sourceMappingURL=admin_post.bundle.693e925e7b77b553ab8c.js.map
+//# sourceMappingURL=admin_post.bundle.ee2ba96e04ca4fb7386b.js.map

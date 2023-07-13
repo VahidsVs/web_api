@@ -411,7 +411,7 @@ class CmsPost extends LitElement {
                                 title: getTranslate('btn_delete'),
                                 content: getTranslate('msg_are_you_sure'),
                                 okCallback: () => {
-                                    GetData("permission_level_management/delete_group_role.php", { pk: dataItem.pk_group_role }, "#grid")
+                                    GetData("post/delete_post_admin.php", { pk: dataItem.pk_post }, "#grid")
                                         .then(data => {
                                             if (data.message === undefined) {
                                                 AjaxSuccessFunction(data.msg, 3000);
