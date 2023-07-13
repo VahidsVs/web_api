@@ -171,10 +171,10 @@ class CmsPost extends LitElement {
         let dataSource = new kendo.data.DataSource({
             transport: {
                 read: (e) => {
-                    // GetData("post/select_post_admin.php", null, "#cmbParentCategory")
-                    //     .then(data => {
-                            e.success([{pk_parent_category: 1, title: 'title'}]);
-                        // })
+                    GetData("post/select_parent_category.php", null, "#tab2-pane")
+                        .then(data => {
+                            e.success(data);
+                        })
                 },
             },
         });
@@ -188,16 +188,18 @@ class CmsPost extends LitElement {
                 var value = e.sender.value();
 
                 this.Model.data.fk_parent_category(value);
+
+                this.FillDataCmbCategory();
             }
         });
     }
 
-    FillDataCmbCategory() {
+    async FillDataCmbCategory() {
         let kendoWidget = $("#cmbCategory").data("kendoDropDownList");
         if (kendoWidget) {
             // kendoGrid.destroy();
             // $("#grid").empty();
-            kendoWidget.dataSource.read();
+            await kendoWidget.dataSource.read();
             kendoWidget.refresh();
             return;
         }
@@ -211,10 +213,10 @@ class CmsPost extends LitElement {
         let dataSource = new kendo.data.DataSource({
             transport: {
                 read: (e) => {
-                    // GetData("post/select_post_admin.php", null, "#cmbParentCategory")
-                    //     .then(data => {
-                            e.success([{pk_category: 1, title: 'title'}]);
-                        // })
+                    GetData("post/select_category.php", {fk_parent_category: this.Model.data.fk_parent_category()}, "#tab2-pane")
+                        .then(data => {
+                            e.success(data);
+                        })
                 },
             },
         });
@@ -357,7 +359,7 @@ class CmsPost extends LitElement {
                     command: {
                         name: "Edit",
                         template: "<a class='btn btn-secondary k-grid-Edit'><span class='fa fa-pencil-square'></span></a>",
-                        click: (e: any) => {
+                        click: async (e: any) => {
                             e.preventDefault();
 
                             let row = $(e.currentTarget).closest("tr")[0];
@@ -370,14 +372,23 @@ class CmsPost extends LitElement {
 
                             this.Model.data.pk(dataItem.pk_post);
                             this.Model.data.pk_post(dataItem.pk_post);
-                            this.Model.data.title(dataItem.pk_post);
-                            this.Model.data.slug(dataItem.pk_post);
-                            this.Model.data.fk_category(dataItem.pk_post);
-                            this.Model.data.summary(dataItem.pk_post);
-                            this.Model.data.content(dataItem.pk_post);
-                            this.Model.data.meta_keyword(dataItem.pk_post);
-                            this.Model.data.meta_description(dataItem.pk_post);
-                            this.Model.data.status(dataItem.pk_post);
+                            this.Model.data.title(dataItem.title);
+                            this.Model.data.slug(dataItem.slug);
+                            this.Model.data.summary(dataItem.summary);
+                            this.Model.data.content(dataItem.content);
+                            this.Model.data.meta_keyword(dataItem.meta_keyword);
+                            this.Model.data.meta_description(dataItem.meta_description);
+                            this.Model.data.status(dataItem.status);
+                            this.Model.data.fk_parent_category(dataItem.fk_parent_category);
+                            this.Model.data.fk_category(dataItem.fk_category);
+
+                            $("#cmbParentCategory").data("kendoDropDownList").value(dataItem.fk_parent_category);
+                            await this.FillDataCmbCategory();
+                            $("#cmbCategory").data("kendoDropDownList").value(dataItem.fk_category);
+
+                            $("#cmbStatus").data("kendoDropDownList").value(dataItem.status);
+
+                            // $("#editor").data("kendoEditor").value(dataItem.content);
                         }
                     }
                 },
