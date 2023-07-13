@@ -47,6 +47,10 @@ class Post
 			$message["fk_category"] = Codes::msg_isRequired;
 			$this->isDataOK = false;
 		}
+		if (empty($parameters["status"])) {
+			$message["status"] = Codes::msg_isRequired;
+			$this->isDataOK = false;
+		}
 		if (empty($parameters["content"])) {
 			$message["content"] = Codes::msg_isRequired;
 			$this->isDataOK = false;
