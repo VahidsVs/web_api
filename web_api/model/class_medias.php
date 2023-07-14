@@ -13,6 +13,11 @@ class Medias
 	{
 		$condition = "";
 		$bindParams = null;
+		if (array_key_exists("pk", $parameters)) {
+			$bindParams["param"][0] = $parameters["pk"];
+			$condition .= " And pk_media = ?";
+
+		}
 				$query = "Select * From  $this->tableName Where 1=1 $condition ";
 
 		$result = $this->accessDatabase->executeAndFetch("select", $query, $bindParams, $orderBy, $limit);
@@ -50,7 +55,7 @@ class Medias
 			$bindParams["param"][] = $parameters["pk"];
 		}
 		$query = "Delete From $this->tableName Where pk_media = ?";
-	
+		$resultMedia=self::select($parameters,"select")[0];
 		$errorCode = $this->accessDatabase->executeAndFetch($action, $query, $bindParams);
 
 		if ($errorCode == 1451) {
@@ -59,7 +64,8 @@ class Medias
 
 		if(is_null($errorCode))
 		{
-			$code=Codes::msg_SuccessfulCUD;
+		$status=unlink("../../..{$resultMedia["path"]}/{$resultMedia["name"]}");
+		$code=Codes::msg_SuccessfulCUD;
 		}
 		return ["code"=>$code];	
 	}

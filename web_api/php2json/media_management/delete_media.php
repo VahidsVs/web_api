@@ -16,12 +16,10 @@ if (array_key_exists("Authorization", $headers) && array_key_exists("token", $_S
 
 if($isAuthorized["auth"]&&$isAuthorized["aa"])
 {
-    
 $accessClass = new Media("delete", $_GET);
 http_response_code($accessClass->getHttpResponseCode());
 echo json_encode($accessClass->getJsonData());
 }
-
 else
 {
 http_response_code(401);
