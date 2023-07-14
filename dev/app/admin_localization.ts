@@ -96,6 +96,7 @@
             array.push({ Key: 'msgConstraintGroupRole', Translate: "گروه مورد نظر کاربر یا دسترسی دارد" });
             array.push({ Key: 'msgInvalidFileExtension', Translate: "پسوند فایل نامعتبر است" });
             array.push({ Key: 'msgInvalidFileSize', Translate: "حجم فایل نامعتبر است" });
+            array.push({ Key: 'msgErrorUploadingFile', Translate: "خطا در آپلود فایل" });
             break;
 
 
@@ -192,6 +193,7 @@
             array.push({ Key: 'msgConstraintGroupRole', Translate: "Group has permission level or user" });
             array.push({ Key: 'msgInvalidFileExtension', Translate: "Invalid file format" });
             array.push({ Key: 'msgInvalidFileSize', Translate: "Invalid file size" });
+            array.push({ Key: 'msgErrorUploadingFile', Translate: "Error uploading file" });
             break;
     }
     

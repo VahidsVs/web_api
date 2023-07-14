@@ -44,10 +44,12 @@ class CmsMediaManagement extends LitElement {
             label_description: ko.observable(),
         },
         errors: {
+            file: ko.observable(),
             fileUploadSize: ko.observable(),
             fileUploadExtension: ko.observable(),
         },
         setErrors: function (errors: any) {
+            this.errors.fileUploafiledSize(errors ? getTranslate(errors.file) : undefined);
             this.errors.fileUploadSize(errors ? getTranslate(errors.fileUploadSize) : undefined);
             this.errors.fileUploadExtension(errors ? getTranslate(errors.fileUploadExtension) : undefined);
         }
@@ -377,6 +379,7 @@ class CmsMediaManagement extends LitElement {
                         <div class="form-group">
                             <label data-bind="text: translate.label_file" class="form-label"></label> <span class="invalid">*</span>
                             <input id="uploader" type="file" class="form-control">
+                            <span class="invalid" data-bind="text: errors.file"></span>
                             <span class="invalid" data-bind="text: errors.fileUploadSize"></span>
                             <span class="invalid" data-bind="text: errors.fileUploadExtension"></span>
                         </div>
