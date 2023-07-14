@@ -237,30 +237,7 @@ class CmsMediaManagement extends LitElement {
                     }
                 },
                 {
-                    title: getTranslate('label_file'),
-                    template: '<img class="img-thumbnail" src="#= path #/#= name #">',
-                    width: 150,
-                    groupable: false,
-                },
-                {
-                    field: "name",
-                    title: getTranslate('label_filename'),
-                    width: 150,
-                    groupable: false,
-                    headerAttributes: { style: "white-space: normal" },
-                    filterable: {
-                        operators: {
-                            string: {
-                                contains: getTranslate("label_contains"),
-                                doesnotcontain: getTranslate("label_doesnotcontain"),
-                                eq: getTranslate("label_equal"),
-                                neq: getTranslate("label_notequal"),
-                            }
-                        }
-                    },
-                },
-                {
-                    field: "path",
+                    field: "full_path",
                     title: getTranslate('label_path'),
                     width: 150,
                     groupable: false,
@@ -292,6 +269,12 @@ class CmsMediaManagement extends LitElement {
                             }
                         }
                     },
+                },
+                {
+                    title: getTranslate('label_file'),
+                    template: '<img class="img-thumbnail" src="#= full_path #">',
+                    width: 150,
+                    groupable: false,
                 },
                 {
                     field: "created_at",
@@ -331,7 +314,7 @@ class CmsMediaManagement extends LitElement {
         let formData = new FormData();
         formData.append("fileUpload", files[0]);
 
-        if (files[0].size > this.ConfigData.max_file_size) {
+        if (files.length > 0 && files[0].size > this.ConfigData.max_file_size) {
             this.Model.setErrors([{fileUploadSize: 'msgInvalidUploadSize'}]);
             return;
         }
@@ -396,7 +379,7 @@ class CmsMediaManagement extends LitElement {
                         <div class="form-group">
                             <label data-bind="text: translate.label_description" class="form-label"></label> <span class="invalid">*</span>
                             <ul>
-                                ${this.Desc}
+                                ${html`${this.Desc}`}
                             </ul>
                         </div>
                     </div>
