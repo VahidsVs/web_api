@@ -54,8 +54,10 @@ class Medias
 		if (array_key_exists("pk", $parameters)) {
 			$bindParams["param"][] = $parameters["pk"];
 		}
+		$resultMedia=self::select("select",$parameters)[0];
+
 		$query = "Delete From $this->tableName Where pk_media = ?";
-		$resultMedia=self::select($parameters,"select")[0];
+
 		$errorCode = $this->accessDatabase->executeAndFetch($action, $query, $bindParams);
 
 		if ($errorCode == 1451) {
