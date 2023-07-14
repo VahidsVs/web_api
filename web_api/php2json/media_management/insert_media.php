@@ -1,5 +1,6 @@
 <?php
 include_once("../../class_codes.php");
+include_once("../../class_authorization.php");
 
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
@@ -13,10 +14,11 @@ session_start();
 $accessAuthorization = new Authorization();
 $isAuthorized["auth"] = $isAuthorized["aa"] = false;
 if (array_key_exists("Authorization", $headers) && array_key_exists("token", $_SESSION) && array_key_exists("key", $_SESSION))
-  $isAuthorized = $accessAuthorization->isAuthorized($headers["Authorization"], $_SESSION["token"], $_SESSION["key"], RolesTitle::role_contactUs);
+  $isAuthorized = $accessAuthorization->isAuthorized($headers["Authorization"], $_SESSION["token"], $_SESSION["key"], RolesTitle::role_mediaManagement);
 
 if ($isAuthorized["auth"] && $isAuthorized["aa"]) {
-  $targetDir = "../../../uploads";
+  $targetDir = "";
+  $uploadPath = "../../../uploads";
   $targetFile = $targetDir . basename($_FILES["fileUpload"]["name"]);
   $isUploadOk = true;
   $fileExtension = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
@@ -43,7 +45,7 @@ if ($isAuthorized["auth"] && $isAuthorized["aa"]) {
   // Check if $isUploadOk is set to 0 by an error
   if ($isUploadOk) {
     // if everything is ok, try to upload file
-    if (move_uploaded_file($fileTempName, "$targetDir/$renamedFileName")) {
+    if (move_uploaded_file($fileTempName, "$uploadPath/$renamedFileName")) {
       $params["fileName"]=$renamedFileName;
       $params["fileExtension"]=$fileExtension;
       $params["filePath"]=$targetDir;
