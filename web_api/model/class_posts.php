@@ -49,7 +49,7 @@ class Posts
 			$bindParams["param"][] = $parameters["fk_category"];
 		}
 		if (array_key_exists("content", $parameters)) {
-			$bindParams["param"][] = $parameters["content"];
+			$bindParams["param"][] = html_entity_decode($parameters["content"]);
 		}
 		if (array_key_exists("meta_keyword", $parameters)) {
 			$bindParams["param"][] = $parameters["meta_keyword"];
@@ -91,7 +91,7 @@ class Posts
 			$bindParams["param"][] = $parameters["fk_category"];
 		}
 		if (array_key_exists("content", $parameters)) {
-			$bindParams["param"][] = $parameters["content"];
+			$bindParams["param"][] =  html_entity_decode($parameters["content"]);
 		}
 		if (array_key_exists("meta_keyword", $parameters)) {
 			$bindParams["param"][] = $parameters["meta_keyword"];
