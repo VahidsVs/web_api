@@ -60,10 +60,27 @@ class CmsMediaManagement extends LitElement {
 
         this.Model.errors.fileUploadSize("");
         this.Model.errors.fileUploadExtension("");
+        
+        this.clearFileInput("uploader");
 
         //@ts-ignore
         $("#myTab button").eq(0).show().tab('show');
         $("#myTab button").eq(1).hide();
+    }
+
+    clearFileInput(id: string) {
+        var oldInput = document.getElementById(id) as HTMLInputElement;
+
+        var newInput = document.createElement("input");
+
+        newInput.type = "file";
+        newInput.id = oldInput.id;
+        newInput.name = oldInput.name;
+        newInput.className = oldInput.className;
+        newInput.style.cssText = oldInput.style.cssText;
+        // TODO: copy any other relevant attributes 
+
+        oldInput.parentNode.replaceChild(newInput, oldInput);
     }
 
     constructor() {
@@ -304,6 +321,11 @@ class CmsMediaManagement extends LitElement {
 
     Submit_Click() {
 
+        var upload = $("#uploader")[0] as HTMLInputElement,
+            files = upload.files;
+
+        this.Model.data.fileUpload(files[0]);
+
         PostDataForm("media_management/insert_media.php", ko.toJS(this.Model.data), "#tab2-pane")
             .then(data => {
                 if (data.errors === undefined && data.message === undefined) {
@@ -354,7 +376,7 @@ class CmsMediaManagement extends LitElement {
                     <div class="col-md-6 p-2">
                         <div class="form-group">
                             <label data-bind="text: translate.label_file" class="form-label"></label> <span class="invalid">*</span>
-                            <input type="file" class="form-control" data-bind="value: data.fileUpload">
+                            <input id="uploader" type="file" class="form-control">
                             <span class="invalid" data-bind="text: errors.fileUploadSize"></span>
                             <span class="invalid" data-bind="text: errors.fileUploadExtension"></span>
                         </div>
