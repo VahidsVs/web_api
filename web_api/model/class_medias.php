@@ -11,6 +11,7 @@ class Medias
 	}
 	function select($action, $parameters, $orderBy = null, $limit = null)
 	{
+		$iniConfig = parse_ini_file("../../config.ini");
 		$condition = "";
 		$bindParams = null;
 		if (array_key_exists("pk", $parameters)) {
@@ -18,7 +19,7 @@ class Medias
 			$condition .= " And pk_media = ?";
 
 		}
-				$query = "Select *, Concat(path,'/',name) as full_path From  $this->tableName Where 1=1 $condition ";
+			$query = "Select *, Concat('{$iniConfig["server_name"]}',path,name) as full_path From  $this->tableName Where 1=1 $condition ";
 
 		$result = $this->accessDatabase->executeAndFetch("select", $query, $bindParams, $orderBy, $limit);
 

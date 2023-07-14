@@ -50,7 +50,7 @@ if ($isAuthorized["auth"] && $isAuthorized["aa"]) {
       if (move_uploaded_file($fileTempName, "$uploadPath/$renamedFileName")) {
         $params["fileName"] = $renamedFileName;
         $params["fileExtension"] = $fileExtension;
-        $params["filePath"] = "/uploads";
+        $params["filePath"] = "uploads/";
         $accessClass = new Media("insert", $params);
         http_response_code($accessClass->getHttpResponseCode());
         echo json_encode($accessClass->getJsonData());
