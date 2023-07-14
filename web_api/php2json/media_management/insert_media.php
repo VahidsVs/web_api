@@ -31,14 +31,14 @@ if ($isAuthorized["auth"] && $isAuthorized["aa"]) {
 
     // Check file size
     if ($fileSize > $iniConfig["max-file-size"]) {
-      $jsonData["get"]["fileUploadSize"] = Codes::msg_invalidFileSize;
+      $jsonData["errors"] = ["fileUploadSize" => Codes::msg_invalidFileSize];
       http_response_code(400);
       $isUploadOk = false;
     }
 
     // Allow certain file formats
     if (!in_array($fileExtension, ["jpg", "jpeg", "png"])) {
-      $jsonData["errors"]["fileUploadExtension"] = Codes::msg_invalidFileExtension;
+      $jsonData["errors"] = ["fileUploadExtension" => Codes::msg_invalidFileExtension];
       http_response_code(400);
       $isUploadOk = false;
     }
@@ -54,7 +54,7 @@ if ($isAuthorized["auth"] && $isAuthorized["aa"]) {
         http_response_code($accessClass->getHttpResponseCode());
         echo json_encode($accessClass->getJsonData());
       } else {
-        $jsonData["errors"]["file"] = Codes::msg_ErrorUploadingFile;
+        $jsonData["errors"] = ["file" => Codes::msg_ErrorUploadingFile];
         http_response_code(400);
         echo json_encode($jsonData);
       }
@@ -63,7 +63,7 @@ if ($isAuthorized["auth"] && $isAuthorized["aa"]) {
       echo json_encode($jsonData);
     }
   } else {
-    $jsonData["errors"]["file"] = Codes::msg_isRequired;
+    $jsonData["errors"] = ["file" => Codes::msg_isRequired];
     http_response_code(400);
     echo json_encode($jsonData);
   }
