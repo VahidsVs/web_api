@@ -7,6 +7,7 @@ import {
     GetData,
     PostData,
     PostDataForm,
+    PostDataFile,
     AjaxSuccessFunction,
     GetDataWithoutLoading
 } from '../../cms_general';
@@ -324,9 +325,10 @@ class CmsMediaManagement extends LitElement {
         var upload = $("#uploader")[0] as HTMLInputElement,
             files = upload.files;
 
-        this.Model.data.fileUpload(files[0]);
+            let formData = new FormData();
+            formData.append("fileUpload", files[0]);
 
-        PostDataForm("media_management/insert_media.php", ko.toJS(this.Model.data), "#tab2-pane")
+        PostDataFile("media_management/insert_media.php", formData, "#tab2-pane")
             .then(data => {
                 if (data.errors === undefined && data.message === undefined) {
                     this.ClearScr();

@@ -168,7 +168,7 @@ export async function PostDataForm(address: string, param: any, divId: string = 
     for ( var key in param ) {
         form_data.append(key, param[key]);
     }
-console.log(form_data);
+    
     // console.log(param);
     // let h = new Headers();
     // h.append('Authorization', GetToken());
