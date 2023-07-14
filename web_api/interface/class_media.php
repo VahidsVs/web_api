@@ -29,6 +29,7 @@ class Media
 	}
 	private function insert($action, $parameters)
 	{
+		$message["fileName"]=$message["fileExtension"]=$message["filePath"]=null;
 		if (empty($parameters["fileName"])) {
 			$message["fileName"] = Codes::msg_isRequired;
 			$this->isDataOK = false;
