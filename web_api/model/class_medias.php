@@ -18,7 +18,7 @@ class Medias
 			$condition .= " And pk_media = ?";
 
 		}
-				$query = "Select * From  $this->tableName Where 1=1 $condition ";
+				$query = "Select *, Concat(path,'/',name) as full_path From  $this->tableName Where 1=1 $condition ";
 
 		$result = $this->accessDatabase->executeAndFetch("select", $query, $bindParams, $orderBy, $limit);
 
