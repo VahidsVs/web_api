@@ -7,7 +7,7 @@ class Menu
     public function getParentMenu()
     {
         $parentMenu[] = ["id" => 1, "parentId" => null, "title" => "menu_management", "url" => "#"];
-        $parentMenu[] = ["id" => 2, "parentId" => null, "title" => "menu_base_information", "url" => "#"];
+        $parentMenu[] = ["id" => 2, "parentId" => null, "title" => "menu_media", "url" => "#"];
         return $parentMenu;
     }
     public function addMenu($listMenu, $newMenu)
@@ -40,6 +40,7 @@ class Menu
         $indexPLM = array_search(RolesTitle::role_permissionLevelManagement, array_column($jsonData, 'title')); //Permission Level Management
         $indexCUM = array_search(RolesTitle::role_contactUs, array_column($jsonData, 'title')); //Contact Us Management
         $indexPM = array_search(RolesTitle::role_postManagement, array_column($jsonData, 'title')); //Post Management
+        $indexMM = array_search(RolesTitle::role_mediaManagement, array_column($jsonData, 'title')); //Media Management
 
         if (array_key_exists($indexPLM, $jsonData)) {
             $newMenu = ["id" => 101, "parentId" => 1, "title" => "menu_permission_level_management", "url" => "/admin/permission_level_management.html"];
@@ -53,17 +54,21 @@ class Menu
             $newMenu = ["id" => 103, "parentId" => 1, "title" => "menu_post_management", "url" => "/admin/post.html"];
             $menuArray = self::addMenu($menuArray, $newMenu);
         }
+        if (array_key_exists($indexMM, $jsonData)) {
+            $newMenu = ["id" => 201, "parentId" => 2, "title" => "menu_media_management", "url" => "/admin/media_management.html"];
+            $menuArray = self::addMenu($menuArray, $newMenu);
+        }
 
         return $menuArray;
     }
 }
-            //$existedParentMenu=null;
-            // foreach ($listMenu as $value) {
-            //     if ($value["id"] == $newMenu["parentId"]) {
-            //         $existedParentMenu = $value;
-            //         break;
-            //     }
-            // }
+//$existedParentMenu=null;
+// foreach ($listMenu as $value) {
+//     if ($value["id"] == $newMenu["parentId"]) {
+//         $existedParentMenu = $value;
+//         break;
+//     }
+// }
 
 // foreach (self::getParentMenu() as $value) {
 //     if ($value["id"] == $newMenu["parentId"]) {
