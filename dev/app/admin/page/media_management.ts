@@ -49,7 +49,7 @@ class CmsMediaManagement extends LitElement {
             fileUploadExtension: ko.observable(),
         },
         setErrors: function (errors: any) {
-            this.errors.fileUploafiledSize(errors ? getTranslate(errors.file) : undefined);
+            this.errors.file(errors ? getTranslate(errors.file) : undefined);
             this.errors.fileUploadSize(errors ? getTranslate(errors.fileUploadSize) : undefined);
             this.errors.fileUploadExtension(errors ? getTranslate(errors.fileUploadExtension) : undefined);
         }
