@@ -14,6 +14,9 @@ class Codes
     public  const msg_constraintGroupRole= "msgConstraintGroupRole"; //Successful Create, Update, Delete
     public  const msg_constraintUserInGroup= "msgConstraintUserInGroup"; //Successful Create, Update, Delete
     public  const msg_userExistsInGroup= "msgUserExistsInGroup"; //Successful Create, Update, Delete
+    public  const msg_invalidFileExtension = "msgInvalidFileExtension"; //Successful Create, Update, Delete
+    public  const msg_invalidFileSize = "msgInvalidFileSize"; //Successful Create, Update, Delete
+    public  const msg_ErrorUploadingFile = "msgErrorUploadingFile"; //Successful Create, Update, Delete
     public  const msg_SuccessfulCUD = "msgSuccessfulCUD"; //Successful Create, Update, Delete
     #endregion
 }

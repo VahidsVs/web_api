@@ -42,7 +42,6 @@ class ContactUss
 		if (array_key_exists("message", $parameters)) {
 			$bindParams["param"][] = $parameters["message"];
 		}
-
 			$query = "Insert Into $this->tableName (name,email,mobile,subject,message,created_at) Values(?,?,?,?,?,now())";
 			$errorCode = $this->accessDatabase->executeAndFetch($action, $query, $bindParams);
 
