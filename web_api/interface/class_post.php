@@ -68,10 +68,7 @@ class Post
 				$this->httpResponseCode = 400;
 				$this->jsonData = ["message" => $result["code"]];
 			}
-
 		}
-
-
 	}
 	private function update($action, $parameters)
 	{

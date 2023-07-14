@@ -51,6 +51,9 @@ class Posts
 		if (array_key_exists("content", $parameters)) {
 			$bindParams["param"][] = html_entity_decode($parameters["content"]);
 		}
+		if (array_key_exists("thumbnail_path", $parameters)) {
+			$bindParams["param"][] = $parameters["thumbnail_path"];
+		}
 		if (array_key_exists("meta_keyword", $parameters)) {
 			$bindParams["param"][] = $parameters["meta_keyword"];
 		}
@@ -60,8 +63,9 @@ class Posts
 		if (array_key_exists("status", $parameters)) {
 			$bindParams["param"][] = $parameters["status"];
 		}
-		$query = "Insert Into $this->tableName (fk_user,title,slug,summary,fk_category,content,meta_keyword,meta_description,status,created_at)
-		 Values(?,?,?,?,?,?,?,?,?,now()) ";
+		
+		$query = "Insert Into $this->tableName (fk_user,title,slug,summary,fk_category,content,thumbnail_path,meta_keyword,meta_description,status,created_at)
+		 Values(?,?,?,?,?,?,?,?,?,?,now()) ";
 
 		$errorCode = $this->accessDatabase->executeAndFetch($action, $query, $bindParams);
 		if ($errorCode == 1062) {
@@ -92,6 +96,9 @@ class Posts
 		}
 		if (array_key_exists("content", $parameters)) {
 			$bindParams["param"][] =  html_entity_decode($parameters["content"]);
+		}
+		if (array_key_exists("thumbnail_path", $parameters)) {
+			$bindParams["param"][] = $parameters["thumbnail_path"];
 		}
 		if (array_key_exists("meta_keyword", $parameters)) {
 			$bindParams["param"][] = $parameters["meta_keyword"];
