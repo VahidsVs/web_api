@@ -29,6 +29,8 @@ class CmsMediaManagement extends LitElement {
     @state()
     private Desc: any = [];
 
+    private ConfigData: any = [];
+
     private Model = {
         data: {
             pk_media: ko.observable(),
@@ -61,7 +63,7 @@ class CmsMediaManagement extends LitElement {
 
         this.Model.errors.fileUploadSize("");
         this.Model.errors.fileUploadExtension("");
-        
+
         this.clearFileInput("uploader");
 
         //@ts-ignore
@@ -112,10 +114,11 @@ class CmsMediaManagement extends LitElement {
 
         this.FillDataGrid();
 
-        GetDataWithoutLoading("config/get_config.php", {getConfig: 'fileSize,fileExtension'})
+        GetDataWithoutLoading("config/get_config.php", { getConfig: 'max-file-size,file-extension' })
             .then(data => {
+                this.ConfigData = data;
                 for (let i = 0; i < data.length; i++) {
-                    
+
                     this.Desc.push(html`
                     <li>${data[i]}</li>`);
                 }
@@ -325,8 +328,13 @@ class CmsMediaManagement extends LitElement {
         var upload = $("#uploader")[0] as HTMLInputElement,
             files = upload.files;
 
-            let formData = new FormData();
-            formData.append("fileUpload", files[0]);
+        let formData = new FormData();
+        formData.append("fileUpload", files[0]);
+
+        if (files[0].size > this.ConfigData['max-file-size']) {
+            this.Model.setErrors([{fileUploadSize: 'msgInvalidUploadSize'}]);
+            return;
+        }
 
         PostDataFile("media_management/insert_media.php", formData, "#tab2-pane")
             .then(data => {

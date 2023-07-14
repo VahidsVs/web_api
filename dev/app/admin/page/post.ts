@@ -34,6 +34,7 @@ class CmsPost extends LitElement {
             fk_parent_category: ko.observable(),
             summary: ko.observable(),
             content: ko.observable(),
+            thumbnail_path: ko.observable(),
             meta_keyword: ko.observable(),
             meta_description: ko.observable(),
             status: ko.observable(),
@@ -51,6 +52,7 @@ class CmsPost extends LitElement {
             label_parent_category: ko.observable(),
             label_summary: ko.observable(),
             label_content: ko.observable(),
+            label_thumbnail: ko.observable(),
             label_meta_keyword: ko.observable(),
             label_meta_description: ko.observable(),
             label_status: ko.observable(),
@@ -133,6 +135,7 @@ class CmsPost extends LitElement {
         this.Model.translate.label_parent_category(getTranslate('label_parent_category'));
         this.Model.translate.label_summary(getTranslate('label_summary'));
         this.Model.translate.label_content(getTranslate('label_content'));
+        this.Model.translate.label_thumbnail(getTranslate('label_thumbnail'));
         this.Model.translate.label_meta_keyword(getTranslate('label_meta_keyword'));
         this.Model.translate.label_meta_description(getTranslate('label_meta_description'));
         this.Model.translate.label_status(getTranslate('label_status'));
@@ -709,6 +712,13 @@ class CmsPost extends LitElement {
                             <label data-bind="text: translate.label_content" class="form-label"></label> <span class="invalid">*</span>
                             <textarea id="editor" class="form-control" rows="10" cols="30" style="width:100%; height:450px" data-bind="value: data.content"></textarea>
                             <span class="invalid" data-bind="text: errors.content"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-12 p-2">
+                        <div class="form-group">
+                            <label data-bind="text: translate.label_thumbnail" class="form-label"></label>
+                            <input type="text" class="form-control" data-bind="value: data.thumbnail_path">
+                            <span class="invalid" data-bind="text: errors.thumbnail_path"></span>
                         </div>
                     </div>
                 </div>
