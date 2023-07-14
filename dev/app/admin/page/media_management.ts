@@ -32,7 +32,6 @@ class CmsMediaManagement extends LitElement {
     private Model = {
         data: {
             pk_media: ko.observable(),
-            fileUpload: ko.observable(),
         },
         translate: {
             menu_media_management: ko.observable(),
@@ -57,7 +56,6 @@ class CmsMediaManagement extends LitElement {
     ClearScr() {
 
         this.Model.data.pk_media("");
-        this.Model.data.fileUpload("");
 
         this.Model.errors.fileUploadSize("");
         this.Model.errors.fileUploadExtension("");
@@ -235,12 +233,12 @@ class CmsMediaManagement extends LitElement {
                 },
                 {
                     title: getTranslate('label_file'),
-                    template: '<img class="img-thumbnail" src="#= path #/#= filename #">',
+                    template: '<img class="img-thumbnail" src="#= path #/#= name #">',
                     width: 150,
                     groupable: false,
                 },
                 {
-                    field: "filename",
+                    field: "name",
                     title: getTranslate('label_filename'),
                     width: 150,
                     groupable: false,

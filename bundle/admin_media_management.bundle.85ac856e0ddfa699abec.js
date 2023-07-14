@@ -23163,7 +23163,6 @@ let CmsMediaManagement = class CmsMediaManagement extends lit__WEBPACK_IMPORTED_
     }
     ClearScr() {
         this.Model.data.pk_media("");
-        this.Model.data.fileUpload("");
         this.Model.errors.fileUploadSize("");
         this.Model.errors.fileUploadExtension("");
         this.clearFileInput("uploader");
@@ -23186,7 +23185,6 @@ let CmsMediaManagement = class CmsMediaManagement extends lit__WEBPACK_IMPORTED_
         this.Model = {
             data: {
                 pk_media: knockout__WEBPACK_IMPORTED_MODULE_3__.observable(),
-                fileUpload: knockout__WEBPACK_IMPORTED_MODULE_3__.observable(),
             },
             translate: {
                 menu_media_management: knockout__WEBPACK_IMPORTED_MODULE_3__.observable(),
@@ -23331,12 +23329,12 @@ let CmsMediaManagement = class CmsMediaManagement extends lit__WEBPACK_IMPORTED_
                 },
                 {
                     title: (0,_cms_general__WEBPACK_IMPORTED_MODULE_2__.getTranslate)('label_file'),
-                    template: '<img class="img-thumbnail" src="#= path #/#= filename #">',
+                    template: '<img class="img-thumbnail" src="#= path #/#= name #">',
                     width: 150,
                     groupable: false,
                 },
                 {
-                    field: "filename",
+                    field: "name",
                     title: (0,_cms_general__WEBPACK_IMPORTED_MODULE_2__.getTranslate)('label_filename'),
                     width: 150,
                     groupable: false,
@@ -27649,4 +27647,4 @@ __webpack_require__.r(__webpack_exports__);
 /******/ var __webpack_exports__ = (__webpack_exec__("./admin/page/media_management.ts"));
 /******/ }
 ]);
-//# sourceMappingURL=admin_media_management.bundle.68f73363ef48caf0dcb4.js.map
+//# sourceMappingURL=admin_media_management.bundle.85ac856e0ddfa699abec.js.map
