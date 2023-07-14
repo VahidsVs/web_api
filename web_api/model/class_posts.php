@@ -106,7 +106,7 @@ class Posts
 			$bindParams["param"][] = $parameters["pk"];
 		}
 		$query = "Update $this->tableName Set fk_user = ? , title = ? , slug = ? , summary = ? , fk_category = ? ,
-				content = ? , meta_keyword = ? , meta_description = ? , status = ?   Where pk_post = ?";
+				content = ? , meta_keyword = ? , meta_description = ? , status = ? , updated_at = now()  Where pk_post = ?";
 
 		$errorCode = $this->accessDatabase->executeAndFetch($action, $query, $bindParams);
 		if ($errorCode == 1062) {

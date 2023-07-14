@@ -75,7 +75,7 @@ class Users
 			$bindParams["param"][] = $parameters["email"];
 		}
 
-				$query = "Insert Into $this->tableName (pk_user,username,password,firstname,lastname,mobile,email) Values(UUID(),?,?,?,?,?,?) ";
+				$query = "Insert Into $this->tableName (pk_user,username,password,firstname,lastname,mobile,email,created_at) Values(UUID(),?,?,?,?,?,?,now()) ";
 		
 		$errorCode = $this->accessDatabase->executeAndFetch($action, $query, $bindParams);
 		if($errorCode==1062)
