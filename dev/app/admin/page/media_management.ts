@@ -114,14 +114,14 @@ class CmsMediaManagement extends LitElement {
 
         this.FillDataGrid();
 
-        GetDataWithoutLoading("config/get_config.php", { getConfig: 'max-file-size,file-extension' })
+        GetDataWithoutLoading("config/get_config.php", { getConfig: 'max_file_size,file_extension' })
             .then(data => {
                 this.ConfigData = data;
-                for (let i = 0; i < data.length; i++) {
-
-                    this.Desc.push(html`
-                    <li>${data[i]}</li>`);
-                }
+                
+                this.Desc.push(html`
+                <li>${data.max_file_size}</li>`);
+                this.Desc.push(html`
+                <li>${data.file_extension}</li>`);
             })
     }
 
@@ -331,7 +331,7 @@ class CmsMediaManagement extends LitElement {
         let formData = new FormData();
         formData.append("fileUpload", files[0]);
 
-        if (files[0].size > this.ConfigData['max-file-size']) {
+        if (files[0].size > this.ConfigData.max_file_size) {
             this.Model.setErrors([{fileUploadSize: 'msgInvalidUploadSize'}]);
             return;
         }
