@@ -235,7 +235,7 @@ class CmsMediaManagement extends LitElement {
                 },
                 {
                     title: getTranslate('label_file'),
-                    template: '<img class="img-thumbnail" src="#= path #">',
+                    template: '<img class="img-thumbnail" src="#= path #/#= filename #">',
                     width: 150,
                     groupable: false,
                 },
