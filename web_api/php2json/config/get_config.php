@@ -19,7 +19,7 @@ if ($isAuthorized["auth"] && $isAuthorized["aa"]) {
     $requestedConfig = explode(",", $_GET["getConfig"]);
     foreach ($requestedConfig as $config)
         $jsonData[$config] = $iniConfig[$config];
-        
+    
     echo json_encode($jsonData);
 } else {
     http_response_code(401);

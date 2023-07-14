@@ -28,16 +28,17 @@ if ($isAuthorized["auth"] && $isAuthorized["aa"]) {
     $fileSize = $_FILES["fileUpload"]["size"];
     $fileTempName = $_FILES["fileUpload"]["tmp_name"];
     $renamedFileName = str_replace("." . $fileExtension, "", $fileName) . uniqid() . "." . $fileExtension;
+    $permittedExtentions = explode(",", $iniConfig["file_extension"]);
 
     // Check file size
-    if ($fileSize > $iniConfig["max-file-size"]) {
+    if ($fileSize > $iniConfig["max_file_size"]) {
       $jsonData["errors"] = ["fileUploadSize" => Codes::msg_invalidFileSize];
       http_response_code(400);
       $isUploadOk = false;
     }
 
     // Allow certain file formats
-    if (!in_array($fileExtension, ["jpg", "jpeg", "png"])) {
+    if (!in_array($fileExtension, $permittedExtentions)) {
       $jsonData["errors"] = ["fileUploadExtension" => Codes::msg_invalidFileExtension];
       http_response_code(400);
       $isUploadOk = false;
