@@ -23173,9 +23173,19 @@ let CmsPost = class CmsPost extends lit__WEBPACK_IMPORTED_MODULE_0__.LitElement 
         this.Model.data.meta_keyword("");
         this.Model.data.meta_description("");
         this.Model.data.status("");
+        this.Model.errors.title("");
+        this.Model.errors.slug("");
+        this.Model.errors.fk_category("");
+        this.Model.errors.fk_parent_category("");
+        this.Model.errors.summary("");
+        this.Model.errors.content("");
+        this.Model.errors.meta_keyword("");
+        this.Model.errors.meta_description("");
+        this.Model.errors.status("");
         $("#cmbParentCategory").data("kendoDropDownList").value(null);
         $("#cmbCategory").data("kendoDropDownList").value(null);
         $("#cmbStatus").data("kendoDropDownList").value(null);
+        $("#editor").data("kendoEditor").value(null);
         $("#myTab button").eq(0).show().tab('show');
         $("#myTab button").eq(1).hide();
     }
@@ -23359,6 +23369,7 @@ let CmsPost = class CmsPost extends lit__WEBPACK_IMPORTED_MODULE_0__.LitElement 
                     e.success([
                         { pk_status: 'Published', title: 'Published' },
                         { pk_status: 'Unpublished', title: 'Unpublished' },
+                        { pk_status: 'Draft', title: 'Draft' },
                     ]);
                 },
             },
@@ -23471,6 +23482,7 @@ let CmsPost = class CmsPost extends lit__WEBPACK_IMPORTED_MODULE_0__.LitElement 
                             await this.FillDataCmbCategory();
                             $("#cmbCategory").data("kendoDropDownList").value(dataItem.fk_category);
                             $("#cmbStatus").data("kendoDropDownList").value(dataItem.status);
+                            $("#editor").data("kendoEditor").value(dataItem.content);
                         }
                     }
                 },
@@ -27939,4 +27951,4 @@ __webpack_require__.r(__webpack_exports__);
 /******/ var __webpack_exports__ = (__webpack_exec__("./admin/page/post.ts"));
 /******/ }
 ]);
-//# sourceMappingURL=admin_post.bundle.ee2ba96e04ca4fb7386b.js.map
+//# sourceMappingURL=admin_post.bundle.36394a83393822b869bd.js.map

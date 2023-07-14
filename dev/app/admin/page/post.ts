@@ -92,10 +92,22 @@ class CmsPost extends LitElement {
         this.Model.data.meta_keyword("");
         this.Model.data.meta_description("");
         this.Model.data.status("");
+        
+        this.Model.errors.title("");
+        this.Model.errors.slug("");
+        this.Model.errors.fk_category("");
+        this.Model.errors.fk_parent_category("");
+        this.Model.errors.summary("");
+        this.Model.errors.content("");
+        this.Model.errors.meta_keyword("");
+        this.Model.errors.meta_description("");
+        this.Model.errors.status("");
 
         $("#cmbParentCategory").data("kendoDropDownList").value(null);
         $("#cmbCategory").data("kendoDropDownList").value(null);
         $("#cmbStatus").data("kendoDropDownList").value(null);
+        
+        $("#editor").data("kendoEditor").value(null);
 
         //@ts-ignore
         $("#myTab button").eq(0).show().tab('show');
@@ -256,6 +268,7 @@ class CmsPost extends LitElement {
                     e.success([
                         { pk_status: 'Published', title: 'Published' },
                         { pk_status: 'Unpublished', title: 'Unpublished' },
+                        { pk_status: 'Draft', title: 'Draft' },
                     ]);
                 },
             },
@@ -388,7 +401,7 @@ class CmsPost extends LitElement {
 
                             $("#cmbStatus").data("kendoDropDownList").value(dataItem.status);
 
-                            // $("#editor").data("kendoEditor").value(dataItem.content);
+                            $("#editor").data("kendoEditor").value(dataItem.content);
                         }
                     }
                 },
