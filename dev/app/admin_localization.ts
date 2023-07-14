@@ -20,17 +20,19 @@
             array.push({ Key: 'nav_link_profile', Translate: "پروفایل" });
             
             array.push({ Key: 'menu_management', Translate: "مدیریت" });
-            array.push({ Key: 'menu_baseinformation', Translate: "اطلاعات پایه" });
+            array.push({ Key: 'menu_media', Translate: "رسانه" });
             array.push({ Key: 'menu_permission_level_management', Translate: "مدیریت سطوح دسترسی" });
             array.push({ Key: 'menu_contact_us', Translate: "ارتباط با ما" });
             array.push({ Key: 'menu_admin_dashboard', Translate: "داشبورد" });
             array.push({ Key: 'menu_post_management', Translate: "مدیریت پست ها" });
+            array.push({ Key: 'menu_media_management', Translate: "مدیریت رسانه" });
             
             array.push({ Key: 'role_contact_us', Translate: "مدیریت ارتباط با ما" });
             array.push({ Key: 'role_permission_level_management', Translate: "مدیریت سطوح دسترسی" });
             array.push({ Key: 'role_slideshow_management', Translate: "مدیریت اسلایدشو" });
             array.push({ Key: 'role_advertisement_management', Translate: "مدیریت تبلیغات" });
             array.push({ Key: 'role_post_management', Translate: "مدیریت پست ها" });
+            array.push({ Key: 'role_media_management', Translate: "مدیریت رسانه" });
             
             array.push({ Key: 'tab_title_groups', Translate: "گروه ها" });
             array.push({ Key: 'tab_title_details', Translate: "جزئیات" });
@@ -66,6 +68,11 @@
             array.push({ Key: 'label_meta_keyword', Translate: "کلمات کلیدی متا" });
             array.push({ Key: 'label_meta_description', Translate: "توضیحات متا" });
             array.push({ Key: 'label_content', Translate: "محتوا" });
+            array.push({ Key: 'label_filename', Translate: "نام فایل" });
+            array.push({ Key: 'label_extension', Translate: "پسوند" });
+            array.push({ Key: 'label_path', Translate: "مسیر" });
+            array.push({ Key: 'label_file', Translate: "فایل" });
+            array.push({ Key: 'label_description', Translate: "توضیحات" });
             
             array.push({ Key: 'btn_submit', Translate: "ثبت" });
             array.push({ Key: 'btn_cancel', Translate: "انصراف" });
@@ -87,6 +94,8 @@
             array.push({ Key: 'msgSuccessfulCUD', Translate: "عملیات با موفقیت انجام شد" });
             array.push({ Key: 'msgUserExistsInGroup', Translate: "کاربر انتخابی در گروه دیگری می باشد" });
             array.push({ Key: 'msgConstraintGroupRole', Translate: "گروه مورد نظر کاربر یا دسترسی دارد" });
+            array.push({ Key: 'msgInvalidFileExtension', Translate: "پسوند فایل نامعتبر است" });
+            array.push({ Key: 'msgInvalidFileSize', Translate: "حجم فایل نامعتبر است" });
             break;
 
 
@@ -107,17 +116,19 @@
             array.push({ Key: 'nav_link_profile', Translate: "Profile" });
             
             array.push({ Key: 'menu_management', Translate: "Management" });
-            array.push({ Key: 'menu_base_information', Translate: "Base Info" });
+            array.push({ Key: 'menu_media', Translate: "Media" });
             array.push({ Key: 'menu_permission_level_management', Translate: "Permission Level Management" });
             array.push({ Key: 'menu_contact_us', Translate: "Contact Us" });
             array.push({ Key: 'menu_admin_dashboard', Translate: "Dashboard" });
             array.push({ Key: 'menu_post_management', Translate: "Post Management" });
+            array.push({ Key: 'menu_media_management', Translate: "Media Management" });
             
             array.push({ Key: 'role_contact_us', Translate: "Contact Us Management" });
             array.push({ Key: 'role_permission_level_management', Translate: "Permission Level Management" });
             array.push({ Key: 'role_slideshow_management', Translate: "Slideshow Management" });
             array.push({ Key: 'role_advertisement_management', Translate: "Advertisement Management" });
             array.push({ Key: 'role_post_management', Translate: "Post Management" });
+            array.push({ Key: 'role_media_management', Translate: "Media Management" });
             
             array.push({ Key: 'tab_title_groups', Translate: "Groups" });
             array.push({ Key: 'tab_title_details', Translate: "Details" });
@@ -153,6 +164,11 @@
             array.push({ Key: 'label_meta_keyword', Translate: "Meta Keyword" });
             array.push({ Key: 'label_meta_description', Translate: "Meta Descripiton" });
             array.push({ Key: 'label_content', Translate: "Content" });
+            array.push({ Key: 'label_filename', Translate: "File name" });
+            array.push({ Key: 'label_extension', Translate: "Extension" });
+            array.push({ Key: 'label_path', Translate: "Path" });
+            array.push({ Key: 'label_file', Translate: "File" });
+            array.push({ Key: 'label_description', Translate: "Description" });
             
             array.push({ Key: 'btn_submit', Translate: "Submit" });
             array.push({ Key: 'btn_cancel', Translate: "Cancel" });
@@ -174,6 +190,8 @@
             array.push({ Key: 'msgSuccessfulCUD', Translate: "Successfully submited" });
             array.push({ Key: 'msgUserExistsInGroup', Translate: "User exists in another group" });
             array.push({ Key: 'msgConstraintGroupRole', Translate: "Group has permission level or user" });
+            array.push({ Key: 'msgInvalidFileExtension', Translate: "Invalid file format" });
+            array.push({ Key: 'msgInvalidFileSize', Translate: "Invalid file size" });
             break;
     }
     

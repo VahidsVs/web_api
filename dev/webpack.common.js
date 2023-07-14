@@ -24,6 +24,7 @@ let adminPages = [
     'permission_level_management',
     'contact_us',
     'post',
+    'media_management',
 ];
 
 module.exports = {
