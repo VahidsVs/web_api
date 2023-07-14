@@ -67,7 +67,7 @@ class Medias
 
 		if(is_null($errorCode))
 		{
-		$status=unlink("../../..{$resultMedia["path"]}/{$resultMedia["name"]}");
+		$status=unlink("../../../{$resultMedia["path"]}/{$resultMedia["name"]}");
 		$code=Codes::msg_SuccessfulCUD;
 		}
 		return ["code"=>$code];	
