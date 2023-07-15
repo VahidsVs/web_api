@@ -271,6 +271,23 @@ class CmsMediaManagement extends LitElement {
                     },
                 },
                 {
+                    field: "file_size",
+                    title: getTranslate('label_size'),
+                    width: 150,
+                    groupable: false,
+                    headerAttributes: { style: "white-space: normal" },
+                    filterable: {
+                        operators: {
+                            string: {
+                                contains: getTranslate("label_contains"),
+                                doesnotcontain: getTranslate("label_doesnotcontain"),
+                                eq: getTranslate("label_equal"),
+                                neq: getTranslate("label_notequal"),
+                            }
+                        }
+                    },
+                },
+                {
                     title: getTranslate('label_file'),
                     template: '<img class="img-thumbnail" src="#= full_path #">',
                     width: 150,
