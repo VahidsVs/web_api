@@ -59,18 +59,18 @@ class Medias
 			$bindParams["param"][] = $parameters["pk"];
 		}
 		$resultMedia = self::select("select", $parameters)[0];
-		$filePath = "../../../{$resultMedia["path"]}/{$resultMedia["name"]}";
+		$filePath = "../../../{$resultMedia["path"]}{$resultMedia["name"]}";
 		$query = "Delete From $this->tableName Where pk_media = ?";
-
+		if (file_exists($$filePath))
+		{
+		$status = unlink($filePath);
 		$errorCode = $this->accessDatabase->executeAndFetch($action, $query, $bindParams);
-
+		}
 		if ($errorCode == 1451) {
 			$code = Codes::msg_constraintRoleInGroup;
 		}
 
 		if (is_null($errorCode)) {
-			if (file_exists($$filePath))
-				$status = unlink($filePath);
 			$code = Codes::msg_SuccessfulCUD;
 		}
 		return ["code" => $code];
