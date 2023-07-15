@@ -25,6 +25,8 @@ class CmsPost extends LitElement {
 
     private lcid;
 
+    private thumbnail_path: any = "";
+
     private Model = {
         data: {
             pk: ko.observable(),
@@ -83,6 +85,8 @@ class CmsPost extends LitElement {
     };
 
     ClearScr() {
+
+        this.thumbnail_path = "";
 
         this.Model.data.pk("");
         this.Model.data.pk_post("");
@@ -716,10 +720,10 @@ class CmsPost extends LitElement {
                             <span class="invalid" data-bind="text: errors.content"></span>
                         </div>
                     </div>
-                    <div class="col-md-12 p-2">
+                    <div class="col-md-6 p-2">
                         <div class="form-group">
                             <label data-bind="text: translate.label_thumbnail_path" class="form-label"></label>
-                            <cms-mediapick></cms-mediapick>
+                            <cms-mediapick value=${this.thumbnail_path}></cms-mediapick>
                             <span class="invalid" data-bind="text: errors.thumbnail_path"></span>
                         </div>
                     </div>

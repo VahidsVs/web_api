@@ -29,55 +29,24 @@ class CmsMediaPick extends LitElement {
 
     private PostfixID: any;
 
+    @property({reflect: true})
+    value: any;
+
     private Model = {
         data: {
-            pk_media: ko.observable(),
+            value: ko.observable(),
         },
         translate: {
-            menu_media_management: ko.observable(),
-            tab_title_list: ko.observable(),
-            tab_title_details: ko.observable(),
-            btn_submit: ko.observable(),
-            btn_new: ko.observable(),
-            btn_cancel: ko.observable(),
             label_file: ko.observable(),
-            label_description: ko.observable(),
         },
-        errors: {
-            file: ko.observable(),
-            fileUploadSize: ko.observable(),
-            fileUploadExtension: ko.observable(),
-        },
-        setErrors: function (errors: any) {
-            this.errors.file(errors ? getTranslate(errors.file) : undefined);
-            this.errors.fileUploadSize(errors ? getTranslate(errors.fileUploadSize) : undefined);
-            this.errors.fileUploadExtension(errors ? getTranslate(errors.fileUploadExtension) : undefined);
-        }
     };
-
-    ClearScr() {
-
-        this.Model.data.pk_media("");
-
-        this.Model.errors.fileUploadSize("");
-        this.Model.errors.fileUploadExtension("");
-    }
 
     constructor() {
         super();
 
         this.lcid = getLanguage();
 
-        document.title = getTranslate('menu_media_management');
-
-        this.Model.translate.menu_media_management(getTranslate('menu_media_management'));
-        this.Model.translate.tab_title_list(getTranslate('tab_title_list'));
-        this.Model.translate.tab_title_details(getTranslate('tab_title_details'));
-        this.Model.translate.btn_submit(getTranslate('btn_submit'));
-        this.Model.translate.btn_new(getTranslate('btn_new'));
-        this.Model.translate.btn_cancel(getTranslate('btn_cancel'));
-        this.Model.translate.label_file(getTranslate('label_file'));
-        this.Model.translate.label_description(getTranslate('label_description'));
+        this.Model.translate.label_file(getTranslate("label_file"));
 
         this.PostfixID = getRandomIntInclusive(10000000, 99999999);
     }
@@ -114,7 +83,7 @@ class CmsMediaPick extends LitElement {
         let dataSource = new kendo.data.DataSource({
             transport: {
                 read: (e) => {
-                    GetData("media_management/select_media.php", null, "pnlContent" + this.PostfixID)
+                    GetData("media_management/select_media.php", null, "#pnlContent" + this.PostfixID)
                         .then(data => {
                             e.success(data);
                         })
@@ -185,6 +154,11 @@ class CmsMediaPick extends LitElement {
                             let row = $(e.currentTarget).closest("tr")[0];
                             var dataItem: any = $("#grid" + this.PostfixID).data("kendoGrid").dataItem(row);
 
+                            this.Model.data.value(dataItem.full_path);
+                            this.value = dataItem.full_path;
+                            
+                            //@ts-ignore
+                            $("#windowPopup" + this.PostfixID).modal("hide");
                         }
                     }
                 },
@@ -215,23 +189,30 @@ class CmsMediaPick extends LitElement {
         });
     }
 
+    btnShow_click() {
+        //@ts-ignore
+        $("#windowPopup" + this.PostfixID).modal("show");
+    }
+
     render() {
         return html`
-<div class="container-fluid" id="pnlContent">
-    <div class="fade-in">
-        <h3><span data-bind="text: translate.menu_media_management"></span></h3>
+<div id="pnlContent${this.PostfixID}">
+    <div class="input-group">
+        <input type="text" class="form-control" data-bind="value: data.value" disabled>
+        <button class="btn btn-outline-secondary" type="button" @click=${this.btnShow_click}>...</button>
     </div>
-</div>
-<div id="windowPopup${this.PostfixID}" class="modal fade" style="display: none"
-    tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-6" data-bind="text: translate.label_file"></h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div id="grid${this.PostfixID}"></div>
+
+    <div id="windowPopup${this.PostfixID}" class="modal fade" style="display: none"
+        tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-6" data-bind="text: translate.label_file"></h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="grid${this.PostfixID}"></div>
+                </div>
             </div>
         </div>
     </div>
