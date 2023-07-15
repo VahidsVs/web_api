@@ -13,7 +13,7 @@ class Authorization
         $randomKey = substr(str_shuffle(str_repeat($x = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil($length / strlen($x)))), 1, $length);
         return $randomKey;
     }
-    function isAuthorized($authToken, $sessionToken, $key, $role = null)
+    function isAuthorized($authToken, $sessionToken, $key, $role = null,$roleArray=null)
     {
 
         $isAuthorized = false;
