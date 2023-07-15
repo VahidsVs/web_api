@@ -38,12 +38,12 @@ class Authorization
                     $isActionAuthorized = true;
             } else {
                 $JSON_result = $accessUsersInGroup->getJsonData();
-                if(is_array($role))
-                $roleArray=$role;
+                if (is_array($role))
+                    $roleArray = $role;
                 else
-                $roleArray[]=$role;
+                    $roleArray[] = $role;
                 foreach ($JSON_result as $jsonRes) {
-                    if (in_array($jsonRes["title"],$roleArray))
+                    if (in_array($jsonRes["title"], $roleArray))
                         $isActionAuthorized = true;
                 }
             }
