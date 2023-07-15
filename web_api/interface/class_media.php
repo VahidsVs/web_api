@@ -48,7 +48,7 @@ class Media
 		}
 		if (!$this->isDataOK) {
 			$this->httpResponseCode = 400;
-			$this->jsonData["errors"] = ["fileName" => $message["fileName"],"fileExtension" => $message["fileExtension"],"filePath" => $message["filePath"]];
+			$this->jsonData["errors"] = ["fileName" => $message["fileName"],"fileExtension" => $message["fileExtension"],"fileSize"=>$message["fileSize"],"filePath" => $message["filePath"]];
 		}
 		if ($this->isDataOK) {
 			$result = $this->accessMedias->insert($action, $parameters);

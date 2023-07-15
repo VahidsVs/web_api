@@ -50,7 +50,7 @@ if ($isAuthorized["auth"] && $isAuthorized["aa"]) {
       if (move_uploaded_file($fileTempName, "$uploadPath/$renamedFileName")) {
         $params["fileName"] = $renamedFileName;
         $params["fileExtension"] = $fileExtension;
-        $params["fileSize"] = $fileSize/1024;
+        $params["fileSize"] = round($fileSize/1024, 2);
         $params["filePath"] = "uploads/";
         $accessClass = new Media("insert", $params);
         http_response_code($accessClass->getHttpResponseCode());
