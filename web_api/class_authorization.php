@@ -13,7 +13,7 @@ class Authorization
         $randomKey = substr(str_shuffle(str_repeat($x = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil($length / strlen($x)))), 1, $length);
         return $randomKey;
     }
-    function isAuthorized($authToken, $sessionToken, $key, $role = null,$roleArray=null)
+    function isAuthorized($authToken, $sessionToken, $key, $role = null)
     {
 
         $isAuthorized = false;
@@ -38,8 +38,9 @@ class Authorization
                     $isActionAuthorized = true;
             } else {
                 $JSON_result = $accessUsersInGroup->getJsonData();
+                $roleArray[]=$role;
                 foreach ($JSON_result as $jsonRes) {
-                    if (in_array($jsonRes["title"],$role))
+                    if (in_array($jsonRes["title"],$roleArray))
                         $isActionAuthorized = true;
                 }
             }
