@@ -61,7 +61,7 @@ class Medias
 		$resultMedia = self::select("select", $parameters)[0];
 		$filePath = "../../../{$resultMedia["path"]}{$resultMedia["name"]}";
 		$query = "Delete From $this->tableName Where pk_media = ?";
-		if (file_exists($$filePath))
+		if (file_exists($filePath))
 		{
 		$status = unlink($filePath);
 		$errorCode = $this->accessDatabase->executeAndFetch($action, $query, $bindParams);
