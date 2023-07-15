@@ -19,7 +19,7 @@ class Medias
 			$condition .= " And pk_media = ?";
 
 		}
-			$query = "Select *, Concat('{$iniConfig["server_name"]}',path,name) as full_path From  $this->tableName Where 1=1 $condition ";
+		$query = "Select *, Concat('{$iniConfig["server_name"]}',path,name) as full_path From  $this->tableName Where 1=1 $condition ";
 
 		$result = $this->accessDatabase->executeAndFetch("select", $query, $bindParams, $orderBy, $limit);
 
@@ -41,25 +41,25 @@ class Medias
 		if (array_key_exists("filePath", $parameters)) {
 			$bindParams["param"][] = $parameters["filePath"];
 		}
-		$query = "Insert Into $this->tableName (name,extension,path,size,created_at) Values(?,?,?,?,now())";
+		$query = "Insert Into $this->tableName (name,extension,size,path,created_at) Values(?,?,?,?,now())";
 		$errorCode = $this->accessDatabase->executeAndFetch($action, $query, $bindParams);
 
-	if ($errorCode == 1452) {
-		$code = Codes::msg_constraintRoleInGroup;
-	}
-	if (is_null($errorCode)) {
-		$code = Codes::msg_SuccessfulCUD;
-	}
-	return ["code" => $code];
+		if ($errorCode == 1452) {
+			$code = Codes::msg_constraintRoleInGroup;
+		}
+		if (is_null($errorCode)) {
+			$code = Codes::msg_SuccessfulCUD;
+		}
+		return ["code" => $code];
 	}
 	function delete($action, $parameters)
 	{
-		$errorCode=null;
+		$errorCode = null;
 		if (array_key_exists("pk", $parameters)) {
 			$bindParams["param"][] = $parameters["pk"];
 		}
-		$resultMedia=self::select("select",$parameters)[0];
-
+		$resultMedia = self::select("select", $parameters)[0];
+		$filePath = "../../../{$resultMedia["path"]}/{$resultMedia["name"]}";
 		$query = "Delete From $this->tableName Where pk_media = ?";
 
 		$errorCode = $this->accessDatabase->executeAndFetch($action, $query, $bindParams);
@@ -68,12 +68,12 @@ class Medias
 			$code = Codes::msg_constraintRoleInGroup;
 		}
 
-		if(is_null($errorCode))
-		{
-		$status=unlink("../../../{$resultMedia["path"]}/{$resultMedia["name"]}");
-		$code=Codes::msg_SuccessfulCUD;
+		if (is_null($errorCode)) {
+			if (file_exists($$filePath))
+				$status = unlink($filePath);
+			$code = Codes::msg_SuccessfulCUD;
 		}
-		return ["code"=>$code];	
+		return ["code" => $code];
 	}
 
 }
