@@ -29,13 +29,17 @@ class Media
 	}
 	private function insert($action, $parameters)
 	{
-		$message["fileName"]=$message["fileExtension"]=$message["filePath"]=null;
+		$message["fileName"]=$message["fileExtension"]=$message["fileSize"]=$message["filePath"]=null;
 		if (empty($parameters["fileName"])) {
 			$message["fileName"] = Codes::msg_isRequired;
 			$this->isDataOK = false;
 		}
 		if (empty($parameters["fileExtension"])) {
 			$message["fileExtension"] = Codes::msg_isRequired;
+			$this->isDataOK = false;
+		}
+		if (empty($parameters["fileSize"])) {
+			$message["fileSize"] = Codes::msg_isRequired;
 			$this->isDataOK = false;
 		}
 		if (empty($parameters["filePath"])) {
