@@ -46,6 +46,8 @@
             array.push({ Key: 'label_doesnotcontain', Translate: "شامل نباشد با" });
             array.push({ Key: 'label_equal', Translate: "برابر باشد با" });
             array.push({ Key: 'label_notequal', Translate: "برابر نباشد با" });
+            array.push({ Key: 'label_greaterthan', Translate: "بزرگتر از" });
+            array.push({ Key: 'label_lessthan', Translate: "کوچکتر از" });
             array.push({ Key: 'label_yes', Translate: "بله" });
             array.push({ Key: 'label_no', Translate: "خیر" });
             array.push({ Key: 'label_title', Translate: "عنوان" });
@@ -82,6 +84,7 @@
             array.push({ Key: 'btn_edit', Translate: "ویرایش" });
             array.push({ Key: 'btn_delete', Translate: "حذف" });
             array.push({ Key: 'btn_select', Translate: "انتخاب" });
+            array.push({ Key: 'btn_copy', Translate: "کپی" });
             
             array.push({ Key: 'window_title_selectuser', Translate: "انتخاب کاربر" });
             
@@ -99,6 +102,7 @@
             array.push({ Key: 'msgInvalidFileExtension', Translate: "پسوند فایل نامعتبر است" });
             array.push({ Key: 'msgInvalidFileSize', Translate: "حجم فایل نامعتبر است" });
             array.push({ Key: 'msgErrorUploadingFile', Translate: "خطا در آپلود فایل" });
+            array.push({ Key: 'msgCopied', Translate: "کپی شد" });
             break;
 
 
@@ -145,6 +149,8 @@
             array.push({ Key: 'label_doesnotcontain', Translate: "does not contain" });
             array.push({ Key: 'label_equal', Translate: "is equal to" });
             array.push({ Key: 'label_notequal', Translate: "is not equal to" });
+            array.push({ Key: 'label_greaterthan', Translate: "greater than" });
+            array.push({ Key: 'label_lessthan', Translate: "less than" });
             array.push({ Key: 'label_yes', Translate: "Yes" });
             array.push({ Key: 'label_no', Translate: "No" });
             array.push({ Key: 'label_title', Translate: "Title" });
@@ -181,6 +187,7 @@
             array.push({ Key: 'btn_edit', Translate: "Edit" });
             array.push({ Key: 'btn_delete', Translate: "Delete" });
             array.push({ Key: 'btn_select', Translate: "Select" });
+            array.push({ Key: 'btn_copy', Translate: "Copy" });
             
             array.push({ Key: 'window_title_selectuser', Translate: "Select user" });
             
@@ -198,6 +205,7 @@
             array.push({ Key: 'msgInvalidFileExtension', Translate: "Invalid file format" });
             array.push({ Key: 'msgInvalidFileSize', Translate: "Invalid file size" });
             array.push({ Key: 'msgErrorUploadingFile', Translate: "Error uploading file" });
+            array.push({ Key: 'msgCopied', Translate: "Copied" });
             break;
     }
     

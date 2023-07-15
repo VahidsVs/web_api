@@ -316,104 +316,13 @@ class CmsMediaPick extends LitElement {
         });
     }
 
-    btnNew_Click() {
-        this.ClearScr();
-
-        //@ts-ignore
-        $("#myTab button").eq(1).show().tab('show');
-        $("#myTab button").eq(2).hide()
-        $("#myTab button").eq(3).hide()
-    }
-
-    Submit_Click() {
-
-        var upload = $("#uploader")[0] as HTMLInputElement,
-            files = upload.files;
-
-        let formData = new FormData();
-        formData.append("fileUpload", files[0]);
-
-        if (files.length > 0 && files[0].size > this.ConfigData.max_file_size) {
-            this.Model.setErrors([{fileUploadSize: 'msgInvalidUploadSize'}]);
-            return;
-        }
-
-        PostDataFile("media_management/insert_media.php", formData, "#tab2-pane")
-            .then(data => {
-                if (data.errors === undefined && data.message === undefined) {
-                    this.ClearScr();
-                    AjaxSuccessFunction(data.msg, 3000);
-                    this.FillDataGrid();
-                }
-                this.Model.setErrors(data.errors);
-            })
-    }
-
-    Cancel_Click() {
-        this.ClearScr();
-    }
-
     render() {
         return html`
 <div class="container-fluid" id="pnlContent">
     <div class="fade-in">
         <h3><span data-bind="text: translate.menu_media_management"></span></h3>
     </div>
-    <ul class="nav nav-tabs" id="myTab" role="tablist">
-        <li class="nav-item" role="presentation">
-            <button class="nav-link active" data-bs-target="#tab1-pane" data-bs-toggle="tab">
-                <span data-bind="text: translate.tab_title_list"></span>
-            </button>
-        </li>
-        <li class="nav-item" role="presentation">
-            <button class="nav-link" style="display: none;" data-bs-target="#tab2-pane" data-bs-toggle="tab">
-                <span data-bind="text: translate.tab_title_details"></span>
-            </button>
-        </li>
-    </ul>
-    <div class="tab-content" id="myTabContent">
-        <div class="tab-pane fade show active" id="tab1-pane">
-            <div class="container-fluid p-2">
-                <div class="row">
-                    <div class="col-md-12 p-2">
-                        <button class="btn btn-primary" @click="${this.btnNew_Click}"><span class="fa fa-plus"></span> <span data-bind="text: translate.btn_new"></span></button>
-                    </div>
-                </div>
-                <div id="grid"></div>
-            </div>
-        </div>
-        <div class="tab-pane fade" id="tab2-pane">
-            <div class="container-fluid p-2">
-                <div class="row p-2">
-                    <div class="col-md-6 p-2">
-                        <div class="form-group">
-                            <label data-bind="text: translate.label_file" class="form-label"></label> <span class="invalid">*</span>
-                            <input id="uploader" type="file" class="form-control">
-                            <span class="invalid" data-bind="text: errors.file"></span>
-                            <span class="invalid" data-bind="text: errors.fileUploadSize"></span>
-                            <span class="invalid" data-bind="text: errors.fileUploadExtension"></span>
-                        </div>
-                    </div>
-                    <div class="col-md-6 p-2">
-                        <div class="form-group">
-                            <label data-bind="text: translate.label_description" class="form-label"></label> <span class="invalid">*</span>
-                            <ul>
-                                ${html`${this.Desc}`}
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="row p-2">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <button @click="${this.Submit_Click}" class="btn btn-success"><span class="fa fa-save"></span> <span data-bind="text: translate.btn_submit"></span></button>
-                            <button @click="${this.Cancel_Click}" class="btn btn-danger"><span class="fa fa-close"></span> <span data-bind="text: translate.btn_cancel"></span></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <div id="grid"></div>
 </div>
         `;
     }

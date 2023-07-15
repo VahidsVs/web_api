@@ -240,6 +240,24 @@ class CmsMediaManagement extends LitElement {
                     }
                 },
                 {
+                    title: getTranslate('btn_copy'),
+                    width: 100,
+                    command: {
+                        name: "Copy",
+                        template: "<a class='btn btn-secondary k-grid-Copy'><span class='fa fa-copy'></span></a>",
+                        click: (e: any) => {
+                            e.preventDefault();
+
+                            let row = $(e.currentTarget).closest("tr")[0];
+                            var dataItem: any = $("#grid").data("kendoGrid").dataItem(row);
+
+                            navigator.clipboard.writeText(dataItem.full_path);
+
+                            AjaxSuccessFunction('msgCopied', 3000);
+                        }
+                    }
+                },
+                {
                     field: "full_path",
                     title: getTranslate('label_path'),
                     width: 150,
@@ -286,6 +304,8 @@ class CmsMediaManagement extends LitElement {
                                 doesnotcontain: getTranslate("label_doesnotcontain"),
                                 eq: getTranslate("label_equal"),
                                 neq: getTranslate("label_notequal"),
+                                gt: getTranslate("label_greaterthan"),
+                                lt: getTranslate("label_lessthan"),
                             }
                         }
                     },
@@ -341,7 +361,7 @@ class CmsMediaManagement extends LitElement {
             //             fileUploadSize: 'msgInvalidFileSize'
             //         }
             //     });
-            AjaxDangerFunction('msgInvalidFileSize', 3000);
+            AjaxDangerFunction('msgInvalidFileSize', 5000);
             return;
         }
 
