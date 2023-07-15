@@ -39,7 +39,7 @@ class Authorization
             } else {
                 $JSON_result = $accessUsersInGroup->getJsonData();
                 foreach ($JSON_result as $jsonRes) {
-                    if ($jsonRes["title"] == $role)
+                    if (in_array($jsonRes["title"],$role))
                         $isActionAuthorized = true;
                 }
             }
