@@ -119,9 +119,11 @@ class CmsMediaManagement extends LitElement {
                 this.ConfigData = data;
                 
                 this.Desc.push(html`
-                <li>${data.max_file_size}</li>`);
+                <li>< ${data.max_file_size / 1024 } KB</li>`);
                 this.Desc.push(html`
                 <li>${data.file_extension}</li>`);
+
+                this.requestUpdate();
             })
     }
 
