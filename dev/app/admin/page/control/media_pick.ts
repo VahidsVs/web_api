@@ -9,7 +9,8 @@ import {
     PostDataForm,
     PostDataFile,
     AjaxSuccessFunction,
-    GetDataWithoutLoading
+    GetDataWithoutLoading,
+    getRandomIntInclusive
 } from '../../../cms_general';
 import * as ko from 'knockout';
 
@@ -26,10 +27,7 @@ class CmsMediaPick extends LitElement {
 
     private lcid;
 
-    @state()
-    private Desc: any = [];
-
-    private ConfigData: any = [];
+    private PostfixID: any;
 
     private Model = {
         data: {
@@ -63,27 +61,6 @@ class CmsMediaPick extends LitElement {
 
         this.Model.errors.fileUploadSize("");
         this.Model.errors.fileUploadExtension("");
-
-        this.clearFileInput("uploader");
-
-        //@ts-ignore
-        $("#myTab button").eq(0).show().tab('show');
-        $("#myTab button").eq(1).hide();
-    }
-
-    clearFileInput(id: string) {
-        var oldInput = document.getElementById(id) as HTMLInputElement;
-
-        var newInput = document.createElement("input");
-
-        newInput.type = "file";
-        newInput.id = oldInput.id;
-        newInput.name = oldInput.name;
-        newInput.className = oldInput.className;
-        newInput.style.cssText = oldInput.style.cssText;
-        // TODO: copy any other relevant attributes 
-
-        oldInput.parentNode.replaceChild(newInput, oldInput);
     }
 
     constructor() {
@@ -101,35 +78,25 @@ class CmsMediaPick extends LitElement {
         this.Model.translate.btn_cancel(getTranslate('btn_cancel'));
         this.Model.translate.label_file(getTranslate('label_file'));
         this.Model.translate.label_description(getTranslate('label_description'));
+
+        this.PostfixID = getRandomIntInclusive(10000000, 99999999);
     }
 
     firstUpdated(changedProperties: any) {
 
 
-        ko.applyBindings(this.Model, document.getElementById("pnlContent"));
+        ko.applyBindings(this.Model, document.getElementById("pnlContent" + this.PostfixID));
 
         $(() => {
 
         })
 
         this.FillDataGrid();
-
-        GetDataWithoutLoading("config/get_config.php", { getConfig: 'max_file_size,file_extension' })
-            .then(data => {
-                this.ConfigData = data;
-                
-                this.Desc.push(html`
-                <li>< ${data.max_file_size / 1024 } KB</li>`);
-                this.Desc.push(html`
-                <li>${data.file_extension}</li>`);
-
-                this.requestUpdate();
-            })
     }
 
     FillDataGrid() {
 
-        let kendoWidget = $("#grid").data("kendoGrid");
+        let kendoWidget = $("#grid" + this.PostfixID).data("kendoGrid");
         if (kendoWidget) {
             // kendoGrid.destroy();
             // $("#grid").empty();
@@ -139,15 +106,15 @@ class CmsMediaPick extends LitElement {
         }
 
         if (getDirectionFromLanguage(this.lcid) == "rtl") {
-            $("#grid").addClass("k-rtl");
+            $("#grid" + this.PostfixID).addClass("k-rtl");
         } else {
-            $("#grid").addClass("k-ltr");
+            $("#grid" + this.PostfixID).addClass("k-ltr");
         }
 
         let dataSource = new kendo.data.DataSource({
             transport: {
                 read: (e) => {
-                    GetData("media_management/select_media.php", null, "#tab1-pane")
+                    GetData("media_management/select_media.php", null, "pnlContent" + this.PostfixID)
                         .then(data => {
                             e.success(data);
                         })
@@ -158,7 +125,7 @@ class CmsMediaPick extends LitElement {
 
         let record = 0;
 
-        let grid = $("#grid").kendoGrid({
+        let grid = $("#grid" + this.PostfixID).kendoGrid({
             // toolbar: ["excel"],
             excel: {
                 fileName: "ExcelExport.xlsx",
@@ -207,34 +174,17 @@ class CmsMediaPick extends LitElement {
                     width: 50,
                 },
                 {
-                    title: getTranslate('btn_delete'),
+                    title: getTranslate('btn_select'),
                     width: 100,
                     command: {
-                        name: "Delete",
-                        template: "<a class='btn btn-danger k-grid-Delete'><span class='fa fa-close'></span></a>",
+                        name: "Select",
+                        template: "<a class='btn btn-success k-grid-Select'><span class='fa fa-check'></span></a>",
                         click: (e: any) => {
                             e.preventDefault();
 
                             let row = $(e.currentTarget).closest("tr")[0];
-                            var dataItem: any = $("#grid").data("kendoGrid").dataItem(row);
+                            var dataItem: any = $("#grid" + this.PostfixID).data("kendoGrid").dataItem(row);
 
-                            //@ts-ignore
-                            $("<div></div>").confirm({
-                                okText: getTranslate('label_yes'),
-                                cancelText: getTranslate('label_no'),
-                                title: getTranslate('btn_delete'),
-                                content: getTranslate('msg_are_you_sure'),
-                                okCallback: () => {
-                                    GetData("media_management/delete_media.php", { pk: dataItem.pk_media }, "#grid")
-                                        .then(data => {
-                                            if (data.message === undefined) {
-                                                AjaxSuccessFunction(data.msg, 3000);
-
-                                                this.FillDataGrid();
-                                            }
-                                        });
-                                }
-                            }).data("confirm").show();
                         }
                     }
                 },
@@ -256,61 +206,10 @@ class CmsMediaPick extends LitElement {
                     },
                 },
                 {
-                    field: "extension",
-                    title: getTranslate('label_extension'),
-                    width: 150,
-                    groupable: false,
-                    headerAttributes: { style: "white-space: normal" },
-                    filterable: {
-                        operators: {
-                            string: {
-                                contains: getTranslate("label_contains"),
-                                doesnotcontain: getTranslate("label_doesnotcontain"),
-                                eq: getTranslate("label_equal"),
-                                neq: getTranslate("label_notequal"),
-                            }
-                        }
-                    },
-                },
-                {
-                    field: "size",
-                    title: getTranslate('label_size'),
-                    width: 150,
-                    groupable: false,
-                    headerAttributes: { style: "white-space: normal" },
-                    filterable: {
-                        operators: {
-                            string: {
-                                contains: getTranslate("label_contains"),
-                                doesnotcontain: getTranslate("label_doesnotcontain"),
-                                eq: getTranslate("label_equal"),
-                                neq: getTranslate("label_notequal"),
-                            }
-                        }
-                    },
-                },
-                {
                     title: getTranslate('label_file'),
-                    template: '<img class="img-thumbnail" src="#= full_path #">',
+                    template: '<img class="img-thumbnail" width="50px" src="#= full_path #">',
                     width: 150,
                     groupable: false,
-                },
-                {
-                    field: "created_at",
-                    title: getTranslate('label_created_at'),
-                    width: 150,
-                    groupable: false,
-                    headerAttributes: { style: "white-space: normal" },
-                    filterable: {
-                        operators: {
-                            string: {
-                                contains: getTranslate("label_contains"),
-                                doesnotcontain: getTranslate("label_doesnotcontain"),
-                                eq: getTranslate("label_equal"),
-                                neq: getTranslate("label_notequal"),
-                            }
-                        }
-                    },
                 },
             ]
         });
@@ -322,7 +221,20 @@ class CmsMediaPick extends LitElement {
     <div class="fade-in">
         <h3><span data-bind="text: translate.menu_media_management"></span></h3>
     </div>
-    <div id="grid"></div>
+</div>
+<div id="windowPopup${this.PostfixID}" class="modal fade" style="display: none"
+    tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-6" data-bind="text: translate.label_file"></h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="grid${this.PostfixID}"></div>
+            </div>
+        </div>
+    </div>
 </div>
         `;
     }

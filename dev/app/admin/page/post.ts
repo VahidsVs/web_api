@@ -10,6 +10,7 @@ import {
     AjaxSuccessFunction
 } from '../../cms_general';
 import * as ko from 'knockout';
+import './control/media_pick';
 
 @customElement('cms-post')
 class CmsPost extends LitElement {
@@ -718,7 +719,7 @@ class CmsPost extends LitElement {
                     <div class="col-md-12 p-2">
                         <div class="form-group">
                             <label data-bind="text: translate.label_thumbnail_path" class="form-label"></label>
-                            <input type="text" class="form-control" data-bind="value: data.thumbnail_path">
+                            <cms-mediapick></cms-mediapick>
                             <span class="invalid" data-bind="text: errors.thumbnail_path"></span>
                         </div>
                     </div>
@@ -734,6 +735,8 @@ class CmsPost extends LitElement {
             </div>
         </div>
     </div>
+
+    
 </div>
         `;
     }
