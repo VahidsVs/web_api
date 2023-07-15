@@ -35,10 +35,13 @@ class Medias
 		if (array_key_exists("fileExtension", $parameters)) {
 			$bindParams["param"][] = $parameters["fileExtension"];
 		}
+		if (array_key_exists("fileSize", $parameters)) {
+			$bindParams["param"][] = $parameters["fileSize"];
+		}
 		if (array_key_exists("filePath", $parameters)) {
 			$bindParams["param"][] = $parameters["filePath"];
 		}
-		$query = "Insert Into $this->tableName (name,extension,path,created_at) Values(?,?,?,now())";
+		$query = "Insert Into $this->tableName (name,extension,path,size,created_at) Values(?,?,?,?,now())";
 		$errorCode = $this->accessDatabase->executeAndFetch($action, $query, $bindParams);
 
 	if ($errorCode == 1452) {
