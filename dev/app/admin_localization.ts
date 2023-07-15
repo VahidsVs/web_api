@@ -74,7 +74,7 @@
             array.push({ Key: 'label_file', Translate: "فایل" });
             array.push({ Key: 'label_description', Translate: "توضیحات" });
             array.push({ Key: 'label_thumbnail_path', Translate: "مسیر عکس بند انگشتی" });
-            array.push({ Key: 'label_size', Translate: "سایز" });
+            array.push({ Key: 'label_size', Translate: "سایز (KB)" });
             
             array.push({ Key: 'btn_submit', Translate: "ثبت" });
             array.push({ Key: 'btn_cancel', Translate: "انصراف" });
@@ -173,7 +173,7 @@
             array.push({ Key: 'label_file', Translate: "File" });
             array.push({ Key: 'label_description', Translate: "Description" });
             array.push({ Key: 'label_thumbnail_path', Translate: "Thumbnail path" });
-            array.push({ Key: 'label_size', Translate: "Size" });
+            array.push({ Key: 'label_size', Translate: "Size (KB)" });
             
             array.push({ Key: 'btn_submit', Translate: "Submit" });
             array.push({ Key: 'btn_cancel', Translate: "Cancel" });

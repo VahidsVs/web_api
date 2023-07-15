@@ -271,7 +271,7 @@ class CmsMediaManagement extends LitElement {
                     },
                 },
                 {
-                    field: "file_size",
+                    field: "size",
                     title: getTranslate('label_size'),
                     width: 150,
                     groupable: false,

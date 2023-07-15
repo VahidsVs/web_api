@@ -15,6 +15,8 @@ let sitePages = [
     'about_us',
     'impressum',
     'access_denied',
+    'posts',
+    'post',
 ];
 
 let adminPages = [
