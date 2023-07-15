@@ -9,7 +9,8 @@ import {
     PostDataForm,
     PostDataFile,
     AjaxSuccessFunction,
-    GetDataWithoutLoading
+    GetDataWithoutLoading,
+    AjaxDangerFunction
 } from '../../cms_general';
 import * as ko from 'knockout';
 
@@ -334,7 +335,13 @@ class CmsMediaManagement extends LitElement {
         formData.append("fileUpload", files[0]);
 
         if (files.length > 0 && files[0].size > this.ConfigData.max_file_size) {
-            this.Model.setErrors([{fileUploadSize: 'msgInvalidUploadSize'}]);
+            // this.Model.setErrors(
+            //     {
+            //         errors: {
+            //             fileUploadSize: 'msgInvalidFileSize'
+            //         }
+            //     });
+            AjaxDangerFunction('msgInvalidFileSize', 3000);
             return;
         }
 
