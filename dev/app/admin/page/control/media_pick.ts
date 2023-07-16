@@ -1,4 +1,4 @@
-﻿import { LitElement, html, css } from 'lit';
+﻿import { LitElement, html, css, PropertyValueMap } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 import {
     getLanguage,
@@ -30,11 +30,11 @@ class CmsMediaPick extends LitElement {
     private PostfixID: any;
 
     @property({reflect: true})
-    value: any;
+    value: any = "";
 
     private Model = {
         data: {
-            value: ko.observable(),
+            value: ko.observable(""),
         },
         translate: {
             label_file: ko.observable(),
@@ -61,6 +61,10 @@ class CmsMediaPick extends LitElement {
         })
 
         this.FillDataGrid();
+    }
+
+    updated(changedProperties: any) {
+        this.Model.data.value(this.value);
     }
 
     FillDataGrid() {

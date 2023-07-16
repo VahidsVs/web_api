@@ -25,6 +25,7 @@ class CmsPost extends LitElement {
 
     private lcid;
 
+    @state()
     private thumbnail_path: any = "";
 
     private Model = {
@@ -403,6 +404,9 @@ class CmsPost extends LitElement {
                             this.Model.data.status(dataItem.status);
                             this.Model.data.fk_parent_category(dataItem.fk_parent_category);
                             this.Model.data.fk_category(dataItem.fk_category);
+                            this.Model.data.thumbnail_path(dataItem.thumbnail_path);
+
+                            this.thumbnail_path = dataItem.thumbnail_path;
 
                             $("#cmbParentCategory").data("kendoDropDownList").value(dataItem.fk_parent_category);
                             await this.FillDataCmbCategory();
@@ -596,6 +600,8 @@ class CmsPost extends LitElement {
     }
 
     Submit_Click() {
+        
+        this.Model.data.thumbnail_path(document.getElementsByTagName("cms-mediapick")[0].getAttribute("value"));
 
         if (this.Model.data.pk_post() == null || this.Model.data.pk_post() == "") {
             PostDataForm("post/insert_post_admin.php", ko.toJS(this.Model.data), "#tab2-pane")
@@ -723,7 +729,7 @@ class CmsPost extends LitElement {
                     <div class="col-md-6 p-2">
                         <div class="form-group">
                             <label data-bind="text: translate.label_thumbnail_path" class="form-label"></label>
-                            <cms-mediapick value=${this.thumbnail_path}></cms-mediapick>
+                            <cms-mediapick value="${this.thumbnail_path}"></cms-mediapick>
                             <span class="invalid" data-bind="text: errors.thumbnail_path"></span>
                         </div>
                     </div>
