@@ -27,7 +27,7 @@ if ($isAuthorized["auth"] && $isAuthorized["aa"]) {
     $fileName = $_FILES["fileUpload"]["name"];
     $fileSize = $_FILES["fileUpload"]["size"];
     $fileTempName = $_FILES["fileUpload"]["tmp_name"];
-    $renamedFileName = str_replace("." . $fileExtension, "", $fileName) . uniqid() . "." . $fileExtension;
+    $renamedFileName = uniqid() . "." . $fileExtension;
     $permittedExtentions = explode(",", $iniConfig["file_extension"]);
 
     // Check file size
