@@ -1,11 +1,12 @@
 ﻿import { LitElement, html, css } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
-import { 
+import {
     getLanguage,
     getTranslate,
     getDirectionFromLanguage,
-    GetData, 
-    PostData } from '../../cms_general';
+    GetData,
+    PostData
+} from '../../cms_general';
 // import { unsafeHTML } from 'lit-html/directives/unsafe-html.js';
 
 @customElement('cms-index')
@@ -35,6 +36,11 @@ class CmsIndex extends LitElement {
             //@ts-ignore
             $(".owl-carousel").owlCarousel();
         })
+
+        GetData("post/select_post.php", { limit: 3 })
+            .then(data => {
+
+            })
     }
 
     render() {
