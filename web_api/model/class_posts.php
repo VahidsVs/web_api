@@ -24,9 +24,9 @@ class Posts
 
 		}
 		$query = "Select $this->tableName.*,users.username,cat.title as cat_title, cat.fk_parent_category, pac.title as pac_title From  $this->tableName, categories cat, parents_category pac, users Where $this->tableName.fk_category = cat.pk_category And
-				 cat.fk_parent_category = pac.pk_parent_category And $this->tableName.fk_user = users.pk_user And  1=1  $condition ";
+				 cat.fk_parent_category = pac.pk_parent_category And $this->tableName.fk_user = users.pk_user And  1=1  $condition";
 
-		$result = $this->accessDatabase->executeAndFetch("select", $query, $bindParams, $orderBy, $limit);
+		$result = $this->accessDatabase->executeAndFetch("select", $query, $bindParams);
 
 		return $result;
 	}
@@ -64,8 +64,8 @@ class Posts
 			$bindParams["param"][] = $parameters["status"];
 		}
 		
-		$query = "Insert Into $this->tableName (fk_user,title,slug,summary,fk_category,content,thumbnail_path,meta_keyword,meta_description,status,created_at)
-		 Values(?,?,?,?,?,?,?,?,?,?,now()) ";
+		$query = "Insert Into $this->tableName (fk_user,title,slug,summary,fk_category,content,thumbnail_path,meta_keyword,meta_description,status,created_at,updated_at)
+		 Values(?,?,?,?,?,?,?,?,?,?,now(),now()) ";
 
 		$errorCode = $this->accessDatabase->executeAndFetch($action, $query, $bindParams);
 		if ($errorCode == 1062) {
