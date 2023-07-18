@@ -16,12 +16,18 @@ class Posts
 		if (array_key_exists("pk", $parameters)) {
 			$bindParams["param"][] = $parameters["pk"];
 			$condition .= " And pk_post = ?";
-
 		}
 		if (array_key_exists("slug", $parameters)) {
 			$bindParams["param"][] = $parameters["slug"];
 			$condition .= " And slug = ?";
-
+		}
+		if (array_key_exists("pac", $parameters)) {
+			$bindParams["param"][] = $parameters["pac"];
+			$condition .= " And pac.pk_parent_category = ?";
+		}
+		if (array_key_exists("cat", $parameters)) {
+			$bindParams["param"][] = $parameters["cat"];
+			$condition .= " And cat.pk_category = ?";
 		}
 		$query = "Select $this->tableName.*,users.username,cat.title as cat_title, cat.fk_parent_category, pac.title as pac_title From  $this->tableName, categories cat, parents_category pac, users Where $this->tableName.fk_category = cat.pk_category And
 				 cat.fk_parent_category = pac.pk_parent_category And $this->tableName.fk_user = users.pk_user And  1=1  $condition $orderBy $limit";
