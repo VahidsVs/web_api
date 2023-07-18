@@ -26,7 +26,9 @@ class Post
 	private function select($action, $parameters)
 	{
 		$key = "pac";
-		//$encrypted_string=openssl_encrypt(1,"AES-128-ECB",$key);
+		//$encrypted_string=openssl_encrypt(2,"AES-128-ECB",$key);
+		//$encrypted_string=openssl_encrypt(3,"AES-128-ECB",$key);
+		//print_r($encrypted_string);
 		array_key_exists("limit", $parameters) ? $limit = "Limit {$parameters["limit"]}" : $limit = null;
 		array_key_exists("pac", $parameters) ? $parameters["pac"] = openssl_decrypt($parameters["pac"], "AES-128-ECB", $key) : null;
 		$orderBy = "Order By updated_at Desc";
