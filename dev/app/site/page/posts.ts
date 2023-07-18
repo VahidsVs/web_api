@@ -21,6 +21,8 @@ class CmsPosts extends LitElement {
 
     private lcid;
 
+    private NewsPosts: any = [];
+
     constructor() {
         super();
 
@@ -35,6 +37,38 @@ class CmsPosts extends LitElement {
             //@ts-ignore
             $(".owl-carousel").owlCarousel();
         })
+
+        this.ShowPosts();
+    }
+
+    ShowPosts() {
+        GetData("post/select_post.php", { pac: '18PrB1fS1RtyZ550c5QR5Q'})
+            .then(data => {
+                for (let i = 0; i < data.length; i++) {
+                    const element = data[i];
+                    this.NewsPosts.push(html`
+<div class="col-lg-6 col-xl-4 wow fadeIn" data-wow-delay=".7s">
+    <div class="blog-item position-relative bg-light rounded">
+        <img src="${element.thumbnail_path}" class="img-fluid w-100 rounded-top" alt="">
+        <span class="position-absolute px-4 py-3 bg-primary text-white rounded" style="top: -28px; right: 20px;">${element.cat_title}</span>
+        <div class="blog-btn d-flex justify-content-center position-relative px-3" style="margin-top: -75px;">
+            <div class="blog-icon btn btn-secondary px-3 rounded-pill my-auto">
+                <a href="/post.html?slug=${element.slug}" class="btn text-white ">Read More</a>
+            </div>
+        </div>
+        <div class="blog-content text-center position-relative px-3" style="margin-top: -25px;">
+            <img src="img/admin.jpg" class="img-fluid rounded-circle border border-4 border-white mb-3" alt="">
+            <h5 class="">By Daniel Martin</h5>
+            <span class="text-secondary">${new Date(element.updated_at).toDateString()}</span>
+            <p class="py-2">${element.summary}</p>
+        </div>
+    </div>
+</div>
+`)
+                }
+
+                this.requestUpdate();
+            })
     }
 
     render() {
@@ -46,6 +80,42 @@ class CmsPosts extends LitElement {
     </div>
 </div>
 <!-- Page Header End -->
+
+<!-- Blog Start -->
+<div class="container-fluid blog py-5 mb-5">
+    <div class="container">
+        <div class="text-center mx-auto pb-5 wow fadeIn" data-wow-delay=".3s" style="max-width: 600px;">
+            <h5 class="text-primary">Our Blog</h5>
+            <h1>Latest Blog & News</h1>
+        </div>
+        <div class="row g-5 justify-content-center">
+            ${html`${this.NewsPosts}`}
+            <div class="col-lg-6 col-xl-4 wow fadeIn" data-wow-delay=".7s">
+    <div class="blog-item position-relative bg-light rounded">
+        <img src="/images/blog-1.jpg" class="img-fluid w-100 rounded-top" alt="">
+        <span class="position-absolute px-4 py-3 bg-primary text-white rounded" style="top: -28px; right: 20px;">element.category</span>
+        <div class="blog-btn d-flex justify-content-center position-relative px-3" style="margin-top: -75px;">
+            <div class="blog-icon btn btn-secondary px-3 rounded-pill my-auto">
+                <a href="" class="btn text-white ">Read More</a>
+            </div>
+        </div>
+        <div class="blog-content text-center position-relative px-3" style="margin-top: -25px;">
+            <img src="/images/admin.jpg" class="img-fluid rounded-circle border border-4 border-white mb-3" alt="">
+            <h5 class="">By Daniel Martin</h5>
+            <span class="text-secondary">30 jan 2023</span>
+            <p class="py-2">Lorem ipsum dolor sit amet elit. Sed efficitur quis purus ut interdum. Aliquam dolor eget urna ultricies tincidunt libero sit amet</p>
+        </div>
+    </div>
+</div>
+        </div>
+        <div class="blog-btn d-flex justify-content-center position-relative px-3 wow fadeIn" data-wow-delay=".3s">
+            <div class="blog-icon btn btn-secondary px-3 rounded-pill my-auto">
+                <a href="/posts.html" class="btn text-white ">Read More</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Blog End -->
 
         `;
     }
