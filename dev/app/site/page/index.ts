@@ -23,6 +23,8 @@ class CmsIndex extends LitElement {
     private lcid;
 
     private NewsPosts: any = [];
+    private Projects: any = [];
+    private Testimonials: any = [];
 
     constructor() {
         super();
@@ -40,10 +42,12 @@ class CmsIndex extends LitElement {
         })
 
         this.ShowPosts();
+        this.ShowProjects();
+        this.Testimonials();
     }
 
     ShowPosts() {
-        GetData("post/select_post.php", { pac: '18PrB1fS1RtyZ550c5QR5Q', limit: 3})
+        GetData("post/select_post.php", { pac: '18PrB1fS1RtyZ550c5QR5Q', limit: 3}, "#pnlNews")
             .then(data => {
                 for (let i = 0; i < data.length; i++) {
                     const element = data[i];
@@ -58,12 +62,65 @@ class CmsIndex extends LitElement {
             </div>
         </div>
         <div class="blog-content text-center position-relative px-3" style="margin-top: -25px;">
-            <img src="img/admin.jpg" class="img-fluid rounded-circle border border-4 border-white mb-3" alt="">
-            <h5 class="">By Daniel Martin</h5>
+            <img src="/images/avatar.png" class="img-fluid rounded-circle border border-4 border-white mb-3" alt="">
+            <h5 class="">By ${element.fullname}</h5>
             <span class="text-secondary">${new Date(element.updated_at).toDateString()}</span>
             <p class="py-2">${element.summary}</p>
         </div>
     </div>
+</div>
+`)
+                }
+
+                this.requestUpdate();
+            })
+    }
+
+    ShowProjects() {
+        GetData("post/select_post.php", { pac: 'Xe9dNreyFQIVzZbEfp9+xg=='}, "#pnlProjects")
+            .then(data => {
+                for (let i = 0; i < data.length; i++) {
+                    const element = data[i];
+                    this.Projects.push(html`
+<div class="col-md-6 wow fadeIn" data-wow-delay=".5s">
+    <div class="project-item">
+        <div class="project-img">
+            <img src="${element.thumbnail_path}" class="img-fluid w-100 rounded" alt="">
+            <div class="project-content">
+                <a href="${element.summary}" target="_blank" class="text-center">
+                    <h4 class="text-secondary">${element.title}</h4>
+                    <p class="m-0 text-white">${element.summary}</p>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+`)
+                }
+
+                this.requestUpdate();
+            })
+    }
+
+    ShowTestimonials() {
+        GetData("post/select_post.php", { pac: 'mQrpkmSlCzCsPPZpiGXSmw=='}, "#pnlTestimonials")
+            .then(data => {
+                for (let i = 0; i < data.length; i++) {
+                    const element = data[i];
+                    this.Testimonials.push(html`
+<div class="testimonial-item border p-4">
+    <div class="d-flex align-items-center">
+        <div class="">
+            <img src="/images/avatar.png" alt="">
+        </div>
+        <div class="ms-4">
+            <h4 class="text-secondary">${element.title}</h4>
+            <p class="m-0 pb-3">${element.summary}</p>
+        </div>
+    </div>
+    <!-- <div class="border-top mt-4 pt-3">
+        <p class="mb-0">Lorem ipsum dolor sit amet elit. Sed efficitur quis purus ut interdum aliquam dolor eget urna. Nam volutpat libero sit amet leo cursus, ac viverra eros morbi quis quam mi.</p>
+    </div> -->
 </div>
 `)
                 }
@@ -243,13 +300,14 @@ class CmsIndex extends LitElement {
 <!-- Services End -->
 
 <!-- Project Start -->
-<div class="container-fluid project py-5 mb-5">
+<div class="container-fluid project py-5 mb-5" id="pnlProjects">
     <div class="container">
         <div class="text-center mx-auto pb-5 wow fadeIn" data-wow-delay=".3s" style="max-width: 600px;">
             <h5 class="text-primary">Our Project</h5>
             <h1>Our Recently Completed Projects</h1>
         </div>
         <div class="row g-5">
+            ${html`${this.Projects}`}
             <div class="col-md-6 wow fadeIn" data-wow-delay=".5s">
                 <div class="project-item">
                     <div class="project-img">
@@ -282,7 +340,7 @@ class CmsIndex extends LitElement {
 <!-- Project End -->
 
 <!-- Blog Start -->
-<div class="container-fluid blog py-5 mb-5">
+<div class="container-fluid blog py-5 mb-5" id="pnlNews">
     <div class="container">
         <div class="text-center mx-auto pb-5 wow fadeIn" data-wow-delay=".3s" style="max-width: 600px;">
             <h5 class="text-primary">Our Blog</h5>
@@ -301,13 +359,14 @@ class CmsIndex extends LitElement {
 <!-- Blog End -->
 
 <!-- Testimonial Start -->
-<div class="container-fluid testimonial py-5 mb-5">
+<div class="container-fluid testimonial py-5 mb-5" id="pnlTestimonials">
     <div class="container">
         <div class="text-center mx-auto pb-5 wow fadeIn" data-wow-delay=".3s" style="max-width: 600px;">
             <h5 class="text-primary">Our Testimonial</h5>
             <h1>Our Client Saying!</h1>
         </div>
         <div class="owl-carousel testimonial-carousel wow fadeIn" data-wow-delay=".5s">
+            ${html`${this.Testimonials}`}
             <div class="testimonial-item border p-4">
                 <div class="d-flex align-items-center">
                     <div class="">

@@ -57,8 +57,8 @@ class CmsPosts extends LitElement {
             </div>
         </div>
         <div class="blog-content text-center position-relative px-3" style="margin-top: -25px;">
-            <img src="img/admin.jpg" class="img-fluid rounded-circle border border-4 border-white mb-3" alt="">
-            <h5 class="">By Daniel Martin</h5>
+            <img src="/images/avatar.png" class="img-fluid rounded-circle border border-4 border-white mb-3" alt="">
+            <h5 class="">By ${element.fullname}</h5>
             <span class="text-secondary">${new Date(element.updated_at).toDateString()}</span>
             <p class="py-2">${element.summary}</p>
         </div>
@@ -90,28 +90,6 @@ class CmsPosts extends LitElement {
         </div>
         <div class="row g-5 justify-content-center">
             ${html`${this.NewsPosts}`}
-            <div class="col-lg-6 col-xl-4 wow fadeIn" data-wow-delay=".7s">
-    <div class="blog-item position-relative bg-light rounded">
-        <img src="/images/blog-1.jpg" class="img-fluid w-100 rounded-top" alt="">
-        <span class="position-absolute px-4 py-3 bg-primary text-white rounded" style="top: -28px; right: 20px;">element.category</span>
-        <div class="blog-btn d-flex justify-content-center position-relative px-3" style="margin-top: -75px;">
-            <div class="blog-icon btn btn-secondary px-3 rounded-pill my-auto">
-                <a href="" class="btn text-white ">Read More</a>
-            </div>
-        </div>
-        <div class="blog-content text-center position-relative px-3" style="margin-top: -25px;">
-            <img src="/images/admin.jpg" class="img-fluid rounded-circle border border-4 border-white mb-3" alt="">
-            <h5 class="">By Daniel Martin</h5>
-            <span class="text-secondary">30 jan 2023</span>
-            <p class="py-2">Lorem ipsum dolor sit amet elit. Sed efficitur quis purus ut interdum. Aliquam dolor eget urna ultricies tincidunt libero sit amet</p>
-        </div>
-    </div>
-</div>
-        </div>
-        <div class="blog-btn d-flex justify-content-center position-relative px-3 wow fadeIn" data-wow-delay=".3s">
-            <div class="blog-icon btn btn-secondary px-3 rounded-pill my-auto">
-                <a href="/posts.html" class="btn text-white ">Read More</a>
-            </div>
         </div>
     </div>
 </div>
