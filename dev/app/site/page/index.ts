@@ -43,7 +43,7 @@ class CmsIndex extends LitElement {
 
         this.ShowPosts();
         this.ShowProjects();
-        this.Testimonials();
+        this.ShowTestimonials();
     }
 
     ShowPosts() {
@@ -87,7 +87,7 @@ class CmsIndex extends LitElement {
         <div class="project-img">
             <img src="${element.thumbnail_path}" class="img-fluid w-100 rounded" alt="">
             <div class="project-content">
-                <a href="${element.summary}" target="_blank" class="text-center">
+                <a href="${element.slug}" target="_blank" class="text-center">
                     <h4 class="text-secondary">${element.title}</h4>
                     <p class="m-0 text-white">${element.summary}</p>
                 </a>
@@ -308,32 +308,6 @@ class CmsIndex extends LitElement {
         </div>
         <div class="row g-5">
             ${html`${this.Projects}`}
-            <div class="col-md-6 wow fadeIn" data-wow-delay=".5s">
-                <div class="project-item">
-                    <div class="project-img">
-                        <img src="/images/project-1.jpg" class="img-fluid w-100 rounded" alt="">
-                        <div class="project-content">
-                            <a href="https://ewand.at" target="_blank" class="text-center">
-                                <h4 class="text-secondary">Ewand</h4>
-                                <p class="m-0 text-white">Ewand.at</p>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 wow fadeIn" data-wow-delay=".5s">
-                <div class="project-item">
-                    <div class="project-img">
-                        <img src="/images/project-2.jpg" class="img-fluid w-100 rounded" alt="">
-                        <div class="project-content">
-                            <a href="https://wayofhope.at" target="_blank" class="text-center">
-                                <h4 class="text-secondary">Way of Hope</h4>
-                                <p class="m-0 text-white">Wayofhope.at</p>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </div>
