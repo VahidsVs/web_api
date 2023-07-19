@@ -46,7 +46,7 @@ class CmsIndex extends LitElement {
     }
 
     ShowPosts() {
-        GetData("post/select_post.php", { pac: '18PrB1fS1RtyZ550c5QR5Q', limit: 3}, "#pnlNews")
+        GetData("post/select_post.php", { pac: encodeURIComponent('18PrB1fS1RtyZ550c5QR5Q'), limit: 3}, "#pnlNews")
             .then(data => {
                 for (let i = 0; i < data.length; i++) {
                     const element = data[i];
@@ -102,7 +102,7 @@ class CmsIndex extends LitElement {
     }
 
     ShowTestimonials() {
-        GetData("post/select_post.php", { pac: 'mQrpkmSlCzCsPPZpiGXSmw=='}, "#pnlTestimonials")
+        GetData("post/select_post.php", { pac: encodeURIComponent('mQrpkmSlCzCsPPZpiGXSmw=='), limit: 6 }, "#pnlTestimonials")
             .then(data => {
                 for (let i = 0; i < data.length; i++) {
                     const element = data[i];
