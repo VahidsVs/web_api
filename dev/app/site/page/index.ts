@@ -37,8 +37,7 @@ class CmsIndex extends LitElement {
     firstUpdated(changedProperties: any) {
 
         $(() => {
-            //@ts-ignore
-            $(".owl-carousel").owlCarousel();
+
         })
 
         this.ShowPosts();
@@ -77,7 +76,7 @@ class CmsIndex extends LitElement {
     }
 
     ShowProjects() {
-        GetData("post/select_post.php", { pac: 'Xe9dNreyFQIVzZbEfp9+xg=='}, "#pnlProjects")
+        GetData("post/select_post.php", { pac: encodeURIComponent('Xe9dNreyFQIVzZbEfp9+xg=='), limit: 2}, "#pnlProjects")
             .then(data => {
                 for (let i = 0; i < data.length; i++) {
                     const element = data[i];
@@ -115,18 +114,32 @@ class CmsIndex extends LitElement {
         </div>
         <div class="ms-4">
             <h4 class="text-secondary">${element.title}</h4>
-            <p class="m-0 pb-3">${element.summary}</p>
+            <!-- <p class="m-0 pb-3"></p> -->
         </div>
     </div>
-    <!-- <div class="border-top mt-4 pt-3">
-        <p class="mb-0">Lorem ipsum dolor sit amet elit. Sed efficitur quis purus ut interdum aliquam dolor eget urna. Nam volutpat libero sit amet leo cursus, ac viverra eros morbi quis quam mi.</p>
-    </div> -->
+    <div class="border-top mt-4 pt-3">
+        <p class="mb-0">
+        ${element.summary}
+        </p>
+    </div>
 </div>
 `)
                 }
 
+                this.Testimonials = html`
+<div class="owl-carousel testimonial-carousel wow fadeIn" data-wow-delay=".5s">
+    ${html`${this.Testimonials}`}
+</div>
+`
+
                 this.requestUpdate();
             })
+    }
+
+    updated(changedProperties: any) {
+        
+        //@ts-ignore
+        $(".owl-carousel").owlCarousel();
     }
 
     render() {
@@ -339,93 +352,7 @@ class CmsIndex extends LitElement {
             <h5 class="text-primary">Our Testimonial</h5>
             <h1>Our Client Saying!</h1>
         </div>
-        <div class="owl-carousel testimonial-carousel wow fadeIn" data-wow-delay=".5s">
-            ${html`${this.Testimonials}`}
-            <div class="testimonial-item border p-4">
-                <div class="d-flex align-items-center">
-                    <div class="">
-                        <img src="/images/avatar.png" alt="">
-                    </div>
-                    <div class="ms-4">
-                        <h4 class="text-secondary">Client Name</h4>
-                        <p class="m-0 pb-3">Profession</p>
-                        <div class="d-flex pe-5">
-                            <i class="fas fa-star me-1 text-primary"></i>
-                            <i class="fas fa-star me-1 text-primary"></i>
-                            <i class="fas fa-star me-1 text-primary"></i>
-                            <i class="fas fa-star me-1 text-primary"></i>
-                            <i class="fas fa-star me-1 text-primary"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="border-top mt-4 pt-3">
-                    <!-- <p class="mb-0">Lorem ipsum dolor sit amet elit. Sed efficitur quis purus ut interdum aliquam dolor eget urna. Nam volutpat libero sit amet leo cursus, ac viverra eros morbi quis quam mi.</p> -->
-                </div>
-            </div>
-            <div class="testimonial-item border p-4">
-                <div class=" d-flex align-items-center">
-                    <div class="">
-                        <img src="/images/avatar.png" alt="">
-                    </div>
-                    <div class="ms-4">
-                        <h4 class="text-secondary">Client Name</h4>
-                        <p class="m-0 pb-3">Profession</p>
-                        <div class="d-flex pe-5">
-                            <i class="fas fa-star me-1 text-primary"></i>
-                            <i class="fas fa-star me-1 text-primary"></i>
-                            <i class="fas fa-star me-1 text-primary"></i>
-                            <i class="fas fa-star me-1 text-primary"></i>
-                            <i class="fas fa-star me-1 text-primary"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="border-top mt-4 pt-3">
-                    <!-- <p class="mb-0">Lorem ipsum dolor sit amet elit. Sed efficitur quis purus ut interdum aliquam dolor eget urna. Nam volutpat libero sit amet leo cursus, ac viverra eros morbi quis quam mi.</p> -->
-                </div>
-            </div>
-            <div class="testimonial-item border p-4">
-                <div class=" d-flex align-items-center">
-                    <div class="">
-                        <img src="/images/avatar.png" alt="">
-                    </div>
-                    <div class="ms-4">
-                        <h4 class="text-secondary">Client Name</h4>
-                        <p class="m-0 pb-3">Profession</p>
-                        <div class="d-flex pe-5">
-                            <i class="fas fa-star me-1 text-primary"></i>
-                            <i class="fas fa-star me-1 text-primary"></i>
-                            <i class="fas fa-star me-1 text-primary"></i>
-                            <i class="fas fa-star me-1 text-primary"></i>
-                            <i class="fas fa-star me-1 text-primary"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="border-top mt-4 pt-3">
-                    <!-- <p class="mb-0">Lorem ipsum dolor sit amet elit. Sed efficitur quis purus ut interdum aliquam dolor eget urna. Nam volutpat libero sit amet leo cursus, ac viverra eros morbi quis quam mi.</p> -->
-                </div>
-            </div>
-            <div class="testimonial-item border p-4">
-                <div class=" d-flex align-items-center">
-                    <div class="">
-                        <img src="/images/avatar.png" alt="">
-                    </div>
-                    <div class="ms-4">
-                        <h4 class="text-secondary">Client Name</h4>
-                        <p class="m-0 pb-3">Profession</p>
-                        <div class="d-flex pe-5">
-                            <i class="fas fa-star me-1 text-primary"></i>
-                            <i class="fas fa-star me-1 text-primary"></i>
-                            <i class="fas fa-star me-1 text-primary"></i>
-                            <i class="fas fa-star me-1 text-primary"></i>
-                            <i class="fas fa-star me-1 text-primary"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="border-top mt-4 pt-3">
-                    <!-- <p class="mb-0">Lorem ipsum dolor sit amet elit. Sed efficitur quis purus ut interdum aliquam dolor eget urna. Nam volutpat libero sit amet leo cursus, ac viverra eros morbi quis quam mi.</p> -->
-                </div>
-            </div>
-        </div>
+        ${this.Testimonials}
     </div>
 </div>
 <!-- Testimonial End -->
