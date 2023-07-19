@@ -61,6 +61,16 @@ class CmsPost extends LitElement {
                     this.Title = data[0].title;
                     this.Summary = data[0].summary;
                     this.Content = html`${unsafeHTML(data[0].content)}`;
+
+                    var meta = document.createElement('meta');
+                    meta.name = "keywords";
+                    meta.content = data[0].meta_keyword;
+                    document.getElementsByTagName('head')[0].appendChild(meta);
+
+                    var meta = document.createElement('meta');
+                    meta.name = "description";
+                    meta.content = data[0].meta_description;
+                    document.getElementsByTagName('head')[0].appendChild(meta);
                 }
             })
     }

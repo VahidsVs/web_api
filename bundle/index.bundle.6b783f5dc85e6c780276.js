@@ -310,12 +310,12 @@ n.version="2.29.4",r(qa),n.fn=_r,n.min=Xa,n.max=es,n.now=ts,n.utc=M,n.unix=ur,n.
         </div>
         <div class="ms-4">
             <h4 class="text-secondary">${a.title}</h4>
-            <!-- <p class="m-0 pb-3"></p> -->
+            <!--<p class="m-0 pb-3"></p>-->
         </div>
     </div>
     <div class="border-top mt-4 pt-3">
         <p class="mb-0">
-        ${a.summary}
+            ${a.summary}
         </p>
     </div>
 </div>
@@ -530,7 +530,7 @@ n.version="2.29.4",r(qa),n.fn=_r,n.min=Xa,n.max=es,n.now=ts,n.utc=M,n.unix=ur,n.
     <div class="container">
         <div class="text-center mx-auto pb-5 wow fadeIn" data-wow-delay=".3s" style="max-width: 600px;">
             <h5 class="text-primary">Our Testimonial</h5>
-            <h1>Our Client Saying!</h1>
+            <h1>Famous Quotes</h1>
         </div>
         ${this.Testimonials}
     </div>

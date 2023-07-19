@@ -114,12 +114,12 @@ class CmsIndex extends LitElement {
         </div>
         <div class="ms-4">
             <h4 class="text-secondary">${element.title}</h4>
-            <!-- <p class="m-0 pb-3"></p> -->
+            <!--<p class="m-0 pb-3"></p>-->
         </div>
     </div>
     <div class="border-top mt-4 pt-3">
         <p class="mb-0">
-        ${element.summary}
+            ${element.summary}
         </p>
     </div>
 </div>
@@ -350,7 +350,7 @@ class CmsIndex extends LitElement {
     <div class="container">
         <div class="text-center mx-auto pb-5 wow fadeIn" data-wow-delay=".3s" style="max-width: 600px;">
             <h5 class="text-primary">Our Testimonial</h5>
-            <h1>Our Client Saying!</h1>
+            <h1>Famous Quotes</h1>
         </div>
         ${this.Testimonials}
     </div>
