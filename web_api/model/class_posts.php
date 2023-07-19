@@ -3,6 +3,11 @@ include_once("class_database.php");
 
 class Posts
 {
+// 	SET  @num := 0;
+
+// UPDATE your_table SET id = @num := (@num+1);
+
+// ALTER TABLE your_table AUTO_INCREMENT =1;
 	private $tableName = "posts";
 	private $accessDatabase;
 	function __construct()
@@ -30,7 +35,7 @@ class Posts
 			$condition .= " And cat.pk_category = ?";
 		}
 		$query = "Select $this->tableName.*,users.username,Concat(users.firstname,users.lastname) as fullname, cat.title as cat_title, cat.fk_parent_category, pac.title as pac_title From  $this->tableName, categories cat, parents_category pac, users Where $this->tableName.fk_category = cat.pk_category And
-				 cat.fk_parent_category = pac.pk_parent_category And $this->tableName.fk_user = users.pk_user And  1=1  $condition $orderBy $limit";
+				 cat.fk_parent_category = pac.pk_parent_category And $this->tableName.fk_user = users.pk_user And $this->tableName.status = 'Published' And  1=1  $condition $orderBy $limit";
 
 		$result = $this->accessDatabase->executeAndFetch("select", $query, $bindParams);
 
