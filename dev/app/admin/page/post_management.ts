@@ -698,14 +698,14 @@ class CmsPostManagement extends LitElement {
                             <span class="invalid" data-bind="text: errors.summary"></span>
                         </div>
                     </div>
-                    <div class="col-md-12 p-2">
+                    <div class="col-md-6 p-2">
                         <div class="form-group">
                             <label data-bind="text: translate.label_meta_keyword" class="form-label"></label>
                             <input type="text" class="form-control" data-bind="value: data.meta_keyword">
                             <span class="invalid" data-bind="text: errors.meta_keyword"></span>
                         </div>
                     </div>
-                    <div class="col-md-12 p-2">
+                    <div class="col-md-6 p-2">
                         <div class="form-group">
                             <label data-bind="text: translate.label_meta_description" class="form-label"></label>
                             <input type="text" class="form-control" data-bind="value: data.meta_description">
