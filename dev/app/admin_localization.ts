@@ -26,6 +26,7 @@
             array.push({ Key: 'menu_admin_dashboard', Translate: "داشبورد" });
             array.push({ Key: 'menu_post_management', Translate: "مدیریت پست ها" });
             array.push({ Key: 'menu_media_management', Translate: "مدیریت رسانه" });
+            array.push({ Key: 'menu_page_management', Translate: "مدیریت صفحات" });
             
             array.push({ Key: 'role_contact_us', Translate: "مدیریت ارتباط با ما" });
             array.push({ Key: 'role_permission_level_management', Translate: "مدیریت سطوح دسترسی" });
@@ -33,6 +34,7 @@
             array.push({ Key: 'role_advertisement_management', Translate: "مدیریت تبلیغات" });
             array.push({ Key: 'role_post_management', Translate: "مدیریت پست ها" });
             array.push({ Key: 'role_media_management', Translate: "مدیریت رسانه" });
+            array.push({ Key: 'role_page_management', Translate: "مدیریت صفحات" });
             
             array.push({ Key: 'tab_title_groups', Translate: "گروه ها" });
             array.push({ Key: 'tab_title_details', Translate: "جزئیات" });
@@ -129,6 +131,7 @@
             array.push({ Key: 'menu_admin_dashboard', Translate: "Dashboard" });
             array.push({ Key: 'menu_post_management', Translate: "Post Management" });
             array.push({ Key: 'menu_media_management', Translate: "Media Management" });
+            array.push({ Key: 'menu_page_management', Translate: "Page Management" });
             
             array.push({ Key: 'role_contact_us', Translate: "Contact Us Management" });
             array.push({ Key: 'role_permission_level_management', Translate: "Permission Level Management" });
@@ -136,6 +139,7 @@
             array.push({ Key: 'role_advertisement_management', Translate: "Advertisement Management" });
             array.push({ Key: 'role_post_management', Translate: "Post Management" });
             array.push({ Key: 'role_media_management', Translate: "Media Management" });
+            array.push({ Key: 'role_page_management', Translate: "Page Management" });
             
             array.push({ Key: 'tab_title_groups', Translate: "Groups" });
             array.push({ Key: 'tab_title_details', Translate: "Details" });
