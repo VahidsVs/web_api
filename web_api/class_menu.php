@@ -39,8 +39,9 @@ class Menu
 
         $indexPLM = array_search(RolesTitle::role_permissionLevelManagement, array_column($jsonData, 'title')); //Permission Level Management
         $indexCUM = array_search(RolesTitle::role_contactUs, array_column($jsonData, 'title')); //Contact Us Management
-        $indexPM = array_search(RolesTitle::role_postManagement, array_column($jsonData, 'title')); //Post Management
+        $indexPOM = array_search(RolesTitle::role_postManagement, array_column($jsonData, 'title')); //Post Management
         $indexMM = array_search(RolesTitle::role_mediaManagement, array_column($jsonData, 'title')); //Media Management
+        $indexPAM = array_search(RolesTitle::role_pageManagement, array_column($jsonData, 'title')); //Page Management
 
         if (++$indexPLM) {
             $newMenu = ["id" => 101, "parentId" => 1, "title" => "menu_permission_level_management", "url" => "/admin/permission_level_management.html"];
@@ -50,8 +51,13 @@ class Menu
             $newMenu = ["id" => 102, "parentId" => 1, "title" => "menu_contact_us", "url" => "/admin/contact_us.html"];
             $menuArray = self::addMenu($menuArray, $newMenu);
         }
-        if (++$indexPM) {
-            $newMenu = ["id" => 103, "parentId" => 1, "title" => "menu_post_management", "url" => "/admin/post.html"];
+        if (++$indexPOM) {
+            $newMenu = ["id" => 103, "parentId" => 1, "title" => "menu_post_management", "url" => "/admin/post_management.html"];
+            $menuArray = self::addMenu($menuArray, $newMenu);
+        }
+        if (++$indexPAM) {
+
+            $newMenu = ["id" => 104, "parentId" => 1, "title" => "menu_page_management", "url" => "/admin/page_management.html"];
             $menuArray = self::addMenu($menuArray, $newMenu);
         }
         if (++$indexMM) {
