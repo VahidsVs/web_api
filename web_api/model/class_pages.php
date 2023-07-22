@@ -61,7 +61,7 @@ class Pages
 
 		$errorCode = $this->accessDatabase->executeAndFetch($action, $query, $bindParams);
 		if ($errorCode == 1062) {
-			$code = Codes::msg_groupSlugExists;
+			$code = Codes::msg_SlugExists;
 		}
 		if (is_null($errorCode)) {
 			$code = Codes::msg_SuccessfulCUD;

@@ -9,7 +9,7 @@ class Codes
     public  const msg_PassAndPassConfirmNotSame = "msgPassAndPassConfirmNotSame"; //Password and password confirm are not the same! 
     public  const msg_usernameExists = "msgUsernameExists"; //Successful Create, Update, Delete
     public  const msg_groupTitleExists = "msgTitleExists"; //Successful Create, Update, Delete
-    public  const msg_groupSlugExists = "msgSlugExists"; //Successful Create, Update, Delete
+    public  const msg_SlugExists = "msgSlugExists"; //Successful Create, Update, Delete
     public  const msg_constraintRoleInGroup= "msgConstraintRoleInGroup"; //Successful Create, Update, Delete
     public  const msg_constraintGroupRole= "msgConstraintGroupRole"; //Successful Create, Update, Delete
     public  const msg_constraintUserInGroup= "msgConstraintUserInGroup"; //Successful Create, Update, Delete
