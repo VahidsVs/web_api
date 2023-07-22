@@ -89,7 +89,7 @@ class CmsPost extends LitElement {
 <!-- Page Header End -->
 
 <div class="container-fluid">
-    <div class="p-5">
+    <div class="row col-md-12 p-5">
         ${this.Content}
     </div>
 </div>

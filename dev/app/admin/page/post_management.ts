@@ -170,7 +170,45 @@ class CmsPostManagement extends LitElement {
             resizable: {
                 content: true,
                 toolbar: true
-            }
+            },
+            tools: [
+                "bold",
+                "italic",
+                "underline",
+                "strikethrough",
+                "undo",
+                "redo",
+                "justifyLeft",
+                "justifyCenter",
+                "justifyRight",
+                "justifyFull",
+                "insertUnorderedList",
+                "createLink",
+                "unlink",
+                "insertImage",
+                "tableWizard",
+                "tableProperties",
+                "tableCellProperties",
+                "createTable",
+                "addRowAbove",
+                "addRowBelow",
+                "addColumnLeft",
+                "addColumnRight",
+                "deleteRow",
+                "deleteColumn",
+                "mergeCellsHorizontally",
+                "mergeCellsVertically",
+                "splitCellHorizontally",
+                "splitCellVertically",
+                "tableAlignLeft",
+                "tableAlignCenter",
+                "tableAlignRight",
+                "formatting",
+                "fontSize",
+                "foreColor",
+                "backColor",
+                "viewHtml",
+            ]
         });
     }
 
@@ -602,6 +640,8 @@ class CmsPostManagement extends LitElement {
     Submit_Click() {
         
         this.Model.data.thumbnail_path(document.getElementsByTagName("cms-mediapick")[0].getAttribute("value"));
+        
+        this.Model.data.content($("#editor").data("kendoEditor").value());
 
         if (this.Model.data.pk_post() == null || this.Model.data.pk_post() == "") {
             PostDataForm("post/insert_post_admin.php", ko.toJS(this.Model.data), "#tab2-pane")

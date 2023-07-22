@@ -124,7 +124,45 @@ class CmsPageManagement extends LitElement {
             resizable: {
                 content: true,
                 toolbar: true
-            }
+            },
+            tools: [
+                "bold",
+                "italic",
+                "underline",
+                "strikethrough",
+                "undo",
+                "redo",
+                "justifyLeft",
+                "justifyCenter",
+                "justifyRight",
+                "justifyFull",
+                "insertUnorderedList",
+                "createLink",
+                "unlink",
+                "insertImage",
+                "tableWizard",
+                "tableProperties",
+                "tableCellProperties",
+                "createTable",
+                "addRowAbove",
+                "addRowBelow",
+                "addColumnLeft",
+                "addColumnRight",
+                "deleteRow",
+                "deleteColumn",
+                "mergeCellsHorizontally",
+                "mergeCellsVertically",
+                "splitCellHorizontally",
+                "splitCellVertically",
+                "tableAlignLeft",
+                "tableAlignCenter",
+                "tableAlignRight",
+                "formatting",
+                "fontSize",
+                "foreColor",
+                "backColor",
+                "viewHtml",
+            ]
         });
     }
 
@@ -148,7 +186,7 @@ class CmsPageManagement extends LitElement {
         let dataSource = new kendo.data.DataSource({
             transport: {
                 read: (e) => {
-                    GetData("post/select_post_admin.php", null, "#tab1-pane")
+                    GetData("page/select_page_admin.php", null, "#tab1-pane")
                         .then(data => {
                             e.success(data);
                         })
@@ -255,7 +293,7 @@ class CmsPageManagement extends LitElement {
                                 title: getTranslate('btn_delete'),
                                 content: getTranslate('msg_are_you_sure'),
                                 okCallback: () => {
-                                    GetData("post/delete_post_admin.php", { pk: dataItem.pk_page }, "#grid")
+                                    GetData("page/delete_page.php", { pk: dataItem.pk_page }, "#grid")
                                         .then(data => {
                                             if (data.message === undefined) {
                                                 AjaxSuccessFunction(data.msg, 3000);
@@ -368,8 +406,10 @@ class CmsPageManagement extends LitElement {
 
     Submit_Click() {
 
+        this.Model.data.content($("#editor").data("kendoEditor").value());
+
         if (this.Model.data.pk_page() == null || this.Model.data.pk_page() == "") {
-            PostDataForm("post/insert_post_admin.php", ko.toJS(this.Model.data), "#tab2-pane")
+            PostDataForm("page/insert_page.php", ko.toJS(this.Model.data), "#tab2-pane")
                 .then(data => {
                     if (data.errors === undefined && data.message === undefined) {
                         this.ClearScr();
@@ -380,7 +420,7 @@ class CmsPageManagement extends LitElement {
                 })
         }
         else {
-            PostDataForm("post/update_post_admin.php", ko.toJS(this.Model.data), "#tab2-pane")
+            PostDataForm("page/update_page.php", ko.toJS(this.Model.data), "#tab2-pane")
                 .then(data => {
                     if (data.errors === undefined && data.message === undefined) {
                         this.ClearScr();
