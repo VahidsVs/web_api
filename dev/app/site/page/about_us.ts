@@ -6,7 +6,7 @@ import {
     getDirectionFromLanguage,
     GetData, 
     PostData } from '../../cms_general';
-// import { unsafeHTML } from 'lit-html/directives/unsafe-html.js';
+import { unsafeHTML } from 'lit-html/directives/unsafe-html.js';
 
 @customElement('cms-aboutus')
 class CmsAboutUs extends LitElement {
@@ -20,6 +20,9 @@ class CmsAboutUs extends LitElement {
     //    }
 
     private lcid;
+    
+    @state()
+    private Content: any;
 
     constructor() {
         super();
@@ -34,6 +37,22 @@ class CmsAboutUs extends LitElement {
         $(() => {
             
         });
+
+        GetData("page/select_page.php", { slug: "about_us" })
+            .then(data => {
+                
+                this.Content = html`${unsafeHTML(data[0].content)}`;
+
+                var meta = document.createElement('meta');
+                meta.name = "keywords";
+                meta.content = data[0].meta_keyword;
+                document.getElementsByTagName('head')[0].appendChild(meta);
+
+                var meta = document.createElement('meta');
+                meta.name = "description";
+                meta.content = data[0].meta_description;
+                document.getElementsByTagName('head')[0].appendChild(meta);
+            })
     }
 
     render() {
@@ -47,15 +66,9 @@ class CmsAboutUs extends LitElement {
 <!-- Page Header End -->
 
 <div class="container-fluid p-5">
-    <p class="text-center">
-        MegaTech is an IT company which works in the field of applications, newtork, web design, blockchain and AI. MegaTech is an innovative start-up company.
-    </p>
-    <h4 class="text-center">
-        <b>MegaTech Activity Fields</b>
-    </h4>
-    <div>
-        <img class="img-thumbnail" src="/images/megatech.png">
-    </div>
+
+    ${this.Content}
+
 </div>
         `;
     }

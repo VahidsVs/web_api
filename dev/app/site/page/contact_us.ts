@@ -10,7 +10,7 @@ import {
     PostDataForm, 
     AjaxSuccessFunction } from '../../cms_general';
 import * as ko from 'knockout';
-// import { unsafeHTML } from 'lit-html/directives/unsafe-html.js';
+import { unsafeHTML } from 'lit-html/directives/unsafe-html.js';
 
 @customElement('cms-contactus')
 class CmsContactUs extends LitElement {
@@ -24,6 +24,9 @@ class CmsContactUs extends LitElement {
     //    }
 
     private lcid;
+    
+    @state()
+    private Content: any;
 
     private Model = {
         data: {
@@ -87,6 +90,22 @@ class CmsContactUs extends LitElement {
         $(() => {
             
         });
+
+        GetData("page/select_page.php", { slug: "contact_us" })
+            .then(data => {
+                
+                this.Content = html`${unsafeHTML(data[0].content)}`;
+
+                var meta = document.createElement('meta');
+                meta.name = "keywords";
+                meta.content = data[0].meta_keyword;
+                document.getElementsByTagName('head')[0].appendChild(meta);
+
+                var meta = document.createElement('meta');
+                meta.name = "description";
+                meta.content = data[0].meta_description;
+                document.getElementsByTagName('head')[0].appendChild(meta);
+            })
     }
 
     ShowCaptcha() {
@@ -127,7 +146,7 @@ class CmsContactUs extends LitElement {
             <h5 class="text-primary">Get In Touch</h5>
             <h1 class="mb-3">Contact for any query</h1>
             <p class="mb-2">
-                MegaTech is an IT company which works in the field of applications, newtork, web design, blockchain and AI. MegaTech is an innovative start-up company.
+                ${this.Content}
             </p>
         </div>
         <div class="contact-detail position-relative p-3">
