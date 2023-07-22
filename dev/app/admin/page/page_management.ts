@@ -262,7 +262,7 @@ class CmsPageManagement extends LitElement {
                             //@ts-ignore
                             $("#myTab button").eq(1).show().tab('show');
 
-                            this.Model.data.pk(dataItem.pk_post);
+                            this.Model.data.pk(dataItem.pk_page);
                             this.Model.data.pk_page(dataItem.pk_page);
                             this.Model.data.title(dataItem.title);
                             this.Model.data.slug(dataItem.slug);
