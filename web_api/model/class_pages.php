@@ -57,7 +57,7 @@ class Pages
 		}
 		
 		$query = "Insert Into $this->tableName (fk_user,title,slug,content,meta_keyword,meta_description,created_at,updated_at)
-		 Values(?,?,?,?,?,?,?,?,?,?,now(),now()) ";
+		 Values(?,?,?,?,?,?,now(),now()) ";
 
 		$errorCode = $this->accessDatabase->executeAndFetch($action, $query, $bindParams);
 		if ($errorCode == 1062) {
@@ -93,7 +93,7 @@ class Pages
 			$bindParams["param"][] = $parameters["pk"];
 		}
 		$query = "Update $this->tableName Set fk_user = ? , title = ? , slug = ? , 
-				content = ? , meta_keyword = ? , meta_description = ? , status = ? , updated_at = now()  Where pk_page = ?";
+				content = ? , meta_keyword = ? , meta_description = ? , updated_at = now()  Where pk_page = ?";
 
 		$errorCode = $this->accessDatabase->executeAndFetch($action, $query, $bindParams);
 		if ($errorCode == 1062) {

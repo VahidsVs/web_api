@@ -43,6 +43,10 @@ class Page
 			$message["content"] = Codes::msg_isRequired;
 			$this->isDataOK = false;
 		}
+		if (empty($parameters["fk_user"])) {
+			$message["fk_user"] = Codes::msg_isRequired;
+			$this->isDataOK = false;
+		}
 		if (!$this->isDataOK) {
 			$this->httpResponseCode = 400;
 			$this->jsonData["errors"] = ["title" => $message["title"], "slug" => $message["slug"], "content" => $message["content"]];
