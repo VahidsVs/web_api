@@ -1,5 +1,5 @@
 <?php
-include_once("../../interface/class_post.php");
+include_once("../../interface/class_page.php");
 include_once("../../class_authorization.php");
 include_once("../../class_roles_title.php");
 
