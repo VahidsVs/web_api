@@ -20,14 +20,14 @@ class Pages
 		$bindParams = null;
 		if (array_key_exists("pk", $parameters)) {
 			$bindParams["param"][] = $parameters["pk"];
-			$condition .= " And pk_post = ?";
+			$condition .= " And pk_page = ?";
 		}
 		if (array_key_exists("slug", $parameters)) {
 			$bindParams["param"][] = $parameters["slug"];
 			$condition .= " And slug = ?";
 		}
 
-		$query = "Select $this->tableName.*,users.username,Concat(users.firstname,' ',users.lastname) as fullname From  $this->tableName, users Where
+		$query = "Select $this->tableName.*,users.username,Concat(users.firstname,' ',users.lastname) as fullname From $this->tableName, users Where
 				  $this->tableName.fk_user = users.pk_user And 1=1  $condition $orderBy $limit";
 
 		$result = $this->accessDatabase->executeAndFetch("select", $query, $bindParams);
