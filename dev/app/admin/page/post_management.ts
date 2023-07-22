@@ -475,7 +475,7 @@ class CmsPostManagement extends LitElement {
                                 title: getTranslate('btn_delete'),
                                 content: getTranslate('msg_are_you_sure'),
                                 okCallback: () => {
-                                    GetData("post/delete_post_admin.php", { pk: dataItem.pk_post }, "#grid")
+                                    GetData("post/delete_post.php", { pk: dataItem.pk_post }, "#grid")
                                         .then(data => {
                                             if (data.message === undefined) {
                                                 AjaxSuccessFunction(data.msg, 3000);
@@ -644,7 +644,7 @@ class CmsPostManagement extends LitElement {
         this.Model.data.content($("#editor").data("kendoEditor").value());
 
         if (this.Model.data.pk_post() == null || this.Model.data.pk_post() == "") {
-            PostDataForm("post/insert_post_admin.php", ko.toJS(this.Model.data), "#tab2-pane")
+            PostDataForm("post/insert_post.php", ko.toJS(this.Model.data), "#tab2-pane")
                 .then(data => {
                     if (data.errors === undefined && data.message === undefined) {
                         this.ClearScr();
@@ -655,7 +655,7 @@ class CmsPostManagement extends LitElement {
                 })
         }
         else {
-            PostDataForm("post/update_post_admin.php", ko.toJS(this.Model.data), "#tab2-pane")
+            PostDataForm("post/update_post.php", ko.toJS(this.Model.data), "#tab2-pane")
                 .then(data => {
                     if (data.errors === undefined && data.message === undefined) {
                         this.ClearScr();
