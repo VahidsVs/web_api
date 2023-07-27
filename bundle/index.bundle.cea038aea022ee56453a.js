@@ -302,8 +302,8 @@ n.version="2.29.4",r(qa),n.fn=_r,n.min=Xa,n.max=es,n.now=ts,n.utc=M,n.unix=ur,n.
         </div>
     </div>
 </div>
-`)}this.requestUpdate()}))}ShowTestimonials(){(0,r.eO)("post/select_post.php",{pac:encodeURIComponent("mQrpkmSlCzCsPPZpiGXSmw=="),limit:6},"#pnlTestimonials").then((e=>{for(let t=0;t<e.length;t++){const a=e[t];this.Testimonials.push(s.dy`
-<div class="testimonial-item border p-4">
+`)}this.requestUpdate()}))}ShowTestimonials(){(0,r.eO)("post/select_post.php",{pac:encodeURIComponent("mQrpkmSlCzCsPPZpiGXSmw=="),limit:3},"#pnlTestimonials").then((e=>{for(let t=0;t<e.length;t++){const a=e[t];this.Testimonials.push(s.dy`
+<div class="col-md-4 testimonial-item border p-4 wow fadeIn" data-wow-delay=".5s">
     <div class="d-flex align-items-center">
         <div class="">
             <img src="/images/avatar.png" alt="">
@@ -319,11 +319,7 @@ n.version="2.29.4",r(qa),n.fn=_r,n.min=Xa,n.max=es,n.now=ts,n.utc=M,n.unix=ur,n.
         </p>
     </div>
 </div>
-`)}this.Testimonials=s.dy`
-<div class="owl-carousel testimonial-carousel wow fadeIn" data-wow-delay=".5s">
-    ${s.dy`${this.Testimonials}`}
-</div>
-`,this.requestUpdate()}))}updated(e){$(".owl-carousel").owlCarousel()}render(){return s.dy`
+`)}this.Testimonials=s.dy`${this.Testimonials}`,this.requestUpdate()}))}updated(e){}render(){return s.dy`
 <!-- Carousel Start -->
 <div class="container-fluid px-0">
     <div id="carouselId" class="carousel slide" data-bs-ride="carousel">
@@ -518,7 +514,7 @@ n.version="2.29.4",r(qa),n.fn=_r,n.min=Xa,n.max=es,n.now=ts,n.utc=M,n.unix=ur,n.
         </div>
         <div class="blog-btn d-flex justify-content-center position-relative px-3 wow fadeIn" data-wow-delay=".3s">
             <div class="blog-icon btn btn-secondary px-3 rounded-pill my-auto">
-                <a href="/posts.html" class="btn text-white ">Read More</a>
+                <a href="/posts.html" class="btn text-white ">All Posts</a>
             </div>
         </div>
     </div>
@@ -532,7 +528,9 @@ n.version="2.29.4",r(qa),n.fn=_r,n.min=Xa,n.max=es,n.now=ts,n.utc=M,n.unix=ur,n.
             <h5 class="text-primary">Our Testimonial</h5>
             <h1>Famous Quotes</h1>
         </div>
-        ${this.Testimonials}
+        <div class="row g-5 justify-content-center">
+            ${s.dy`${this.Testimonials}`}
+        </div>
     </div>
 </div>
 <!-- Testimonial End -->

@@ -102,12 +102,12 @@ class CmsIndex extends LitElement {
     }
 
     ShowTestimonials() {
-        GetData("post/select_post.php", { pac: encodeURIComponent('mQrpkmSlCzCsPPZpiGXSmw=='), limit: 6 }, "#pnlTestimonials")
+        GetData("post/select_post.php", { pac: encodeURIComponent('mQrpkmSlCzCsPPZpiGXSmw=='), limit: 3 }, "#pnlTestimonials")
             .then(data => {
                 for (let i = 0; i < data.length; i++) {
                     const element = data[i];
                     this.Testimonials.push(html`
-<div class="testimonial-item border p-4">
+<div class="col-md-4 testimonial-item border p-4 wow fadeIn" data-wow-delay=".5s">
     <div class="d-flex align-items-center">
         <div class="">
             <img src="/images/avatar.png" alt="">
@@ -126,11 +126,7 @@ class CmsIndex extends LitElement {
 `)
                 }
 
-                this.Testimonials = html`
-<div class="owl-carousel testimonial-carousel wow fadeIn" data-wow-delay=".5s">
-    ${html`${this.Testimonials}`}
-</div>
-`
+                this.Testimonials = html`${this.Testimonials}`;
 
                 this.requestUpdate();
             })
@@ -138,8 +134,6 @@ class CmsIndex extends LitElement {
 
     updated(changedProperties: any) {
         
-        //@ts-ignore
-        $(".owl-carousel").owlCarousel();
     }
 
     render() {
@@ -338,7 +332,7 @@ class CmsIndex extends LitElement {
         </div>
         <div class="blog-btn d-flex justify-content-center position-relative px-3 wow fadeIn" data-wow-delay=".3s">
             <div class="blog-icon btn btn-secondary px-3 rounded-pill my-auto">
-                <a href="/posts.html" class="btn text-white ">Read More</a>
+                <a href="/posts.html" class="btn text-white ">All Posts</a>
             </div>
         </div>
     </div>
@@ -352,7 +346,9 @@ class CmsIndex extends LitElement {
             <h5 class="text-primary">Our Testimonial</h5>
             <h1>Famous Quotes</h1>
         </div>
-        ${this.Testimonials}
+        <div class="row g-5 justify-content-center">
+            ${html`${this.Testimonials}`}
+        </div>
     </div>
 </div>
 <!-- Testimonial End -->

@@ -34,15 +34,14 @@ class CmsPosts extends LitElement {
     firstUpdated(changedProperties: any) {
 
         $(() => {
-            //@ts-ignore
-            $(".owl-carousel").owlCarousel();
+
         })
 
         this.ShowPosts();
     }
 
     ShowPosts() {
-        GetData("post/select_post.php", { pac: '18PrB1fS1RtyZ550c5QR5Q'})
+        GetData("post/select_post.php", { pac: '18PrB1fS1RtyZ550c5QR5Q', limit: 2, page: 1})
             .then(data => {
                 for (let i = 0; i < data.length; i++) {
                     const element = data[i];

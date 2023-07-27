@@ -49,5 +49,4 @@ require('bootstrap/dist/js/bootstrap.bundle.js');
 global.WOW = require('../content/lib/wow/wow.min.js');
 require('../content/lib/easing/easing.min.js');
 require('../content/lib/waypoints/waypoints.min.js');
-require('../content/lib/owlcarousel/owl.carousel.min.js');
 require('../content/site.js');
