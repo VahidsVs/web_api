@@ -1,11 +1,13 @@
 ﻿import { LitElement, html, css } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
-import { 
+import {
     getLanguage,
     getTranslate,
     getDirectionFromLanguage,
-    GetData, 
-    PostData } from '../../cms_general';
+    GetData,
+    PostData,
+    getParameterByName
+} from '../../cms_general';
 // import { unsafeHTML } from 'lit-html/directives/unsafe-html.js';
 
 @customElement('cms-posts')
@@ -22,6 +24,9 @@ class CmsPosts extends LitElement {
     private lcid;
 
     private NewsPosts: any = [];
+    private Pagination: any = [];
+
+    private currentPage = 1;
 
     constructor() {
         super();
@@ -29,6 +34,16 @@ class CmsPosts extends LitElement {
         this.lcid = getLanguage();
 
         document.title = "Posts";
+
+        let page = getParameterByName("page");
+        if (page) {
+            try {
+                this.currentPage = parseInt(page);
+            }
+            catch {
+
+            }
+        }
     }
 
     firstUpdated(changedProperties: any) {
@@ -41,7 +56,9 @@ class CmsPosts extends LitElement {
     }
 
     ShowPosts() {
-        GetData("post/select_post.php", { pac: '18PrB1fS1RtyZ550c5QR5Q', limit: 2, page: 1})
+        let limit = 2;
+
+        GetData("post/select_post.php", { pac: '18PrB1fS1RtyZ550c5QR5Q', limit: limit, page: this.currentPage })
             .then(data => {
                 for (let i = 0; i < data.length; i++) {
                     const element = data[i];
@@ -64,7 +81,35 @@ class CmsPosts extends LitElement {
     </div>
 </div>
 `)
+
                 }
+
+                this.Pagination.push(html`
+<li class="page-item ${this.currentPage == 1 ? "disabled" : ""}">
+    <a class="page-link" href="/posts.html?page=${this.currentPage - 1}" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+    </a>
+</li>
+                    `);
+
+                let totalData = 20;
+                let totalPages = Math.ceil(totalData / limit);
+
+                for (let i = 1; i <= totalPages; i++) {
+                    this.Pagination.push(html`
+<li class="page-item ${this.currentPage == i ? "active" : ""}">
+    <a class="page-link" href="/posts.html?page=${i}">${i}</a>
+</li>
+                    `);
+                }
+
+                this.Pagination.push(html`
+<li class="page-item ${this.currentPage == totalPages ? "disabled" : ""}">
+    <a class="page-link" href="/posts.html?page=${this.currentPage + 1}" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+    </a>
+</li>
+                    `);
 
                 this.requestUpdate();
             })
@@ -90,6 +135,11 @@ class CmsPosts extends LitElement {
         <div class="row g-5 justify-content-center">
             ${html`${this.NewsPosts}`}
         </div>
+        <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center">
+                ${this.Pagination}
+            </ul>
+        </nav>
     </div>
 </div>
 <!-- Blog End -->
