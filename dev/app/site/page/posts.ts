@@ -59,9 +59,9 @@ class CmsPosts extends LitElement {
         let limit = 2;
 
         GetData("post/select_post_pagination.php", { pac: '18PrB1fS1RtyZ550c5QR5Q', pageSize: limit, page: this.currentPage })
-            .then(data => {
-                for (let i = 0; i < data.length; i++) {
-                    const element = data[i];
+            .then(item => {
+                for (let i = 0; i < item.data.length; i++) {
+                    const element = item.data[i];
                     this.NewsPosts.push(html`
 <div class="col-lg-6 col-xl-4 wow fadeIn" data-wow-delay=".7s">
     <div class="blog-item position-relative bg-light rounded h-100">
@@ -92,7 +92,7 @@ class CmsPosts extends LitElement {
 </li>
                     `);
 
-                let totalData = 20;
+                let totalData = item.total;
                 let totalPages = Math.ceil(totalData / limit);
 
                 for (let i = 1; i <= totalPages; i++) {
