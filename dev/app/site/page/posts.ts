@@ -58,7 +58,7 @@ class CmsPosts extends LitElement {
     ShowPosts() {
         let limit = 2;
 
-        GetData("post/select_post.php", { pac: '18PrB1fS1RtyZ550c5QR5Q', limit: limit, page: this.currentPage })
+        GetData("post/select_post_pagination.php", { pac: '18PrB1fS1RtyZ550c5QR5Q', pageSize: limit, page: this.currentPage })
             .then(data => {
                 for (let i = 0; i < data.length; i++) {
                     const element = data[i];

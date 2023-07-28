@@ -46,7 +46,7 @@ class CmsIndex extends LitElement {
     }
 
     ShowPosts() {
-        GetData("post/select_post.php", { pac: encodeURIComponent('18PrB1fS1RtyZ550c5QR5Q'), limit: 3}, "#pnlNews")
+        GetData("post/select_post.php", { pac: encodeURIComponent('18PrB1fS1RtyZ550c5QR5Q'), pageSize: 3}, "#pnlNews")
             .then(data => {
                 for (let i = 0; i < data.length; i++) {
                     const element = data[i];
@@ -76,7 +76,7 @@ class CmsIndex extends LitElement {
     }
 
     ShowProjects() {
-        GetData("post/select_post.php", { pac: encodeURIComponent('Xe9dNreyFQIVzZbEfp9+xg=='), limit: 2}, "#pnlProjects")
+        GetData("post/select_post.php", { pac: encodeURIComponent('Xe9dNreyFQIVzZbEfp9+xg=='), pageSize: 2}, "#pnlProjects")
             .then(data => {
                 for (let i = 0; i < data.length; i++) {
                     const element = data[i];
@@ -102,7 +102,7 @@ class CmsIndex extends LitElement {
     }
 
     ShowTestimonials() {
-        GetData("post/select_post.php", { pac: encodeURIComponent('mQrpkmSlCzCsPPZpiGXSmw=='), limit: 3 }, "#pnlTestimonials")
+        GetData("post/select_post.php", { pac: encodeURIComponent('mQrpkmSlCzCsPPZpiGXSmw=='), pageSize: 3 }, "#pnlTestimonials")
             .then(data => {
                 for (let i = 0; i < data.length; i++) {
                     const element = data[i];
