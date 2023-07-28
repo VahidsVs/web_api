@@ -34,12 +34,14 @@ class Post
 		array_key_exists("pac", $parameters) ? $parameters["pac"] = openssl_decrypt($parameters["pac"], "AES-128-ECB", $key) : null;
 
 		$orderBy = "Order By updated_at Desc";
-		$result = $this->accessPosts->select($action, $parameters, $orderBy, $limit);
-		$total = $this->accessPosts->total($action, $parameters);
+		$result = $resultTemp = $this->accessPosts->select($action, $parameters, $orderBy, $limit);
 		if(array_key_exists("pageSize", $parameters))
 		{
-			$resultPagination["data"]=$result;
+			$total = $this->accessPosts->total($action, $parameters);
+			$resultPagination["data"]=$resultTemp;
 			$resultPagination["total"]=$total;
+			$result=null;
+			$result=$resultPagination;
 		}
 		$this->jsonData = $result;
 		$this->httpResponseCode = 200;
