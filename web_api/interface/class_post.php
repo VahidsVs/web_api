@@ -35,11 +35,11 @@ class Post
 
 		$orderBy = "Order By updated_at Desc";
 		$result = $resultTemp = $this->accessPosts->select($action, $parameters, $orderBy, $limit);
-		if(array_key_exists("pageSize", $parameters))
+		if(array_key_exists("page", $parameters))
 		{
 			$total = $this->accessPosts->total($action, $parameters);
 			$resultPagination["data"]=$resultTemp;
-			$resultPagination["total"]=$total;
+			$resultPagination["total"]=$total[0]["total"];
 			$result=null;
 			$result=$resultPagination;
 		}
