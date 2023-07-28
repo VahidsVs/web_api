@@ -14,7 +14,7 @@ class Posts
 	{
 		$this->accessDatabase = new Database();
 	}
-	function count($action, $parameters)
+	function total($action, $parameters)
 	{
 		$condition = "";
 		$bindParams = null;
@@ -22,7 +22,7 @@ class Posts
 			$bindParams["param"][] = $parameters["pac"];
 			$condition .= " And pac.pk_parent_category = ?";
 		}
-		$query = "Select count($this->tableName.*) From $this->tableName, categories cat, parents_category pac, users Where $this->tableName.fk_category = cat.pk_category And
+		$query = "Select Count(*) as total From $this->tableName, categories cat, parents_category pac, users Where $this->tableName.fk_category = cat.pk_category And
 		cat.fk_parent_category = pac.pk_parent_category And $this->tableName.fk_user = users.pk_user And $this->tableName.status = 'Published' And  1=1  $condition";
 
 	$result = $this->accessDatabase->executeAndFetch("select", $query, $bindParams);
@@ -53,8 +53,6 @@ class Posts
 				 cat.fk_parent_category = pac.pk_parent_category And $this->tableName.fk_user = users.pk_user And $this->tableName.status = 'Published' And  1=1  $condition $orderBy $limit";
 
 		$result = $this->accessDatabase->executeAndFetch("select", $query, $bindParams);
-		$totalCount=self::count($action, $parameters);
-		print_r($totalCount);
 		return $result;
 	}
 

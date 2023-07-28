@@ -35,6 +35,12 @@ class Post
 
 		$orderBy = "Order By updated_at Desc";
 		$result = $this->accessPosts->select($action, $parameters, $orderBy, $limit);
+		$total = $this->accessPosts->total($action, $parameters);
+		if(array_key_exists("pageSize", $parameters))
+		{
+			$resultPagination["data"]=$result;
+			$resultPagination["total"]=$total;
+		}
 		$this->jsonData = $result;
 		$this->httpResponseCode = 200;
 	}
