@@ -29,7 +29,7 @@ class Post
 		//$encrypted_string=openssl_encrypt(2,"AES-128-ECB",$key);
 		//$encrypted_string=openssl_encrypt(3,"AES-128-ECB",$key);
 		
-		array_key_exists("page", $parameters) ? $page = $parameters["page"]-1 : $page = 0;
+		array_key_exists("page", $parameters) ? $page = $parameters["page"] * 2 - 2 : $page = 0;
 		array_key_exists("pageSize", $parameters) ? $limit = "Limit $page,{$parameters["pageSize"]}" : $limit = null;
 		array_key_exists("pac", $parameters) ? $parameters["pac"] = openssl_decrypt($parameters["pac"], "AES-128-ECB", $key) : null;
 
