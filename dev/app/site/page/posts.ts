@@ -56,9 +56,9 @@ class CmsPosts extends LitElement {
     }
 
     ShowPosts() {
-        let limit = 2;
+        let pageSize = 2;
 
-        GetData("post/select_post_pagination.php", { pac: '18PrB1fS1RtyZ550c5QR5Q', pageSize: limit, page: this.currentPage })
+        GetData("post/select_post_pagination.php", { pac: '18PrB1fS1RtyZ550c5QR5Q', pageSize: pageSize, page: this.currentPage })
             .then(item => {
                 for (let i = 0; i < item.data.length; i++) {
                     const element = item.data[i];
@@ -93,7 +93,7 @@ class CmsPosts extends LitElement {
                     `);
 
                 let totalData = item.total;
-                let totalPages = Math.ceil(totalData / limit);
+                let totalPages = Math.ceil(totalData / pageSize);
 
                 for (let i = 1; i <= totalPages; i++) {
                     this.Pagination.push(html`
