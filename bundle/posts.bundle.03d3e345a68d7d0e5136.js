@@ -320,7 +320,7 @@ n.version="2.29.4",r(qa),n.fn=or,n.min=Xa,n.max=es,n.now=ts,n.utc=M,n.unix=ur,n.
             <h5 class="text-primary">Our Blog</h5>
             <h1>Latest Blog & News</h1>
         </div>
-        <div class="row g-5 justify-content-center">
+        <div class="row g-5 justify-content-center p-2">
             ${s.dy`${this.NewsPosts}`}
         </div>
         <nav aria-label="Page navigation">

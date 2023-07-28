@@ -132,7 +132,7 @@ class CmsPosts extends LitElement {
             <h5 class="text-primary">Our Blog</h5>
             <h1>Latest Blog & News</h1>
         </div>
-        <div class="row g-5 justify-content-center">
+        <div class="row g-5 justify-content-center p-2">
             ${html`${this.NewsPosts}`}
         </div>
         <nav aria-label="Page navigation">
