@@ -64,7 +64,7 @@ class CmsPosts extends LitElement {
                     const element = data[i];
                     this.NewsPosts.push(html`
 <div class="col-lg-6 col-xl-4 wow fadeIn" data-wow-delay=".7s">
-    <div class="blog-item position-relative bg-light rounded">
+    <div class="blog-item position-relative bg-light rounded h-100">
         <img src="${element.thumbnail_path}" class="img-fluid w-100 rounded-top" alt="">
         <span class="position-absolute px-4 py-3 bg-primary text-white rounded" style="top: -28px; right: 20px;">${element.cat_title}</span>
         <div class="blog-btn d-flex justify-content-center position-relative px-3" style="margin-top: -75px;">
