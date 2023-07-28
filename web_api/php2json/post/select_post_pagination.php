@@ -9,6 +9,7 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 
     
     $accessClass = new Post("select", $_GET);
+    
     http_response_code($accessClass->getHttpResponseCode());
     echo json_encode($accessClass->getJsonData());
 
