@@ -15,6 +15,8 @@ class Post
 		$this->accessPosts = new Posts();
 		if ($action == "select")
 			self::select($action, $parameters);
+		if ($action == "selectWithPagination")
+			self::selectWithPagination($action, $parameters);
 		if ($action == "insert")
 			self::insert($action, $parameters);
 		if ($action == "update")
@@ -23,26 +25,31 @@ class Post
 			self::delete($action, $parameters);
 
 	}
-	private function select($action, $parameters)
+	private function selectWithPagination($action, $parameters)
 	{
 		$key = "pac";
-		//$encrypted_string=openssl_encrypt(2,"AES-128-ECB",$key);
-		//$encrypted_string=openssl_encrypt(3,"AES-128-ECB",$key);
-		
 		array_key_exists("page", $parameters) ? $page = $parameters["page"] * 2 - 2 : $page = 0;
 		array_key_exists("pageSize", $parameters) ? $limit = "Limit $page,{$parameters["pageSize"]}" : $limit = null;
 		array_key_exists("pac", $parameters) ? $parameters["pac"] = openssl_decrypt($parameters["pac"], "AES-128-ECB", $key) : null;
 
 		$orderBy = "Order By updated_at Desc";
-		$result = $resultTemp = $this->accessPosts->select($action, $parameters, $orderBy, $limit);
-		if(array_key_exists("page", $parameters))
-		{
-			$total = $this->accessPosts->total($action, $parameters);
-			$resultPagination["data"]=$resultTemp;
-			$resultPagination["total"]=$total[0]["total"];
-			$result=null;
-			$result=$resultPagination;
-		}
+		$resultPagination = $this->accessPosts->select($action, $parameters, $orderBy, $limit);
+
+		$total = $this->accessPosts->total($action, $parameters);
+		$result["data"]=$resultPagination;
+		$result["total"]=$total[0]["total"];		
+		$this->jsonData = $result;
+		$this->httpResponseCode = 200;
+	}
+	private function select($action, $parameters)
+	{
+		$key = "pac";
+		//$encrypted_string=openssl_encrypt(2,"AES-128-ECB",$key);
+		//$encrypted_string=openssl_encrypt(3,"AES-128-ECB",$key);
+		array_key_exists("pageSize", $parameters) ? $limit = "Limit 0,{$parameters["pageSize"]}" : $limit = null;
+		array_key_exists("pac", $parameters) ? $parameters["pac"] = openssl_decrypt($parameters["pac"], "AES-128-ECB", $key) : null;
+		$orderBy = "Order By updated_at Desc";
+		$result = $this->accessPosts->select($action, $parameters, $orderBy, $limit);
 		$this->jsonData = $result;
 		$this->httpResponseCode = 200;
 	}
