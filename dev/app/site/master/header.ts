@@ -7,6 +7,19 @@ import {
     GetData, 
     PostData } from '../../cms_general';
 import * as ko from 'knockout';
+import {
+    _addressText,
+    _emailLink,
+    _facebookLink,
+    _instagramLink,
+    _linkedinLink,
+    _telLink,
+    _telegramLink,
+    _whatsappLink,
+    _addressLink,
+    _emailText,
+    _telText
+} from '../../social_network_config';
 
 @customElement('cms-header')
 class CmsHeader extends LitElement {
@@ -26,10 +39,38 @@ class CmsHeader extends LitElement {
     @state()
     private PnlLogin: any;
 
+    private Model = {
+        social: {
+            FacebookLink: ko.observable(),
+            WhatsappLink: ko.observable(),
+            InstagramLink: ko.observable(),
+            LinkedinLink: ko.observable(),
+            TelegramLink: ko.observable(),
+            EmailLink: ko.observable(),
+            TelLink: ko.observable(),
+            AddressLink: ko.observable(),
+            EmailText: ko.observable(),
+            TelText: ko.observable(),
+            AddressText: ko.observable(),
+        },
+    }
+
     constructor() {
         super();
 
         this.lcid = getLanguage();
+
+        this.Model.social.FacebookLink(_facebookLink);
+        this.Model.social.WhatsappLink(_whatsappLink);
+        this.Model.social.InstagramLink(_instagramLink);
+        this.Model.social.LinkedinLink(_linkedinLink);
+        this.Model.social.TelegramLink(_telegramLink);
+        this.Model.social.EmailLink(_emailLink);
+        this.Model.social.TelLink(_telLink);
+        this.Model.social.AddressLink(_addressLink);
+        this.Model.social.EmailText(_emailText);
+        this.Model.social.TelText(_telText);
+        this.Model.social.AddressText(_addressText);
 
         //بررسی لاگین بودن شخص
         GetData("user_account/authentication.php", null)
@@ -99,6 +140,8 @@ class CmsHeader extends LitElement {
         $(() => {
             
         })
+
+        ko.applyBindings(this.Model, document.getElementById("pnlHeader"));
     }
 
     updated(changedProperties: any) {
@@ -168,7 +211,7 @@ class CmsHeader extends LitElement {
                 </div>
                 <div class="d-flex flex-column pe-4">
                     <span class="text-white-50">Have any questions?</span>
-                    <span class="text-secondary">Call: +43 664 99657071</span>
+                    <span class="text-secondary" data-bind="text: social.TelText"></span>
                 </div>
             </div>
         </nav>

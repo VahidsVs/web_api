@@ -11,6 +11,19 @@ import {
     AjaxSuccessFunction } from '../../cms_general';
 import * as ko from 'knockout';
 import { unsafeHTML } from 'lit-html/directives/unsafe-html.js';
+import {
+    _addressText,
+    _emailLink,
+    _facebookLink,
+    _instagramLink,
+    _linkedinLink,
+    _telLink,
+    _telegramLink,
+    _whatsappLink,
+    _addressLink,
+    _emailText,
+    _telText
+} from '../../social_network_config';
 
 @customElement('cms-contactus')
 class CmsContactUs extends LitElement {
@@ -39,6 +52,19 @@ class CmsContactUs extends LitElement {
         },
         captcha: {
             captcha: ko.observable(),
+        },
+        social: {
+            FacebookLink: ko.observable(),
+            WhatsappLink: ko.observable(),
+            InstagramLink: ko.observable(),
+            LinkedinLink: ko.observable(),
+            TelegramLink: ko.observable(),
+            EmailLink: ko.observable(),
+            TelLink: ko.observable(),
+            AddressLink: ko.observable(),
+            EmailText: ko.observable(),
+            TelText: ko.observable(),
+            AddressText: ko.observable(),
         },
         errors: {
             name: ko.observable(),
@@ -80,6 +106,18 @@ class CmsContactUs extends LitElement {
         this.lcid = getLanguage();
 
         document.title = "Contact Us";
+
+        this.Model.social.FacebookLink(_facebookLink);
+        this.Model.social.WhatsappLink(_whatsappLink);
+        this.Model.social.InstagramLink(_instagramLink);
+        this.Model.social.LinkedinLink(_linkedinLink);
+        this.Model.social.TelegramLink(_telegramLink);
+        this.Model.social.EmailLink(_emailLink);
+        this.Model.social.TelLink(_telLink);
+        this.Model.social.AddressLink(_addressLink);
+        this.Model.social.EmailText(_emailText);
+        this.Model.social.TelText(_telText);
+        this.Model.social.AddressText(_addressText);
     }
 
     firstUpdated(changedProperties: any) {
@@ -158,7 +196,7 @@ class CmsContactUs extends LitElement {
                         </div>
                         <div class="ms-3">
                             <h4 class="text-primary">Address</h4>
-                            <a href="https://goo.gl/maps/e9B3Ns14DApVZXqv8" target="_blank" class="h5">Weiz, Austria</a>
+                            <a data-bind="attr: { href: social.AddressLink }" href="" target="_blank" class="h5"><span data-bind="text: social.AddressText"></span></a>
                         </div>
                     </div>
                 </div>
@@ -169,7 +207,7 @@ class CmsContactUs extends LitElement {
                         </div>
                         <div class="ms-3">
                             <h4 class="text-primary">Call Us</h4>
-                            <a class="h5" href="tel:+4366499657071" target="_blank">+43 664 99657071</a>
+                            <a class="h5" data-bind="attr: { href: social.TelLink }" href="" target="_blank"><span data-bind="text: social.TelText"></span></a>
                         </div>
                     </div>
                 </div>
@@ -180,7 +218,7 @@ class CmsContactUs extends LitElement {
                         </div>
                         <div class="ms-3">
                             <h4 class="text-primary">Email Us</h4>
-                            <a class="h5" href="mailto:admin@megatechapp.at" target="_blank">admin@megatechapp.at</a>
+                            <a class="h5" data-bind="attr: { href: social.EmailLink }" href="" target="_blank"><span data-bind="text: social.EmailText"></span></a>
                         </div>
                     </div>
                 </div>
