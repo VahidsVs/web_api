@@ -295,7 +295,7 @@ s.version="2.29.4",r(Kn),s.fn=ur,s.min=ea,s.max=ta,s.now=na,s.utc=f,s.unix=_r,s.
             <div class="top-link">
                 <a href="" target="_blank" class="bg-light nav-fill btn btn-sm-square rounded-circle"><i class="fab fa-facebook-f text-primary"></i></a>
                 <a href="https://wa.me/4366499657071" target="_blank" class="bg-light nav-fill btn btn-sm-square rounded-circle"><i class="fab fa-whatsapp text-primary"></i></a>
-                <a href="" target="_blank" class="bg-light nav-fill btn btn-sm-square rounded-circle"><i class="fab fa-instagram text-primary"></i></a>
+                <a href="https://instagram.com/megatechapp?igshid=MzRlODBiNWFlZA==" target="_blank" class="bg-light nav-fill btn btn-sm-square rounded-circle"><i class="fab fa-instagram text-primary"></i></a>
                 <a href="" target="_blank" class="bg-light nav-fill btn btn-sm-square rounded-circle me-0"><i class="fab fa-linkedin-in text-primary"></i></a>
             </div>
         </div>
@@ -334,7 +334,7 @@ s.version="2.29.4",r(Kn),s.fn=ur,s.min=ea,s.max=ta,s.now=na,s.utc=f,s.unix=_r,s.
                     <a href="https://wa.me/4366499657071" target="_blank" class="btn-light nav-fill btn btn-square rounded-circle me-2">
                         <i class="fab fa-whatsapp text-primary"></i>
                     </a>
-                    <a href="" target="_blank" class="btn-light nav-fill btn btn-square rounded-circle me-2">
+                    <a href="https://instagram.com/megatechapp?igshid=MzRlODBiNWFlZA==" target="_blank" class="btn-light nav-fill btn btn-square rounded-circle me-2">
                         <i class="fab fa-instagram text-primary"></i>
                     </a>
                     <a href="" target="_blank" class="btn-light nav-fill btn btn-square rounded-circle me-0">

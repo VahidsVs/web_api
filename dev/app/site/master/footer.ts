@@ -49,7 +49,7 @@ class CmsFooter extends LitElement {
                     <a href="https://wa.me/4366499657071" target="_blank" class="btn-light nav-fill btn btn-square rounded-circle me-2">
                         <i class="fab fa-whatsapp text-primary"></i>
                     </a>
-                    <a href="" target="_blank" class="btn-light nav-fill btn btn-square rounded-circle me-2">
+                    <a href="https://instagram.com/megatechapp?igshid=MzRlODBiNWFlZA==" target="_blank" class="btn-light nav-fill btn btn-square rounded-circle me-2">
                         <i class="fab fa-instagram text-primary"></i>
                     </a>
                     <a href="" target="_blank" class="btn-light nav-fill btn btn-square rounded-circle me-0">
