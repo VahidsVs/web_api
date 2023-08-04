@@ -15,7 +15,15 @@ class CmsController extends LitElement {
 
     constructor() {
         super();
+
+        // var interval = setInterval(()=>{
+        //     clearInterval(interval);
+        //     this.IsAuthorized = true;
+        // }, 5000)
     }
+
+    @state()
+    IsAuthorized: boolean = false;
 
     @property()
     ComponentName: string;
@@ -54,6 +62,10 @@ class CmsController extends LitElement {
     }
 
     render() {
+        // if (this.IsAuthorized == false) {
+        //     return html``;
+        // }
+
         return html`
 <cms-notification></cms-notification>
 
