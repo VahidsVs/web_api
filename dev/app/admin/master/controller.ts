@@ -1,6 +1,7 @@
 ﻿import { LitElement, html, css } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
-import { GetData, PostData } from '../../cms_general';
+import { GetData, PostData, PostDataForm } from '../../cms_general';
+import * as ko from 'knockout';
 
 @customElement('cms-controller')
 class CmsController extends LitElement {
@@ -8,13 +9,18 @@ class CmsController extends LitElement {
         return this;
     }
 
-//    static get styles() {
-//        return css`
-//`;
-//    }
+    //    static get styles() {
+    //        return css`
+    //`;
+    //    }
 
     constructor() {
         super();
+        console.log(window.location.pathname)
+        PostDataForm("", ko.toJS({ pageURL: window.location.pathname }))
+            .then(data => {
+
+            })
 
         // var interval = setInterval(()=>{
         //     clearInterval(interval);
