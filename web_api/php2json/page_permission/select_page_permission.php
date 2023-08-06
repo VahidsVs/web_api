@@ -12,10 +12,10 @@ session_start();
 $accessAuthorization = new Authorization();
 $isAuthorized["auth"] = $isAuthorized["aa"] = false;
 if (array_key_exists("Authorization", $headers) && array_key_exists("token", $_SESSION) && array_key_exists("key", $_SESSION))
-    $isAuthorized = $accessAuthorization->isAuthorized($headers["Authorization"], $_SESSION["token"], $_SESSION["key"], RolesTitle::role_pageManagement);
+    $isAuthorized = $accessAuthorization->isAuthorized($headers["Authorization"], $_SESSION["token"], $_SESSION["key"]);
 
 if ($isAuthorized["auth"] && $isAuthorized["aa"]) {
-    $accessClass = new PagePermission("select", $_GET);
+    $accessClass = new PagePermission("select", $_POST);
     http_response_code($accessClass->getHttpResponseCode());
     echo json_encode($accessClass->getJsonData());
 } else {

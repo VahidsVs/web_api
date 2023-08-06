@@ -34,10 +34,13 @@ class PagePermission
 			$this->jsonData["errors"] = ["pageURL" => $message["pageURL"]];
 		} else {
 			$result = $this->accessPagesPermission->select($action, $parameters);
+			
 			if ($result) {
-				$this->jsonData = $result;
+				$isPermitted=["isPermitted"=>true];
+				$this->jsonData = $isPermitted;
 				$this->httpResponseCode = 200;
 			} else {
+				$isPermitted=["isPermitted"=>false];
 				$this->jsonData = $result;
 				$this->httpResponseCode = 401;
 			}
