@@ -16,10 +16,10 @@ class CmsController extends LitElement {
 
     constructor() {
         super();
-        console.log(window.location.pathname)
-        PostDataForm("", ko.toJS({ pageURL: window.location.pathname }))
+        
+        PostDataForm("page_permission/select_page_permission.php", ko.toJS({ pageURL: window.location.pathname }))//->/admin/index.html
             .then(data => {
-
+                this.IsAuthorized = data[0].isPermitted;
             })
 
         // var interval = setInterval(()=>{
@@ -68,9 +68,9 @@ class CmsController extends LitElement {
     }
 
     render() {
-        // if (this.IsAuthorized == false) {
-        //     return html``;
-        // }
+        if (this.IsAuthorized == false) {
+            return html``;
+        }
 
         return html`
 <cms-notification></cms-notification>
