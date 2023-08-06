@@ -41,7 +41,7 @@ class PagePermission
 				$this->httpResponseCode = 200;
 			} else {
 				$isPermitted=["isPermitted"=>false];
-				$this->jsonData = $result;
+				$this->jsonData = $isPermitted;
 				$this->httpResponseCode = 401;
 			}
 		}
