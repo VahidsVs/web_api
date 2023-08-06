@@ -1,5 +1,5 @@
 <?php
-include_once("../../model/class_pages.php");
+include_once("../../model/class_pages_permission.php");
 include_once("../../class_codes.php");
 
 $GLOBALS["iniConfig"] = parse_ini_file("../../config.ini");
