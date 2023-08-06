@@ -35,7 +35,7 @@ class PagePermission
 		} else {
 			$result = $this->accessPagesPermission->select($action, $parameters);
 			
-			if ($result||$parameters["pageURL"]=="/admin/index.html") {
+			if ($result||in_array($parameters["pageURL"],["/admin/index.html"])) {
 				$isPermitted=["isPermitted"=>true];
 				$this->jsonData = $isPermitted;
 				$this->httpResponseCode = 200;
