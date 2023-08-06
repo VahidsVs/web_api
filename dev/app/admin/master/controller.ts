@@ -19,7 +19,7 @@ class CmsController extends LitElement {
         
         PostDataForm("page_permission/select_page_permission.php", ko.toJS({ pageURL: window.location.pathname }))//->/admin/index.html
             .then(data => {
-                this.IsAuthorized = data[0].isPermitted;
+                this.IsAuthorized = data.isPermitted;
             })
 
         // var interval = setInterval(()=>{
@@ -68,7 +68,7 @@ class CmsController extends LitElement {
     }
 
     render() {
-        if (this.IsAuthorized == false) {
+        if (this.IsAuthorized != true) {
             return html``;
         }
 
