@@ -37,7 +37,7 @@ class Post
 
 		$total = $this->accessPosts->total($action, $parameters);
 		$result["data"]=$resultPagination;
-		$result["total"]=$total[0]["total"];		
+		$result["total"]=$total[0]["total"];
 		$this->jsonData = $result;
 		$this->httpResponseCode = 200;
 	}

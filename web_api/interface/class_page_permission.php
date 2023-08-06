@@ -4,15 +4,15 @@ include_once("../../class_codes.php");
 
 $GLOBALS["iniConfig"] = parse_ini_file("../../config.ini");
 
-class Page
+class PagePermission
 {
-	private $accessPages;
+	private $accessPagesPermission;
 	private $httpResponseCode;
 	private $jsonData;
 	private $isDataOK = true;
 	function __construct($action, $parameters)
 	{
-		$this->accessPages = new Pages();
+		$this->accessPagesPermission= new PagesPermission();
 		if ($action == "select")
 			self::select($action, $parameters);
 		if ($action == "insert")
@@ -25,9 +25,23 @@ class Page
 	}
 	private function select($action, $parameters)
 	{
-		$result = $this->accessPages->select($action, $parameters);
-		$this->jsonData = $result;
-		$this->httpResponseCode = 200;
+		if (empty($parameters["pageURL"])) {
+			$message["pageURL"] = Codes::msg_isRequired;
+			$this->isDataOK = false;
+		}
+		if (!$this->isDataOK) {
+			$this->httpResponseCode = 400;
+			$this->jsonData["errors"] = ["pageURL" => $message["pageURL"]];
+		} else {
+			$result = $this->accessPagesPermission->select($action, $parameters);
+			if ($result) {
+				$this->jsonData = $result;
+				$this->httpResponseCode = 200;
+			} else {
+				$this->jsonData = $result;
+				$this->httpResponseCode = 401;
+			}
+		}
 	}
 	private function insert($action, $parameters)
 	{
@@ -52,7 +66,7 @@ class Page
 			$this->jsonData["errors"] = ["title" => $message["title"], "slug" => $message["slug"], "content" => $message["content"]];
 		}
 		if ($this->isDataOK) {
-			$result = $this->accessPages->insert($action, $parameters);
+			$result = $this->accessPagesPermission->insert($action, $parameters);
 			if ($result["code"] == "msgSuccessfulCUD") {
 				$this->httpResponseCode = 200;
 				$this->jsonData = ["msg" => $result["code"]];
@@ -87,7 +101,7 @@ class Page
 		}
 
 		if ($this->isDataOK) {
-			$result = $this->accessPages->update($action, $parameters);
+			$result = $this->accessPagesPermission->update($action, $parameters);
 			if ($result["code"] == "msgSuccessfulCUD") {
 				$this->httpResponseCode = 200;
 				$this->jsonData = ["msg" => $result["code"]];
@@ -114,7 +128,7 @@ class Page
 		}
 
 		if ($this->isDataOK) {
-			$result = $this->accessPages->delete($action, $parameters);
+			$result = $this->accessPagesPermission->delete($action, $parameters);
 			if ($result["code"] == "msgSuccessfulCUD") {
 				$this->httpResponseCode = 200;
 				$this->jsonData = ["msg" => $result["code"]];
