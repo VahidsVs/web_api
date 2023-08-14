@@ -115,7 +115,7 @@ class CmsLogin extends LitElement {
                         window.localStorage.setItem("CMSToken", data.token);
                     }
 
-                    document.cookie = "token=" + data.token + "; path=/;SameSite=None;Secure";
+                    document.cookie = "token=" + data.token + "; path=/";
                     window.location.href = '/my_home.html';
                 }
                 this.Model.setErrors(data.errors);
