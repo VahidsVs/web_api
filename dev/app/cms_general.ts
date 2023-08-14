@@ -334,7 +334,7 @@ function AjaxErrorFunction(data: any, divId: any) {
     //console.log(data);
     //unAuthorize
     if (data.status === 401 || data.status === 403) {
-        window.location.href = "/access_denied.html";
+        // window.location.href = "/access_denied.html";
     }
     //bad request validation or message
     else if (data.status === 400 && data.message !== undefined) {
