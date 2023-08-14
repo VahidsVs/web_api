@@ -15,6 +15,8 @@ export function getTranslate(key: string) {
 
     let resources = JSON.parse(sessionStorage.translate);
 
+    if (resources.length == undefined) return "";
+
     let resource = resources.find((p: any) => p.Key == key);
 
     return resource ? (resource.Translate != null ? resource.Translate : '[' + key + ']') : '[' + key + ']';
